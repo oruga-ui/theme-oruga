@@ -1,0 +1,28 @@
+@use "sass:list";
+
+:root {
+  @if $css-vars {
+    // generate color variables
+    @each $name, $color in $colors {
+      --#{$prefix}#{$name}: #{list.nth($color, 1)};
+      --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
+    }
+
+    --#{$prefix}white: #{$white};
+    --#{$prefix}black: #{$black};
+    --#{$prefix}grey: #{$grey};
+    --#{$prefix}grey-light: #{$grey-light};
+    --#{$prefix}grey-lighter: #{$grey-lighter};
+    --#{$prefix}grey-dark: #{$grey-dark};
+
+    // generate size variables
+    @each $name, $size in $sizes {
+      --#{$prefix}size-#{$name}: #{$size};
+    }
+
+    --#{$prefix}base-font-family: #{$base-font-family};
+    --#{$prefix}base-font-size: #{$base-font-size};
+    --#{$prefix}base-font-weight: #{$base-font-weight};
+    --#{$prefix}base-line-height: #{$base-line-height};
+  }
+}

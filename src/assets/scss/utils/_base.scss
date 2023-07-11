@@ -1,0 +1,31 @@
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  @include avariable("font-family", "base-font-family", $base-font-family);
+  @include avariable("font-size", "base-font-size", $base-font-size);
+  @include avariable("font-weight", "base-font-weight", $base-font-weight);
+  @include avariable("line-height", "base-line-height", $base-line-height);
+}
+
+.o-noscroll {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.o-clipped {
+  overflow: hidden;
+}
