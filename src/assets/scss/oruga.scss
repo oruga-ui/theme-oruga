@@ -2,13 +2,13 @@
 *   Oruga Default Theme Minimal Style
 ****************************************/
 
+// Define empty Maps
+$colors: () !default;
+$sizes: () !default;
+
 // Import Ourga Theme variables
 @import "utils/variables";
 @import "utils/helpers";
-
-// Reset Maps
-$colors: ();
-$sizes: ();
 
 // Autocomplete
 $whitelist: add-to-whitelist(
