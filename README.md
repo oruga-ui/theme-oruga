@@ -44,7 +44,7 @@ import App from './App.vue'
 import Oruga from '@oruga-ui/oruga-next'
 
 // import Oruga theme styling
-import '@oruga-ui/theme-oruga/oruga.css'
+import '@oruga-ui/theme-oruga/dist/oruga.css'
 
 createApp(App)
     .use(Oruga)
@@ -69,8 +69,8 @@ For customasing any SASS variables you have to set them pefore the SCSS Import.
 // Include any default variable overrides here (though functions and maps won't be available here)
 // ...
 
-// Include the Oruga theme here
-@import "/node_modules/@oruga-ui/theme-oruga/oruga-full.css";
+// Include the full Oruga theme here
+@import "/node_modules/@oruga-ui/theme-oruga/dist/scss/oruga-full";
 
 // Then add additional custom code here
 // ...
@@ -85,7 +85,7 @@ import { createApp } from 'vue'
 
 import Oruga from '@oruga-ui/oruga-next'
 
-import '@oruga-ui/theme-oruga/oruga-full.css'
+import '@oruga-ui/theme-oruga/dist/oruga-full.css'
 
 const customConfig = {
     checkbox: {
