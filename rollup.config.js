@@ -12,7 +12,7 @@ import postcss from "postcss";
 import pkg from "./package.json";
 
 const entries = {
-  index: "src/plugins/themeConfig.ts",
+  index: "src/plugins/theme.ts",
   scss: "src/assets/scss",
 };
 
