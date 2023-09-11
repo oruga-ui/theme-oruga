@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const time = ref<Date | null>(null);
+const hourFormat = ref(undefined); // Browser locale
+const enableSeconds = ref(false);
+const locale = ref(undefined); // Browser locale
+
+const min = new Date();
+min.setHours(9);
+min.setMinutes(0);
+const max = new Date();
+max.setHours(18);
+max.setMinutes(0);
+
+const minTime = ref(min);
+const maxTime = ref(max);
+
+const minutesGranularity = ref(5);
+const hoursGranularity = ref(2);
+</script>
+
 <template>
   <section>
     <h2>Timepicker Demo</h2>
@@ -6,7 +28,8 @@
 
   <section>
     <h3>Base</h3>
-    <o-field grouped group-multiline>
+
+    <o-field grouped>
       <o-field>
         <o-switch v-model="enableSeconds">Enable seconds</o-switch>
       </o-field>
@@ -47,18 +70,34 @@
         :locale="locale">
       </o-timepicker>
     </o-field>
+  </section>
+
+  <section>
+    <h3>Inline</h3>
+
+    <o-timepicker v-model="time" inline></o-timepicker>
+  </section>
+
+  <section>
+    <h3>Min/Max date</h3>
 
     <o-field label="Select time">
       <o-timepicker
-        v-model="time"
-        size="large"
-        icon="clock"
-        placeholder="Click to select...">
+        placeholder="Click to select..."
+        :min-time="minTime"
+        :max-time="maxTime" />
+    </o-field>
+  </section>
+
+  <section>
+    <h3>Slot</h3>
+
+    <o-field label="Select time">
+      <o-timepicker v-model="time" placeholder="Click to select...">
         <o-button
           label="Now"
           variant="primary"
           icon-left="clock"
-          outlined
           @click="time = new Date()" />
         <o-button
           label="Clear"
@@ -69,17 +108,17 @@
       </o-timepicker>
     </o-field>
   </section>
-</template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      time: null as Date | null,
-      hourFormat: undefined, // Browser locale
-      enableSeconds: false,
-      locale: undefined, // Browser locale
-    };
-  },
-};
-</script>
+  <section>
+    <h3>Granularity</h3>
+
+    <o-field label="Select time">
+      <o-timepicker
+        placeholder="Click to select"
+        icon="clock"
+        :increment-minutes="minutesGranularity"
+        :increment-hours="hoursGranularity">
+      </o-timepicker>
+    </o-field>
+  </section>
+</template>

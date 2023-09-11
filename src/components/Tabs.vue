@@ -85,17 +85,6 @@ const type = ref("default");
         :icon="tab.icon"
         :disabled="tab.disabled" />
     </o-tabs>
-
-    Pills
-    <o-tabs type="pills">
-      <o-tab-item
-        v-for="(tab, i) in tabs"
-        :key="i"
-        :value="i"
-        :label="tab.label"
-        :icon="tab.icon"
-        :disabled="tab.disabled" />
-    </o-tabs>
   </section>
 
   <section>

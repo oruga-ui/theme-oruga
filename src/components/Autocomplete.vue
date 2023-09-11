@@ -488,7 +488,7 @@ function getMoreAsyncData() {
   </section>
 
   <section>
-    <h2>Base</h2>
+    <h3>Base</h3>
 
     <o-field label="Find a JS framework">
       <o-autocomplete
@@ -507,7 +507,7 @@ function getMoreAsyncData() {
   </section>
 
   <section>
-    <h2>Objects array</h2>
+    <h3>Objects array</h3>
 
     <o-field grouped group-multiline>
       <o-switch v-model="openOnFocus">Open dropdown on focus</o-switch>
@@ -528,7 +528,7 @@ function getMoreAsyncData() {
   </section>
 
   <section>
-    <h2>Groups</h2>
+    <h3>Groups</h3>
 
     <o-field label="Find a food">
       <o-autocomplete
@@ -544,7 +544,7 @@ function getMoreAsyncData() {
   </section>
 
   <section>
-    <h2>Infinite Scroll</h2>
+    <h3>Infinite Scroll</h3>
 
     <o-field label="Find a movie">
       <o-autocomplete
