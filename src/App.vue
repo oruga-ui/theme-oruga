@@ -36,7 +36,7 @@ const components = Object.keys(paths)
 </template>
 
 <style lang="scss">
-@import "./assets/utils/variables";
+@import "./assets/scss/utils/variables";
 
 #app {
   display: flex;
@@ -45,18 +45,18 @@ const components = Object.keys(paths)
   main {
     flex-grow: 1;
     margin: 2rem;
-  }
 
-  section {
-    margin: 1rem 0;
+    > section {
+      margin: 1rem 0;
 
-    h3 {
-      font-size: 1.75rem;
-    }
+      h3 {
+        font-size: 1.75rem;
+      }
 
-    .buttons > *:not(:last-child) {
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      .buttons > *:not(:last-child) {
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
     }
   }
 
