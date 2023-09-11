@@ -1,1 +1,1 @@
-export const theme: any = {};
+// No theme config to export. Theme includes only css.

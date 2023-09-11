@@ -1,15 +1,13 @@
-import cjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
 import sass from "rollup-plugin-sass";
 import typescript from "@rollup/plugin-typescript";
-import { terser } from "rollup-plugin-terser";
 
 import autoprefixer from "autoprefixer";
 import fs from "fs";
 import path from "path";
 import postcss from "postcss";
 
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 const entries = {
   index: "src/plugins/theme.ts",
@@ -75,27 +73,15 @@ export default function () {
           file: `${exits.esm}`,
         },
         {
-          format: "esm",
-          file: `${createMinifiedFileName(exits.esm)}`,
-          plugins: [terser()],
-        },
-        {
           format: "umd",
           name: "OrugaDefaultTheme",
           file: `${exits.umd}`,
-        },
-        {
-          format: "umd",
-          name: "OrugaDefaultTheme",
-          file: `${createMinifiedFileName(exits.umd)}`,
-          plugins: [terser()],
         },
       ],
       plugins: [
         copy({
           targets: [{ src: `${entries.scss}`, dest: `${exits.directory}` }],
         }),
-        cjs(),
         sass({
           ...commonSassPluginOptions,
           output(styles) {
