@@ -49,7 +49,7 @@ $checkbox-line-height: 1.5 !default;
     $checkbox-margin-sibiling
   );
 
-  &__check {
+  &__input {
     @include avariable("width", "checkbox-size", $checkbox-size);
     @include avariable("height", "checkbox-size", $checkbox-size);
     outline: none;
@@ -162,18 +162,18 @@ $checkbox-line-height: 1.5 !default;
     $color: list.nth($pair, 1);
     $color-invert: list.nth($pair, 2);
     &--#{$name} {
-      .o-chk__check {
+      .o-chk__input {
         @include avariable("border-color", ("variant-" + #{$name}), $color);
         @include avariable("background-color", ("variant-" + #{$name}), $color);
       }
 
-      .o-chk__check--checked {
+      .o-chk__input--checked {
         background-image: url(svg_checkmark(
           variable(("variant-invert-" + #{$name}), $color-invert)
         ));
       }
 
-      .o-chk__check--indeterminate {
+      .o-chk__input--indeterminate {
         background-image: url(svg_indeterminate(
           variable(("variant-invert-" + #{$name}), $color-invert)
         ));
