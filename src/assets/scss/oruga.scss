@@ -10,12 +10,6 @@ $sizes: () !default;
 @import "utils/variables";
 @import "utils/helpers";
 
-// Autocomplete
-$whitelist: add-to-whitelist(
-  "autocomplete-menu-background",
-  "autocomplete-menu-zindex"
-);
-
 // Button
 $whitelist: add-to-whitelist(
   "button-background-color",
