@@ -12,8 +12,10 @@ $dropdown-item-padding: 0.375rem 1rem !default;
 $dropdown-item-font-weight: 400 !default;
 $dropdown-menu-background: #ffffff !default;
 $dropdown-menu-border-radius: $base-border-radius !default;
-$dropdown-menu-box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+$dropdown-menu-box-shadow:
+  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
   0 0 0 1px rgba(10, 10, 10, 0.02) !default;
+$dropdown-menu-spacer: 0px !default;
 $dropdown-menu-margin: 0 !default;
 $dropdown-menu-padding: 0.5rem 0 0.5rem 0 !default;
 $dropdown-menu-width: 12rem !default;
@@ -30,16 +32,6 @@ $dropdown-mobile-zindex: 50 !default;
   display: inline-flex;
   position: relative;
   vertical-align: top;
-
-  &--inline {
-    display: inline;
-
-    .o-drop__menu {
-      position: static;
-      display: inline-block;
-      padding: 0;
-    }
-  }
 
   &__overlay {
     position: fixed;
@@ -68,8 +60,6 @@ $dropdown-mobile-zindex: 50 !default;
 
   &__menu {
     position: absolute;
-    left: 0;
-    top: 100%;
     display: block;
 
     @include avariable(
@@ -104,28 +94,133 @@ $dropdown-mobile-zindex: 50 !default;
     );
     @include avariable("margin", "dropdown-menu-margin", $dropdown-menu-margin);
 
-    &--top-left {
-      top: auto;
-      bottom: 100%;
-      right: 0;
-      left: auto;
+    &--bottom {
+      left: 50%;
+      right: auto;
+
+      @include evariable(
+        "top",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+      bottom: auto;
+      transform: translateX(-50%);
     }
 
-    &--bottom-left {
-      right: 0;
+    &--top {
+      left: 50%;
+      right: auto;
+      top: auto;
+
+      @include evariable(
+        "bottom",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+      transform: translateX(-50%);
+    }
+
+    &--left {
+      @include evariable(
+        "right",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
       left: auto;
+      top: 50%;
+      bottom: auto;
+      transform: translateY(-50%);
+    }
+
+    &--right {
+      right: auto;
+
+      @include evariable(
+        "left",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+      top: 50%;
+      bottom: auto;
+      transform: translateY(-50%);
     }
 
     &--top-right {
+      right: 0;
+      left: auto;
       top: auto;
-      bottom: 100%;
+
+      @include evariable(
+        "bottom",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+    }
+
+    &--top-left {
+      right: auto;
+      left: 0;
+      top: auto;
+
+      @include evariable(
+        "bottom",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+    }
+
+    &--bottom-right {
+      right: 0;
+      left: auto;
+
+      @include evariable(
+        "top",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+      bottom: auto;
+    }
+
+    &--bottom-left {
+      right: auto;
+      left: 0;
+
+      @include evariable(
+        "top",
+        "calc(100% + $param)",
+        eparam(
+          "$param",
+          variable("dropdown-menu-spacer", $dropdown-menu-spacer)
+        )
+      );
+      bottom: auto;
     }
   }
 
   &__item {
     display: block;
     position: relative;
-    cursor: pointer;
 
     @include avariable("color", "dropdown-item-color", $dropdown-item-color);
     @include avariable(
@@ -171,17 +266,31 @@ $dropdown-mobile-zindex: 50 !default;
       );
     }
 
-    &:hover:not(&--active) {
-      @include avariable(
-        "background-color",
-        "dropdown-item-hover-background-color",
-        $dropdown-item-hover-background-color
-      );
-      @include avariable(
-        "color",
-        "dropdown-item-hover-color",
-        $dropdown-item-hover-color
-      );
+    &--clickable {
+      cursor: pointer;
+
+      &:hover:not(&--active) {
+        @include avariable(
+          "background-color",
+          "dropdown-item-hover-background-color",
+          $dropdown-item-hover-background-color
+        );
+        @include avariable(
+          "color",
+          "dropdown-item-hover-color",
+          $dropdown-item-hover-color
+        );
+      }
+    }
+  }
+
+  &--inline {
+    display: inline;
+
+    .o-drop__menu {
+      position: static;
+      display: inline-block;
+      padding: 0;
     }
   }
 
@@ -237,5 +346,9 @@ $dropdown-mobile-zindex: 50 !default;
     > .o-drop__overlay {
       display: block;
     }
+  }
+
+  &--teleport {
+    width: unset;
   }
 }
