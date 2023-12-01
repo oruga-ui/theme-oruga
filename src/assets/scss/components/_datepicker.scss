@@ -124,6 +124,14 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       }
     }
 
+    &__previous {
+      order: 1;
+    }
+
+    &__next {
+      order: 3;
+    }
+
     &__previous,
     &__next {
       justify-content: center;
@@ -201,14 +209,6 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       }
     }
 
-    &__previous {
-      order: 1;
-    }
-
-    &__next {
-      order: 3;
-    }
-
     &__list {
       order: 2;
       align-items: center;
@@ -243,7 +243,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
   }
 
   &__table,
-  &__molist.nth {
+  &__month {
     display: table;
     margin: 0 auto 0 auto;
 
@@ -555,14 +555,14 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     }
   }
 
-  &__molist.nth__table {
+  &__month__table {
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
     width: 17rem;
   }
 
-  &__molist.nth__cell {
+  &__month__cell {
     display: flex;
     align-items: center;
     justify-content: center;
