@@ -78,16 +78,6 @@ $whitelist: add-to-whitelist("icon-spin-duration");
 // Input
 $whitelist: add-to-whitelist();
 
-// Inputitems
-$whitelist: add-to-whitelist(
-  "inputitems-border-style",
-  "inputitems-border-color",
-  "inputitems-border-width",
-  "inputitems-color",
-  "inputitems-item-color",
-  "inputitems-item-background-color"
-);
-
 // Modal
 $whitelist: add-to-whitelist(
   "modal-zindex",
@@ -175,6 +165,16 @@ $whitelist: add-to-whitelist(
   "tabs-link-active-color",
   "tabs-link-active-border-bottom-color",
   "tabs-link-color"
+);
+
+// Taginput
+$whitelist: add-to-whitelist(
+  "taginput-border-style",
+  "taginput-border-color",
+  "taginput-border-width",
+  "taginput-color",
+  "taginput-item-color",
+  "taginput-item-background-color"
 );
 
 // Timepicker
