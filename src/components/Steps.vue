@@ -32,27 +32,27 @@ const size = ref(null);
 
     <o-field grouped group-multiline>
       <o-field>
-        <o-switch v-model="showSocial"> Show Social step </o-switch>
+        <o-switch v-model="showSocial" label="Show Social step" />
       </o-field>
       <o-field>
-        <o-switch v-model="isAnimated"> Animated </o-switch>
+        <o-switch v-model="isAnimated" label="Animated" />
       </o-field>
       <o-field>
-        <o-switch v-model="isRounded"> Rounded </o-switch>
+        <o-switch v-model="isRounded" label="Rounded" />
       </o-field>
       <o-field>
-        <o-switch v-model="isVertical"> Vertical </o-switch>
+        <o-switch v-model="isVertical" label="Vertical" />
       </o-field>
       <o-field>
-        <o-switch v-model="isStepsClickable"> Clickable Marker </o-switch>
+        <o-switch v-model="isStepsClickable" label="Clickable Marker" />
       </o-field>
     </o-field>
     <o-field grouped group-multiline>
       <o-field>
-        <o-switch v-model="hasNavigation"> Navigation Buttons </o-switch>
+        <o-switch v-model="hasNavigation" label="Navigation Buttons" />
       </o-field>
       <o-field>
-        <o-switch v-model="customNavigation"> Custom Navigation </o-switch>
+        <o-switch v-model="customNavigation" label="Custom Navigation" />
       </o-field>
       <o-field>
         <o-switch v-model="isProfileSuccess">
@@ -137,18 +137,17 @@ const size = ref(null);
           icon-pack="fas"
           icon-left="backward"
           :disabled="previous.disabled"
-          @click.prevent="previous.action">
-          Previous
-        </o-button>
+          label="Previous"
+          @click.prevent="previous.action" />
+
         <o-button
           outlined
           variant="success"
           icon-pack="fas"
           icon-right="forward"
           :disabled="next.disabled"
-          @click.prevent="next.action">
-          Next
-        </o-button>
+          label="Next"
+          @click.prevent="next.action" />
       </template>
     </o-steps>
   </section>
