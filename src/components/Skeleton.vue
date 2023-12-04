@@ -13,17 +13,25 @@ const animated = ref(true);
   <section>
     <h3>Base</h3>
 
-    <o-field grouped group-multiline>
-      <o-switch v-model="animated">Animated</o-switch>
+    <o-field grouped>
+      <o-switch v-model="animated" label="Animated" />
     </o-field>
-    20%
-    <o-skeleton width="20%" :animated="animated" />
-    40%
-    <o-skeleton width="40%" :animated="animated" />
-    80%
-    <o-skeleton width="80%" :animated="animated" />
-    Count 2
-    <o-skeleton :animated="animated" :count="2" />
+
+    <o-field label="20%">
+      <o-skeleton width="20%" :animated="animated" />
+    </o-field>
+    <o-field label="40%">
+      <o-skeleton width="40%" :animated="animated" />
+    </o-field>
+    <o-field label="80%">
+      <o-skeleton width="80%" :animated="animated" />
+    </o-field>
+    <o-field label="100%">
+      <o-skeleton :animated="animated" />
+    </o-field>
+    <o-field label=" Count 2">
+      <o-skeleton :animated="animated" :count="2" />
+    </o-field>
   </section>
 
   <section>
@@ -34,24 +42,34 @@ const animated = ref(true);
 
   <section>
     <h3>Sizes</h3>
-    Small
-    <o-skeleton :animated="animated" size="small" />
-    Default
-    <o-skeleton :animated="animated" />
-    Medium
-    <o-skeleton :animated="animated" size="medium" />
-    Large
-    <o-skeleton :animated="animated" size="large" />
+
+    <o-field label="Small" grouped>
+      <o-skeleton size="small" />
+    </o-field>
+    <o-field label="Default" grouped>
+      <o-skeleton />
+    </o-field>
+    <o-field label="Medium" grouped>
+      <o-skeleton size="medium" />
+    </o-field>
+    <o-field label="Large" grouped>
+      <o-skeleton size="large" />
+    </o-field>
   </section>
 
   <section>
     <h3>Position</h3>
 
-    Left
-    <o-skeleton width="30%" position="left" :animated="animated" />
-    Center
-    <o-skeleton width="30%" position="centered" :animated="animated" />
-    Right
-    <o-skeleton width="30%" position="right" :animated="animated" />
+    <o-field label="Left" grouped>
+      <o-skeleton width="30%" position="left" />
+    </o-field>
+
+    <o-field label="Center" grouped>
+      <o-skeleton width="30%" position="centered" />
+    </o-field>
+
+    <o-field label="Right" grouped>
+      <o-skeleton width="30%" position="right" />
+    </o-field>
   </section>
 </template>
