@@ -194,7 +194,7 @@ const size = ref(null);
           <option value="large">Large</option>
         </o-select>
       </o-field>
-      <o-field label="Label position" label-position="on-border">
+      <o-field label="Label position">
         <o-select v-model="labelPosition">
           <option value="bottom">Bottom</option>
           <option value="right">Right</option>
