@@ -12,7 +12,7 @@
     </o-field>
 
     <o-field label="Email" variant="danger" message="This email is invalid">
-      <o-input type="email" value="john@" maxlength="30" />
+      <o-input type="email" value="john@" maxlength="30" expanded />
     </o-field>
 
     <o-field
@@ -50,18 +50,23 @@
     <o-field label="Primary" variant="primary">
       <o-input placeholder="Primary" />
     </o-field>
+
     <o-field label="Secondary" variant="secondary">
       <o-input placeholder="Secondary" />
     </o-field>
+
     <o-field label="Success" variant="success">
       <o-input placeholder="Success" />
     </o-field>
+
     <o-field label="Info" variant="info">
       <o-input placeholder="Info" />
     </o-field>
+
     <o-field label="Warning" variant="warning">
       <o-input placeholder="Warning" />
     </o-field>
+
     <o-field
       label="Error"
       variant="danger"
@@ -76,12 +81,15 @@
     <o-field>
       <o-input placeholder="small" size="small" icon="user" />
     </o-field>
+
     <o-field>
       <o-input placeholder="default" icon="user" />
     </o-field>
+
     <o-field>
       <o-input placeholder="medium" size="medium" icon="user" />
     </o-field>
+
     <o-field>
       <o-input placeholder="Large" size="large" icon="user" />
     </o-field>
