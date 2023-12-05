@@ -8,7 +8,7 @@
     <h3>Base</h3>
 
     <o-field label="Name">
-      <o-input value="Kevin Garvey" />
+      <o-input value="Kevin Garvey" expanded />
     </o-field>
 
     <o-field
@@ -16,18 +16,18 @@
       variant="danger"
       message-variant="info"
       message="This email is invalid">
-      <o-input type="email" value="john@" maxlength="30" />
+      <o-input type="email" value="john@" maxlength="30" expanded />
     </o-field>
 
     <o-field
       label="Username"
       variant="success"
       message="This username is available">
-      <o-input value="johnsilver" maxlength="30" has-counter />
+      <o-input value="johnsilver" maxlength="30" has-counter expanded />
     </o-field>
 
     <o-field label="Password" variant="warning">
-      <o-input value="123" type="password" maxlength="30" />
+      <o-input value="123" type="password" maxlength="30" expanded />
     </o-field>
 
     <o-field label="Subject" grouped>
@@ -190,7 +190,7 @@
     </o-field>
 
     <o-field horizontal label="Topic">
-      <o-select placeholder="Select a topic" icon="book">
+      <o-select placeholder="Select a topic" icon="book" expanded>
         <option value="1">Oruga</option>
         <option value="2">Vue.js</option>
         <option value="3">UI</option>
@@ -198,14 +198,16 @@
     </o-field>
 
     <o-field horizontal label="Message">
-      <o-input type="textarea" />
+      <o-input type="textarea" expanded />
     </o-field>
 
     <o-field horizontal>
       <!-- Label left empty for spacing -->
-      <o-button variant="primary" icon-left="envelope" outlined>
-        Send message
-      </o-button>
+      <o-button
+        variant="primary"
+        icon-left="envelope"
+        outlined
+        label="Send message" />
     </o-field>
   </section>
 
