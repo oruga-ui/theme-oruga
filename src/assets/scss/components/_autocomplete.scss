@@ -6,68 +6,10 @@ $autocomplete-item-hover-background-color: #f5f5f5 !default;
 $autocomplete-item-hover-color: #000000 !default;
 $autocomplete-item-line-height: $base-line-height !default;
 $autocomplete-item-padding: 0.375rem 1rem !default;
-$autocomplete-menu-background: #ffffff !default;
-$autocomplete-menu-border-radius: $base-border-radius !default;
-$autocomplete-menu-box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-  0 0 0 1px rgba(10, 10, 10, 0.02) !default;
-$autocomplete-menu-margin: 0 !default;
-$autocomplete-menu-max-height: 200px !default;
-$autocomplete-menu-padding: 0.5rem 0 0.5rem 0 !default;
-$autocomplete-menu-zindex: 20 !default;
 /* @docs */
 
 .o-acp {
   position: relative;
-
-  &__menu {
-    display: block;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    overflow: auto;
-
-    @include avariable(
-      "z-index",
-      "autocomplete-menu-zindex",
-      $autocomplete-menu-zindex
-    );
-    @include avariable(
-      "background-color",
-      "autocomplete-menu-background",
-      $autocomplete-menu-background
-    );
-    @include avariable(
-      "border-radius",
-      "autocomplete-menu-border-radius",
-      $autocomplete-menu-border-radius
-    );
-    @include avariable(
-      "box-shadow",
-      "autocomplete-menu-box-shadow",
-      $autocomplete-menu-box-shadow
-    );
-    @include avariable(
-      "padding",
-      "autocomplete-menu-padding",
-      $autocomplete-menu-padding
-    );
-    @include avariable(
-      "margin",
-      "autocomplete-menu-margin",
-      $autocomplete-menu-margin
-    );
-    @include avariable(
-      "max-height",
-      "autocomplete-menu-max-height",
-      $autocomplete-menu-max-height
-    );
-
-    &--top {
-      top: auto;
-      bottom: 100%;
-    }
-  }
 
   &__item {
     display: block;
@@ -122,9 +64,5 @@ $autocomplete-menu-zindex: 20 !default;
         $autocomplete-item-hover-color
       );
     }
-  }
-
-  &--expanded {
-    width: 100%;
   }
 }

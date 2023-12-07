@@ -510,8 +510,8 @@ function getMoreAsyncData() {
     <h3>Objects array</h3>
 
     <o-field grouped group-multiline>
-      <o-switch v-model="openOnFocus">Open dropdown on focus</o-switch>
-      <o-switch v-model="keepFirst">Keep-first</o-switch>
+      <o-switch v-model="openOnFocus" label="Open dropdown on focus" />
+      <o-switch v-model="keepFirst" label="Keep-first" />
     </o-field>
 
     <o-field label="Find a name">
@@ -538,7 +538,7 @@ function getMoreAsyncData() {
         open-on-focus
         :data="filteredDataGroups"
         field="user.first_name"
-        @select="(option:any) => (selectedGroups = option)" />
+        @select="(option: any) => (selectedGroups = option)" />
     </o-field>
     <p><b>Selected:</b> {{ selectedGroups }}</p>
   </section>
@@ -552,11 +552,11 @@ function getMoreAsyncData() {
         placeholder="e.g. Fight Club"
         field="title"
         :loading="isFetching"
-        check-infinite-scroll
-        :debounce-typing="500"
-        @typing="getAsyncData"
+        check-scroll
+        :debounce="500"
+        @input="getAsyncData"
         @select="(option: any) => (selectedInfinite = option)"
-        @infinite-scroll="getMoreAsyncData">
+        @scroll-end="getMoreAsyncData">
         <template #default="props">
           <div class="media">
             <div class="media-left">

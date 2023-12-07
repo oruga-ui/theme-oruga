@@ -8,12 +8,12 @@
     <h3>Base</h3>
 
     <div class="buttons">
-      <o-button variant="primary">Primary</o-button>
-      <o-button variant="secondary">Secondary</o-button>
-      <o-button variant="info">Info</o-button>
-      <o-button variant="success">Success</o-button>
-      <o-button variant="warning">Warning</o-button>
-      <o-button variant="danger">Danger</o-button>
+      <o-button variant="primary" label="Primary" />
+      <o-button variant="secondary" label="Secondary" />
+      <o-button variant="info" label="Info" />
+      <o-button variant="success" label="Success" />
+      <o-button variant="warning" label="Warning" />
+      <o-button variant="danger" label="Danger" />
     </div>
   </section>
 
@@ -21,9 +21,9 @@
     <h3>States</h3>
 
     <div class="buttons">
-      <o-button>Normal</o-button>
-      <o-button disabled>Disabled</o-button>
-      <o-button rounded variant="light">Rounded</o-button>
+      <o-button label="Normal" />
+      <o-button disabled label="Disabled" />
+      <o-button rounded variant="light" label="Rounded" />
     </div>
   </section>
 
@@ -31,12 +31,12 @@
     <h3>Outlined</h3>
 
     <div class="buttons">
-      <o-button variant="primary" outlined>Outlined</o-button>
-      <o-button variant="secondary" outlined>Outlined</o-button>
-      <o-button variant="info" outlined>Outlined</o-button>
-      <o-button variant="success" outlined>Outlined</o-button>
-      <o-button variant="warning" outlined>Outlined</o-button>
-      <o-button variant="danger" outlined>Outlined</o-button>
+      <o-button variant="primary" outlined label="Outlined" />
+      <o-button variant="secondary" outlined label="Outlined" />
+      <o-button variant="info" outlined label="Outlined" />
+      <o-button variant="success" outlined label="Outlined" />
+      <o-button variant="warning" outlined label="Outlined" />
+      <o-button variant="danger" outlined label="Outlined" />
     </div>
   </section>
 
@@ -44,12 +44,12 @@
     <h3>Inverted</h3>
 
     <div class="buttons">
-      <o-button variant="primary" inverted>Inverted</o-button>
-      <o-button variant="secondary" inverted>Inverted</o-button>
-      <o-button variant="info" inverted>Inverted</o-button>
-      <o-button variant="success" inverted>Inverted</o-button>
-      <o-button variant="warning" inverted>Inverted</o-button>
-      <o-button variant="danger" inverted>Inverted</o-button>
+      <o-button variant="primary" inverted label="Inverted" />
+      <o-button variant="secondary" inverted label="Inverted" />
+      <o-button variant="info" inverted label="Inverted" />
+      <o-button variant="success" inverted label="Inverted" />
+      <o-button variant="warning" inverted label="Inverted" />
+      <o-button variant="danger" inverted label="Inverted" />
     </div>
   </section>
 
@@ -57,15 +57,15 @@
     <h3>Icons</h3>
 
     <div class="buttons">
-      <o-button variant="primary" size="small" icon-left="plus">Add</o-button>
-      <o-button variant="primary" icon-left="plus">Add</o-button>
-      <o-button variant="primary" size="medium" icon-left="plus">Add</o-button>
-      <o-button variant="primary" size="large" icon-left="plus">Add</o-button>
+      <o-button variant="primary" size="small" icon-left="plus" label="Add" />
+      <o-button variant="primary" icon-left="plus" label="Add" />
+      <o-button variant="primary" size="medium" icon-left="plus" label="Add" />
+      <o-button variant="primary" size="large" icon-left="plus" label="Add" />
     </div>
 
     <div class="buttons">
-      <o-button variant="danger" icon-left="trash">Delete</o-button>
-      <o-button variant="danger" icon-right="trash">Delete</o-button>
+      <o-button variant="danger" icon-left="trash" label="Delete" />
+      <o-button variant="danger" icon-right="trash" label="Delete" />
       <o-button variant="danger" icon-right="trash" />
     </div>
   </section>
@@ -74,7 +74,7 @@
     <h3>Expanded</h3>
 
     <div class="buttons">
-      <o-button variant="primary" expanded>Expanded</o-button>
+      <o-button variant="primary" expanded label="Expanded" />
     </div>
   </section>
 </template>

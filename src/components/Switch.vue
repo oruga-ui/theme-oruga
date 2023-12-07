@@ -20,7 +20,7 @@ const passive = ref(null);
     <h3>Base</h3>
 
     <o-field>
-      <o-switch>Default </o-switch>
+      <o-switch label="Default" />
     </o-field>
     <o-field>
       <o-switch v-model="isSwitched">
@@ -33,7 +33,7 @@ const passive = ref(null);
       </o-switch>
     </o-field>
     <o-field>
-      <o-switch disabled>Disabled</o-switch>
+      <o-switch disabled label="Disabled" />
     </o-field>
   </section>
 
@@ -41,25 +41,25 @@ const passive = ref(null);
     <h3>Variant</h3>
 
     <o-field>
-      <o-switch :value="true"> Default </o-switch>
+      <o-switch :model-value="true" label="Default" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="primary"> Primary </o-switch>
+      <o-switch :model-value="true" variant="primary" label="Primary" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="secondary"> Secondary </o-switch>
+      <o-switch :model-value="true" variant="secondary" label="Secondary" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="info"> Info </o-switch>
+      <o-switch :model-value="true" variant="info" label="Info" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="success"> Success </o-switch>
+      <o-switch :model-value="true" variant="success" label="Success" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="danger"> Danger </o-switch>
+      <o-switch :model-value="true" variant="danger" label="Danger" />
     </o-field>
     <o-field>
-      <o-switch :value="true" variant="warning"> Warning </o-switch>
+      <o-switch :model-value="true" variant="warning" label="Warning" />
     </o-field>
   </section>
 
@@ -67,16 +67,16 @@ const passive = ref(null);
     <h3>Size</h3>
 
     <o-field>
-      <o-switch size="small">Small</o-switch>
+      <o-switch size="small" label="Small" />
     </o-field>
     <o-field>
-      <o-switch>Default</o-switch>
+      <o-switch label="Default" />
     </o-field>
     <o-field>
-      <o-switch size="medium">Medium</o-switch>
+      <o-switch size="medium" label="Medium" />
     </o-field>
     <o-field>
-      <o-switch size="large">Large</o-switch>
+      <o-switch size="large" label="Large" />
     </o-field>
   </section>
 
@@ -84,10 +84,14 @@ const passive = ref(null);
     <h3>Style variants</h3>
 
     <o-field grouped>
-      <o-switch v-model="isRounded">Rounded</o-switch>
-      <o-switch v-model="position" true-value="left" false-value="right">
+      <o-switch v-model="isRounded" label="Rounded" />
+      <o-switch
+        v-model="position"
+        true-value="left"
+        false-value="right"
+        label="
         Label on left
-      </o-switch>
+      " />
     </o-field>
     <o-field grouped>
       <o-field label="Variant">
@@ -127,8 +131,7 @@ const passive = ref(null);
       :position="position"
       :size="size"
       :variant="variant"
-      :passive-variant="passive">
-      Sample
-    </o-switch>
+      :passive-variant="passive"
+      label="Sample" />
   </section>
 </template>

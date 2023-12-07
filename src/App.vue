@@ -44,6 +44,7 @@ const components = Object.keys(paths)
 
   main {
     flex-grow: 1;
+    padding-bottom: 6rem;
     margin: 2rem;
 
     > section {

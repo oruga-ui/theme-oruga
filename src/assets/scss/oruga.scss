@@ -10,12 +10,6 @@ $sizes: () !default;
 @import "utils/variables";
 @import "utils/helpers";
 
-// Autocomplete
-$whitelist: add-to-whitelist(
-  "autocomplete-menu-background",
-  "autocomplete-menu-zindex"
-);
-
 // Button
 $whitelist: add-to-whitelist(
   "button-background-color",
@@ -52,12 +46,12 @@ $whitelist: add-to-whitelist(
 
 // Datepicker
 $whitelist: add-to-whitelist(
-  "datepicker-item-disabled-color",
-  "datepicker-item-selectable-color",
   "datepicker-btn-border-color",
   "datepicker-btn-color",
+  "datepicker-item-disabled-color",
   "datepicker-item-hovered-background-color",
   "datepicker-item-hovered-color",
+  "datepicker-item-selectable-color",
   "datepicker-item-selected-background-color",
   "datepicker-item-selected-color",
   "datepicker-item-selected-within-background-color",
@@ -66,10 +60,11 @@ $whitelist: add-to-whitelist(
 
 // Dropdown
 $whitelist: add-to-whitelist(
-  "dropdown-menu-background",
-  "dropdown-mobile-overlay-color",
   "dropdown-disabled-opacity",
+  "dropdown-menu-background",
   "dropdown-menu-zindex",
+  "dropdown-menu-spacer",
+  "dropdown-mobile-overlay-color",
   "dropdown-mobile-overlay-zindex",
   "dropdown-mobile-zindex",
   "dropdown-item-active-background-color",
@@ -82,16 +77,6 @@ $whitelist: add-to-whitelist("icon-spin-duration");
 
 // Input
 $whitelist: add-to-whitelist();
-
-// Inputitems
-$whitelist: add-to-whitelist(
-  "inputitems-border-style",
-  "inputitems-border-color",
-  "inputitems-border-width",
-  "inputitems-color",
-  "inputitems-item-color",
-  "inputitems-item-background-color"
-);
 
 // Modal
 $whitelist: add-to-whitelist(
@@ -180,6 +165,16 @@ $whitelist: add-to-whitelist(
   "tabs-link-active-color",
   "tabs-link-active-border-bottom-color",
   "tabs-link-color"
+);
+
+// Taginput
+$whitelist: add-to-whitelist(
+  "taginput-border-style",
+  "taginput-border-color",
+  "taginput-border-width",
+  "taginput-color",
+  "taginput-item-color",
+  "taginput-item-background-color"
 );
 
 // Timepicker

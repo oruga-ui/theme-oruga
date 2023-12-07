@@ -42,9 +42,9 @@ const items = [
 
 const carousel = ref(1);
 const listSettings = reactive({
-  arrow: true,
-  arrowHover: true,
-  hasDrag: true,
+  arrows: true,
+  arrowsHover: true,
+  dragable: true,
   itemsToShow: 4,
   itemsToList: 1,
   repeat: false,
@@ -52,6 +52,7 @@ const listSettings = reactive({
 
 const gallery = ref(false);
 const indicatorsSettings = reactive({
+  indicators: false,
   itemsToShow: 2,
   breakpoints: {
     768: {
@@ -74,7 +75,7 @@ function switchGallery(value: boolean): any {
 }
 
 const customSettings = reactive({
-  hasDrag: false,
+  dragable: false,
   autoplay: false,
   pauseHover: false,
   interval: 3000,
@@ -89,6 +90,7 @@ const customSettings = reactive({
     <h2>Carousel Demo</h2>
     <hr />
   </section>
+
   <section class="py-4 container">
     <h3>Base</h3>
 
@@ -109,20 +111,19 @@ const customSettings = reactive({
     <div class="example-component">
       <o-field grouped group-multiline>
         <o-field>
-          <o-switch v-model="listSettings.arrow">Arrow</o-switch>
+          <o-switch v-model="listSettings.arrows" label="Arrow" />
         </o-field>
         <o-field>
           <o-switch
-            v-model="listSettings.arrowHover"
-            :disabled="!listSettings.arrow">
-            Arrow on hover
-          </o-switch>
+            v-model="listSettings.arrowsHover"
+            :disabled="!listSettings.arrows"
+            label="Arrow on hover" />
         </o-field>
         <o-field>
-          <o-switch v-model="listSettings.hasDrag">Drag event</o-switch>
+          <o-switch v-model="listSettings.dragable" label="Drag event" />
         </o-field>
         <o-field>
-          <o-switch v-model="listSettings.repeat">Repeat</o-switch>
+          <o-switch v-model="listSettings.repeat" label="Repeat" />
         </o-field>
       </o-field>
       <o-field grouped group-multiline>
@@ -166,11 +167,11 @@ const customSettings = reactive({
         <o-carousel
           :model-value="active"
           v-bind="indicatorsSettings"
-          as-indicator
           @update:model-value="switchTo($event)">
           <o-carousel-item
             v-for="(item, i) in items"
             :key="i"
+            clickable
             item-class="img-indicator"
             item-active-class="img-indicator-active">
             <img :src="item.image" />
@@ -197,24 +198,22 @@ const customSettings = reactive({
     <div class="example-component">
       <o-field grouped group-multiline>
         <o-field>
-          <o-switch v-model="customSettings.autoplay">Autoplay</o-switch>
+          <o-switch v-model="customSettings.autoplay" label="Autoplay" />
         </o-field>
         <o-field>
           <o-switch
             v-model="customSettings.pauseHover"
-            :disabled="!customSettings.autoplay">
-            Pause on hover
-          </o-switch>
+            :disabled="!customSettings.autoplay"
+            label="Pause on hover" />
         </o-field>
         <o-field>
-          <o-switch v-model="customSettings.hasDrag">Drag event</o-switch>
+          <o-switch v-model="customSettings.dragable" label="Drag event" />
         </o-field>
         <o-field>
           <o-switch
             v-model="customSettings.repeat"
-            :disabled="!customSettings.autoplay">
-            Repeat
-          </o-switch>
+            :disabled="!customSettings.autoplay"
+            label="Repeat" />
         </o-field>
       </o-field>
       <o-field grouped group-multiline>

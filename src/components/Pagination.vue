@@ -25,19 +25,19 @@ const nextIcon = ref("chevron-right");
 
     <o-field grouped group-multiline>
       <o-field label="Total">
-        <o-input v-model="total" type="number"></o-input>
+        <o-input v-model="total" type="number" />
       </o-field>
       <o-field label="Items per page">
-        <o-input v-model="perPage" type="number"></o-input>
+        <o-input v-model="perPage" type="number" />
       </o-field>
     </o-field>
 
     <o-field grouped group-multiline>
       <o-field label="Show buttons before current">
-        <o-input v-model="rangeBefore" type="number" min="0"></o-input>
+        <o-input v-model="rangeBefore" type="number" min="0" />
       </o-field>
       <o-field label="Show buttons after current">
-        <o-input v-model="rangeAfter" type="number" min="0"></o-input>
+        <o-input v-model="rangeAfter" type="number" min="0" />
       </o-field>
     </o-field>
 
@@ -91,7 +91,6 @@ const nextIcon = ref("chevron-right");
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
-      aria-current-label="Current page">
-    </o-pagination>
+      aria-current-label="Current page" />
   </section>
 </template>

@@ -69,22 +69,22 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
     display: flex;
     justify-content: flex-start;
 
-    > *:first-child:not(:only-child) button,
     > button:first-child,
-    > *:first-child:not(:only-child) input,
+    > *:first-child:not(:only-child) button,
     > input:first-child,
-    > *:first-child:not(:only-child) select,
-    > select:first-child {
+    > *:first-child:not(:only-child) input,
+    > select:first-child,
+    > *:first-child:not(:only-child) select {
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
     }
 
-    > *:last-child:not(:only-child) button,
     > button:last-child,
-    > *:last-child:not(:only-child) input,
+    > *:last-child:not(:only-child) button,
     > input:last-child,
-    > *:last-child:not(:only-child) select,
-    > select:last-child {
+    > *:last-child:not(:only-child) input,
+    > select:last-child,
+    > *:last-child:not(:only-child) select {
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
     }

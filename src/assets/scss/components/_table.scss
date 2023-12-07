@@ -5,7 +5,9 @@ $table-background-color: #fff !default;
 $table-background: #f5f5f5 !default;
 $table-boder: 1px solid transparent !default;
 $table-border-radius: $base-border-radius !default;
-$table-card-box-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default;
+$table-card-box-shadow:
+  0 2px 3px rgba($black, 0.1),
+  0 0 0 1px rgba($black, 0.1) !default;
 $table-card-cell-font-weight: 600 !default;
 $table-card-cell-padding: 0 0.5em 0 0 !default;
 $table-card-cell-text-align: left !default;
@@ -38,8 +40,6 @@ $table-th-detail-width: 14px !default;
 $table-th-font-weight: 600 !default;
 $table-th-padding: 0.5em 0.75em !default;
 /* @docs */
-
-$SUM_EXPRESSION: "calc($param + $factor)";
 
 .o-table {
   display: table;
@@ -102,6 +102,7 @@ $SUM_EXPRESSION: "calc($param + $factor)";
       .o-table__mobile-sort {
         display: block;
       }
+
       // cards
       .o-table {
         background-color: transparent;
@@ -283,7 +284,7 @@ $SUM_EXPRESSION: "calc($param + $factor)";
 
       @include evariable(
         "z-index",
-        $SUM_EXPRESSION,
+        "calc($param + $factor)",
         eparam("$param", variable("table-sticky-zindex", $table-sticky-zindex)),
         eparam("$factor", 2)
       );
@@ -452,11 +453,20 @@ $SUM_EXPRESSION: "calc($param + $factor)";
     align-items: center;
     justify-content: space-between;
     display: flex;
+
+    // left - right
+    > div {
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
     // left
     > div:first-child {
       align-items: center;
       justify-content: flex-start;
     }
+
     // right
     > div:last-child {
       align-items: center;
@@ -470,12 +480,6 @@ $SUM_EXPRESSION: "calc($param + $factor)";
         flex-shrink: 0;
         justify-content: center;
       }
-    }
-    // left - right
-    > div {
-      flex-basis: auto;
-      flex-grow: 0;
-      flex-shrink: 0;
     }
   }
 }

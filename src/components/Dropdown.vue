@@ -14,6 +14,7 @@ const menus = ref([
   { icon: "cog", text: "Configuration" },
 ]);
 const selectedOptions = ref([]);
+const teleport = ref(false);
 </script>
 
 <template>
@@ -26,46 +27,52 @@ const selectedOptions = ref([]);
     <h3>Base</h3>
 
     <div class="dropdown-example">
-      <o-dropdown aria-role="list">
-        <template #trigger>
+      <o-dropdown>
+        <template #trigger="{ active }">
           <o-button
             variant="primary"
-            class="dropdown-toggle"
+            :icon-right="active ? 'caret-up' : 'caret-down'"
             label="Click me!" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
     <div class="dropdown-example">
-      <o-dropdown :triggers="['hover']" aria-role="list">
-        <template #trigger>
-          <o-button variant="info" class="dropdown-toggle" label="Hover me!" />
+      <o-dropdown :triggers="['hover']">
+        <template #trigger="{ active }">
+          <o-button
+            variant="info"
+            label="Hover me!"
+            :icon-right="active ? 'caret-up' : 'caret-down'" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
     <div class="dropdown-example">
-      <o-dropdown disabled aria-role="list">
-        <template #trigger>
-          <o-button class="dropdown-toggle" label="Disabled" disabled />
+      <o-dropdown disabled>
+        <template #trigger="{ active }">
+          <o-button
+            label="Disabled"
+            disabled
+            :icon-right="active ? 'caret-up' : 'caret-down'" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
     <div class="dropdown-example">
-      <o-dropdown aria-role="list">
+      <o-dropdown>
         <template #trigger="{ active }">
           <span role="button">
             Custom
@@ -75,21 +82,21 @@ const selectedOptions = ref([]);
           </span>
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
     <div class="dropdown-example">
-      <o-dropdown :triggers="['contextmenu']" aria-role="list">
+      <o-dropdown :triggers="['contextmenu']">
         <template #trigger>
           <o-button label="Right click" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
   </section>
@@ -98,20 +105,14 @@ const selectedOptions = ref([]);
     <h3>Inline</h3>
 
     <div class="dropdown-example">
-      <o-dropdown inline aria-role="list">
+      <o-dropdown inline>
         <template #trigger>
           <o-button label="Inline" />
         </template>
 
-        <o-dropdown-item aria-role="listitem" value="1">
-          Action
-        </o-dropdown-item>
-        <o-dropdown-item aria-role="listitem" value="2">
-          Another action
-        </o-dropdown-item>
-        <o-dropdown-item aria-role="listitem" value="3">
-          Something else
-        </o-dropdown-item>
+        <o-dropdown-item value="1" label="Action " />
+        <o-dropdown-item value="2" label="Another action " />
+        <o-dropdown-item value="3" label="Something else " />
       </o-dropdown>
     </div>
   </section>
@@ -121,32 +122,30 @@ const selectedOptions = ref([]);
 
     <div>
       <o-field>
-        <o-switch v-model="isScrollable">Scrollable</o-switch>
+        <o-switch v-model="isScrollable" label="Scrollable" />
       </o-field>
     </div>
 
     <o-dropdown
       v-model="currentMenu"
       :scrollable="isScrollable"
-      :max-height="maxHeight"
-      aria-role="list">
+      :max-height="maxHeight">
       <template #trigger>
-        <o-button variant="primary" type="button" class="dropdown-toggle">
-          <o-icon :icon="currentMenu.icon" />
-          <span>{{ currentMenu.text }}</span>
-        </o-button>
+        <o-button
+          variant="primary"
+          type="button"
+          :label="currentMenu.text"
+          :icon-left="currentMenu.icon"
+          icon-right="caret-down" />
       </template>
 
       <o-dropdown-item
         v-for="(menu, index) in menus"
         :key="index"
-        :value="menu"
-        aria-role="listitem">
+        :value="menu">
         <div class="media">
           <o-icon class="media-left" :icon="menu.icon" />
-          <div class="media-content">
-            <span>{{ menu.text }}</span>
-          </div>
+          <div class="media-content">{{ menu.text }}</div>
         </div>
       </o-dropdown-item>
     </o-dropdown>
@@ -156,91 +155,135 @@ const selectedOptions = ref([]);
     <h3>Multiple</h3>
 
     <p><b>selected</b>: {{ selectedOptions }}</p>
-    <o-dropdown v-model="selectedOptions" multiple aria-role="list">
+    <o-dropdown v-model="selectedOptions" multiple>
       <template #trigger>
-        <o-button variant="primary" type="button" class="dropdown-toggle">
-          <span>Selected ({{ selectedOptions.length }})</span>
+        <o-button variant="primary" type="button">
+          Selected ({{ selectedOptions.length }})
         </o-button>
       </template>
 
-      <o-dropdown-item value="option1" aria-role="listitem">
-        option 1
-      </o-dropdown-item>
-
-      <o-dropdown-item value="option2" aria-role="listitem">
-        Option 2
-      </o-dropdown-item>
-
-      <o-dropdown-item value="option3" aria-role="listitem">
-        Option 3
-      </o-dropdown-item>
+      <o-dropdown-item value="option1" label="option 1" />
+      <o-dropdown-item value="option2" label="Option 2" />
+      <o-dropdown-item value="option3" label="Option 3" />
     </o-dropdown>
   </section>
 
   <section>
     <h3>Positioning & Expanded</h3>
 
+    <o-field>
+      <o-switch v-model="teleport" label="teleport" />
+    </o-field>
+
     <div class="dropdown-example expanded">
-      <o-dropdown position="top-right" aria-role="list" expanded>
+      <o-dropdown position="auto" expanded :teleport="teleport">
         <template #trigger>
-          <o-button
-            class="dropdown-toggle"
-            variant="primary"
-            label="Position top right"
-            expanded />
+          <o-button variant="primary" label="Position Auto" expanded />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
-    <div class="dropdown-example expanded">
-      <o-dropdown position="top-left" aria-role="list" expanded>
+    <hr />
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="right">
         <template #trigger>
-          <o-button
-            class="dropdown-toggle"
-            variant="primary"
-            label="Position top left"
-            expanded />
+          <o-button label="Append to right" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
-    <div class="dropdown-example expanded">
-      <o-dropdown position="bottom-left" aria-role="list" expanded>
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="left">
         <template #trigger>
-          <o-button
-            class="dropdown-toggle"
-            variant="primary"
-            label="Position bottom left"
-            expanded />
+          <o-button label="Append to left" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
 
-    <div class="dropdown-example expanded">
-      <o-dropdown position="bottom-right" aria-role="list" expanded>
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="top">
         <template #trigger>
-          <o-button
-            class="dropdown-toggle"
-            variant="primary"
-            label="Position bottom right"
-            expanded />
+          <o-button label="Append to top" />
         </template>
 
-        <o-dropdown-item aria-role="listitem">Action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Another action</o-dropdown-item>
-        <o-dropdown-item aria-role="listitem">Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
+      </o-dropdown>
+    </div>
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="bottom">
+        <template #trigger>
+          <o-button label="Append to bottom" />
+        </template>
+
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
+      </o-dropdown>
+    </div>
+
+    <hr />
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="top-right">
+        <template #trigger>
+          <o-button label="Append to top-right" />
+        </template>
+
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
+      </o-dropdown>
+    </div>
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="top-left">
+        <template #trigger>
+          <o-button label="Append to top-left" />
+        </template>
+
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
+      </o-dropdown>
+    </div>
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="bottom-right">
+        <template #trigger>
+          <o-button label="Append to bottom-right" />
+        </template>
+
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
+      </o-dropdown>
+    </div>
+
+    <div class="dropdown-example">
+      <o-dropdown :teleport="teleport" position="bottom-left">
+        <template #trigger>
+          <o-button label="Append to bottom-left" />
+        </template>
+
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </div>
   </section>
@@ -266,6 +309,7 @@ const selectedOptions = ref([]);
   align-items: flex-start;
   display: flex;
   text-align: left;
+
   .media-content {
     flex-basis: auto;
     flex-grow: 1;
@@ -274,6 +318,7 @@ const selectedOptions = ref([]);
     overflow-y: hidden;
     overflow-x: auto;
   }
+
   .media-left {
     margin-right: 1rem;
     flex-basis: auto;

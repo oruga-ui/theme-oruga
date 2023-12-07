@@ -60,7 +60,7 @@
 </template>
 
 <style lang="scss" scoped>
-.icon:not(:last-child) {
+.o-icon:not(:last-child) {
   margin-right: 0.5rem;
 }
 </style>

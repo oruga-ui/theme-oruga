@@ -56,7 +56,7 @@ $carousel-overlay-zindex: 40 !default;
     );
   }
 
-  &__scene {
+  &__wrapper {
     position: relative;
     width: 100%;
   }
@@ -77,6 +77,10 @@ $carousel-overlay-zindex: 40 !default;
   &__item {
     @include avariable("border", "carousel-item-border", $carousel-item-border);
     flex-shrink: 0;
+
+    &--clickable {
+      cursor: pointer;
+    }
   }
 
   &__indicators {
@@ -182,16 +186,16 @@ $carousel-overlay-zindex: 40 !default;
         );
       }
 
-      &---lines {
+      &--lines {
         @include avariable(
           "width",
-          "carousel-indicator-lines-height",
-          $carousel-indicator-lines-height
+          "carousel-indicator-lines-width",
+          $carousel-indicator-lines-width
         );
         @include avariable(
           "height",
-          "carousel-indicator-lines-width",
-          $carousel-indicator-lines-width
+          "carousel-indicator-lines-height",
+          $carousel-indicator-lines-height
         );
       }
     }

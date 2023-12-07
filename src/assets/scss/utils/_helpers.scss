@@ -94,16 +94,12 @@
 ///   By default is `false`, if `true` it allows to bypass whitelist and set the value
 /// @return {string} the variable or null if not in whitelist when $css-vars == false.
 @function variable($name, $value, $forceval: false) {
-  @if $css-vars {
-    @if is-empty-whitelist() or is-in-whitelist($name) {
+  @if is-empty-whitelist() or is-in-whitelist($name) or $forceval {
+    @if $css-vars {
       @return var(--#{$prefix}#{$name}, #{$value});
-    }
-  } @else if $sass-vars {
-    @if is-empty-whitelist() or is-in-whitelist($name) {
+    } @else {
       @return #{$value};
     }
-  } @else if $forceval {
-    @return #{$value};
   }
 
   @return null;

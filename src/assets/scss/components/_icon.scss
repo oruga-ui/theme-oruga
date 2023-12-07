@@ -20,7 +20,9 @@ $icon-spin-duration: 2s !default;
   align-items: center;
   display: inline-flex;
   justify-content: center;
-  transition: transform $speed-slow $easing, opacity $speed $easing;
+  transition:
+    transform $speed-slow $easing,
+    opacity $speed $easing;
 
   @each $name, $value in $sizes {
     &--#{$name} {

@@ -8,7 +8,7 @@
     <h3>Base</h3>
 
     <o-field label="Name">
-      <o-input value="Kevin Garvey" />
+      <o-input value="Kevin Garvey" expanded />
     </o-field>
 
     <o-field
@@ -16,18 +16,18 @@
       variant="danger"
       message-variant="info"
       message="This email is invalid">
-      <o-input type="email" value="john@" maxlength="30" />
+      <o-input type="email" value="john@" maxlength="30" expanded />
     </o-field>
 
     <o-field
       label="Username"
       variant="success"
       message="This username is available">
-      <o-input value="johnsilver" maxlength="30" has-counter />
+      <o-input value="johnsilver" maxlength="30" has-counter expanded />
     </o-field>
 
     <o-field label="Password" variant="warning">
-      <o-input value="123" type="password" maxlength="30" />
+      <o-input value="123" type="password" maxlength="30" expanded />
     </o-field>
 
     <o-field label="Subject" grouped>
@@ -53,12 +53,12 @@
 
     <o-field variant="danger">
       <o-input placeholder="Search..." type="search" icon="search" />
-      <o-button variant="primary">Search</o-button>
+      <o-button variant="primary" label="Search" />
     </o-field>
 
     <o-field>
       <o-input placeholder="This is expanded" expanded />
-      <o-button>@gmail.com</o-button>
+      <o-button label="@gmail.com" />
     </o-field>
 
     <o-field>
@@ -67,9 +67,8 @@
         <option>£</option>
         <option>€</option>
       </o-select>
-      <o-input type="number" placeholder="0,00" /><o-button variant="success">
-        Transfer
-      </o-button>
+      <o-input type="number" placeholder="0,00" />
+      <o-button variant="success" label="Transfer" />
     </o-field>
 
     <o-field>
@@ -101,53 +100,44 @@
     </o-field>
 
     <o-field>
-      <o-button variant="primary"> Button </o-button>
+      <o-button variant="primary" label="Button" />
       <o-dropdown>
         <template #trigger>
-          <o-button variant="primary">
-            <o-icon icon="caret-down" />
-          </o-button>
+          <o-button variant="primary" icon-right="caret-down" />
         </template>
 
-        <o-dropdown-item>Action</o-dropdown-item>
-        <o-dropdown-item>Another action</o-dropdown-item>
-        <o-dropdown-item>Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
     </o-field>
 
     <o-field>
-      <o-button variant="primary"> Button </o-button>
+      <o-button variant="primary" label="Button" />
       <o-dropdown>
         <template #trigger>
-          <o-button variant="primary">
-            <o-icon icon="caret-down" />
-          </o-button>
+          <o-button variant="primary" icon-right="caret-down" />
         </template>
 
-        <o-dropdown-item>Action</o-dropdown-item>
-        <o-dropdown-item>Another action</o-dropdown-item>
-        <o-dropdown-item>Something else</o-dropdown-item>
+        <o-dropdown-item label="Action" />
+        <o-dropdown-item label="Another action" />
+        <o-dropdown-item label="Something else" />
       </o-dropdown>
-      <o-button variant="primary"> Button </o-button>
+      <o-button variant="primary" label="Button" />
     </o-field>
 
     <o-field>
       <o-input icon="search" type="search" placeholder="Search..." />
       <o-dropdown>
         <template #trigger>
-          <o-button>
-            <span>Filters</span>
-            <o-icon icon="caret-down" />
-          </o-button>
+          <o-button label="Filters" icon="caret-down" />
         </template>
-        <o-dropdown-item value="open_issues">
-          Open Issues and Pull Requests
-        </o-dropdown-item>
-        <o-dropdown-item value="your_issues">Your Issues</o-dropdown-item>
-        <o-dropdown-item value="pull_requests">
-          Your Pull Requests
-        </o-dropdown-item>
-        <o-dropdown-item value="everything">Everything</o-dropdown-item>
+        <o-dropdown-item
+          value="open_issues"
+          label="Open Issues and Pull Requests" />
+        <o-dropdown-item value="your_issues" label="Your Issues" />
+        <o-dropdown-item value="pull_requests" label="Your Pull Requests" />
+        <o-dropdown-item value="everything" label="Everything" />
       </o-dropdown>
     </o-field>
   </section>
@@ -157,12 +147,12 @@
 
     <o-field grouped variant="danger" message="What do you want to search?">
       <o-input placeholder="Search..." />
-      <o-button variant="primary">Search</o-button>
+      <o-button variant="primary" label="Search" />
     </o-field>
 
     <o-field grouped message="What do you want to search?">
       <o-input placeholder="Search..." expanded />
-      <o-button variant="primary">Search</o-button>
+      <o-button variant="primary" label="Search" />
     </o-field>
 
     <o-field grouped group-multiline>
@@ -200,7 +190,7 @@
     </o-field>
 
     <o-field horizontal label="Topic">
-      <o-select placeholder="Select a topic" icon="book">
+      <o-select placeholder="Select a topic" icon="book" expanded>
         <option value="1">Oruga</option>
         <option value="2">Vue.js</option>
         <option value="3">UI</option>
@@ -208,14 +198,16 @@
     </o-field>
 
     <o-field horizontal label="Message">
-      <o-input type="textarea" />
+      <o-input type="textarea" expanded />
     </o-field>
 
     <o-field horizontal>
       <!-- Label left empty for spacing -->
-      <o-button variant="primary" icon-left="envelope" outlined>
-        Send message
-      </o-button>
+      <o-button
+        variant="primary"
+        icon-left="envelope"
+        outlined
+        label="Send message" />
     </o-field>
   </section>
 

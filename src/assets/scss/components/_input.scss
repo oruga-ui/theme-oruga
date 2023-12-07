@@ -19,22 +19,7 @@ $input-padding: $control-padding-vertical $control-padding-horizontal !default;
 $input-textarea-max-height: 600px !default;
 $input-textarea-min-height: 120px !default;
 $input-textarea-padding: 0.625em !default;
-// @deprecated
-$input-width: 100% !default;
-// @deprecated
-$input-max-width: 100% !default;
 /* @docs */
-
-.o-ctrl-input {
-  display: block;
-  position: relative;
-
-  &--expanded {
-    width: 100%;
-    flex-grow: 1;
-    flex-shrink: 1;
-  }
-}
 
 .o-input {
   -moz-appearance: none;
@@ -42,10 +27,8 @@ $input-max-width: 100% !default;
   display: inline-flex;
   position: relative;
   vertical-align: top;
-  width: $input-width;
 
   @include avariable("box-shadow", "input-box-shadow", $input-box-shadow);
-  @include avariable("max-width", "input-max-width", $input-max-width);
   @include avariable(
     "background-color",
     "input-background-color",
@@ -66,31 +49,18 @@ $input-max-width: 100% !default;
   @include avariable("padding", "input-padding", $input-padding);
   @include avariable("margin", "input-margin", $input-margin);
 
-  &-iconspace-left {
-    @include avariable("padding-left", "input-height", $input-height);
-  }
+  &__wrapper {
+    display: inline-block;
+    position: relative;
 
-  &-iconspace-right {
-    @include avariable("padding-right", "input-height", $input-height);
-  }
+    &--expanded {
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
 
-  &--rounded {
-    @include avariable(
-      "border-radius",
-      "input-rounded-border-radius",
-      $input-rounded-border-radius
-    );
-  }
-
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      @include avariable("font-size", ("input-font-size-" + #{$name}), $value);
-    }
-  }
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-    &--#{$name} {
-      @include avariable("border-color", ("variant-" + #{$name}), $color);
+      .o-input {
+        width: 100%;
+      }
     }
   }
 
@@ -149,5 +119,33 @@ $input-max-width: 100% !default;
 
   &__icon-left {
     left: 0;
+  }
+
+  &--iconspace-left {
+    @include avariable("padding-left", "input-height", $input-height);
+  }
+
+  &--iconspace-right {
+    @include avariable("padding-right", "input-height", $input-height);
+  }
+
+  &--rounded {
+    @include avariable(
+      "border-radius",
+      "input-rounded-border-radius",
+      $input-rounded-border-radius
+    );
+  }
+
+  @each $name, $value in $sizes {
+    &--#{$name} {
+      @include avariable("font-size", ("input-font-size-" + #{$name}), $value);
+    }
+  }
+  @each $name, $pair in $colors {
+    $color: list.nth($pair, 1);
+    &--#{$name} {
+      @include avariable("border-color", ("variant-" + #{$name}), $color);
+    }
   }
 }
