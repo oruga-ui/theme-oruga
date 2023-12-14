@@ -13,12 +13,14 @@ $sidebar-zindex: 100 !default;
 /* @docs */
 
 .o-side {
-  display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  display: none;
+
+  @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
 
   &__content {
     position: absolute;
@@ -34,11 +36,6 @@ $sidebar-zindex: 100 !default;
       $sidebar-border-radius
     );
     @include avariable("box-shadow", "sidebar-box-shadow", $sidebar-box-shadow);
-    @include evariable(
-      "z-index",
-      "calc($z-index + 1)",
-      eparam("$z-index", variable("sidebar-zindex", $sidebar-zindex))
-    );
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
@@ -189,14 +186,13 @@ $sidebar-zindex: 100 !default;
   }
 
   &__overlay {
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
-    position: fixed;
 
     @include avariable("background", "sidebar-overlay", $sidebar-overlay);
-    @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
   }
 
   &--active {
