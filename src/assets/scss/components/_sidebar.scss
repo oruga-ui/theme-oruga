@@ -13,12 +13,12 @@ $sidebar-zindex: 100 !default;
 /* @docs */
 
 .o-side {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  display: none;
 
   @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
 
