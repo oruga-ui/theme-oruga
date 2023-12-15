@@ -4,8 +4,12 @@
   @if $css-vars {
     // generate color variables
     @each $name, $color in $colors {
-      --#{$prefix}#{$name}: #{list.nth($color, 1)};
-      --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
+      @if type-of($color) == list {
+        --#{$prefix}#{$name}: #{list.nth($color, 1)};
+        --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
+      } @else {
+        --#{$prefix}#{$name}: $color;
+      }
     }
 
     --#{$prefix}white: #{$white};
