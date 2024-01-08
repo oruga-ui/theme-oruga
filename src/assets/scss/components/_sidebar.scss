@@ -20,8 +20,6 @@ $sidebar-zindex: 100 !default;
   width: 100%;
   display: none;
 
-  @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
-
   &__content {
     position: absolute;
 
@@ -209,5 +207,9 @@ $sidebar-zindex: 100 !default;
     .o-side__content {
       position: relative;
     }
+  }
+
+  &:not(&--inline) {
+    @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
   }
 }
