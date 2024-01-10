@@ -6,15 +6,13 @@
   "main": "dist/theme.js",
   "module": "dist/theme.js",
   "unpkg": "dist/theme.min.js",
-  "typings": "types/index.d.ts",
   "sideEffects": [
     "*.css",
     "*.scss"
   ],
   "files": [
     "dist",
-    "src",
-    "types/*.d.ts"
+    "src/assets"
   ],
   "repository": {
     "type": "git",
