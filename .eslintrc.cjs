@@ -14,6 +14,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": ["warn"],
     "vue/padding-line-between-blocks": ["error", "always"],
     "vue/multi-word-component-names": ["off"],
+    "vue/no-v-text-v-html-on-component": ["warn"],
     "comma-dangle": ["error", "always-multiline"],
     "prettier/prettier": [
       "error",

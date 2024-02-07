@@ -209,6 +209,9 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
   }
 
   &__nav-item {
+    display: flex;
+    justify-content: center;
+    list-style: none;
     margin: 0;
     padding: 0;
 
@@ -372,6 +375,8 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: transparent;
+    border: transparent;
 
     @include avariable("color", "steps-link-color", $steps-link-color);
     cursor: pointer;

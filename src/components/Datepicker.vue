@@ -78,12 +78,12 @@ const multiple = ref([]);
 const range = ref([]);
 
 const minDate = new Date(
-  today.getFullYear(),
+  today.getFullYear() - 1,
   today.getMonth(),
   today.getDate() - 7,
 );
 const maxDate = new Date(
-  today.getFullYear(),
+  today.getFullYear() + 1,
   today.getMonth(),
   today.getDate() + 7,
 );

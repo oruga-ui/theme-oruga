@@ -412,7 +412,6 @@ function getFilteredTags(text: string) {
         icon="tag"
         placeholder="Add an item"
         keep-first
-        expanded
         @typing="getFilteredTags" />
     </o-field>
 
