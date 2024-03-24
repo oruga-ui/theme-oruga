@@ -85,7 +85,9 @@
 }
 
 /// Returns a variable.
-///
+/// 
+/// @deprecated
+/// 
 /// @param {string} $name
 ///   Variable name
 /// @param {string} $value
@@ -106,7 +108,9 @@
 }
 
 /// Returns a pair of `(key,value)` to pass to `evariable` function.
-///
+/// 
+/// @deprecated
+/// 
 /// @param {string} $key
 ///   Key of the parameter
 /// @param {string} $value
@@ -117,7 +121,9 @@
 }
 
 /// Assigns a specific expression to an attribute
-///
+/// 
+/// @deprecated
+/// 
 /// @param {string} $attribute
 ///   The attribute we want to include
 /// @param {string} $expression
@@ -147,6 +153,8 @@
 
 /// Assigns a specific variable to an attribute
 ///
+/// @deprecated
+/// 
 /// @param {string} $attribute
 ///   The attribute we want to include
 /// @param {string} $name

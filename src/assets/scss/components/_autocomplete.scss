@@ -1,68 +1,15 @@
 /* @docs */
-$autocomplete-item-color: #000000 !default;
-$autocomplete-item-disabled-opacity: $base-disabled-opacity !default;
-$autocomplete-item-font-size: $base-font-size !default;
-$autocomplete-item-hover-background-color: #f5f5f5 !default;
-$autocomplete-item-hover-color: #000000 !default;
-$autocomplete-item-line-height: $base-line-height !default;
-$autocomplete-item-padding: 0.375rem 1rem !default;
 /* @docs */
 
 .o-acp {
-  position: relative;
-
   &__item {
-    display: block;
-    position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: pointer;
-
-    @include avariable(
-      "color",
-      "autocomplete-item-color",
-      $autocomplete-item-color
-    );
-    @include avariable(
-      "font-size",
-      "autocomplete-item-font-size",
-      $autocomplete-item-font-size
-    );
-    @include avariable(
-      "line-height",
-      "autocomplete-item-line-height",
-      $autocomplete-item-line-height
-    );
-    @include avariable(
-      "padding",
-      "autocomplete-item-padding",
-      $autocomplete-item-padding
-    );
 
     &-group-title,
     &--empty {
-      pointer-events: none;
-
-      @include avariable(
-        "opacity",
-        "autocomplete-item-disabled-opacity",
-        $autocomplete-item-disabled-opacity
-      );
-    }
-
-    &--hover,
-    &:hover {
-      @include avariable(
-        "background",
-        "autocomplete-item-hover-background-color",
-        $autocomplete-item-hover-background-color
-      );
-      @include avariable(
-        "color",
-        "autocomplete-item-hover-color",
-        $autocomplete-item-hover-color
-      );
+      @extend .o-drop--disabled;
     }
   }
 }

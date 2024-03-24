@@ -3,8 +3,8 @@
 /* @docs */
 $tooltip-arrow-margin: 2px !default;
 $tooltip-arrow-size: 5px !default;
-$tooltip-background-color: $primary !default;
-$tooltip-color: $primary-invert !default;
+$tooltip-background-color: var(--#{$prefix}primary) !default;
+$tooltip-color: var(--#{$prefix}primary-invert) !default;
 $tooltip-content-box-shadow: 0px 1px 2px 1px rgba(0, 1, 0, 0.2) !default;
 $tooltip-content-font-size: 0.85rem !default;
 $tooltip-content-max-width: 300px !default;
@@ -25,23 +25,16 @@ $tooltip-content-zindex: 38 !default;
     content: "";
     pointer-events: none;
 
-    @include avariable(
-      "z-index",
-      "tooltip-content-zindex",
-      $tooltip-content-zindex
-    );
-    @include avariable(
-      "color",
-      "tooltip-background-color",
-      $tooltip-background-color
-    );
+    z-index: var(--#{$prefix}tooltip-content-zindex, $tooltip-content-zindex);
+    color: var(--#{$prefix}tooltip-background-color, $tooltip-background-color);
 
     // variants
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       $color-invert: list.nth($pair, 2);
+
       &--#{$name} {
-        @include avariable("color", ("variant-" + #{$name}), $color);
+        color: var(--#{$prefix}variant-#{$name}, $color);
       }
     }
 
@@ -60,21 +53,9 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-bottom-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-right-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-left-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
+      border-bottom-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-right-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-left-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
     }
 
     &--top {
@@ -91,21 +72,9 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-top-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-right-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-left-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
+      border-top-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-right-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-left-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
     }
 
     &--left {
@@ -121,21 +90,9 @@ $tooltip-content-zindex: 38 !default;
       border-bottom-style: solid;
       border-bottom-color: transparent;
 
-      @include avariable(
-        "border-left-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-top-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-bottom-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
+      border-left-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-top-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-bottom-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
     }
 
     &--right {
@@ -151,21 +108,9 @@ $tooltip-content-zindex: 38 !default;
       border-bottom-style: solid;
       border-bottom-color: transparent;
 
-      @include avariable(
-        "border-right-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-top-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include avariable(
-        "border-bottom-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
+      border-right-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-top-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-bottom-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
     }
 
     &--top-right {
@@ -182,16 +127,8 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-top-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include evariable(
-        "border-right-width",
-        "calc($size *2)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size))
-      );
+      border-top-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-right-width: calc(var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) *2);
       border-left-width: 0;
     }
 
@@ -209,16 +146,8 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-top-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include evariable(
-        "border-left-width",
-        "calc($size *2)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size))
-      );
+      border-top-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-left-width: calc(var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) *2);
       border-right-width: 0;
     }
 
@@ -236,16 +165,8 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-bottom-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include evariable(
-        "border-left-width",
-        "calc($size *2)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size))
-      );
+      border-bottom-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-left-width: calc(var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) *2);
       border-right-width: 0;
     }
 
@@ -263,16 +184,8 @@ $tooltip-content-zindex: 38 !default;
       border-left-style: solid;
       border-left-color: transparent;
 
-      @include avariable(
-        "border-bottom-width",
-        "tooltip-arrow-size",
-        $tooltip-arrow-size
-      );
-      @include evariable(
-        "border-right-width",
-        "calc($size *2)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size))
-      );
+      border-bottom-width: var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size);
+      border-right-width: calc(var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) *2);
       border-left-width: 0;
     }
   }
@@ -281,59 +194,24 @@ $tooltip-content-zindex: 38 !default;
     position: absolute;
     white-space: nowrap;
 
-    @include avariable(
-      "max-width",
-      "tooltip-content-max-width",
-      $tooltip-content-max-width
-    );
-    @include avariable(
-      "padding",
-      "tooltip-content-padding",
-      $tooltip-content-padding
-    );
-    @include avariable(
-      "border-radius",
-      "tooltip-content-radius-large",
-      $tooltip-content-radius-large
-    );
-    @include avariable(
-      "font-size",
-      "tooltip-content-font-size",
-      $tooltip-content-font-size
-    );
-    @include avariable(
-      "font-weight",
-      "tooltip-content-weight-normal",
-      $tooltip-content-weight-normal
-    );
-    @include avariable(
-      "box-shadow",
-      "tooltip-content-box-shadow",
-      $tooltip-content-box-shadow
-    );
-    @include avariable(
-      "z-index",
-      "tooltip-content-zindex",
-      $tooltip-content-zindex
-    );
-    @include avariable(
-      "background-color",
-      "tooltip-background-color",
-      $tooltip-background-color
-    );
-    @include avariable("color", "tooltip-color", $tooltip-color);
+    max-width: var(--#{$prefix}tooltip-content-max-width, $tooltip-content-max-width);
+    padding: var(--#{$prefix}tooltip-content-padding, $tooltip-content-padding);
+    border-radius: var(--#{$prefix}tooltip-content-radius-large, $tooltip-content-radius-large);
+    font-size: var(--#{$prefix}tooltip-content-font-size, $tooltip-content-font-size);
+    font-weight: var(--#{$prefix}tooltip-content-weight-normal, $tooltip-content-weight-normal);
+    box-shadow: var(--#{$prefix}tooltip-content-box-shadow, $tooltip-content-box-shadow);
+    z-index: var(--#{$prefix}tooltip-content-zindex, $tooltip-content-zindex);
+    background-color: var(--#{$prefix}tooltip-background-color, $tooltip-background-color);
+    color: var(--#{$prefix}tooltip-color, $tooltip-color);
 
     // variants
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       $color-invert: list.nth($pair, 2);
+
       &--#{$name} {
-        @include avariable("background", ("variant-" + #{$name}), $color);
-        @include avariable(
-          "color",
-          ("variant-invert-" + #{$name}),
-          $color-invert
-        );
+        background: var(--#{$prefix}variant-#{$name}, $color);
+        color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
       }
     }
 
@@ -342,29 +220,13 @@ $tooltip-content-zindex: 38 !default;
       top: auto;
       right: auto;
 
-      @include evariable(
-        "bottom",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      bottom: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       left: 50%;
       transform: translateX(-50%);
     }
 
     &--bottom {
-      @include evariable(
-        "top",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      top: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       right: auto;
       bottom: auto;
       left: 50%;
@@ -375,31 +237,13 @@ $tooltip-content-zindex: 38 !default;
       top: 50%;
       right: auto;
       bottom: auto;
-
-      @include evariable(
-        "left",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      left: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       transform: translateY(-50%);
     }
 
     &--left {
       top: 50%;
-
-      @include evariable(
-        "right",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      right: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       bottom: auto;
       left: auto;
       transform: translateY(-50%);
@@ -408,64 +252,28 @@ $tooltip-content-zindex: 38 !default;
     &--top-right {
       left: auto;
       top: auto;
-
-      @include evariable(
-        "bottom",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      bottom: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       transform: translateX(50%);
     }
 
     &--top-left {
       right: auto;
       top: auto;
-
-      @include evariable(
-        "bottom",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      bottom: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       transform: translateX(-50%);
     }
 
     &--bottom-right {
       left: auto;
       bottom: auto;
-
-      @include evariable(
-        "top",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      top: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       transform: translateX(50%);
     }
 
     &--bottom-left {
       left: auto;
       bottom: auto;
-
-      @include evariable(
-        "top",
-        "calc(($size + $margin) + 100%)",
-        eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-        eparam(
-          "$margin",
-          variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-        )
-      );
+      top: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)) + 100%);
       transform: translateX(-50%);
     }
 
@@ -477,68 +285,32 @@ $tooltip-content-zindex: 38 !default;
     &--multiline {
       text-align: center;
       white-space: normal;
-
-      @include avariable(
-        "width",
-        "tooltip-content-multiline-width",
-        $tooltip-content-multiline-width
-      );
+      width: var(--#{$prefix}tooltip-content-multiline-width, $tooltip-content-multiline-width);
     }
   }
 
   &--teleport {
     .o-tip__content {
+
       // position
       &--top,
       &--top-left,
       &--top-right {
-        @include evariable(
-          "margin-top",
-          "calc(-1 * ($size + $margin))",
-          eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-          eparam(
-            "$margin",
-            variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-          )
-        );
+        margin-top: calc(-1 * (var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)));
       }
 
       &--bottom,
       &--bottom-left,
       &--bottom-right {
-        @include evariable(
-          "margin-top",
-          "calc($size + $margin)",
-          eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-          eparam(
-            "$margin",
-            variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-          )
-        );
+        margin-top: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)));
       }
 
       &--right {
-        @include evariable(
-          "margin-left",
-          "calc($size + $margin)",
-          eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-          eparam(
-            "$margin",
-            variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-          )
-        );
+        margin-left: calc((var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)));
       }
 
       &--left {
-        @include evariable(
-          "margin-left",
-          "calc(-1 * ($size + $margin))",
-          eparam("$size", variable("tooltip-arrow-size", $tooltip-arrow-size)),
-          eparam(
-            "$margin",
-            variable("tooltip-arrow-margin", $tooltip-arrow-margin)
-          )
-        );
+        margin-left: calc(-1 * (var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) + var(--#{$prefix}tooltip-arrow-margin, $tooltip-arrow-margin)));
       }
     }
   }

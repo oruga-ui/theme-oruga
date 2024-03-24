@@ -4,6 +4,7 @@
 
 // Settings
 $whitelist: () !default;
+// todo: remove this var
 $css-vars: true !default;
 $prefix: "oruga-" !default;
 
@@ -42,6 +43,7 @@ $base-rounded-border-radius: 9999px !default;
 $base-line-height: 1.5 !default;
 $base-disabled-opacity: 0.5 !default;
 
+// todo: check if maybe rename better
 $control-border-width: 1px !default;
 $control-height: 2.25em !default;
 $control-padding-vertical: calc(0.375em - #{$control-border-width});
