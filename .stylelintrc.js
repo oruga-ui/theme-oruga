@@ -9,6 +9,7 @@ module.exports = {
     "stylelint-scss",
   ],
   rules: {
+    "scss/operator-no-newline-after": [true, { "severity": "warning" }],
     "scss/at-extend-no-missing-placeholder": null,
     "no-duplicate-selectors": [true, { "severity": "warning" }],
     "no-descending-specificity": [true, { "severity": "warning" }],

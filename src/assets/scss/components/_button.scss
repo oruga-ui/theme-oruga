@@ -12,8 +12,8 @@ $button-margin-icon-to-text: 0.1875em !default;
 $button-margin: 0 !default;
 $button-height: $control-height !default;
 $button-padding: $control-padding-vertical 0.75em !default;
-$button-rounded-border-radius:  #{base-rounded-border-radius} !default;
-$button-disabled-opacity:  #{base-disabled-opacity} !default;
+$button-rounded-border-radius: #{base-rounded-border-radius} !default;
+$button-disabled-opacity: #{base-disabled-opacity} !default;
 $button-outlined-background-color: transparent !default;
 /* @docs */
 
@@ -42,7 +42,10 @@ $button-outlined-background-color: transparent !default;
   -moz-appearance: none;
   -webkit-appearance: none;
 
-  background-color: var(--#{$prefix}button-background-color, $button-background-color);
+  background-color: var(
+    --#{$prefix}button-background-color,
+    $button-background-color
+  );
   color: var(--#{$prefix}button-color, $button-color);
   padding: var(--#{$prefix}button-padding, $button-padding);
   border: var(--#{$prefix}button-border, $button-border);
@@ -72,7 +75,10 @@ $button-outlined-background-color: transparent !default;
   }
 
   &--rounded {
-    border-radius: var(--#{$prefix}button-rounded-border-radius, $button-rounded-border-radius);
+    border-radius: var(
+      --#{$prefix}button-rounded-border-radius,
+      $button-rounded-border-radius
+    );
   }
 
   &--disabled {
@@ -81,12 +87,14 @@ $button-outlined-background-color: transparent !default;
     pointer-events: none;
   }
 
+  // size variants
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
     }
   }
 
+  // color variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     $color-invert: list.nth($pair, 2);
@@ -105,14 +113,23 @@ $button-outlined-background-color: transparent !default;
   }
 
   &--outlined {
-    background-color: var(--#{$prefix}button-outlined-background-color, $button-outlined-background-color );
-    border-color: var(--#{$prefix}button-background-color, $button-background-color );
-    color: var(--#{$prefix}button-background-color, $button-background-color );
+    background-color: var(
+      --#{$prefix}button-outlined-background-color,
+      $button-outlined-background-color
+    );
+    border-color: var(
+      --#{$prefix}button-background-color,
+      $button-background-color
+    );
+    color: var(--#{$prefix}button-background-color, $button-background-color);
 
     &:hover {
       border-color: transparent;
 
-      background-color: var(--#{$prefix}button-background-color, $button-background-color );
+      background-color: var(
+        --#{$prefix}button-background-color,
+        $button-background-color
+      );
       color: var(--#{$prefix}button-color, $button-color);
     }
 
@@ -121,14 +138,17 @@ $button-outlined-background-color: transparent !default;
       $color-invert: list.nth($pair, 2);
 
       &-#{$name} {
-        background-color: var(--#{$prefix}button-outlined-background-color, $button-outlined-background-color );
+        background-color: var(
+          --#{$prefix}button-outlined-background-color,
+          $button-outlined-background-color
+        );
         border-color: var(--#{$prefix}variant-#{$name}, $color);
         color: var(--#{$prefix}variant-#{$name}, $color);
 
         &:hover {
           border-color: transparent;
-          background-color: var(--#{$prefix}variant-#{$name}, $color );
-          color: var(--#{$prefix}variant-invert-#{$name}, $color-invert );
+          background-color: var(--#{$prefix}variant-#{$name}, $color);
+          color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
         }
       }
     }
@@ -157,7 +177,7 @@ $button-outlined-background-color: transparent !default;
   &--inverted {
     background-color: var(--#{$prefix}button-color, $button-color);
     border-color: var(--#{$prefix}button-color, $button-color);
-    color: var(--#{$prefix}button-background-color, $button-background-color );
+    color: var(--#{$prefix}button-background-color, $button-background-color);
 
     &:hover {
       // background-color: darken($color-invert, 5%)
@@ -170,8 +190,11 @@ $button-outlined-background-color: transparent !default;
       $color-invert: list.nth($pair, 2);
 
       &-#{$name} {
-        background-color: var(--#{$prefix}variant-invert-#{$name}, $color-invert );
-        border-color: var(--#{$prefix}variant-invert-#{$name}, $color-invert );
+        background-color: var(
+          --#{$prefix}variant-invert-#{$name},
+          $color-invert
+        );
+        border-color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
         color: var(--#{$prefix}variant-#{$name}, $color);
 
         &:hover {

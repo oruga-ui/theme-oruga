@@ -16,6 +16,7 @@ $checkbox-size: 1rem !default;
 $checkbox-line-height: 1.5 !default;
 /* @docs */
 
+// checkmark svg calculation
 @function svg_checkmark($color) {
   $start: '<svg width="100%" height="100%" viewBox="0 0 234 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
   $content: '<g transform="matrix(4.16667,0,0,4.16667,0,0)"><g transform="matrix(3.13817,0,0,3.13817,-69.2796,-49.5156)"><path style="fill:#{$color}" d="M22.504,26.219L28.637,32.386L39.494,18.284L37.348,16.379L28,27.725L24.46,24.196L22.504,26.219Z"></path></g></g>';
@@ -24,6 +25,7 @@ $checkbox-line-height: 1.5 !default;
   @return svg-encode("#{$start}#{$content}#{$end}");
 }
 
+// indeterminate svg calculation
 @function svg_indeterminate($color) {
   $start: '<svg width="100%" height="100%" viewBox="0 0 417 417" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">';
   $content: '<g transform="matrix(4.16667,0,0,4.16667,0,0)"><g transform="matrix(6.96176,0,0,20.5682,-118.661,-806.753)"><path style="fill:#{$color}" d="M31.265,41.654C31.265,41.324 30.474,41.057 29.5,41.057L18.953,41.057C17.979,41.057 17.188,41.324 17.188,41.654C17.188,41.984 17.979,42.252 18.953,42.252L29.5,42.252C30.474,42.252 31.265,41.984 31.265,41.654Z"/></g></g>';
@@ -40,7 +42,10 @@ $checkbox-line-height: 1.5 !default;
   position: relative;
 
   line-height: var(--#{$prefix}checkbox-line-height, $checkbox-line-height);
-  margin-right: var(--#{$prefix}checkbox-margin-sibiling, $checkbox-margin-sibiling);
+  margin-right: var(
+    --#{$prefix}checkbox-margin-sibiling,
+    $checkbox-margin-sibiling
+  );
 
   &__input {
     width: var(--#{$prefix}checkbox-size, $checkbox-size);
@@ -59,24 +64,48 @@ $checkbox-line-height: 1.5 !default;
     cursor: pointer;
     background-repeat: no-repeat;
 
-    background-color: var(--#{$prefix}checkbox-background-color, $checkbox-background-color);
-    border-radius: var(--#{$prefix}checkbox-border-radius, $checkbox-border-radius);
-    border-width: var(--#{$prefix}checkbox-border-width, $checkbox-border-width);
-    border-color: var(--#{$prefix}checkbox-border-color, $checkbox-border-color);
+    background-color: var(
+      --#{$prefix}checkbox-background-color,
+      $checkbox-background-color
+    );
+    border-radius: var(
+      --#{$prefix}checkbox-border-radius,
+      $checkbox-border-radius
+    );
+    border-width: var(
+      --#{$prefix}checkbox-border-width,
+      $checkbox-border-width
+    );
+    border-color: var(
+      --#{$prefix}checkbox-border-color,
+      $checkbox-border-color
+    );
     border-style: solid;
     transition-property: background;
     transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
     transition-timing-function: var(--#{$prefix}transition-timing, $easing);
 
     &--checked {
-      background-color: var(--#{$prefix}checkbox-active-background-color, $checkbox-active-background-color);
-      border-color: var(--#{$prefix}checkbox-active-background-color, $checkbox-active-background-color);
+      background-color: var(
+        --#{$prefix}checkbox-active-background-color,
+        $checkbox-active-background-color
+      );
+      border-color: var(
+        --#{$prefix}checkbox-active-background-color,
+        $checkbox-active-background-color
+      );
       background-image: url(svg_checkmark($checkbox-checkmark-color));
     }
 
     &--indeterminate {
-      background-color: var(--#{$prefix}checkbox-active-background-color, $checkbox-active-background-color);
-      border-color: var(--#{$prefix}checkbox-active-background-color, $checkbox-active-background-color);
+      background-color: var(
+        --#{$prefix}checkbox-active-background-color,
+        $checkbox-active-background-color
+      );
+      border-color: var(
+        --#{$prefix}checkbox-active-background-color,
+        $checkbox-active-background-color
+      );
       background-image: url(svg_indeterminate($checkbox-checkmark-color));
     }
   }
@@ -86,15 +115,20 @@ $checkbox-line-height: 1.5 !default;
   }
 
   &--disabled {
-    opacity: var(--#{$prefix}checkbox-disabled-opacity, $checkbox-disabled-opacity);
+    opacity: var(
+      --#{$prefix}checkbox-disabled-opacity,
+      $checkbox-disabled-opacity
+    );
   }
 
+  // size variants
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
     }
   }
 
+  // color variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     $color-invert: list.nth($pair, 2);

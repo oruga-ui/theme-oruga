@@ -4,7 +4,9 @@ $carousel-arrow-color: var(--#{$prefix}primary) !default;
 $carousel-arrow-icon-spaced: 1.5rem !default;
 $carousel-arrow-top: 50% !default;
 $carousel-arrow-size: 1.5rem !default;
-$carousel-arrow-border-radius: var(--#{$prefix}base-rounded-border-radius) !default;
+$carousel-arrow-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
 $carousel-arrow-border: 1px solid $carousel-arrow-background !default;
 $carousel-arrow-transition: $speed-slow $easing !default;
 $carousel-indicators-background: rgba(var(--#{$prefix}white), 0.5) !default;
@@ -17,7 +19,9 @@ $carousel-indicator-active-background: $carousel-indicator-color !default;
 $carousel-indicator-active-border: 1px solid $carousel-indicator-color !default;
 $carousel-indicator-transition: $speed-slow $easing !default;
 $carousel-indicator-size: 10px !default;
-$carousel-indicator-dots-border-radius: var(--#{$prefix}base-border-radius) !default;
+$carousel-indicator-dots-border-radius: var(
+  --#{$prefix}base-border-radius
+) !default;
 $carousel-indicator-lines-height: 5px !default;
 $carousel-indicator-lines-width: 25px !default;
 $carousel-items-transition: all $speed-slower ease-out 0s !default;
@@ -44,7 +48,10 @@ $carousel-overlay-zindex: 40 !default;
     max-height: 100vh;
     position: fixed;
 
-    background-color: var(--#{$prefix}carousel-overlay-background, $carousel-overlay-background);
+    background-color: var(
+      --#{$prefix}carousel-overlay-background,
+      $carousel-overlay-background
+    );
     z-index: var(--#{$prefix}carousel-overlay-zindex, $carousel-overlay-zindex);
   }
 
@@ -58,7 +65,10 @@ $carousel-overlay-zindex: 40 !default;
     width: 100%;
 
     &:not(&--dragging) {
-      transition: var(--#{$prefix}carousel-items-transition, $carousel-items-transition);
+      transition: var(
+        --#{$prefix}carousel-items-transition,
+        $carousel-items-transition
+      );
     }
   }
 
@@ -77,8 +87,14 @@ $carousel-overlay-zindex: 40 !default;
     align-items: center;
     justify-content: center;
 
-    padding: var(--#{$prefix}carousel-indicators-padding, $carousel-indicators-padding);
-    background: var(--#{$prefix}carousel-indicators-background, $carousel-indicators-background);
+    padding: var(
+      --#{$prefix}carousel-indicators-padding,
+      $carousel-indicators-padding
+    );
+    background: var(
+      --#{$prefix}carousel-indicators-background,
+      $carousel-indicators-background
+    );
 
     &--inside {
       position: absolute;
@@ -95,64 +111,120 @@ $carousel-overlay-zindex: 40 !default;
 
   &__indicator {
     &:not(:last-child) {
-      margin: var(--#{$prefix}carousel-indicator-margin, $carousel-indicator-margin);
+      margin: var(
+        --#{$prefix}carousel-indicator-margin,
+        $carousel-indicator-margin
+      );
     }
 
     &__item {
       display: block;
 
-      border: var(--#{$prefix}carousel-indicator-border, $carousel-indicator-border);
-      background: var(--#{$prefix}carousel-indicator-background, $carousel-indicator-background);
-      transition: var(--#{$prefix}carousel-indicator-transition, $carousel-indicator-transition);
+      border: var(
+        --#{$prefix}carousel-indicator-border,
+        $carousel-indicator-border
+      );
+      background: var(
+        --#{$prefix}carousel-indicator-background,
+        $carousel-indicator-background
+      );
+      transition: var(
+        --#{$prefix}carousel-indicator-transition,
+        $carousel-indicator-transition
+      );
 
       &--active,
       :hover {
-        background: var(--#{$prefix}carousel-indicator-active-background, $carousel-indicator-active-background);
-        border: var(--#{$prefix}carousel-indicator-active-border, $carousel-indicator-active-border);
+        background: var(
+          --#{$prefix}carousel-indicator-active-background,
+          $carousel-indicator-active-background
+        );
+        border: var(
+          --#{$prefix}carousel-indicator-active-border,
+          $carousel-indicator-active-border
+        );
       }
 
       &--boxes {
-        width: var(--#{$prefix}carousel-indicator-size, $carousel-indicator-size);
-        height: var(--#{$prefix}carousel-indicator-size, $carousel-indicator-size);
+        width: var(
+          --#{$prefix}carousel-indicator-size,
+          $carousel-indicator-size
+        );
+        height: var(
+          --#{$prefix}carousel-indicator-size,
+          $carousel-indicator-size
+        );
       }
 
       &--dots {
-        border-radius: var(--#{$prefix}carousel-indicator-dots-border-radius, $carousel-indicator-dots-border-radius);
-        width: var(--#{$prefix}carousel-indicator-size, $carousel-indicator-size);
-        height: var(--#{$prefix}carousel-indicator-size, $carousel-indicator-size);
+        border-radius: var(
+          --#{$prefix}carousel-indicator-dots-border-radius,
+          $carousel-indicator-dots-border-radius
+        );
+        width: var(
+          --#{$prefix}carousel-indicator-size,
+          $carousel-indicator-size
+        );
+        height: var(
+          --#{$prefix}carousel-indicator-size,
+          $carousel-indicator-size
+        );
       }
 
       &--lines {
-        width: var(--#{$prefix}carousel-indicator-lines-width, $carousel-indicator-lines-width);
-        height: var(--#{$prefix}carousel-indicator-lines-height, $carousel-indicator-lines-height);
+        width: var(
+          --#{$prefix}carousel-indicator-lines-width,
+          $carousel-indicator-lines-width
+        );
+        height: var(
+          --#{$prefix}carousel-indicator-lines-height,
+          $carousel-indicator-lines-height
+        );
       }
     }
   }
 
   &__arrow__icon {
     cursor: pointer;
-    background: var(--#{$prefix}carousel-arrow-background, $carousel-arrow-background);
+    background: var(
+      --#{$prefix}carousel-arrow-background,
+      $carousel-arrow-background
+    );
     color: var(--#{$prefix}carousel-arrow-color, $carousel-arrow-color);
     width: var(--#{$prefix}carousel-arrow-size, $carousel-arrow-size);
     height: var(--#{$prefix}carousel-arrow-size, $carousel-arrow-size);
-    border-radius: var(--#{$prefix}carousel-arrow-border-radius, $carousel-arrow-border-radius);
+    border-radius: var(
+      --#{$prefix}carousel-arrow-border-radius,
+      $carousel-arrow-border-radius
+    );
     border: var(--#{$prefix}carousel-arrow-border, $carousel-arrow-border);
-    transition: var(--#{$prefix}carousel-arrow-transition, $carousel-arrow-transition);
+    transition: var(
+      --#{$prefix}carousel-arrow-transition,
+      $carousel-arrow-transition
+    );
   }
 
   &__arrow__icon-prev,
   &__arrow__icon-next {
     position: absolute;
     top: var(--#{$prefix}carousel-arrow-top, $carousel-arrow-top);
-    transform: translateY(var(--#{$prefix}carousel-arrow-top, -$carousel-arrow-top));
+    transform: translateY(
+      var(--#{$prefix}carousel-arrow-top, -$carousel-arrow-top)
+    );
     z-index: 1;
   }
 
   &__arrow__icon-prev {
-    left: var(--#{$prefix}carousel-arrow-icon-spaced, $carousel-arrow-icon-spaced);
+    left: var(
+      --#{$prefix}carousel-arrow-icon-spaced,
+      $carousel-arrow-icon-spaced
+    );
   }
 
   &__arrow__icon-next {
-    right: var(--#{$prefix}carousel-arrow-icon-spaced, $carousel-arrow-icon-spaced);
+    right: var(
+      --#{$prefix}carousel-arrow-icon-spaced,
+      $carousel-arrow-icon-spaced
+    );
   }
 }
