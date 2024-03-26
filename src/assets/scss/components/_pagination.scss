@@ -1,21 +1,23 @@
 /* @docs */
-$pagination-disabled-opacity: $base-disabled-opacity !default;
-$pagination-ellipsis-color: $grey-light !default;
-$pagination-link-border-color: $grey-lighter !default;
-$pagination-link-border-radius: $base-border-radius !default;
+$pagination-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
+$pagination-ellipsis-color: var(--#{$prefix}grey-light) !default;
+$pagination-link-border-color: var(--#{$prefix}grey-lighter) !default;
+$pagination-link-border-radius: var(--#{$prefix}base-border-radius) !default;
 $pagination-link-border: 1px solid transparent !default;
 $pagination-link-color: #363636 !default;
-$pagination-link-current-background-color: $primary !default;
-$pagination-link-current-border-color: $primary !default; // !!!
+$pagination-link-current-background-color: var(--#{$prefix}primary) !default;
+$pagination-link-current-border-color: var(--#{$prefix}primary) !default;
 $pagination-link-current-color: #fff !default;
 $pagination-link-height: 2.25em !default;
-$pagination-link-hover-border-color: $grey-light !default;
-$pagination-link-line-height: $base-line-height !default;
+$pagination-link-hover-border-color: var(--#{$prefix}grey-light) !default;
+$pagination-link-line-height: var(--#{$prefix}base-line-height) !default;
 $pagination-link-margin: 0.25rem !default;
 $pagination-link-min-width: 2.25em !default;
 $pagination-link-padding: 0.5em 0.5em !default;
 $pagination-margin: -0.25rem !default;
-$pagination-rounded-border-radius: $base-rounded-border-radius !default;
+$pagination-rounded-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
 /* @docs */
 
 .o-pag {
@@ -23,21 +25,17 @@ $pagination-rounded-border-radius: $base-rounded-border-radius !default;
   display: flex;
   text-align: center;
   justify-content: space-between;
-
-  @include avariable("font-size", "base-font-size", $base-font-size);
-  @include avariable("margin", "pagination-margin", $pagination-margin);
+  font-size: var(--#{$prefix}base-font-size, $base-font-size);
+  margin: var(--#{$prefix}pagination-margin, $pagination-margin);
 
   @each $name, $value in $sizes {
     &--#{$name} {
-      @include avariable(
-        "font-size",
-        ("pagination-font-size-" + #{$name}),
-        $value
-      );
+      font-size: var(--#{$prefix}pagination-font-size-#{$name}, $value);
     }
   }
 
   &__link {
+    @include unselectable;
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
@@ -49,98 +47,63 @@ $pagination-rounded-border-radius: $base-rounded-border-radius !default;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-
-    @include unselectable;
-    @include avariable(
-      "line-height",
-      "pagination-link-line-height",
+    line-height: var(
+      --#{$prefix}pagination-link-line-height,
       $pagination-link-line-height
     );
-    @include avariable(
-      "border",
-      "pagination-link-border",
-      $pagination-link-border
-    );
-    @include avariable(
-      "border-radius",
-      "pagination-link-border-radius",
+    border: var(--#{$prefix}pagination-link-border, $pagination-link-border);
+    border-radius: var(
+      --#{$prefix}pagination-link-border-radius,
       $pagination-link-border-radius
     );
-    @include avariable(
-      "border-color",
-      "pagination-link-border-color",
+    border-color: var(
+      --#{$prefix}pagination-link-border-color,
       $pagination-link-border-color
     );
-    @include avariable(
-      "color",
-      "pagination-link-color",
-      $pagination-link-color
-    );
-    @include avariable(
-      "min-width",
-      "pagination-link-min-width",
+    color: var(--#{$prefix}pagination-link-color, $pagination-link-color);
+    min-width: var(
+      --#{$prefix}pagination-link-min-width,
       $pagination-link-min-width
     );
-    @include avariable(
-      "height",
-      "pagination-link-height",
-      $pagination-link-height
-    );
-    @include avariable(
-      "padding",
-      "pagination-link-padding",
-      $pagination-link-padding
-    );
-    @include avariable(
-      "margin",
-      "pagination-link-margin",
-      $pagination-link-margin
-    );
+    height: var(--#{$prefix}pagination-link-height, $pagination-link-height);
+    padding: var(--#{$prefix}pagination-link-padding, $pagination-link-padding);
+    margin: var(--#{$prefix}pagination-link-margin, $pagination-link-margin);
 
     &:hover {
       text-decoration: none;
-
-      @include avariable(
-        "border-color",
-        "pagination-link-hover-border-color",
+      border-color: var(
+        --#{$prefix}pagination-link-hover-border-color,
         $pagination-link-hover-border-color
       );
     }
 
     &--rounded {
-      @include avariable(
-        "border-radius",
-        "pagination-rounded-border-radius",
+      border-radius: var(
+        --#{$prefix}pagination-rounded-border-radius,
         $pagination-rounded-border-radius
       );
     }
 
     &--disabled {
       pointer-events: none;
-
-      @include avariable(
-        "opacity",
-        "pagination-disabled-opacity",
+      opacity: var(
+        --#{$prefix}pagination-disabled-opacity,
         $pagination-disabled-opacity
       );
     }
 
     &--current {
       pointer-events: none;
-
-      @include avariable(
-        "background-color",
-        "pagination-link-current-background-color",
+      background-color: var(
+        --#{$prefix}pagination-link-current-background-color,
         $pagination-link-current-background-color
       );
-      @include avariable(
-        "border-color",
-        "pagination-link-current-border-color",
+      border-color: var(
+        --#{$prefix}pagination-link-current-border-color,
         $pagination-link-current-border-color
       );
-      @include avariable(
-        "color",
-        "pagination-link-current-color",
+      color: var(
+        --#{$prefix}pagination-link-current-color,
         $pagination-link-current-color
       );
     }
@@ -150,15 +113,9 @@ $pagination-rounded-border-radius: $base-rounded-border-radius !default;
     justify-content: center;
     text-align: center;
     pointer-events: none;
-
-    @include avariable(
-      "margin",
-      "pagination-link-margin",
-      $pagination-link-margin
-    );
-    @include avariable(
-      "color",
-      "pagination-ellipsis-color",
+    margin: var(--#{$prefix}pagination-link-margin, $pagination-link-margin);
+    color: var(
+      --#{$prefix}pagination-ellipsis-color,
       $pagination-ellipsis-color
     );
   }

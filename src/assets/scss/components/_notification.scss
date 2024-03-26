@@ -1,17 +1,19 @@
 @use "sass:list";
 
 /* @docs */
-$notification-background-color: $primary !default;
+$notification-background-color: var(--#{$prefix}primary) !default;
 $notification-border-radius: 4px !default;
 $notification-padding: 1.75em 1.75em !default;
 $notification-margin-bottom: 1.5rem !default;
 $notification-animantion: append-animate 0.3s linear !default;
-$notification-color: $white !default;
-$notification-close-border-radius: $base-rounded-border-radius !default;
+$notification-color: var(--#{$prefix}white) !default;
+$notification-close-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
 $notification-close-right: 0.5rem !default;
 $notification-close-top: 0.5rem !default;
 $notification-close-size: 20px !default;
-$notification-close-color: $white !default;
+$notification-close-color: var(--#{$prefix}white) !default;
 $notification-close-background-color: hsla(0, 0%, 4%, 0.2) !default;
 $notification-icon-margin-right: 1rem !default;
 $notification-notices-padding: 2em !default;
@@ -19,27 +21,23 @@ $notification-notices-zindex: 1000 !default;
 /* @docs */
 
 .o-notification {
-  // Modifiers
-  @include avariable(
-    "background-color",
-    "notification-background-color",
-    $notification-background-color
-  );
-  @include avariable("color", "notification-color", $notification-color);
-  @include avariable(
-    "border-radius",
-    "notification-border-radius",
-    $notification-border-radius
-  );
-  @include avariable("padding", "notification-padding", $notification-padding);
-  @include avariable(
-    "margin-bottom",
-    "notification-margin-bottom",
-    $notification-margin-bottom
-  );
-
   position: relative;
   transform-origin: 50% 0;
+  // Modifiers
+  background-color: var(
+    --#{$prefix}notification-background-color,
+    $notification-background-color
+  );
+  color: var(--#{$prefix}notification-color, $notification-color);
+  border-radius: var(
+    --#{$prefix}notification-border-radius,
+    $notification-border-radius
+  );
+  padding: var(--#{$prefix}notification-padding, $notification-padding);
+  margin-bottom: var(
+    --#{$prefix}notification-margin-bottom,
+    $notification-margin-bottom
+  );
 
   &__content {
     flex-basis: auto;
@@ -62,10 +60,8 @@ $notification-notices-zindex: 1000 !default;
     flex-basis: auto;
     flex-grow: 0;
     flex-shrink: 0;
-
-    @include avariable(
-      "margin-right",
-      "notification-icon-margin-right",
+    margin-right: var(
+      --#{$prefix}notification-icon-margin-right,
       $notification-icon-margin-right
     );
   }
@@ -81,42 +77,19 @@ $notification-notices-zindex: 1000 !default;
     flex-grow: 0;
     flex-shrink: 0;
     vertical-align: top;
-
-    @include avariable(
-      "background-color",
-      "notification-close-background-color",
+    background-color: var(
+      --#{$prefix}notification-close-background-color,
       $notification-close-background-color
     );
-    @include avariable(
-      "border-radius",
-      "notification-close-border-radius",
+    border-radius: var(
+      --#{$prefix}notification-close-border-radius,
       $notification-close-border-radius
     );
-    @include avariable(
-      "right",
-      "notification-close-right",
-      $notification-close-right
-    );
-    @include avariable(
-      "top",
-      "notification-close-top",
-      $notification-close-top
-    );
-    @include avariable(
-      "height",
-      "notification-close-size",
-      $notification-close-size
-    );
-    @include avariable(
-      "width",
-      "notification-close-size",
-      $notification-close-size
-    );
-    @include avariable(
-      "color",
-      "notification-close-color",
-      $notification-close-color
-    );
+    right: var(--#{$prefix}notification-close-right, $notification-close-right);
+    top: var(--#{$prefix}notification-close-top, $notification-close-top);
+    height: var(--#{$prefix}notification-close-size, $notification-close-size);
+    width: var(--#{$prefix}notification-close-size, $notification-close-size);
+    color: var(--#{$prefix}notification-close-color, $notification-close-color);
   }
 
   @each $name, $pair in $colors {
@@ -124,13 +97,8 @@ $notification-notices-zindex: 1000 !default;
     $color-invert: list.nth($pair, 2);
     &--#{$name} {
       border-color: transparent;
-
-      @include avariable("background-color", ("variant-" + #{$name}), $color);
-      @include avariable(
-        "color",
-        ("variant-invert-" + #{$name}),
-        $color-invert
-      );
+      background-color: var(--#{$prefix}variant-#{$name}, $color);
+      color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
 
       &:hover {
         // background-color: darken($color, 2.5%)
@@ -150,25 +118,20 @@ $notification-notices-zindex: 1000 !default;
   right: 0;
   overflow: hidden;
   pointer-events: none;
-
-  @include avariable(
-    "padding",
-    "notification-notices-padding",
+  padding: var(
+    --#{$prefix}notification-notices-padding,
     $notification-notices-padding
   );
-  @include avariable(
-    "z-index",
-    "notification-notices-zindex",
+  z-index: var(
+    --#{$prefix}notification-notices-zindex,
     $notification-notices-zindex
   );
 
   .o-notification {
     pointer-events: stroke;
     max-width: 600px;
-
-    @include avariable(
-      "animation",
-      "notification-animantion",
+    animation: var(
+      --#{$prefix}notification-animantion,
       $notification-animantion
     );
 
