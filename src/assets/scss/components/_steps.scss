@@ -25,17 +25,17 @@ $steps-details-title-font-weight: 600 !default;
 @mixin steps-size($size, $name: null) {
   $sizeVarName: if($name != null, "size-" + #{$name}, "steps-size");
 
-  font-size: var(--#{$prefix}{$sizeVarName}, $size);
-  min-height: calc(var(--#{$prefix}{$sizeVarName}, $size) * 2);
+  font-size: var(--#{$prefix}#{$sizeVarName}, $size);
+  min-height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
 
   .o-steps__divider {
     height: var(--#{$prefix}steps-divider-height, $steps-divider-height);
-    top: var(--#{$prefix}{$sizeVarName}, $size);
+    top: var(--#{$prefix}#{$sizeVarName}, $size);
   }
 
   .o-steps__marker {
-    height: calc(var(--#{$prefix}{$sizeVarName}, $size) * 2);
-    width: calc(var(--#{$prefix}{$sizeVarName}, $size) * 2);
+    height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
+    width: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
   }
 
   .o-steps__title {
@@ -46,12 +46,12 @@ $steps-details-title-font-weight: 600 !default;
       $steps-details-background-color
     );
     padding: var(--#{$prefix}steps-details-padding, $steps-details-padding);
-    font-size: calc(var(--#{$prefix}{$sizeVarName}, $size) * 1.2);
+    font-size: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 1.2);
     height: var(
       --#{$prefix}steps-details-title-font-weight,
       $steps-details-title-font-weight
     );
-    line-height: var(--#{$prefix}{$sizeVarName}, $size);
+    line-height: var(--#{$prefix}#{$sizeVarName}, $size);
   }
 
   .o-steps__wrapper-vertical {
@@ -59,7 +59,7 @@ $steps-details-title-font-weight: 600 !default;
       .o-steps__divider {
         left: calc(
           (
-              var(--#{$prefix}{$sizeVarName}, $size) - var(
+              var(--#{$prefix}#{$sizeVarName}, $size) - var(
                   --#{$prefix}steps-divider-height,
                   $steps-divider-height
                 )
@@ -73,7 +73,7 @@ $steps-details-title-font-weight: 600 !default;
         left: auto;
         right: calc(
           (
-              var(--#{$prefix}{$sizeVarName}, $size) - var(
+              var(--#{$prefix}#{$sizeVarName}, $size) - var(
                   --#{$prefix}steps-divider-height,
                   $steps-divider-height
                 )
@@ -87,7 +87,7 @@ $steps-details-title-font-weight: 600 !default;
         .o-steps__divider {
           left: calc(
             (
-                var(--#{$prefix}{$sizeVarName}, $size) - var(
+                var(--#{$prefix}#{$sizeVarName}, $size) - var(
                     --#{$prefix}steps-divider-height,
                     $steps-divider-height
                   )
@@ -101,7 +101,7 @@ $steps-details-title-font-weight: 600 !default;
           left: auto;
           right: calc(
             (
-                var(--#{$prefix}{$sizeVarName}, $size) - var(
+                var(--#{$prefix}#{$sizeVarName}, $size) - var(
                     --#{$prefix}steps-divider-height,
                     $steps-divider-height
                   )
@@ -170,8 +170,8 @@ $steps-details-title-font-weight: 600 !default;
           .o-steps__divider {
             background: linear-gradient(
               to left,
-              var(--#{$prefix}{$bgVarName}, $steps-color) 50%,
-              var(--#{$prefix}{$colorVarName}, $color) 50%
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 200% 100%;
           }
@@ -186,8 +186,8 @@ $steps-details-title-font-weight: 600 !default;
           .o-steps__divider {
             background: linear-gradient(
               to left,
-              var(--#{$prefix}{$bgVarName}, $steps-color) 50%,
-              var(--#{$prefix}{$colorVarName}, $color) 50%
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 200% 100%;
           }
@@ -369,12 +369,23 @@ $steps-details-title-font-weight: 600 !default;
       // Override marker connector color per step
       @each $name, $pair in $colors {
         $color: list.nth($pair, 1);
+        $bgVarName: if(
+          $name != null,
+          "steps-divider-color-bg-" + #{$name},
+          "steps-divider-color-bg"
+        );
+        $colorVarName: if(
+          $name != null,
+          "steps-divider-color-" + #{$name},
+          "steps-divider-color"
+        );
+
         &--#{$name} {
           .o-steps__divider {
             background: linear-gradient(
               to left,
-              var(--#{$prefix}{$bgVarName}, $steps-color) 50%,
-              var(--#{$prefix}{$colorVarName}, $color) 50%
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 100% 200%;
             background-position: left bottom;
