@@ -1,192 +1,41 @@
-/***************************************
-*   Oruga Default Theme Minimal Style
-****************************************/
+/******************
+*   Oruga Theme 
+*******************/
 
-// Define empty Maps
-$colors: () !default;
-$sizes: () !default;
-
-// Import Ourga Theme variables
-@import "utils/variables";
+// import Globals, helpers and functions
+@import "utils/animations";
 @import "utils/helpers";
+@import "utils/root";
 
-// Button
-$whitelist: add-to-whitelist(
-  "button-background-color",
-  "button-color",
-  "button-disabled-opacity",
-  "button-outlined-background-color"
-);
+@import "utils/base";
 
-// Carousel
-$whitelist: add-to-whitelist(
-  "carousel-overlay-zindex",
-  "carousel-indicator-size",
-  "carousel-indicator-background",
-  "carousel-indicator-border",
-  "carousel-indicator-active-background",
-  "carousel-indicator-active-border",
-  "carousel-indicator-size",
-  "carousel-indicator-dots-border-radius",
-  "carousel-arrow-size",
-  "carousel-arrow-background",
-  "carousel-arrow-color",
-  "carousel-arrow-top",
-  "carousel-arrow-icon-spaced"
-);
-
-// Checkbox
-$whitelist: add-to-whitelist(
-  "checkbox-size",
-  "checkbox-active-background-color",
-  "checkbox-checkmark-color",
-  "checkbox-border-color",
-  "checkbox-disabled-opacity"
-);
-
-// Datepicker
-$whitelist: add-to-whitelist(
-  "datepicker-btn-border-color",
-  "datepicker-btn-color",
-  "datepicker-item-disabled-color",
-  "datepicker-item-hovered-background-color",
-  "datepicker-item-hovered-color",
-  "datepicker-item-selectable-color",
-  "datepicker-item-selected-background-color",
-  "datepicker-item-selected-color",
-  "datepicker-item-selected-within-background-color",
-  "datepicker-event-background-color"
-);
-
-// Dropdown
-$whitelist: add-to-whitelist(
-  "dropdown-disabled-opacity",
-  "dropdown-menu-background",
-  "dropdown-menu-zindex",
-  "dropdown-menu-spacer",
-  "dropdown-mobile-overlay-color",
-  "dropdown-mobile-overlay-zindex",
-  "dropdown-mobile-zindex",
-  "dropdown-item-active-background-color",
-  "dropdown-item-active-color",
-  "dropdown-item-disabled-opacity"
-);
-
-// Icon
-$whitelist: add-to-whitelist("icon-spin-duration");
-
-// Input
-$whitelist: add-to-whitelist();
-
-// Modal
-$whitelist: add-to-whitelist(
-  "modal-zindex",
-  "modal-content-background-color",
-  "modal-overlay-background-color",
-  "moda-close-size",
-  "modal-close-top",
-  "modal-close-right"
-);
-
-// Notification
-$whitelist: add-to-whitelist(
-  "notification-background-color",
-  "notification-color",
-  "notification-close-right",
-  "notification-close-top",
-  "notification-notices-padding",
-  "notification-notices-zindex"
-);
-
-// Pagination
-$whitelist: add-to-whitelist(
-  "pagination-link-current-background-color",
-  "pagination-link-current-border-color",
-  "pagination-link-current-color"
-);
-
-// Radio
-$whitelist: add-to-whitelist(
-  "radio-size",
-  "radio-active-background-color",
-  "radio-disabled-opacity"
-);
-
-// Select
-$whitelist: add-to-whitelist("select-arrow-size");
-
-// Sidebar
-$whitelist: add-to-whitelist(
-  "sidebar-zindex",
-  "sidebar-overlay",
-  "sidebar-content-background-color"
-);
-
-// Slider
-$whitelist: add-to-whitelist(
-  "slider-track-background",
-  "slider-tick-background",
-  "slider-fill-background",
-  "slider-thumb-size",
-  "slider-thumb-background",
-  "slider-thumb-border",
-  "slider-background",
-  "slider-tick-width",
-  "slider-track-height"
-);
-
-// Skeleton
-$whitelist: add-to-whitelist("skeleton-background", "skeleton-duration");
-
-// Steps
-$whitelist: add-to-whitelist(
-  "steps-marker-color",
-  "steps-marker-border",
-  "steps-marker-background",
-  "steps-previous-color",
-  "steps-active-color",
-  "steps-details-background-color"
-);
-
-// Switch
-$whitelist: add-to-whitelist(
-  "switch-width",
-  "switch-padding",
-  "switch-background",
-  "switch-action-background",
-  "switch-active-background-color",
-  "switch-disabled-opacity",
-  "switch-rounded-border-radius"
-);
-
-// Tabs
-$whitelist: add-to-whitelist(
-  "tabs-disabled-opacity",
-  "tabs-link-active-color",
-  "tabs-link-active-border-bottom-color",
-  "tabs-link-color"
-);
-
-// Taginput
-$whitelist: add-to-whitelist(
-  "taginput-border-style",
-  "taginput-border-color",
-  "taginput-border-width",
-  "taginput-color",
-  "taginput-item-color",
-  "taginput-item-background-color"
-);
-
-// Timepicker
-$whitelist: add-to-whitelist("timepicker-select-placeholder-opacity");
-
-// Tooltip
-$whitelist: add-to-whitelist(
-  "tooltip-arrow-size",
-  "tooltip-arrow-margin",
-  "tooltip-content-zindex",
-  "tooltip-background-color"
-);
-
-// Import Oruga Theme styles
-@import "./oruga-common";
+// import Oruga components
+@import "components/autocomplete";
+@import "components/button";
+@import "components/carousel";
+@import "components/checkbox";
+@import "components/collapse";
+@import "components/datepicker";
+@import "components/datetimepicker";
+@import "components/dropdown";
+@import "components/field";
+@import "components/icon";
+@import "components/input";
+@import "components/loading";
+@import "components/menu";
+@import "components/modal";
+@import "components/notification";
+@import "components/pagination";
+@import "components/radio";
+@import "components/select";
+@import "components/skeleton";
+@import "components/sidebar";
+@import "components/slider";
+@import "components/steps";
+@import "components/switch";
+@import "components/table";
+@import "components/tabs";
+@import "components/taginput";
+@import "components/timepicker";
+@import "components/tooltip";
+@import "components/upload";

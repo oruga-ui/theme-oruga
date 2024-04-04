@@ -50,15 +50,7 @@ createApp(App)
     .use(Oruga)
     .mount('#app')
 ```
-
-The Oruga Default theme comes with two different stylesheets:
-
-* `oruga.css` provides a lightweight stylesheet containing only essential CSS rules for Oruga components such as display, position, z-index and other basic attributes. 
-* `oruga-full.css` contains the full Oruga style (the default style used for documentation). 
-
-The Oruga Default theme uses the default classes set by Oruga and doesn't come with any JS configuration at all.
-
-Note that the package also works for `@oruga-ui/oruga` (Vue 2).
+The Oruga Default theme uses the default classes set by Oruga and doesn't come with any JS configuration at all. The `oruga.css` contains the full Oruga style (the default style used for documentation). 
 
 ### Customization (SASS/SCSS)
 
@@ -70,7 +62,7 @@ For customasing any SASS variables you have to set them pefore the SCSS Import.
 // ...
 
 // Include the full Oruga theme here
-@import "/node_modules/@oruga-ui/theme-oruga/dist/scss/oruga-full";
+@import "/node_modules/@oruga-ui/theme-oruga/dist/scss/oruga";
 
 // Then add additional custom code here
 // ...
@@ -85,7 +77,7 @@ import { createApp } from 'vue'
 
 import Oruga from '@oruga-ui/oruga-next'
 
-import '@oruga-ui/theme-oruga/dist/oruga-full.css'
+import '@oruga-ui/theme-oruga/dist/oruga.css'
 
 const customConfig = {
     checkbox: {
