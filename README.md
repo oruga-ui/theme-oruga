@@ -1,9 +1,9 @@
 <p align="center">
-    <img width="150" src="https://oruga.io/logo.png" />
+    <img width="150" src="https://oruga-ui.com/logo.png" />
 </p>
 
 <p align="center">
-  🦋 <i>Default theme for <a href="https://oruga.io" target="_blank">Oruga</a></i> without any dependencies
+  🦋 <i>Default theme for <a href="https://oruga-ui.com" target="_blank">Oruga</a></i> without any dependencies
 </p>
 
 <p align="center">
@@ -70,7 +70,7 @@ For customasing any SASS variables you have to set them pefore the SCSS Import.
 
 ### Override default config
 
-In case you want to replace the default style of a component you can override or add new classes; more details about components customization on https://oruga.io/documentation/#customization
+In case you want to replace the default style of a component you can override or add new classes; more details about components customization on https://oruga-ui.com/documentation/#customization
 
 ```js
 import { createApp } from 'vue'
