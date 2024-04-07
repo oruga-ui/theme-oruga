@@ -2,9 +2,9 @@
 
 /* @docs */
 $sidebar-overlay: hsla(0, 0%, 4%, 0.86) !default;
-$sidebar-box-shadow: 5px 0px 13px 3px rgba($black, 0.1) !default;
-$sidebar-content-background-color: $grey-lighter !default;
-$sidebar-border-radius: $base-border-radius !default;
+$sidebar-box-shadow: 5px 0px 13px 3px rgba(var(--#{$prefix}black), 0.1) !default;
+$sidebar-content-background-color: var(--#{$prefix}grey-lighter) !default;
+$sidebar-border-radius: var(--#{$prefix}base-border-radius) !default;
 $sidebar-border-width: 1px !default;
 $sidebar-border-color: rgba(0, 0, 0, 0.175) !default;
 $sidebar-reduced-width: 80px !default;
@@ -22,152 +22,86 @@ $sidebar-zindex: 100 !default;
 
   &__content {
     position: absolute;
-
-    @include avariable(
-      "background-color",
-      "sidebar-content-background-color",
+    background-color: var(
+      --#{$prefix}sidebar-content-background-color,
       $sidebar-content-background-color
     );
-    @include avariable(
-      "border-radius",
-      "sidebar-border-radius",
+    border-radius: var(
+      --#{$prefix}sidebar-border-radius,
       $sidebar-border-radius
     );
-    @include avariable("box-shadow", "sidebar-box-shadow", $sidebar-box-shadow);
+    box-shadow: var(--#{$prefix}sidebar-box-shadow, $sidebar-box-shadow);
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       &--#{$name} {
-        @include avariable("background-color", ("variant-" + #{$name}), $color);
+        background-color: var(--#{$prefix}variant-#{$name}), $color;
       }
     }
 
     // position
     &--right,
     &--left {
-      @include avariable(
-        "transition-duration",
-        "transition-duration",
-        $speed-slow
-      );
-      @include avariable(
-        "transition-timing-function",
-        "transition-timing",
-        $easing
-      );
-      @include avariable("width", "sidebar-width", $sidebar-width);
       transition: width;
+      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
+      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+      width: var(--#{$prefix}sidebar-width, $sidebar-width);
     }
 
     &--top,
     &--bottom {
-      @include avariable(
-        "transition-duration",
-        "transition-duration",
-        $speed-slow
-      );
-      @include avariable(
-        "transition-timing-function",
-        "transition-timing",
-        $easing
-      );
-      @include avariable("height", "sidebar-width", $sidebar-width);
       transition: height;
+      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
+      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+      height: var(--#{$prefix}sidebar-width, $sidebar-width);
     }
 
     &--right {
       left: auto;
       right: 0;
-
-      @include evariable(
-        "border-left",
-        "$width solid $color",
-        eparam(
-          "$width",
-          variable("sidebar-border-width", $sidebar-border-width)
-        ),
-        eparam(
-          "$color",
-          variable("sidebar-border-color", $sidebar-border-color)
-        )
-      );
+      border-left: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
+        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
     }
 
     &--left {
       left: 0;
       right: auto;
-
-      @include evariable(
-        "border-right",
-        "$width solid $color",
-        eparam(
-          "$width",
-          variable("sidebar-border-width", $sidebar-border-width)
-        ),
-        eparam(
-          "$color",
-          variable("sidebar-border-color", $sidebar-border-color)
-        )
-      );
+      border-right: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
+        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
     }
 
     &--top {
       top: 0;
       bottom: auto;
-
-      @include evariable(
-        "border-bottom",
-        "$width solid $color",
-        eparam(
-          "$width",
-          variable("sidebar-border-width", $sidebar-border-width)
-        ),
-        eparam(
-          "$color",
-          variable("sidebar-border-color", $sidebar-border-color)
+      border-bottom: var(
+          --#{$prefix}sidebar-border-width,
+          $sidebar-border-width
         )
-      );
+        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
     }
 
     &--bottom {
       top: auto;
       bottom: 0;
-
-      @include evariable(
-        "border-top",
-        "$width solid $color",
-        eparam(
-          "$width",
-          variable("sidebar-border-width", $sidebar-border-width)
-        ),
-        eparam(
-          "$color",
-          variable("sidebar-border-color", $sidebar-border-color)
-        )
-      );
+      border-top: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
+        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
     }
 
     &--reduced {
-      @include avariable(
-        "width",
-        "sidebar-reduced-width",
-        $sidebar-reduced-width
-      );
+      width: var(--#{$prefix}sidebar-reduced-width, $sidebar-reduced-width);
 
       &-expand {
         &:hover {
-          @include avariable(
-            "transition-duration",
-            "transition-duration",
+          transition: width;
+          transition-duration: var(
+            --#{$prefix}transition-duration,
             $speed-slow
           );
-          @include avariable(
-            "transition-timing-function",
-            "transition-timing",
+          transition-timing-function: var(
+            --#{$prefix}transition-timing,
             $easing
           );
-          @include avariable("width", "sidebar-width", $sidebar-width);
-          transition: width;
+          width: var(--#{$prefix}sidebar-width, $sidebar-width);
         }
       }
     }
@@ -189,8 +123,7 @@ $sidebar-zindex: 100 !default;
     left: 0;
     right: 0;
     top: 0;
-
-    @include avariable("background", "sidebar-overlay", $sidebar-overlay);
+    background: var(--#{$prefix}sidebar-overlay, $sidebar-overlay);
   }
 
   &--active {
@@ -210,6 +143,6 @@ $sidebar-zindex: 100 !default;
   }
 
   &:not(&--inline) {
-    @include avariable("z-index", "sidebar-zindex", $sidebar-zindex);
+    z-index: var(--#{$prefix}sidebar-zindex, $sidebar-zindex);
   }
 }

@@ -15,17 +15,11 @@ $loading-fullpage-zindex: 999 !default;
   display: flex;
   justify-content: center;
   overflow: hidden;
-
-  @include avariable("z-index", "loading-zindex", $loading-zindex);
+  z-index: var(--#{$prefix}loading-zindex, $loading-zindex);
 
   &--fullpage {
     position: fixed;
-
-    @include avariable(
-      "z-index",
-      "loading-fullpage-zindex",
-      $loading-fullpage-zindex
-    );
+    z-index: var(--#{$prefix}loading-fullpage-zindex, $loading-fullpage-zindex);
   }
 
   &__overlay {
@@ -34,12 +28,10 @@ $loading-fullpage-zindex: 999 !default;
     left: 0;
     right: 0;
     top: 0;
-
-    @include avariable(
-      "background",
-      "loading-overlay-legacy",
+    background: var(
+      --#{$prefix}loading-overlay-legacy,
       $loading-overlay-legacy
     );
-    @include avariable("background", "loading-overlay", $loading-overlay);
+    background: var(--#{$prefix}loading-overlay, $loading-overlay);
   }
 }

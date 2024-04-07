@@ -1,32 +1,26 @@
 /* @docs */
-$timepicker-font-size: $base-font-size !default;
-$timepicker-box-line-height: $base-line-height !default;
+$timepicker-font-size: var(--#{$prefix}base-font-size) !default;
+$timepicker-box-line-height: var(--#{$prefix}base-line-height) !default;
 $timepicker-box-padding: 0.375rem 1rem !default;
 $timepicker-footer-padding: 0 0.5rem !default;
 $timepicker-footer-margin: 0.875rem 0 0 0 !default;
-$timepicker-select-line-height: $base-line-height !default;
+$timepicker-select-line-height: var(--#{$prefix}base-line-height) !default;
 $timepicker-select-padding: $control-padding-vertical
   $control-padding-horizontal !default;
 $timepicker-select-color: #363636 !default;
 $timepicker-select-font-weight: 600 !default;
-$timepicker-select-placeholder-opacity: $base-disabled-opacity !default;
+$timepicker-select-placeholder-opacity: var(
+  --#{$prefix}base-disabled-opacity
+) !default;
 $timepicker-separator-font-weight: 600 !default;
 /* @docs */
 
 .o-tpck {
-  @include avariable(
-    "font-size",
-    "timepicker-font-size",
-    $timepicker-font-size
-  );
+  font-size: var(--#{$prefix}timepicker-font-size, $timepicker-font-size);
 
   @each $name, $value in $sizes {
     &--#{$name} {
-      @include avariable(
-        "font-size",
-        ("timepicker-font-size-" + #{$name}),
-        $value
-      );
+      font-size: var(--#{$prefix}timepicker-font-size-#{$name}, $value);
     }
   }
 
@@ -38,17 +32,11 @@ $timepicker-separator-font-weight: 600 !default;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @include avariable(
-      "line-height",
-      "timepicker-box-line-height",
+    line-height: var(
+      --#{$prefix}timepicker-box-line-height,
       $timepicker-box-line-height
     );
-    @include avariable(
-      "padding",
-      "timepicker-box-padding",
-      $timepicker-box-padding
-    );
+    padding: var(--#{$prefix}timepicker-box-padding, $timepicker-box-padding);
   }
 
   &__select {
@@ -62,54 +50,42 @@ $timepicker-separator-font-weight: 600 !default;
     align-items: center;
     border: 0;
     font-size: inherit;
-
-    @include avariable(
-      "font-weight",
-      "timepicker-select-font-weight",
+    font-weight: var(
+      --#{$prefix}timepicker-select-font-weight,
       $timepicker-select-font-weight
     );
-    @include avariable(
-      "line-height",
-      "timepicker-select-line-height",
+    line-height: var(
+      --#{$prefix}timepicker-select-line-height,
       $timepicker-select-line-height
     );
-    @include avariable(
-      "padding",
-      "timepicker-select-padding",
+    padding: var(
+      --#{$prefix}timepicker-select-padding,
       $timepicker-select-padding
     );
-    @include avariable(
-      "color",
-      "timepicker-select-color",
-      $timepicker-select-color
-    );
+    color: var(--#{$prefix}timepicker-select-color, $timepicker-select-color);
   }
 
   &__select-placeholder {
-    @include avariable(
-      "opacity",
-      "timepicker-select-placeholder-opacity",
+    opacity: var(
+      --#{$prefix}timepicker-select-placeholder-opacity,
       $timepicker-select-placeholder-opacity
     );
   }
 
   &__separator {
-    @include avariable(
-      "font-weight",
-      "timepicker-separator-font-weight",
+    font-weight: var(
+      --#{$prefix}timepicker-separator-font-weight,
       $timepicker-separator-font-weight
     );
   }
 
   &__footer {
-    @include avariable(
-      "padding",
-      "timepicker-header-padding",
+    padding: var(
+      --#{$prefix}timepicker-header-padding,
       $timepicker-footer-padding
     );
-    @include avariable(
-      "margin",
-      "timepicker-header-margin",
+    margin: var(
+      --#{$prefix}timepicker-header-margin,
       $timepicker-footer-margin
     );
   }

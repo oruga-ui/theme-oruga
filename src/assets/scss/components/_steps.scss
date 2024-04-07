@@ -3,125 +3,67 @@
 /* @docs */
 $steps-details-background-color: hsl(0, 0%, 100%) !default;
 $steps-details-padding: 0.2em !default;
-$steps-marker-background: $grey-light !default;
-$steps-marker-color: $primary-invert !default;
+$steps-marker-background: var(--#{$prefix}grey-light) !default;
+$steps-marker-color: var(--#{$prefix}primary-invert) !default;
 $steps-marker-border: 0.2em solid #fff !default;
 $steps-marker-font-weight: 700 !default;
-$steps-marker-rounded-border-radius: $base-rounded-border-radius !default;
-$steps-color: $grey-lighter !default;
-$steps-previous-color: $primary !default;
-$steps-active-color: $primary !default;
+$steps-marker-rounded-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
+$steps-color: var(--#{$prefix}grey-lighter) !default;
+$steps-previous-color: var(--#{$prefix}primary) !default;
+$steps-active-color: var(--#{$prefix}primary) !default;
 $steps-divider-height: 0.2em !default;
 $steps-vertical-padding: 1em 0 !default;
-$steps-item-line-height: $base-line-height !default;
+$steps-item-line-height: var(--#{$prefix}base-line-height) !default;
 $steps-link-color: hsl(0, 0%, 29%) !default;
 $steps-content-padding: 1rem !default;
-$steps-font-size: $base-font-size !default;
+$steps-font-size: var(--#{$prefix}base-font-size) !default;
 $steps-details-title-font-weight: 600 !default;
 /* @docs */
 
-$LR_CALC_EXPRESSION: "calc(($size - $divider-height) * 0.5)";
-$GRADIENT_EXPRESSION: "linear-gradient(to left, $param1 50%, $param2 50%)";
-$MULTIPLY_EXPRESSION: "calc($param * $factor)";
-
 @mixin steps-size($size, $name: null) {
-  @include avariable(
-    "font-size",
-    if($name != null, ("size-" + #{$name}), "steps-size"),
-    $size
-  );
-  @include evariable(
-    "min-height",
-    $MULTIPLY_EXPRESSION,
-    eparam(
-      "$param",
-      variable(if($name != null, ("size-" + #{$name}), "steps-size"), $size)
-    ),
-    eparam("$factor", 2)
-  );
+  $sizeVarName: if($name != null, "size-" + #{$name}, "steps-size");
+
+  font-size: var(--#{$prefix}#{$sizeVarName}, $size);
+  min-height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
 
   .o-steps__divider {
-    @include avariable("height", "steps-divider-height", $steps-divider-height);
-    @include avariable(
-      "top",
-      if($name != null, ("size-" + #{$name}), "steps-size"),
-      $size
-    );
+    height: var(--#{$prefix}steps-divider-height, $steps-divider-height);
+    top: var(--#{$prefix}#{$sizeVarName}, $size);
   }
 
   .o-steps__marker {
-    @include evariable(
-      "height",
-      $MULTIPLY_EXPRESSION,
-      eparam(
-        "$param",
-        variable(if($name != null, ("size-" + #{$name}), "steps-size"), $size)
-      ),
-      eparam("$factor", 2)
-    );
-    @include evariable(
-      "width",
-      $MULTIPLY_EXPRESSION,
-      eparam(
-        "$param",
-        variable(if($name != null, ("size-" + #{$name}), "steps-size"), $size)
-      ),
-      eparam("$factor", 2)
-    );
+    height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
+    width: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
   }
 
   .o-steps__title {
-    @include avariable(
-      "background-color",
-      "steps-details-background-color",
-      $steps-details-background-color
-    );
     text-align: center;
     z-index: 1;
-
-    @include avariable(
-      "padding",
-      "steps-details-padding",
-      $steps-details-padding
+    background-color: var(
+      --#{$prefix}steps-details-background-color,
+      $steps-details-background-color
     );
-    @include evariable(
-      "font-size",
-      $MULTIPLY_EXPRESSION,
-      eparam(
-        "$param",
-        variable(if($name != null, ("size-" + #{$name}), "steps-size"), $size)
-      ),
-      eparam("$factor", 1.2)
-    );
-    @include avariable(
-      "height",
-      "steps-details-title-font-weight",
+    padding: var(--#{$prefix}steps-details-padding, $steps-details-padding);
+    font-size: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 1.2);
+    height: var(
+      --#{$prefix}steps-details-title-font-weight,
       $steps-details-title-font-weight
     );
-    @include avariable(
-      "line-height",
-      if($name != null, ("size-" + #{$name}), "steps-size"),
-      $size
-    );
+    line-height: var(--#{$prefix}#{$sizeVarName}, $size);
   }
 
   .o-steps__wrapper-vertical {
     .o-steps--label-right {
       .o-steps__divider {
-        @include evariable(
-          "left",
-          $LR_CALC_EXPRESSION,
-          eparam(
-            "$size",
-            variable(
-              if($name != null, ("size-" + #{$name}), "steps-size"),
-              $size
-            )
-          ),
-          eparam(
-            "$divider-height",
-            variable("steps-divider-height", $steps-divider-height)
-          )
+        left: calc(
+          (
+              var(--#{$prefix}#{$sizeVarName}, $size) - var(
+                  --#{$prefix}steps-divider-height,
+                  $steps-divider-height
+                )
+            ) * 0.5
         );
       }
     }
@@ -129,21 +71,13 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     .o-steps--label-left {
       .o-steps__divider {
         left: auto;
-
-        @include evariable(
-          "right",
-          $LR_CALC_EXPRESSION,
-          eparam(
-            "$size",
-            variable(
-              if($name != null, ("size-" + #{$name}), "steps-size"),
-              $size
-            )
-          ),
-          eparam(
-            "$divider-height",
-            variable("steps-divider-height", $steps-divider-height)
-          )
+        right: calc(
+          (
+              var(--#{$prefix}#{$sizeVarName}, $size) - var(
+                  --#{$prefix}steps-divider-height,
+                  $steps-divider-height
+                )
+            ) * 0.5
         );
       }
     }
@@ -151,20 +85,13 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     &.o-steps__wrapper-position-right {
       .o-steps--label-right {
         .o-steps__divider {
-          @include evariable(
-            "left",
-            $LR_CALC_EXPRESSION,
-            eparam(
-              "$size",
-              variable(
-                if($name != null, ("size-" + #{$name}), "steps-size"),
-                $size
-              )
-            ),
-            eparam(
-              "$divider-height",
-              variable("steps-divider-height", $steps-divider-height)
-            )
+          left: calc(
+            (
+                var(--#{$prefix}#{$sizeVarName}, $size) - var(
+                    --#{$prefix}steps-divider-height,
+                    $steps-divider-height
+                  )
+              ) * 0.5
           );
         }
       }
@@ -172,21 +99,13 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
       .o-steps--label-left {
         .o-steps__divider {
           left: auto;
-
-          @include evariable(
-            "right",
-            $LR_CALC_EXPRESSION,
-            eparam(
-              "$size",
-              variable(
-                if($name != null, ("size-" + #{$name}), "steps-size"),
-                $size
-              )
-            ),
-            eparam(
-              "$divider-height",
-              variable("steps-divider-height", $steps-divider-height)
-            )
+          right: calc(
+            (
+                var(--#{$prefix}#{$sizeVarName}, $size) - var(
+                    --#{$prefix}steps-divider-height,
+                    $steps-divider-height
+                  )
+              ) * 0.5
           );
         }
       }
@@ -209,63 +128,50 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
   }
 
   &__nav-item {
+    position: relative;
     display: flex;
+    flex-grow: 1;
+    flex-basis: 1em;
     justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
-
-    @include avariable(
-      "line-height",
-      "steps-item-line-height",
+    margin-top: 0;
+    line-height: var(
+      --#{$prefix}steps-item-line-height,
       $steps-item-line-height
     );
-    margin-top: 0;
-    position: relative;
-    flex-grow: 1;
-    flex-basis: 1em;
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       $color-invert: list.nth($pair, 2);
+      $bgVarName: if(
+        $name != null,
+        "steps-divider-color-bg-" + #{$name},
+        "steps-divider-color-bg"
+      );
+      $colorVarName: if(
+        $name != null,
+        "steps-divider-color-" + #{$name},
+        "steps-divider-color"
+      );
+
       &--#{$name} {
         &.o-steps__nav-item-active {
           .o-steps__marker {
-            @include avariable(
-              "background-color",
-              ("variant-invert-" + #{$name}),
+            background-color: var(
+              --#{$prefix}variant-invert-#{$name},
               $color-invert
             );
-            @include avariable("border-color", ("variant-" + #{$name}), $color);
-            @include avariable("color", ("variant-" + #{$name}), $color);
+            border-color: var(--#{$prefix}variant-#{$name}, $color);
+            color: var(--#{$prefix}variant-#{$name}, $color);
           }
 
           .o-steps__divider {
-            @include evariable(
-              "background",
-              $GRADIENT_EXPRESSION,
-              eparam(
-                "$param1",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-bg-" + #{$name}),
-                    "steps-divider-color-bg"
-                  ),
-                  $steps-color
-                )
-              ),
-              eparam(
-                "$param2",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-" + #{$name}),
-                    "steps-divider-color"
-                  ),
-                  $color
-                )
-              )
+            background: linear-gradient(
+              to left,
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 200% 100%;
           }
@@ -273,44 +179,15 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
 
         &.o-steps__nav-item-previous {
           .o-steps__marker {
-            @include avariable(
-              "color",
-              ("variant-invert-" + #{$name}),
-              $color-invert
-            );
-            @include avariable(
-              "background-color",
-              ("variant-" + #{$name}),
-              $color
-            );
+            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+            background-color: var(--#{$prefix}variant-#{$name}, $color);
           }
 
           .o-steps__divider {
-            @include evariable(
-              "background",
-              $GRADIENT_EXPRESSION,
-              eparam(
-                "$param1",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-bg-" + #{$name}),
-                    "steps-divider-color-bg"
-                  ),
-                  $steps-color
-                )
-              ),
-              eparam(
-                "$param2",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-" + #{$name}),
-                    "steps-divider-color"
-                  ),
-                  $color
-                )
-              )
+            background: linear-gradient(
+              to left,
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 200% 100%;
           }
@@ -322,8 +199,8 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
   &__divider {
     background: linear-gradient(
       to left,
-      variable("steps-divider-color-bg", $steps-color) 50%,
-      variable("steps-divider-color", $primary) 50%
+      var(--#{$prefix}steps-divider-color-bg, $steps-color) 50%,
+      var(--#{$prefix}steps-divider-color, var(--#{$prefix}primary)) 50%
     );
     background-size: 200% 100%;
     background-position: right bottom;
@@ -341,12 +218,7 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     overflow: visible;
     display: flex;
     flex-direction: column;
-
-    @include avariable(
-      "padding",
-      "steps-content-padding",
-      $steps-content-padding
-    );
+    padding: var(--#{$prefix}steps-content-padding, $steps-content-padding);
 
     &-transitioning {
       overflow: hidden;
@@ -356,17 +228,8 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
   &--animated {
     .o-steps__divider {
       transition-property: background;
-
-      @include avariable(
-        "transition-duration",
-        "transition-duration",
-        $speed-slow
-      );
-      @include avariable(
-        "transition-timing-function",
-        "transition-timing",
-        $easing
-      );
+      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
+      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
     }
   }
 
@@ -377,10 +240,9 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     flex-direction: column;
     background: transparent;
     border: transparent;
-
-    @include avariable("color", "steps-link-color", $steps-link-color);
     cursor: pointer;
     text-decoration: none;
+    color: var(--#{$prefix}steps-link-color, $steps-link-color);
 
     &-label-right {
       flex-direction: row;
@@ -403,44 +265,34 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     align-items: center;
     display: flex;
     justify-content: center;
-
-    @include avariable(
-      "font-weight",
-      "steps-marker-font-weight",
+    overflow: hidden;
+    z-index: 1;
+    font-weight: var(
+      --#{$prefix}steps-marker-font-weight,
       $steps-marker-font-weight
     );
-    @include avariable(
-      "background",
-      "steps-marker-background",
+    background: var(
+      --#{$prefix}steps-marker-background,
       $steps-marker-background
     );
-    @include avariable("color", "steps-marker-color", $steps-marker-color);
-    @include avariable("border", "steps-marker-border", $steps-marker-border);
-    z-index: 1;
-    overflow: hidden;
+    color: var(--#{$prefix}steps-marker-color, $steps-marker-color);
+    border: var(--#{$prefix}steps-marker-border, $steps-marker-border);
 
     &--rounded {
-      @include avariable(
-        "border-radius",
-        "steps-marker-rounded-border-radius",
+      border-radius: var(
+        --#{$prefix}steps-marker-rounded-border-radius,
         $steps-marker-rounded-border-radius
       );
     }
   }
 
   &__details {
-    @include avariable(
-      "background-color",
-      "steps-details-background-color",
-      $steps-details-background-color
-    );
     text-align: center;
     z-index: 1;
-
-    @include avariable(
-      "padding",
-      "steps-details-padding",
-      $steps-details-padding
+    padding: var(--#{$prefix}steps-details-padding, $steps-details-padding);
+    background-color: var(
+      --#{$prefix}steps-details-background-color,
+      $steps-details-background-color
     );
   }
 
@@ -450,17 +302,12 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     }
 
     .o-steps__marker {
-      @include avariable(
-        "background-color",
-        "steps-marker-color",
+      background-color: var(
+        --#{$prefix}steps-marker-color,
         $steps-marker-color
       );
-      @include avariable(
-        "border-color",
-        "steps-active-color",
-        $steps-active-color
-      );
-      @include avariable("color", "steps-active-color", $steps-active-color);
+      border-color: var(--#{$prefix}steps-active-color, $steps-active-color);
+      color: var(--#{$prefix}steps-active-color, $steps-active-color);
     }
 
     .o-steps__divider {
@@ -470,10 +317,9 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
 
   &__nav-item-previous {
     .o-steps__marker {
-      @include avariable("color", "steps-marker-color", $steps-marker-color);
-      @include avariable(
-        "background-color",
-        "steps-previous-color",
+      color: var(--#{$prefix}steps-marker-color, $steps-marker-color);
+      background-color: var(
+        --#{$prefix}steps-previous-color,
         $steps-previous-color
       );
     }
@@ -500,12 +346,7 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
 
     .o-steps__divider {
       height: 100%;
-
-      @include avariable(
-        "width",
-        "steps-divider-height",
-        $steps-divider-height
-      );
+      width: var(--#{$prefix}steps-divider-height, $steps-divider-height);
       top: -50%;
       left: calc(50% - #{$steps-divider-height * 0.5});
     }
@@ -523,41 +364,28 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
       align-items: center;
       justify-content: center;
 
-      @include avariable(
-        "padding",
-        "steps-vertical-padding",
-        $steps-vertical-padding
-      );
+      padding: var(--#{$prefix}steps-vertical-padding, $steps-vertical-padding);
+
       // Override marker connector color per step
       @each $name, $pair in $colors {
         $color: list.nth($pair, 1);
+        $bgVarName: if(
+          $name != null,
+          "steps-divider-color-bg-" + #{$name},
+          "steps-divider-color-bg"
+        );
+        $colorVarName: if(
+          $name != null,
+          "steps-divider-color-" + #{$name},
+          "steps-divider-color"
+        );
+
         &--#{$name} {
           .o-steps__divider {
-            @include evariable(
-              "background",
-              $GRADIENT_EXPRESSION,
-              eparam(
-                "$param1",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-bg-" + #{$name}),
-                    "steps-divider-color-bg"
-                  ),
-                  $steps-color
-                )
-              ),
-              eparam(
-                "$param2",
-                variable(
-                  if(
-                    $name != null,
-                    ("steps-divider-color-" + #{$name}),
-                    "steps-divider-color"
-                  ),
-                  $color
-                )
-              )
+            background: linear-gradient(
+              to left,
+              var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
+              var(--#{$prefix}#{$colorVarName}, $color) 50%
             );
             background-size: 100% 200%;
             background-position: left bottom;
@@ -587,16 +415,12 @@ $MULTIPLY_EXPRESSION: "calc($param * $factor)";
     }
 
     .o-steps__divider {
-      @include avariable(
-        "height",
-        "steps-divider-height",
-        $steps-divider-height
-      );
-      @include avariable("top", "steps-divider-top", $steps-font-size);
+      height: var(--#{$prefix}steps-divider-height, $steps-divider-height);
+      top: var(--#{$prefix}steps-divider-top, $steps-font-size);
 
       @each $name, $value in $sizes {
         .o-steps--#{$name} {
-          @include avariable("top", "size-" + #{$name}, $value);
+          top: var(--#{$prefix}size-#{$name}, $value);
         }
       }
     }

@@ -1,72 +1,65 @@
 @use "sass:list";
 
 /* @docs */
-$datepicker-font-size: $base-font-size !default;
-$datepicker-box-line-height: $base-line-height !default;
+$datepicker-font-size: var(--#{$prefix}base-font-size) !default;
+$datepicker-box-line-height: var(--#{$prefix}base-line-height) !default;
 $datepicker-box-padding: 0.375rem 1rem !default;
 $datepicker-header-padding: 0 0 0.875rem 0 !default;
 $datepicker-header-margin: 0 0 0.875rem 0 !default;
-$datepicker-header-border-bottom: 1px solid $grey-lighter !default;
+$datepicker-header-border-bottom: 1px solid var(--#{$prefix}grey-lighter) !default;
 $datepicker-footer-padding: 0.875rem 0.5rem 0 0.5rem !default;
 $datepicker-footer-margin: 0.875rem 0 0.875rem 0 !default;
-$datepicker-footer-border-top: 1px solid $grey-lighter !default;
+$datepicker-footer-border-top: 1px solid var(--#{$prefix}grey-lighter) !default;
 $datepicker-table-head-padding: 0 0 0.875rem 0 !default;
 $datepicker-table-head-margin: 0 0 0.875rem 0 !default;
-$datepicker-table-head-border-bottom: 1px solid $grey-lighter !default;
-$datepicker-table-head-item-color: $grey !default;
+$datepicker-table-head-border-bottom: 1px solid var(--#{$prefix}grey-lighter) !default;
+$datepicker-table-head-item-color: var(--#{$prefix}grey) !default;
 $datepicker-table-head-item-font-weight: 600 !default;
-$datepicker-item-today-border: solid 1px rgba($primary, 0.5) !default;
-$datepicker-item-selectable-color: $grey-dark !default;
-$datepicker-item-disabled-color: $grey-light !default;
-$datepicker-item-border-radius: $base-border-radius !default;
+$datepicker-item-today-border: solid 1px rgba(var(--#{$prefix}primary), 0.5) !default;
+$datepicker-item-selectable-color: var(--#{$prefix}grey-dark) !default;
+$datepicker-item-disabled-color: var(--#{$prefix}grey-light) !default;
+$datepicker-item-border-radius: var(--#{$prefix}base-border-radius) !default;
 $datepicker-item-padding: 0.5rem 0.75rem !default;
-$datepicker-item-selected-color: $primary-invert !default;
-$datepicker-item-selected-background-color: $primary !default;
+$datepicker-item-selected-color: var(--#{$prefix}primary-invert) !default;
+$datepicker-item-selected-background-color: var(--#{$prefix}primary) !default;
 $datepicker-item-selected-border-radius: 0 !default;
 $datepicker-item-selected-within-background-color: rgba(
   $datepicker-item-selected-background-color,
   0.5
 ) !default;
-$datepicker-item-hovered-background-color: $grey !default;
-$datepicker-item-hovered-color: $grey-lighter !default;
+$datepicker-item-hovered-background-color: var(--#{$prefix}grey) !default;
+$datepicker-item-hovered-color: var(--#{$prefix}grey-lighter) !default;
 $datepicker-item-hovered-background-color: #f5f5f5 !default;
 $datepicker-item-hovered-within-background-color: rgba(
   $datepicker-item-hovered-background-color,
   0.5
 ) !default;
-$datepicker-item-nearby-color: $grey-light !default;
+$datepicker-item-nearby-color: var(--#{$prefix}grey-light) !default;
 $datepicker-events-item-padding: 0.3rem 0.75rem 0.75rem !default;
-$datepicker-event-background-color: $grey-light !default;
+$datepicker-event-background-color: var(--#{$prefix}grey-light) !default;
 $datepicker-event-dots-size: 0.35em !default;
 $datepicker-event-dots-margin: 0 0.1em !default;
 $datepicker-event-bars-height: 0.25em !default;
-$datepicker-btn-border-color: $grey-lighter !default;
-$datepicker-btn-border-radius: $base-border-radius !default;
+$datepicker-btn-border-color: var(--#{$prefix}grey-lighter) !default;
+$datepicker-btn-border-radius: var(--#{$prefix}base-border-radius) !default;
 $datepicker-btn-border: 1px solid transparent !default;
 $datepicker-btn-color: #363636 !default;
 $datepicker-btn-height: 2.25em !default;
-$datepicker-btn-hover-border-color: $grey-light !default;
+$datepicker-btn-hover-border-color: var(--#{$prefix}grey-light) !default;
 $datepicker-btn-hover-color: #363636 !default;
-$datepicker-btn-line-height: $base-line-height !default;
+$datepicker-btn-line-height: var(--#{$prefix}base-line-height) !default;
 $datepicker-btn-margin: 0.25rem !default;
 $datepicker-btn-min-width: 2.25em !default;
 $datepicker-btn-padding: 0.5em 0.5em !default;
 /* @docs */
 
 .o-dpck {
-  @include avariable(
-    "font-size",
-    "datepicker-font-size",
-    $datepicker-font-size
-  );
+  font-size: var(--#{$prefix}datepicker-font-size, $datepicker-font-size);
 
+  // size variants
   @each $name, $value in $sizes {
     &--#{$name} {
-      @include avariable(
-        "font-size",
-        ("datepicker-font-size-" + #{$name}),
-        $value
-      );
+      font-size: var(--#{$prefix}datepicker-font-size-#{$name}, $value);
     }
   }
 
@@ -77,33 +70,24 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
   &__box {
     display: block;
     position: relative;
-
-    @include avariable(
-      "line-height",
-      "datepicker-box-line-height",
+    line-height: var(
+      --#{$prefix}datepicker-box-line-height,
       $datepicker-box-line-height
     );
-    @include avariable(
-      "padding",
-      "datepicker-box-padding",
-      $datepicker-box-padding
-    );
+    padding: var(--#{$prefix}datepicker-box-padding, $datepicker-box-padding);
   }
 
   &__header {
-    @include avariable(
-      "padding",
-      "datepicker-header-padding",
+    padding: var(
+      --#{$prefix}datepicker-header-padding,
       $datepicker-header-padding
     );
-    @include avariable(
-      "margin",
-      "datepicker-header-margin",
+    margin: var(
+      --#{$prefix}datepicker-header-margin,
       $datepicker-header-margin
     );
-    @include avariable(
-      "border-bottom",
-      "datepicker-header-border-bottom",
+    border-bottom: var(
+      --#{$prefix}datepicker-header-border-bottom,
       $datepicker-header-border-bottom
     );
 
@@ -113,13 +97,10 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       justify-content: center;
       text-align: center;
 
+      // size variants
       @each $name, $value in $sizes {
         &--#{$name} {
-          @include avariable(
-            "font-size",
-            ("datepicker-font-size-" + #{$name}),
-            $value
-          );
+          font-size: var(--#{$prefix}datepicker-font-size-#{$name}, $value);
         }
       }
     }
@@ -134,6 +115,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
 
     &__previous,
     &__next {
+      @include unselectable;
       justify-content: center;
       text-align: center;
       text-decoration: none;
@@ -145,65 +127,36 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       display: inline-flex;
       position: relative;
       vertical-align: top;
-
-      @include unselectable;
-      @include avariable(
-        "line-height",
-        "datepicker-btn-line-height",
+      line-height: var(
+        --#{$prefix}datepicker-btn-line-height,
         $datepicker-btn-line-height
       );
-      @include avariable(
-        "border",
-        "datepicker-btn-border",
-        $datepicker-btn-border
-      );
-      @include avariable(
-        "border-radius",
-        "datepicker-btn-border-radius",
+      border: var(--#{$prefix}datepicker-btn-border, $datepicker-btn-border);
+      border-radius: var(
+        --#{$prefix}datepicker-btn-border-radius,
         $datepicker-btn-border-radius
       );
-      @include avariable(
-        "border-color",
-        "datepicker-btn-border-color",
+      border-color: var(
+        --#{$prefix}datepicker-btn-border-color,
         $datepicker-btn-border-color
       );
-      @include avariable(
-        "color",
-        "datepicker-btn-color",
-        $datepicker-btn-color
-      );
-      @include avariable(
-        "min-width",
-        "datepicker-btn-min-width",
+      color: var(--#{$prefix}datepicker-btn-color, $datepicker-btn-color);
+      min-width: var(
+        --#{$prefix}datepicker-btn-min-width,
         $datepicker-btn-min-width
       );
-      @include avariable(
-        "height",
-        "datepicker-btn-height",
-        $datepicker-btn-height
-      );
-      @include avariable(
-        "padding",
-        "datepicker-btn-padding",
-        $datepicker-btn-padding
-      );
-      @include avariable(
-        "margin",
-        "datepicker-btn-margin",
-        $datepicker-btn-margin
-      );
+      height: var(--#{$prefix}datepicker-btn-height, $datepicker-btn-height);
+      padding: var(--#{$prefix}datepicker-btn-padding, $datepicker-btn-padding);
+      margin: var(--#{$prefix}datepicker-btn-margin, $datepicker-btn-margin);
 
       &:hover {
         text-decoration: none;
-
-        @include avariable(
-          "border-color",
-          "datepicker-btn-hover-border-color",
+        border-color: var(
+          --#{$prefix}datepicker-btn-hover-border-color,
           $datepicker-btn-hover-border-color
         );
-        @include avariable(
-          "color",
-          "datepicker-btn-hover-color",
+        color: var(
+          --#{$prefix}datepicker-btn-hover-color,
           $datepicker-btn-hover-color
         );
       }
@@ -225,19 +178,16 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
   }
 
   &__footer {
-    @include avariable(
-      "padding",
-      "datepicker-header-padding",
+    padding: var(
+      --#{$prefix}datepicker-header-padding,
       $datepicker-footer-padding
     );
-    @include avariable(
-      "margin",
-      "datepicker-header-margin",
+    margin: var(
+      --#{$prefix}datepicker-header-margin,
       $datepicker-footer-margin
     );
-    @include avariable(
-      "border-top",
-      "datepicker-header-border-top",
+    border-top: var(
+      --#{$prefix}datepicker-header-border-top,
       $datepicker-footer-border-top
     );
   }
@@ -249,20 +199,16 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
 
     &__head {
       display: table-header-group;
-
-      @include avariable(
-        "padding",
-        "datepicker-table-head-padding",
+      padding: var(
+        --#{$prefix}datepicker-table-head-padding,
         $datepicker-table-head-padding
       );
-      @include avariable(
-        "margin",
-        "datepicker-table-head-margin",
+      margin: var(
+        --#{$prefix}datepicker-table-head-margin,
         $datepicker-table-head-margin
       );
-      @include avariable(
-        "border-bottom",
-        "datepicker-table-head-border-bottom",
+      border-bottom: var(
+        --#{$prefix}datepicker-table-head-border-bottom,
         $datepicker-table-head-border-bottom
       );
     }
@@ -276,14 +222,12 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     }
 
     &__head-cell {
-      @include avariable(
-        "padding",
-        "datepicker-table-head-item-padding",
+      padding: var(
+        --#{$prefix}datepicker-table-head-item-padding,
         $datepicker-table-head-item-color
       );
-      @include avariable(
-        "font-weight",
-        "datepicker-table-head-item-font-weight",
+      font-weight: var(
+        --#{$prefix}datepicker-table-head-item-font-weight,
         $datepicker-table-head-item-font-weight
       );
     }
@@ -293,102 +237,85 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       vertical-align: middle;
       display: table-cell;
       text-decoration: none;
-
-      @include avariable(
-        "border-radius",
-        "datepicker-item-border-radius",
+      border-radius: var(
+        --#{$prefix}datepicker-item-border-radius,
         $datepicker-item-border-radius
       );
-      @include avariable(
-        "padding",
-        "datepicker-item-padding",
+      padding: var(
+        --#{$prefix}datepicker-item-padding,
         $datepicker-item-padding
       );
 
       &--unselectable {
-        @include avariable(
-          "color",
-          "datepicker-item-disabled-color",
+        color: var(
+          --#{$prefix}datepicker-item-disabled-color,
           $datepicker-item-disabled-color
         );
       }
 
       &--today {
-        @include avariable(
-          "border",
-          "datepicker-item-today-border",
+        border: var(
+          --#{$prefix}datepicker-item-today-border,
           $datepicker-item-today-border
         );
       }
 
       &--selectable {
-        @include avariable(
-          "color",
-          "datepicker-item-selectable-color",
+        color: var(
+          --#{$prefix}datepicker-item-selectable-color,
           $datepicker-item-selectable-color
         );
       }
 
       &--first-hovered {
-        @include avariable(
-          "background-color",
-          "datepicker-item-hovered-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-hovered-background-color,
           $datepicker-item-hovered-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-hovered-color",
+        color: var(
+          --#{$prefix}datepicker-item-hovered-color,
           $datepicker-item-hovered-color
         );
-        @include avariable(
-          "border-bottom-right-radius",
-          "datepicker-item-selected-border-radius",
+        border-bottom-right-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
-        @include avariable(
-          "border-top-right-radius",
-          "datepicker-item-selected-border-radius",
+        border-top-right-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
 
       &--within-hovered {
-        @include avariable(
-          "background-color",
-          "datepicker-item-hovered-within-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-hovered-within-background-color,
           $datepicker-item-hovered-within-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-hovered-color",
+        color: var(
+          --#{$prefix}datepicker-item-hovered-color,
           $datepicker-item-hovered-color
         );
-        @include avariable(
-          "border-radius",
-          "datepicker-item-selected-border-radius",
+        border-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
 
       &--last-hovered {
-        @include avariable(
-          "background-color",
-          "datepicker-item-hovered-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-hovered-background-color,
           $datepicker-item-hovered-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-hovered-color",
+        color: var(
+          --#{$prefix}datepicker-item-hovered-color,
           $datepicker-item-hovered-color
         );
-        @include avariable(
-          "border-bottom-left-radius",
-          "datepicker-item-selected-border-radius",
+        border-bottom-left-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
-        @include avariable(
-          "border-top-left-radius",
-          "datepicker-item-selected-border-radius",
+        border-top-left-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
@@ -396,14 +323,12 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       &--selected:not(&--first-hovered):not(&--within-hovered):not(
           &--last-hovered
         ) {
-        @include avariable(
-          "background-color",
-          "datepicker-item-selected-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-selected-background-color,
           $datepicker-item-selected-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-selected-color",
+        color: var(
+          --#{$prefix}datepicker-item-selected-color,
           $datepicker-item-selected-color
         );
       }
@@ -411,24 +336,20 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       &--first-selected:not(&--first-hovered):not(&--within-hovered):not(
           &--last-hovered
         ) {
-        @include avariable(
-          "background-color",
-          "datepicker-item-selected-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-selected-background-color,
           $datepicker-item-selected-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-selected-color",
+        color: var(
+          --#{$prefix}datepicker-item-selected-color,
           $datepicker-item-selected-color
         );
-        @include avariable(
-          "border-bottom-right-radius",
-          "datepicker-item-selected-border-radius",
+        border-bottom-right-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
-        @include avariable(
-          "border-top-right-radius",
-          "datepicker-item-selected-border-radius",
+        border-top-right-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
@@ -436,14 +357,12 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       &--within-selected:not(&--first-hovered):not(&--within-hovered):not(
           &--last-hovered
         ) {
-        @include avariable(
-          "background-color",
-          "datepicker-item-selected-within-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-selected-within-background-color,
           $datepicker-item-selected-within-background-color
         );
-        @include avariable(
-          "border-radius",
-          "datepicker-item-selected-border-radius",
+        border-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
@@ -451,32 +370,27 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       &--last-selected:not(&--first-hovered):not(&--within-hovered):not(
           &--last-hovered
         ) {
-        @include avariable(
-          "background-color",
-          "datepicker-item-selected-background-color",
+        background-color: var(
+          --#{$prefix}datepicker-item-selected-background-color,
           $datepicker-item-selected-background-color
         );
-        @include avariable(
-          "color",
-          "datepicker-item-selected-color",
+        color: var(
+          --#{$prefix}datepicker-item-selected-color,
           $datepicker-item-selected-color
         );
-        @include avariable(
-          "border-bottom-left-radius",
-          "datepicker-item-selected-border-radius",
+        border-bottom-left-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
-        @include avariable(
-          "border-top-left-radius",
-          "datepicker-item-selected-border-radius",
+        border-top-left-radius: var(
+          --#{$prefix}datepicker-item-selected-border-radius,
           $datepicker-item-selected-border-radius
         );
       }
 
       &--nearby:not(&--selected) {
-        @include avariable(
-          "color",
-          "datepicker-item-nearby-color",
+        color: var(
+          --#{$prefix}datepicker-item-nearby-color,
           $datepicker-item-nearby-color
         );
       }
@@ -486,12 +400,11 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       }
 
       &--events {
-        @include avariable(
-          "padding",
-          "datepicker-events-item-padding",
+        position: relative;
+        padding: var(
+          --#{$prefix}datepicker-events-item-padding,
           $datepicker-events-item-padding
         );
-        position: relative;
       }
     }
 
@@ -505,49 +418,39 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     }
 
     &__event {
-      @include avariable(
-        "background-color",
-        "datepicker-event-background-color",
+      background-color: var(
+        --#{$prefix}datepicker-event-background-color,
         $datepicker-event-background-color
       );
 
+      // color variants
       @each $name, $pair in $colors {
         $color: list.nth($pair, 1);
         &--#{$name} {
           background-color: $color;
-
-          @include avariable(
-            "background-color",
-            ("variant-" + #{$name}),
-            $color
-          );
+          background-color: var(--#{$prefix}variant-#{$name}, $color);
         }
       }
 
       &--dots {
         border-radius: 50%;
-
-        @include avariable(
-          "margin",
-          "datepicker-event-dots-margin",
+        margin: var(
+          --#{$prefix}datepicker-event-dots-margin,
           $datepicker-event-dots-margin
         );
-        @include avariable(
-          "height",
-          "datepicker-event-dots-size",
+        height: var(
+          --#{$prefix}datepicker-event-dots-size,
           $datepicker-event-dots-size
         );
-        @include avariable(
-          "width",
-          "datepicker-event-dots-size",
+        width: var(
+          --#{$prefix}datepicker-event-dots-size,
           $datepicker-event-dots-size
         );
       }
 
       &--bars {
-        @include avariable(
-          "height",
-          "datepicker-event-bars-height",
+        height: var(
+          --#{$prefix}datepicker-event-bars-height,
           $datepicker-event-bars-height
         );
         width: 100%;

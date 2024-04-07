@@ -4,36 +4,36 @@
 $table-background-color: #fff !default;
 $table-background: #f5f5f5 !default;
 $table-boder: 1px solid transparent !default;
-$table-border-radius: $base-border-radius !default;
+$table-border-radius: var(--#{$prefix}base-border-radius) !default;
 $table-card-box-shadow:
-  0 2px 3px rgba($black, 0.1),
-  0 0 0 1px rgba($black, 0.1) !default;
+  0 2px 3px rgba(var(--#{$prefix}black), 0.1),
+  0 0 0 1px rgba(var(--#{$prefix}black), 0.1) !default;
 $table-card-cell-font-weight: 600 !default;
 $table-card-cell-padding: 0 0.5em 0 0 !default;
 $table-card-cell-text-align: left !default;
 $table-card-detail-margin: -1rem 0 0 0;
 $table-card-margin: 0 0 1rem 0;
 $table-color: black !default;
-$table-current-sort-border-color: $grey !default;
+$table-current-sort-border-color: var(--#{$prefix}grey) !default;
 $table-current-sort-font-weight: 700 !default;
-$table-current-sort-hover-border-color: $grey !default;
+$table-current-sort-hover-border-color: var(--#{$prefix}grey) !default;
 $table-detail-background: #fafafa !default;
-$table-detail-box-shadow: inset 0 1px 3px $grey !default;
-$table-detail-chevron-color: $primary !default;
+$table-detail-box-shadow: inset 0 1px 3px var(--#{$prefix}grey) !default;
+$table-detail-chevron-color: var(--#{$prefix}primary) !default;
 $table-detail-chevron-width: 40px !default;
 $table-detail-padding: 1rem !default;
-$table-focus-border-color: $primary !default;
-$table-focus-box-shadow: 0 0 0 0.125em rgba($primary, 0.25) !default;
+$table-focus-border-color: var(--#{$prefix}primary) !default;
+$table-focus-box-shadow: 0 0 0 0.125em rgba(var(--#{$prefix}primary), 0.25) !default;
 $table-hoverable-background-color: #fafafa !default;
 $table-narrow-padding: 0.25em 0.5em !default;
-$table-row-active-background-color: $primary !default;
-$table-row-active-color: $primary-invert !default;
+$table-row-active-background-color: var(--#{$prefix}primary) !default;
+$table-row-active-color: var(--#{$prefix}primary-invert) !default;
 $table-sticky-header-height: 300px !default;
 $table-sticky-zindex: 1 !default;
 $table-striped-background-color: #fafafa !default;
-$table-td-border: 1px solid $grey-lighter !default;
+$table-td-border: 1px solid var(--#{$prefix}grey-lighter) !default;
 $table-td-padding: 0.5em 0.75em !default;
-$table-th-border: 2px solid $grey-lighter !default;
+$table-th-border: 2px solid var(--#{$prefix}grey-lighter) !default;
 $table-th-checkbox-width: 40px !default;
 $table-th-color: #363636 !default;
 $table-th-detail-width: 14px !default;
@@ -46,19 +46,13 @@ $table-th-padding: 0.5em 0.75em !default;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-
-  @include avariable("border", "table-boder", $table-boder);
-  @include avariable(
-    "border-radius",
-    "table-border-radius",
-    $table-border-radius
-  );
-  @include avariable(
-    "background-color",
-    "table-background-color",
+  border: var(--#{$prefix}table-boder, $table-boder);
+  border-radius: var(--#{$prefix}table-border-radius, $table-border-radius);
+  background-color: var(
+    --#{$prefix}table-background-color,
     $table-background-color
   );
-  @include avariable("color", "table-color", $table-color);
+  color: var(--#{$prefix}table-color, $table-color);
 
   &__root {
     position: relative;
@@ -69,9 +63,8 @@ $table-th-padding: 0.5em 0.75em !default;
     position: relative;
 
     &--sticky-header {
-      @include avariable(
-        "height",
-        "table-sticky-header-height",
+      height: var(
+        --#{$prefix}table-sticky-header-height,
         $table-sticky-header-height
       );
       overflow-y: auto;
@@ -81,10 +74,8 @@ $table-th-padding: 0.5em 0.75em !default;
         position: sticky;
         left: 0;
         top: 0;
-
-        @include avariable(
-          "background",
-          "table-background-color",
+        background: var(
+          --#{$prefix}table-background-color,
           $table-background-color
         );
       }
@@ -134,9 +125,8 @@ $table-th-padding: 0.5em 0.75em !default;
       }
 
       tr {
-        @include avariable(
-          "box-shadow",
-          "table-card-box-shadow",
+        box-shadow: var(
+          --#{$prefix}table-card-box-shadow,
           $table-card-box-shadow
         );
         max-width: 100%;
@@ -153,7 +143,7 @@ $table-th-padding: 0.5em 0.75em !default;
         }
 
         &:not(:last-child) {
-          @include avariable("margin", "table-card-margin", $table-card-margin);
+          margin: var(--#{$prefix}table-card-margin, $table-card-margin);
         }
 
         &:not(.o-table__tr--selected) {
@@ -167,9 +157,8 @@ $table-th-padding: 0.5em 0.75em !default;
         }
 
         &.o-table--detailed {
-          @include avariable(
-            "margin",
-            "table-card-detail-margin",
+          margin: var(
+            --#{$prefix}table-card-detail-margin,
             $table-card-detail-margin
           );
         }
@@ -181,29 +170,23 @@ $table-th-padding: 0.5em 0.75em !default;
           width: auto;
           justify-content: space-between;
           text-align: right;
-
-          @include avariable(
-            "border-bottom",
-            "table-background",
+          border-bottom: var(
+            --#{$prefix}table-background,
             ($table-background 1px solid)
           );
 
           &:before {
             content: attr(data-label);
-
-            @include avariable(
-              "font-weight",
-              "table-card-cell-font-weight",
+            font-weight: var(
+              --#{$prefix}table-card-cell-font-weight,
               $table-card-cell-font-weight
             );
-            @include avariable(
-              "padding-right",
-              "table-card-cell-padding",
+            padding-right: var(
+              --#{$prefix}table-card-cell-padding,
               $table-card-cell-padding
             );
-            @include avariable(
-              "text-align",
-              "table-card-cell-text-align",
+            text-align: var(
+              --#{$prefix}table-card-cell-text-align,
               $table-card-cell-text-align
             );
           }
@@ -220,15 +203,10 @@ $table-th-padding: 0.5em 0.75em !default;
     vertical-align: top;
     text-align: left;
     position: relative;
-
-    @include avariable(
-      "font-weight",
-      "table-th-font-weight",
-      $table-th-font-weight
-    );
-    @include avariable("color", "table-th-color", $table-th-color);
-    @include avariable("border-bottom", "table-th-border", $table-th-border);
-    @include avariable("padding", "table-th-padding", $table-th-padding);
+    font-weight: var(--#{$prefix}table-th-font-weight, $table-th-font-weight);
+    color: var(--#{$prefix}table-th-color, $table-th-color);
+    border-bottom: var(--#{$prefix}table-th-border, $table-th-border);
+    padding: var(--#{$prefix}table-th-padding, $table-th-padding);
 
     &--centered {
       text-align: center;
@@ -244,22 +222,16 @@ $table-th-padding: 0.5em 0.75em !default;
     }
 
     &-checkbox {
-      @include avariable(
-        "width",
-        "table-th-checkbox-width",
-        $table-th-checkbox-width
-      );
+      width: var(--#{$prefix}table-th-checkbox-width, $table-th-checkbox-width);
     }
 
     &-current-sort {
-      @include avariable(
-        "border-color",
-        "table-current-sort-border-color",
+      border-color: var(
+        --#{$prefix}table-current-sort-border-color,
         $table-current-sort-border-color
       );
-      @include avariable(
-        "font-weight",
-        "table-current-sort-font-weight",
+      font-weight: var(
+        --#{$prefix}table-current-sort-font-weight,
         $table-current-sort-font-weight
       );
     }
@@ -268,9 +240,8 @@ $table-th-padding: 0.5em 0.75em !default;
       cursor: pointer;
 
       &:hover {
-        @include avariable(
-          "border-color",
-          "table-current-sort-hover-border-color",
+        border-color: var(
+          --#{$prefix}table-current-sort-hover-border-color,
           $table-current-sort-hover-border-color
         );
       }
@@ -281,16 +252,11 @@ $table-th-padding: 0.5em 0.75em !default;
       position: sticky;
       left: 0;
       top: 0;
-
-      @include evariable(
-        "z-index",
-        "calc($param + $factor)",
-        eparam("$param", variable("table-sticky-zindex", $table-sticky-zindex)),
-        eparam("$factor", 2)
+      z-index: calc(
+        var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) + 0
       );
-      @include avariable(
-        "background",
-        "table-background-color",
+      background: var(
+        --#{$prefix}table-background-color,
         $table-background-color
       );
     }
@@ -300,34 +266,23 @@ $table-th-padding: 0.5em 0.75em !default;
     }
 
     &--detailed {
-      @include avariable(
-        "width",
-        "table-th-detail-width",
-        $table-th-detail-width
-      );
+      width: var(--#{$prefix}table-th-detail-width, $table-th-detail-width);
     }
   }
 
   &__td {
     vertical-align: top;
     text-align: left;
-
-    @include avariable("border-bottom", "table-td-border", $table-td-border);
-    @include avariable("padding", "table-td-padding", $table-td-padding);
+    border-bottom: var(--#{$prefix}table-td-border, $table-td-border);
+    padding: var(--#{$prefix}table-td-padding, $table-td-padding);
 
     &--sticky {
       position: -webkit-sticky;
       position: sticky;
       left: 0;
-
-      @include avariable(
-        "z-index",
-        "table-sticky-zindex",
-        $table-sticky-zindex
-      );
-      @include avariable(
-        "background",
-        "table-background-color",
+      z-index: var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex);
+      background: var(
+        --#{$prefix}table-background-color,
         $table-background-color
       );
     }
@@ -342,29 +297,24 @@ $table-th-padding: 0.5em 0.75em !default;
 
     &-chevron {
       vertical-align: middle;
-
-      @include avariable(
-        "width",
-        "table-detail-chevron-width",
+      width: var(
+        --#{$prefix}table-detail-chevron-width,
         $table-detail-chevron-width
       );
-      @include avariable(
-        "color",
-        "table-detail-chevron-color",
+      color: var(
+        --#{$prefix}table-detail-chevron-color,
         $table-detail-chevron-color
       );
     }
   }
 
   &:focus {
-    @include avariable(
-      "border-color",
-      "table-focus-border-color",
+    border-color: var(
+      --#{$prefix}table-focus-border-color,
       $table-focus-border-color
     );
-    @include avariable(
-      "box-shadow",
-      "table-focus-box-shadow",
+    box-shadow: var(
+      --#{$prefix}table-focus-box-shadow,
       $table-focus-box-shadow
     );
   }
@@ -373,21 +323,20 @@ $table-th-padding: 0.5em 0.75em !default;
     tr:last-child {
       td,
       th {
-        @include avariable("border", "table-td-border", $table-td-border);
+        border: var(--#{$prefix}table-td-border, $table-td-border);
       }
     }
 
     td,
     th {
-      @include avariable("border", "table-td-border", $table-td-border);
+      border: var(--#{$prefix}table-td-border, $table-td-border);
     }
   }
 
   &--striped {
     tbody tr:not(.o-table__tr--selected):nth-child(2n) {
-      @include avariable(
-        "background-color",
-        "table-striped-background-color",
+      background-color: var(
+        --#{$prefix}table-striped-background-color,
         $table-striped-background-color
       );
     }
@@ -396,42 +345,31 @@ $table-th-padding: 0.5em 0.75em !default;
   &--narrowed {
     td,
     th {
-      @include avariable(
-        "padding",
-        "table-narrow-padding",
-        $table-narrow-padding
-      );
+      padding: var(--#{$prefix}table-narrow-padding, $table-narrow-padding);
     }
   }
 
   &--hoverable {
     tbody tr:not(.o-table__tr--selected):hover {
-      @include avariable(
-        "background-color",
-        "table-hoverable-background-color",
+      background-color: var(
+        --#{$prefix}table-hoverable-background-color,
         $table-hoverable-background-color
       );
     }
   }
 
   &__detail {
-    @include avariable(
-      "box-shadow",
-      "table-detail-box-shadow",
+    box-shadow: var(
+      --#{$prefix}table-detail-box-shadow,
       $table-detail-box-shadow
     );
-    @include avariable(
-      "background",
-      "table-detail-background",
+    background: var(
+      --#{$prefix}table-detail-background,
       $table-detail-background
     );
 
     td {
-      @include avariable(
-        "padding",
-        "table-detail-padding",
-        $table-detail-padding
-      );
+      padding: var(--#{$prefix}table-detail-padding, $table-detail-padding);
     }
   }
 
