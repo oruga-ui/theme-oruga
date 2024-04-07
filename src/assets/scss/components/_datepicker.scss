@@ -261,6 +261,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       }
 
       &--selectable {
+        cursor: pointer;
         color: var(
           --#{$prefix}datepicker-item-selectable-color,
           $datepicker-item-selectable-color
