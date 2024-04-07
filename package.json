@@ -26,10 +26,9 @@
     "dev": "vite --force",
     "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
-    "build:lib": "rimraf dist && npm run build:config && npm run build:scss && npm run build:scss-full",
+    "build:lib": "rimraf dist && npm run build:config && npm run build:scss",
     "build:config": "rollup -c",
-    "build:scss": "sass --no-charset ./src/assets/scss/oruga.scss | node ./build/banner.js > dist/oruga.css && cleancss -o dist/oruga.min.css dist/oruga.css",
-    "build:scss-full": "sass --no-charset ./src/assets/scss/oruga-full.scss | node ./build/banner.js > dist/oruga-full.css && cleancss -o dist/oruga-full.min.css dist/oruga-full.css",
+    "build:scss": "sass --no-charset ./src/assets/scss/oruga-build.scss | node ./build/banner.js > dist/oruga.css && cleancss -o dist/oruga.min.css dist/oruga.css",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:style": "stylelint **/*.{css,scss} --fix --ignore-path .gitignore",
     "update": "ncu -u"

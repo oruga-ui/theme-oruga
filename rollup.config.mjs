@@ -7,7 +7,7 @@ import fs from "fs";
 import path from "path";
 import postcss from "postcss";
 
-import pkg from "./package.json" assert { type: "json" };
+import pkg from "./package.json" with { type: "json" };
 
 const entries = {
   index: "src/plugins/theme.ts",
