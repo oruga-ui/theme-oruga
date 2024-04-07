@@ -14,7 +14,7 @@ body {
 
   font-family: var(--#{$prefix}base-font-family, $base-font-family);
   font-size: var(--#{$prefix}base-font-size, $base-font-size);
-  font-weight: var(--#{$prefix}base-font-weight,$base-font-weight);
+  font-weight: var(--#{$prefix}base-font-weight, $base-font-weight);
   line-height: var(--#{$prefix}base-line-height, $base-line-height);
 }
 

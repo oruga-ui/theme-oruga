@@ -14,53 +14,40 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
   flex-grow: 1;
 
   &:not(:last-child) {
-    @include avariable(
-      "margin-bottom",
-      "field-margin-bottom",
-      $field-margin-bottom
-    );
+    margin-bottom: var(--#{$prefix}field-margin-bottom, $field-margin-bottom);
   }
 
   &__label {
     display: block;
-
-    @include avariable("color", "field-label-color", $field-label-color);
-    @include avariable("font-size", "base-font-size", $base-font-size);
-    @include avariable(
-      "font-weight",
-      "field-label-font-weight",
+    color: var(--#{$prefix}field-label-color, $field-label-color);
+    font-size: var(--#{$prefix}base-font-size, $base-font-size);
+    font-weight: var(
+      --#{$prefix}field-label-font-weight,
       $field-label-font-weight
     );
 
     @each $name, $value in $sizes {
       &-#{$name} {
-        @include avariable(
-          "font-size",
-          ("field-font-size-" + #{$name}),
-          $value
-        );
+        font-size: var(--#{$prefix}field-font-size-#{$name}, $value);
       }
     }
   }
 
   &__message {
     display: block;
-
-    @include avariable(
-      "font-size",
-      "field-message-font-size",
+    font-size: var(
+      --#{$prefix}field-message-font-size,
       $field-message-font-size
     );
-    @include avariable(
-      "margin-top",
-      "field-message-margin-top",
+    margin-top: var(
+      --#{$prefix}field-message-margin-top,
       $field-message-margin-top
     );
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       &-#{$name} {
-        @include avariable("color", ("variant-" + #{$name}), $color);
+        color: var(--#{$prefix}variant-#{$name}, $color);
       }
     }
   }
@@ -109,11 +96,7 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
     flex-wrap: wrap;
 
     &:last-child {
-      @include avariable(
-        "margin-bottom",
-        "field-margin-bottom",
-        -$field-margin-bottom
-      );
+      margin-bottom: var(--#{$prefix}field-margin-bottom, $field-margin-bottom);
     }
   }
 

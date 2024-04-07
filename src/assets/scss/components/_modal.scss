@@ -1,12 +1,14 @@
 /* @docs */
-$modal-content-background-color: $white !default;
-$modal-content-border-radius: $base-border-radius !default;
+$modal-content-background-color: var(--#{$prefix}white) !default;
+$modal-content-border-radius: var(--#{$prefix}base-border-radius) !default;
 $modal-overlay-background-color: hsla(0, 0%, 4%, 0.86) !default;
-$modal-close-border-radius: $base-rounded-border-radius !default;
+$modal-close-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
 $modal-close-right: 20px !default;
 $modal-close-top: 20px !default;
 $modal-close-size: 32px !default;
-$modal-close-color: $white !default;
+$modal-close-color: var(--#{$prefix}white) !default;
 $modal-content-fullscreen-background-color: #f5f5f5 !default;
 $modal-content-max-height: calc(100vh - 160px) !default;
 $modal-content-margin: 0 auto !default;
@@ -24,8 +26,7 @@ $modal-zindex: 40 !default;
   left: 0;
   right: 0;
   top: 0;
-
-  @include avariable("z-index", "modal-zindex", $modal-zindex);
+  z-index: var(--#{$prefix}modal-zindex, $modal-zindex);
 
   &__overlay {
     bottom: 0;
@@ -33,10 +34,8 @@ $modal-zindex: 40 !default;
     position: absolute;
     right: 0;
     top: 0;
-
-    @include avariable(
-      "background-color",
-      "modal-overlay-background-color",
+    background-color: var(
+      --#{$prefix}modal-overlay-background-color,
       $modal-overlay-background-color
     );
   }
@@ -44,21 +43,17 @@ $modal-zindex: 40 !default;
   &__content {
     overflow: auto;
     position: relative;
-
-    @include avariable("margin", "modal-content-margin", $modal-content-margin);
-    @include avariable(
-      "max-height",
-      "modal-content-max-height",
+    margin: var(--#{$prefix}modal-content-margin, $modal-content-margin);
+    max-height: var(
+      --#{$prefix}modal-content-max-height,
       $modal-content-max-height
     );
-    @include avariable(
-      "background-color",
-      "modal-content-background-color",
+    background-color: var(
+      --#{$prefix}modal-content-background-color,
       $modal-content-background-color
     );
-    @include avariable(
-      "border-radius",
-      "modal-content-border-radius",
+    border-radius: var(
+      --#{$prefix}modal-content-border-radius,
       $modal-content-border-radius
     );
 
@@ -67,10 +62,8 @@ $modal-zindex: 40 !default;
       height: 100%;
       max-height: 100vh;
       margin: 0;
-
-      @include avariable(
-        "background-color",
-        "modal-content-fullscreen-background-color",
+      background-color: var(
+        --#{$prefix}modal-content-fullscreen-background-color,
         $modal-content-fullscreen-background-color
       );
     }
@@ -82,17 +75,15 @@ $modal-zindex: 40 !default;
     border: none;
     display: inline-block;
     vertical-align: top;
-
-    @include avariable(
-      "border-radius",
-      "modal-close-border-radius",
+    border-radius: var(
+      --#{$prefix}modal-close-border-radius,
       $modal-close-border-radius
     );
-    @include avariable("right", "modal-close-right", $modal-close-right);
-    @include avariable("top", "modal-close-top", $modal-close-top);
-    @include avariable("height", "modal-close-size", $modal-close-size);
-    @include avariable("width", "modal-close-size", $modal-close-size);
-    @include avariable("color", "modal-close-color", $modal-close-color);
+    right: var(--#{$prefix}modal-close-right, $modal-close-right);
+    top: var(--#{$prefix}modal-close-top, $modal-close-top);
+    height: var(--#{$prefix}modal-close-size, $modal-close-size);
+    width: var(--#{$prefix}modal-close-size, $modal-close-size);
+    color: var(--#{$prefix}modal-close-color, $modal-close-color);
   }
 
   &--mobile {

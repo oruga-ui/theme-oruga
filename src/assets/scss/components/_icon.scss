@@ -26,13 +26,13 @@ $icon-spin-duration: 2s !default;
 
   @each $name, $value in $sizes {
     &--#{$name} {
-      @include avariable("font-size", ("icon-font-size-" + #{$name}), $value);
+      font-size: var(--#{$prefix}icon-font-size-#{$name}, $value);
     }
   }
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     &--#{$name} {
-      @include avariable("color", ("variant-" + #{$name}), $color);
+      color: var(--#{$prefix}variant-#{$name}, $color);
     }
   }
 
@@ -45,10 +45,8 @@ $icon-spin-duration: 2s !default;
     animation-name: icon-spin;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-
-    @include avariable(
-      "animation-duration",
-      "icon-spin-duration",
+    animation-duration: var(
+      --#{$prefix}icon-spin-duration,
       $icon-spin-duration
     );
   }

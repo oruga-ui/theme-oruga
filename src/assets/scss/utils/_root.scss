@@ -1,15 +1,12 @@
 @use "sass:list";
 
 :root {
-
   // define color variables
   @each $name, $color in $colors {
-    @if type-of($color)==list {
+    @if type-of($color) == list {
       --#{$prefix}#{$name}: #{list.nth($color, 1)};
       --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
-    }
-
-    @else {
+    } @else {
       --#{$prefix}#{$name}: $color;
     }
   }
@@ -35,11 +32,11 @@
   --#{$prefix}base-font-weight: #{$base-font-weight};
   --#{$prefix}base-line-height: #{$base-line-height};
 
-  --#{$prefix}base-border-radius:  #{$base-border-radius};
-    //TODO: rename base-rounded-border-radius => base-border-radius-rounded
-  --#{$prefix}base-rounded-border-radius:  #{$base-rounded-border-radius};
-  --#{$prefix}base-line-height:  #{$base-line-height};
-  --#{$prefix}base-disabled-opacity:  #{$base-disabled-opacity};
+  --#{$prefix}base-border-radius: #{$base-border-radius};
+  //TODO: rename base-rounded-border-radius => base-border-radius-rounded
+  --#{$prefix}base-rounded-border-radius: #{$base-rounded-border-radius};
+  --#{$prefix}base-line-height: #{$base-line-height};
+  --#{$prefix}base-disabled-opacity: #{$base-disabled-opacity};
 
   //TODO add (fe. checkbox)
   // var(--#{$prefix}transition-duration, $speed-slow);

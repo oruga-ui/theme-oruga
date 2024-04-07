@@ -1,54 +1,54 @@
 @use "sass:list";
 
 /* @docs */
-$switch-active-background-color: $primary !default;
+$switch-active-background-color: var(--#{$prefix}primary) !default;
 $switch-action-background: #f5f5f5 !default;
-$switch-background: $grey-light !default;
-$switch-border-radius: $base-border-radius !default;
+$switch-background: var(--#{$prefix}grey-light) !default;
+$switch-border-radius: var(--#{$prefix}base-border-radius) !default;
 $switch-box-shadow:
   0 3px 1px 0 rgba(0, 0, 0, 0.05),
   0 2px 2px 0 rgba(0, 0, 0, 0.1),
   0 3px 3px 0 rgba(0, 0, 0, 0.05) !default;
-$switch-disabled-opacity: $base-disabled-opacity !default;
+$switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $switch-margin-label: 0.5em !default;
 $switch-padding: 0.2em !default;
-$switch-rounded-border-radius: $base-rounded-border-radius !default;
+$switch-rounded-border-radius: var(
+  --#{$prefix}base-rounded-border-radius
+) !default;
 $switch-width: 2.75 * 1em !default;
 /* @docs */
 
 .o-switch {
+  @include unselectable;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   position: relative;
 
-  @include unselectable;
+  // size variants
+  @each $name, $value in $sizes {
+    &--#{$name} {
+      font-size: var(--#{$prefix}font-size-#{name}, $value);
+    }
+  }
 
+  // color variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     &--#{$name} {
       .o-switch__check--checked {
-        @include avariable("background", ("variant-" + #{$name}), $color);
+        background: var(--#{$prefix}variant-#{$name}, $color);
       }
     }
     &--#{$name}-passive {
       .o-switch__check:not(.o-switch__check--checked) {
-        @include avariable("background", ("variant-" + #{$name}), $color);
+        background: var(--#{$prefix}variant-#{$name}, $color);
       }
-    }
-  }
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      @include avariable("font-size", ("font-size-" + #{name}), $value);
     }
   }
 
   &__label {
-    @include avariable(
-      "margin-left",
-      "switch-margin-label",
-      $switch-margin-label
-    );
+    margin-left: var(--#{$prefix}switch-margin-label, $switch-margin-label);
   }
 
   &--left {
@@ -56,49 +56,37 @@ $switch-width: 2.75 * 1em !default;
 
     .o-switch__label {
       margin-left: 0;
-
-      @include avariable(
-        "margin-right",
-        "switch-margin-label",
-        $switch-margin-label
-      );
+      margin-right: var(--#{$prefix}switch-margin-label, $switch-margin-label);
     }
   }
 
   &__check-switch {
     content: "";
     display: block;
-
-    @include evariable(
-      "height",
-      "calc(($width - $padding * 2) * 0.5)",
-      eparam("$width", variable("switch-width", $switch-width)),
-      eparam("$padding", variable("switch-padding", $switch-padding))
+    height: calc(
+      (
+          var(--#{$prefix}switch-width, $switch-width) - var(
+              --#{$prefix}switch-padding,
+              $switch-padding
+            ) * 2
+        ) * 0.5
     );
-    @include evariable(
-      "width",
-      "calc(($width - $padding * 2) * 0.5)",
-      eparam("$width", variable("switch-width", $switch-width)),
-      eparam("$padding", variable("switch-padding", $switch-padding))
+    width: calc(
+      (
+          var(--#{$prefix}switch-width, $switch-width) - var(
+              --#{$prefix}switch-padding,
+              $switch-padding
+            ) * 2
+        ) * 0.5
     );
-    @include avariable(
-      "background",
-      "switch-action-background",
+    background: var(
+      --#{$prefix}switch-action-background,
       $switch-action-background
     );
-    @include avariable("box-shadow", "switch-box-shadow", $switch-box-shadow);
+    box-shadow: var(--#{$prefix}switch-box-shadow, $switch-box-shadow);
     transition-property: transform;
-
-    @include avariable(
-      "transition-duration",
-      "transition-duration",
-      $speed-slow
-    );
-    @include avariable(
-      "transition-timing-function",
-      "transition-timing",
-      $easing
-    );
+    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
+    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
     will-change: transform;
     transform-origin: left;
   }
@@ -107,38 +95,22 @@ $switch-width: 2.75 * 1em !default;
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    width: var(--#{$prefix}switch-width, $switch-width);
+    height: calc(
+      var(--#{$prefix}switch-width, $switch-width) * 0.5 +
+        var(--#{$prefix}switch-padding, $switch-padding)
+    );
 
-    @include avariable("width", "switch-width", $switch-width);
-    @include evariable(
-      "height",
-      "calc($width * 0.5 + $padding)",
-      eparam("$width", variable("switch-width", $switch-width)),
-      eparam("$padding", variable("switch-padding", $switch-padding))
-    );
-    @include avariable("padding", "switch-padding", $switch-padding);
-    @include avariable("background", "switch-background", $switch-background);
-    @include avariable(
-      "border-radius",
-      "switch-border-radius",
-      $switch-border-radius
-    );
+    padding: var(--#{$prefix}switch-padding, $switch-padding);
+    background: var(--#{$prefix}switch-background, $switch-background);
+    border-radius: var(--#{$prefix}switch-border-radius, $switch-border-radius);
     transition-property: background;
-
-    @include avariable(
-      "transition-duration",
-      "transition-duration",
-      $speed-slow
-    );
-    @include avariable(
-      "transition-timing-function",
-      "transition-timing",
-      $easing
-    );
+    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
+    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
 
     &--checked {
-      @include avariable(
-        "background",
-        "switch-active-background-color",
+      background: var(
+        --#{$prefix}switch-active-background-color,
         $switch-active-background-color
       );
 
@@ -156,18 +128,13 @@ $switch-width: 2.75 * 1em !default;
   }
 
   &--rounded {
-    @include avariable(
-      "border-radius",
-      "switch-rounded-border-radius",
+    border-radius: var(
+      --#{$prefix}switch-rounded-border-radius,
       $switch-rounded-border-radius
     );
   }
 
   &--disabled {
-    @include avariable(
-      "opacity",
-      "switch-disabled-opacity",
-      $switch-disabled-opacity
-    );
+    opacity: var(--#{$prefix}switch-disabled-opacity, $switch-disabled-opacity);
   }
 }
