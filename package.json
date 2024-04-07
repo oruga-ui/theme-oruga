@@ -3,6 +3,7 @@
   "version": "0.2.2",
   "description": "Default theme for Oruga",
   "license": "MIT",
+  "type": "module",
   "main": "dist/theme.js",
   "module": "dist/theme.js",
   "unpkg": "dist/theme.min.js",
