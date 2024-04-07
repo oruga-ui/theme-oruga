@@ -1,6 +1,9 @@
-@use "sass:list";
 @use "sass:string";
 @use "sass:math";
+
+/**********************************
+*   Utility mixins and functions
+***********************************/
 
 /// Replaces characters in a string
 ///
@@ -54,34 +57,6 @@
   }
 
   @return "data:image/svg+xml,#{$encoded}";
-}
-
-/// Appends a list of variables to $whitelist and return a new whitelist.
-///
-/// @param {...} $variables
-///   Variables to whitelist
-/// @return {list} new whitelist.
-///
-/// Example (in components/_radio.scss)
-/// $whitelist: add-to-whitelist('radio-active-background-color','radio-focus-sibiling-box-shadow');
-@function add-to-whitelist($variables...) {
-  @return list.join($whitelist, $variables);
-}
-
-/// Checks if a variable is in $whitelist.
-///
-/// @param {string} $variable
-///   Variable to check if present in whitelist
-/// @return {boolean} true if $variable is in $whitelist, else false.
-@function is-in-whitelist($variable) {
-  @return list.index($whitelist, $variable) != null;
-}
-
-/// Checks if $whitelist is empty
-///
-/// @return {boolean} true if $whitelist is empty, else false.
-@function is-empty-whitelist() {
-  @return list.length($whitelist) == 0;
 }
 
 @mixin unselectable {

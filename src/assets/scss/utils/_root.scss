@@ -1,5 +1,9 @@
 @use "sass:list";
 
+/*******************************
+*   Root variables extensions
+********************************/
+
 :root {
   // define color variables
   @each $name, $color in $colors {
