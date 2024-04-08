@@ -81,9 +81,8 @@ $checkbox-line-height: 1.5 !default;
       $checkbox-border-color
     );
     border-style: solid;
-    transition-property: background;
-    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+    transition: background var(--#{$prefix}transition-duration)
+      var(--#{$prefix}transition-timing);
 
     &--checked {
       background-color: var(

@@ -111,7 +111,7 @@
 // Fade
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity $speed-slow $easing;
+  transition: opacity $animation-speed $animation-timing;
 }
 
 .fade-enter,
@@ -123,10 +123,10 @@
 // Zoom In
 .zoom-in-enter-active,
 .zoom-in-leave-active {
-  transition: opacity $speed-slow $easing;
+  transition: opacity $animation-speed $animation-timing;
 
   .animation-content {
-    transition: transform $speed-slow $easing;
+    transition: transform $animation-speed $animation-timing;
   }
 }
 
@@ -143,10 +143,10 @@
 // Zoom Out
 .zoom-out-enter-active,
 .zoom-out-leave-active {
-  transition: opacity $speed-slow $easing;
+  transition: opacity $animation-speed $animation-timing;
 
   .animation-content {
-    transition: transform $speed-slow $easing;
+    transition: transform $animation-speed $animation-timing;
   }
 }
 
@@ -165,7 +165,8 @@
 .slide-next-leave-active,
 .slide-prev-enter-active,
 .slide-prev-leave-active {
-  transition: transform $speed-slower cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: transform $animation-speed-fast
+    cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 .slide-prev-leave-to,
@@ -188,7 +189,8 @@
 .slide-down-leave-active,
 .slide-up-enter-active,
 .slide-up-leave-active {
-  transition: transform $speed-slower cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: transform $animation-speed-fast
+    cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 .slide-down-enter,
@@ -208,11 +210,11 @@
 }
 
 .slide-enter-active {
-  transition: $speed-slow $easing;
+  transition: $animation-speed $animation-timing;
 }
 
 .slide-leave-active {
-  transition: $speed-slow $easing;
+  transition: $animation-speed $animation-timing;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 

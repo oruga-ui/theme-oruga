@@ -8,7 +8,7 @@ $steps-marker-color: var(--#{$prefix}primary-invert) !default;
 $steps-marker-border: 0.2em solid #fff !default;
 $steps-marker-font-weight: 700 !default;
 $steps-marker-rounded-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $steps-color: var(--#{$prefix}grey-lighter) !default;
 $steps-previous-color: var(--#{$prefix}primary) !default;
@@ -227,9 +227,8 @@ $steps-details-title-font-weight: 600 !default;
 
   &--animated {
     .o-steps__divider {
-      transition-property: background;
-      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+      transition-property: background var(--#{$prefix}transition-duration)
+        var(--#{$prefix}transition-timing);
     }
   }
 

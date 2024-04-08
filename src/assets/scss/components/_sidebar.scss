@@ -42,17 +42,15 @@ $sidebar-zindex: 100 !default;
     // position
     &--right,
     &--left {
-      transition: width;
-      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+      transition: width var(--#{$prefix}transition-duration)
+        var(--#{$prefix}transition-timing);
       width: var(--#{$prefix}sidebar-width, $sidebar-width);
     }
 
     &--top,
     &--bottom {
-      transition: height;
-      transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-      transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+      transition: height var(--#{$prefix}transition-duration)
+        var(--#{$prefix}transition-timing);
       height: var(--#{$prefix}sidebar-width, $sidebar-width);
     }
 
@@ -92,15 +90,8 @@ $sidebar-zindex: 100 !default;
 
       &-expand {
         &:hover {
-          transition: width;
-          transition-duration: var(
-            --#{$prefix}transition-duration,
-            $speed-slow
-          );
-          transition-timing-function: var(
-            --#{$prefix}transition-timing,
-            $easing
-          );
+          transition: width var(--#{$prefix}transition-duration)
+            var(--#{$prefix}transition-timing);
           width: var(--#{$prefix}sidebar-width, $sidebar-width);
         }
       }
