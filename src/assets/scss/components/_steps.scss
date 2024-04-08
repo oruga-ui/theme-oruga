@@ -227,7 +227,7 @@ $steps-details-title-font-weight: 600 !default;
 
   &--animated {
     .o-steps__divider {
-      transition-property: background var(--#{$prefix}transition-duration)
+      transition: background var(--#{$prefix}transition-duration)
         var(--#{$prefix}transition-timing);
     }
   }
