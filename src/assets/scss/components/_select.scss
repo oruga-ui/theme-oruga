@@ -7,7 +7,7 @@ $select-border-width: 1px !default;
 $select-border-style: solid !default;
 $select-border-radius: var(--#{$prefix}base-border-radius) !default;
 $select-rounded-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $select-box-shadow: none !default;
 $select-color: #363636 !default;

@@ -3,7 +3,7 @@ $modal-content-background-color: var(--#{$prefix}white) !default;
 $modal-content-border-radius: var(--#{$prefix}base-border-radius) !default;
 $modal-overlay-background-color: hsla(0, 0%, 4%, 0.86) !default;
 $modal-close-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $modal-close-right: 20px !default;
 $modal-close-top: 20px !default;
