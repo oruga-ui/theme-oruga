@@ -52,9 +52,8 @@ $radio-line-height: 1.25 !default;
     border-radius: 50%;
     cursor: pointer;
     background-repeat: no-repeat;
-    transition-property: background;
-    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+    transition: background var(--#{$prefix}transition-duration)
+      var(--#{$prefix}transition-timing);
     background-image: url(svg_radio_empty($radio-active-background-color));
 
     &--checked {

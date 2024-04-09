@@ -12,8 +12,10 @@ $button-margin-icon-to-text: 0.1875em !default;
 $button-margin: 0 !default;
 $button-height: $control-height !default;
 $button-padding: $control-padding-vertical 0.75em !default;
-$button-rounded-border-radius: #{base-rounded-border-radius} !default;
-$button-disabled-opacity: #{base-disabled-opacity} !default;
+$button-rounded-border-radius: var(
+  --#{$prefix}#{base-border-radius-rounded}
+) !default;
+$button-disabled-opacity: var(--#{$prefix}#{base-disabled-opacity}) !default;
 $button-outlined-background-color: transparent !default;
 /* @docs */
 

@@ -5,10 +5,11 @@ $carousel-arrow-icon-spaced: 1.5rem !default;
 $carousel-arrow-top: 50% !default;
 $carousel-arrow-size: 1.5rem !default;
 $carousel-arrow-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $carousel-arrow-border: 1px solid $carousel-arrow-background !default;
-$carousel-arrow-transition: $speed-slow $easing !default;
+$carousel-arrow-transition: var(--#{$prefix}transition-duration)
+  var(--#{$prefix}transition-timing) !default;
 $carousel-indicators-background: rgba(var(--#{$prefix}white), 0.5) !default;
 $carousel-indicators-padding: 0.5rem !default;
 $carousel-indicator-margin: 0 0.5rem 0 0 !default;
@@ -17,14 +18,16 @@ $carousel-indicator-background: var(--#{$prefix}white) !default;
 $carousel-indicator-border: 1px solid $carousel-indicator-color !default;
 $carousel-indicator-active-background: $carousel-indicator-color !default;
 $carousel-indicator-active-border: 1px solid $carousel-indicator-color !default;
-$carousel-indicator-transition: $speed-slow $easing !default;
+$carousel-indicator-transition: var(--#{$prefix}transition-duration)
+  var(--#{$prefix}transition-timing) !default;
 $carousel-indicator-size: 10px !default;
 $carousel-indicator-dots-border-radius: var(
   --#{$prefix}base-border-radius
 ) !default;
 $carousel-indicator-lines-height: 5px !default;
 $carousel-indicator-lines-width: 25px !default;
-$carousel-items-transition: all $speed-slower ease-out 0s !default;
+$carousel-items-transition: all var(--#{$prefix}transition-duration)
+  var(--#{$prefix}transition-timing) 0s !default;
 $carousel-item-border: 2px solid transparent !default;
 $carousel-overlay-background: hsla(0, 0%, 4%, 0.86) !default;
 $carousel-overlay-zindex: 40 !default;

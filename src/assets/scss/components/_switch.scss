@@ -13,7 +13,7 @@ $switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $switch-margin-label: 0.5em !default;
 $switch-padding: 0.2em !default;
 $switch-rounded-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $switch-width: 2.75 * 1em !default;
 /* @docs */
@@ -84,9 +84,8 @@ $switch-width: 2.75 * 1em !default;
       $switch-action-background
     );
     box-shadow: var(--#{$prefix}switch-box-shadow, $switch-box-shadow);
-    transition-property: transform;
-    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+    transition: transform var(--#{$prefix}transition-duration)
+      var(--#{$prefix}transition-timing);
     will-change: transform;
     transform-origin: left;
   }
@@ -104,9 +103,8 @@ $switch-width: 2.75 * 1em !default;
     padding: var(--#{$prefix}switch-padding, $switch-padding);
     background: var(--#{$prefix}switch-background, $switch-background);
     border-radius: var(--#{$prefix}switch-border-radius, $switch-border-radius);
-    transition-property: background;
-    transition-duration: var(--#{$prefix}transition-duration, $speed-slow);
-    transition-timing-function: var(--#{$prefix}transition-timing, $easing);
+    transition: background var(--#{$prefix}transition-duration)
+      var(--#{$prefix}transition-timing);
 
     &--checked {
       background: var(
