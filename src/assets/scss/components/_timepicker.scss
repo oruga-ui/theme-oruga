@@ -58,11 +58,11 @@ $timepicker-separator-font-weight: 600 !default;
       --#{$prefix}timepicker-select-line-height,
       $timepicker-select-line-height
     );
+    color: var(--#{$prefix}timepicker-select-color, $timepicker-select-color);
     padding: var(
       --#{$prefix}timepicker-select-padding,
       $timepicker-select-padding
     );
-    color: var(--#{$prefix}timepicker-select-color, $timepicker-select-color);
   }
 
   &__select-placeholder {

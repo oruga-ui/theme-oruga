@@ -3,7 +3,7 @@ import { useOruga } from "@oruga-ui/oruga-next";
 
 function simple() {
   const oruga = useOruga();
-  oruga.notification.open("Something happened");
+  oruga.notification.open({ mesage: "Something happened" });
 }
 function success() {
   const oruga = useOruga();
@@ -35,7 +35,7 @@ function danger() {
     ariaCloseLabel: "Close",
     onClose: () => {
       const oruga = useOruga();
-      oruga.notification.open("Custom notification closed!");
+      oruga.notification.open({ message: "Custom notification closed!" });
     },
   });
 }

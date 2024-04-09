@@ -4,6 +4,7 @@
 $radio-active-background-color: var(--#{$prefix}primary) !default;
 $radio-checked-box-shadow-length: 0 0 0.5em !default;
 $radio-checked-box-shadow-opacity: 0.8 !default;
+$radio-box-shadow: $control-box-shadow !default;
 $radio-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $radio-label-padding: 0 0 0 0.5em !default;
 $radio-margin-sibiling: 0.5em !default;
@@ -54,6 +55,7 @@ $radio-line-height: 1.25 !default;
     background-repeat: no-repeat;
     transition: background var(--#{$prefix}transition-duration)
       var(--#{$prefix}transition-timing);
+    box-shadow: var(--#{$prefix}radio-box-shadow, $radio-box-shadow);
     background-image: url(svg_radio_empty($radio-active-background-color));
 
     &--checked {
