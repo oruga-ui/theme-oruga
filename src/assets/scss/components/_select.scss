@@ -16,6 +16,7 @@ $select-height: $control-height !default;
 $select-line-height: var(--#{$prefix}base-line-height) !default;
 $select-margin: 0 !default;
 $select-padding: $control-padding-vertical $control-padding-horizontal !default;
+$select-arrow-color: $select-color !default;
 $select-arrow-size: 1rem !default;
 $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 /* @docs */
@@ -66,7 +67,7 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
   margin: var(--#{$prefix}select-margin, $select-margin);
 
   &-arrow {
-    background-image: url(svg_arrow($select-color));
+    background-image: url(svg_arrow($select-arrow-color));
     background-repeat: no-repeat;
     background-size: var(--#{$prefix}select-arrow-size, $select-arrow-size);
     background-position: calc(
