@@ -126,6 +126,7 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
     .o-field__horizontal-label,
     .o-field__horizontal-body {
       display: block;
+      text-align: inherit;
     }
   }
 }
