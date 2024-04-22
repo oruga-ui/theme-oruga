@@ -122,16 +122,10 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
   }
 
   &--mobile {
+    &.o-field--horizontal,
+    .o-field__horizontal-label,
     .o-field__horizontal-body {
-      all: unset;
-    }
-
-    &.o-field--horizontal {
-      all: unset;
-    }
-
-    .o-field__horizontal-label {
-      all: unset;
+      display: block;
     }
   }
 }
