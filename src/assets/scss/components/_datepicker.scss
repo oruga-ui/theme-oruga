@@ -68,13 +68,8 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
   }
 
   &__box {
-    display: block;
-    position: relative;
-    line-height: var(
-      --#{$prefix}datepicker-box-line-height,
-      $datepicker-box-line-height
-    );
-    padding: var(--#{$prefix}datepicker-box-padding, $datepicker-box-padding);
+    --#{$prefix}dropdown-item-line-height: #{$datepicker-box-line-height};
+    --#{$prefix}dropdown-item-padding: #{$datepicker-box-padding};
   }
 
   &__header {
