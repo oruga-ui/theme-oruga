@@ -52,11 +52,9 @@ $checkbox-line-height: 1.5 !default;
   &__input {
     width: var(--#{$prefix}checkbox-size, $checkbox-size);
     height: var(--#{$prefix}checkbox-size, $checkbox-size);
-    outline: none;
     margin: 0;
+    outline: none;
     vertical-align: top;
-    background-position: center;
-    background-size: contain;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -64,13 +62,19 @@ $checkbox-line-height: 1.5 !default;
     print-color-adjust: exact;
     flex-shrink: 0;
     cursor: pointer;
-    background-repeat: no-repeat;
 
     box-shadow: var(--#{$prefix}checkbox-box-shadow, $checkbox-box-shadow);
     background-color: var(
       --#{$prefix}checkbox-background-color,
       $checkbox-background-color
     );
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition: background var(--#{$prefix}transition-duration)
+      var(--#{$prefix}transition-timing);
+
     border-radius: var(
       --#{$prefix}checkbox-border-radius,
       $checkbox-border-radius
@@ -87,9 +91,6 @@ $checkbox-line-height: 1.5 !default;
       --#{$prefix}checkbox-border-style,
       $checkbox-border-style
     );
-
-    transition: background var(--#{$prefix}transition-duration)
-      var(--#{$prefix}transition-timing);
 
     &--checked {
       background-color: var(
