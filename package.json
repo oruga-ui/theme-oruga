@@ -34,8 +34,8 @@
     "update": "ncu -u"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "6.5.2",
     "@oruga-ui/oruga-next": "^0.8.7",
+    "@oruga-ui/examples": "link ../oruga/packages/examples",
     "@rollup/plugin-typescript": "11.1.6",
     "@vitejs/plugin-vue": "5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -63,8 +63,8 @@
     "tslib": "2.6.2",
     "typescript": "5.4.4",
     "vite": "^5.2.8",
-    "vue": "3.4.21",
+    "vue": "^3.4.31",
     "vue-router": "4.3.0",
-    "vue-tsc": "2.0.10"
+    "vue-tsc": "^2.0.24"
   }
 }

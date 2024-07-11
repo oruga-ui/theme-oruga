@@ -4,11 +4,12 @@ import App from "./App.vue";
 import router from "./router";
 
 import Oruga from "@oruga-ui/oruga-next";
+import Examples from "@oruga-ui/examples";
 
-import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
-import "@fortawesome/fontawesome-free/scss/regular.scss";
-import "@fortawesome/fontawesome-free/scss/solid.scss";
+// add examples styles
+import "@oruga-ui/examples/dist/style.css";
 
+// add theme styles
 import "./assets/scss/oruga-build.scss";
 
 createApp(App)
@@ -26,4 +27,5 @@ createApp(App)
       },
     },
   })
+  .use(Examples)
   .mount("#app");

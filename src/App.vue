@@ -1,16 +1,5 @@
 <script setup lang="ts">
-const paths = import.meta.glob("./components/*.vue") as any;
-const components = Object.keys(paths)
-  .map((c: string) => c.replace(".vue", ""))
-  .map((c: string) => c.replace("./components/", ""))
-  .map((c: string) => `/${c}`)
-  .map((c: string) => {
-    const name = c.split("/")[1];
-    return {
-      name,
-      link: c,
-    };
-  });
+import components from "@/components";
 </script>
 
 <template>
@@ -19,17 +8,22 @@ const components = Object.keys(paths)
       <router-link to="/" class="theme-label">
         <img
           class="image__oruga"
-          src="https://oruga.io/logo.png"
+          src="https://oruga-ui.com/logo.png"
           alt="Logo Oruga Default Theme" />
         <b>Oruga Default Theme</b>
       </router-link>
+
       <hr />
-      <router-link v-for="item in components" :key="item.name" :to="item.link">
-        {{ item.name }}
+
+      <router-link
+        v-for="component in components"
+        :key="component"
+        :to="component">
+        {{ component }}
       </router-link>
     </nav>
 
-    <main>
+    <main class="main">
       <router-view />
     </main>
   </div>
@@ -43,6 +37,7 @@ const components = Object.keys(paths)
   width: 100%;
 
   main {
+    overflow: hidden;
     flex-grow: 1;
     padding-bottom: 6rem;
     margin: 2rem;

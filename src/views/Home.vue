@@ -2,7 +2,7 @@
   <div class="content">
     <img
       class="image__oruga"
-      src="https://oruga.io/logo.png"
+      src="https://oruga-ui.com/logo.png"
       alt="Logo Oruga Default Theme" />
     <h1 class="mt-2">Oruga Default Theme Demo</h1>
   </div>
