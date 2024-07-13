@@ -1,35 +1,29 @@
 <script setup lang="ts">
-const paths = import.meta.glob("./components/*.vue") as any;
-const components = Object.keys(paths)
-  .map((c: string) => c.replace(".vue", ""))
-  .map((c: string) => c.replace("./components/", ""))
-  .map((c: string) => `/${c}`)
-  .map((c: string) => {
-    const name = c.split("/")[1];
-    return {
-      name,
-      link: c,
-    };
-  });
+import components from "@/components";
 </script>
 
 <template>
   <div id="app">
-    <nav id="nav">
+    <aside id="nav">
       <router-link to="/" class="theme-label">
         <img
           class="image__oruga"
-          src="https://oruga.io/logo.png"
+          src="https://oruga-ui.com/logo.png"
           alt="Logo Oruga Default Theme" />
         <b>Oruga Default Theme</b>
       </router-link>
-      <hr />
-      <router-link v-for="item in components" :key="item.name" :to="item.link">
-        {{ item.name }}
-      </router-link>
-    </nav>
 
-    <main>
+      <hr />
+
+      <router-link
+        v-for="component in components"
+        :key="component"
+        :to="{ name: component }">
+        {{ component }}
+      </router-link>
+    </aside>
+
+    <main class="main">
       <router-view />
     </main>
   </div>
@@ -44,8 +38,10 @@ const components = Object.keys(paths)
 
   main {
     flex-grow: 1;
+    height: 100vh;
+    padding: 2rem;
     padding-bottom: 6rem;
-    margin: 2rem;
+    overflow-y: scroll;
 
     > section {
       margin: 1rem 0;
@@ -64,26 +60,33 @@ const components = Object.keys(paths)
   #nav {
     display: flex;
     flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-    width: 15%;
-    background-color: $grey-light;
+    height: 100vh;
+    min-width: var(--vp-sidebar-width);
+    padding: 20px;
+    padding-top: 0px;
+    overflow-y: scroll;
+    background-color: var(--vp-sidebar-bg-color);
 
     .theme-label {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       text-align: center;
       padding: 1rem 0;
     }
 
+    hr {
+      width: 100%;
+      margin-top: 0;
+    }
+
     a {
-      font-weight: bold;
-      color: white;
+      font-weight: 500;
+      color: var(--vp-c-text-1);
       text-decoration: none;
-      padding: 1px 0 1px 10px;
-      font-size: 1em;
+      padding: 5px;
+      font-size: 1rem;
 
       &.router-link-exact-active {
-        color: $primary;
+        color: var(--vp-c-brand-1);
       }
     }
   }

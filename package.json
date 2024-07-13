@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/oruga-ui/theme-oruga.git"
+    "url": "git+https://github.com/oruga-ui/theme-oruga.git"
   },
   "bugs": {
     "url": "https://github.com/oruga-ui/theme-oruga/issues"
@@ -34,8 +34,8 @@
     "update": "ncu -u"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "6.5.2",
-    "@oruga-ui/oruga-next": "^0.8.9",
+    "@oruga-ui/examples": "^0.9.0-pre.1",
+    "@oruga-ui/oruga-next": "^0.9.0-pre.1",
     "@rollup/plugin-typescript": "11.1.6",
     "@vitejs/plugin-vue": "5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -62,9 +62,9 @@
     "stylelint-scss": "^6.3.0",
     "tslib": "2.6.2",
     "typescript": "5.4.5",
-    "vite": "^5.2.11",
-    "vue": "3.4.27",
+    "vite": "^5.3.3",
+    "vue": "^3.4.31",
     "vue-router": "4.3.2",
-    "vue-tsc": "2.0.19"
+    "vue-tsc": "^2.0.24"   
   }
 }
