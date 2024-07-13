@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   ...components.map((component) => ({
-    path: "/" + component.toLocaleLowerCase(),
+    path: "/components/" + component.toLocaleLowerCase(),
     name: component,
     props: { component },
     component: Component,

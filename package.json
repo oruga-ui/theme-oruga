@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/oruga-ui/theme-oruga.git"
+    "url": "git+https://github.com/oruga-ui/theme-oruga.git"
   },
   "bugs": {
     "url": "https://github.com/oruga-ui/theme-oruga/issues"
