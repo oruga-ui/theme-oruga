@@ -62,7 +62,7 @@
     "stylelint-scss": "^6.2.1",
     "tslib": "2.6.2",
     "typescript": "5.4.4",
-    "vite": "^5.2.8",
+    "vite": "^5.3.3",
     "vue": "^3.4.31",
     "vue-router": "4.3.0",
     "vue-tsc": "^2.0.24"
