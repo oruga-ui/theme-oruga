@@ -6,5 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // override time dropdown shadow
+    --#{$prefix}dropdown-menu-box-shadow: 0,0,0,0;
   }
 }
