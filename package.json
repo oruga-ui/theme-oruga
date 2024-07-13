@@ -34,8 +34,8 @@
     "update": "ncu -u"
   },
   "devDependencies": {
-    "@oruga-ui/examples": "^0.0.1",
-    "@oruga-ui/oruga-next": "^0.8.7",
+    "@oruga-ui/examples": "^0.9.0-pre.1",
+    "@oruga-ui/oruga-next": "^0.9.0-pre.1",
     "@rollup/plugin-typescript": "11.1.6",
     "@vitejs/plugin-vue": "5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
