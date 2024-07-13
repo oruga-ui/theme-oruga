@@ -1,10 +1,18 @@
 @use "sass:list";
 
+@mixin root() {
+  $host-selector: if($enable-host, ":host", ":root");
+
+  #{$host-selector} {
+    @content;
+  }
+}
+
 /*******************************
 *   Root variables extensions
 ********************************/
 
-:root {
+@include root() {
   // define color variables
   @each $name, $color in $colors {
     @if type-of($color) == list {
