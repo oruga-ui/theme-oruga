@@ -6,7 +6,7 @@ $slider-margin: 1em 0 !default;
 $slider-mark-size: 0.75rem !default;
 $slider-font-size: var(--#{$prefix}base-font-size) !default;
 $slider-rounded-borded-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $slider-thumb-background: var(--#{$prefix}white) !default;
 $slider-thumb-border: 1px solid var(--#{$prefix}grey-light) !default;

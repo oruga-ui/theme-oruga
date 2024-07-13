@@ -28,8 +28,6 @@
     --#{$prefix}size-#{$name}: #{$size};
   }
 
-  //TODO: rename remove base prefix
-
   // define base variables
   --#{$prefix}base-font-family: #{$base-font-family};
   --#{$prefix}base-font-size: #{$base-font-size};
@@ -37,11 +35,10 @@
   --#{$prefix}base-line-height: #{$base-line-height};
 
   --#{$prefix}base-border-radius: #{$base-border-radius};
-  //TODO: rename base-rounded-border-radius => base-border-radius-rounded
-  --#{$prefix}base-rounded-border-radius: #{$base-rounded-border-radius};
+  --#{$prefix}base-border-radius-rounded: #{$base-border-radius-rounded};
   --#{$prefix}base-line-height: #{$base-line-height};
   --#{$prefix}base-disabled-opacity: #{$base-disabled-opacity};
 
-  //TODO add (fe. checkbox)
-  // var(--#{$prefix}transition-duration, $speed-slow);
+  --#{$prefix}transition-duration: #{$animation-speed};
+  --#{$prefix}transition-timing: #{$animation-timing};
 }

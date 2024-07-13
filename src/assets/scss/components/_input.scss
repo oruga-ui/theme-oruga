@@ -7,17 +7,17 @@ $input-border-style: solid !default;
 $input-border-width: 1px !default;
 $input-border-radius: var(--#{$prefix}base-border-radius) !default;
 $input-rounded-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
-$input-box-shadow: inset 0 1px 2px hsla(0, 0%, 4%, 0.1) !default;
+$input-box-shadow: $control-box-shadow !default;
 $input-color: #363636 !default;
 $input-icon-zindex: 4 !default;
-$input-counter-font-size: 0.75rem !default;
-$input-counter-margin: 0.25rem 0 0 0.5rem !default;
 $input-height: $control-height !default;
 $input-line-height: var(--#{$prefix}base-line-height) !default;
 $input-margin: 0 !default;
 $input-padding: $control-padding-vertical $control-padding-horizontal !default;
+$input-counter-font-size: 0.75rem !default;
+$input-counter-margin: 0.25rem 0 0 0.5rem !default;
 $input-textarea-max-height: 600px !default;
 $input-textarea-min-height: 120px !default;
 $input-textarea-padding: 0.625em !default;

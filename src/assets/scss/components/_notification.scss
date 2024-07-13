@@ -8,7 +8,7 @@ $notification-margin-bottom: 1.5rem !default;
 $notification-animantion: append-animate 0.3s linear !default;
 $notification-color: var(--#{$prefix}white) !default;
 $notification-close-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
 $notification-close-right: 0.5rem !default;
 $notification-close-top: 0.5rem !default;

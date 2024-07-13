@@ -3,23 +3,22 @@
 /* @docs */
 $select-background-color: #fff !default;
 $select-border-color: var(--#{$prefix}grey-lighter) !default;
-$select-border-width: 1px !default;
 $select-border-style: solid !default;
+$select-border-width: 1px !default;
 $select-border-radius: var(--#{$prefix}base-border-radius) !default;
 $select-rounded-border-radius: var(
-  --#{$prefix}base-rounded-border-radius
+  --#{$prefix}base-border-radius-rounded
 ) !default;
-$select-box-shadow: none !default;
+$select-box-shadow: $control-box-shadow !default;
 $select-color: #363636 !default;
 $select-icon-zindex: 4 !default;
 $select-height: $control-height !default;
-$select-arrow-size: 1rem !default;
 $select-line-height: var(--#{$prefix}base-line-height) !default;
 $select-margin: 0 !default;
-$select-max-width: 100% !default;
-$select-width: 100% !default;
-$select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $select-padding: $control-padding-vertical $control-padding-horizontal !default;
+$select-arrow-color: $select-color !default;
+$select-arrow-size: 1rem !default;
+$select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 /* @docs */
 
 @function svg_arrow($color) {
@@ -50,9 +49,8 @@ $select-padding: $control-padding-vertical $control-padding-horizontal !default;
   cursor: pointer;
   justify-content: flex-start;
   align-items: center;
-  font-size: var(--#{$prefix}base-font-size, $base-font-size);
-  max-width: var(--#{$prefix}select-max-width, $select-max-width);
-  width: var(--#{$prefix}select-width, $select-width);
+
+  box-shadow: var(--#{$prefix}select-box-shadow, $select-box-shadow);
   background-color: var(
     --#{$prefix}select-background-color,
     $select-background-color
@@ -62,14 +60,14 @@ $select-padding: $control-padding-vertical $control-padding-horizontal !default;
   border-style: var(--#{$prefix}select-border-style, $select-border-style);
   border-radius: var(--#{$prefix}select-border-radius, $select-border-radius);
   color: var(--#{$prefix}select-color, $select-color);
-  margin: var(--#{$prefix}select-margin, $select-margin);
-  box-shadow: var(--#{$prefix}select-box-shadow, $select-box-shadow);
+  font-size: var(--#{$prefix}base-font-size, $base-font-size);
+  height: var(--#{$prefix}select-height, $select-height);
   line-height: var(--#{$prefix}select-line-height, $select-line-height);
   padding: var(--#{$prefix}select-padding, $select-padding);
-  height: var(--#{$prefix}select-height, $select-height);
+  margin: var(--#{$prefix}select-margin, $select-margin);
 
   &-arrow {
-    background-image: url(svg_arrow($select-color));
+    background-image: url(svg_arrow($select-arrow-color));
     background-repeat: no-repeat;
     background-size: var(--#{$prefix}select-arrow-size, $select-arrow-size);
     background-position: calc(
