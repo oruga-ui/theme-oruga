@@ -97,7 +97,10 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
   // color variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
+
     &--#{$name} {
+      --#{$prefix}focus: #{createFocus($color)};
+
       border-color: var(--#{$prefix}variant-#{$name}, $color);
     }
   }
@@ -140,5 +143,11 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 
   &[disabled] {
     cursor: inherit;
+  }
+
+  // focus effect
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
   }
 }

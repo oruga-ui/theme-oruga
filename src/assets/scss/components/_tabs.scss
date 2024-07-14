@@ -23,7 +23,6 @@ $tabs-toggle-link-border-style: solid !default;
 $tabs-toggle-link-border-width: 1px !default;
 $tabs-toggle-link-hover-background-color: hsl(0, 0%, 96%) !default;
 $tabs-toggle-link-hover-border-color: hsl(0, 0%, 71%) !default;
-$tabs-toggle-link-radius: var(--#{$prefix}base-border-radius) !default;
 $tabs-toggle-link-active-background-color: var(--#{$prefix}primary) !default;
 $tabs-toggle-link-active-border-color: var(--#{$prefix}primary) !default;
 $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
@@ -96,7 +95,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       );
       border-radius: var(
         --#{$prefix}tabs-border-bottom-color,
-        #{$tabs-toggle-link-radius} 0 0 #{$tabs-toggle-link-radius}
+        #{$tabs-boxed-link-radius} 0 0 #{$tabs-boxed-link-radius}
       );
 
       &--active {
@@ -147,7 +146,6 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     flex-grow: 1;
     flex-shrink: 0;
     justify-content: flex-start;
-    overflow-x: auto;
     // padding bottom to keep showing the border-bottom
     padding-bottom: var(
       --#{$prefix}tabs-border-bottom-width,
@@ -172,6 +170,14 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     &-item {
       &-icon {
         margin-right: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
+      }
+
+      // focus effect
+      &:focus,
+      &:focus-within {
+        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+        outline: 0;
+        border-radius: #{$tabs-boxed-link-radius};
       }
 
       &-default {

@@ -133,8 +133,17 @@ $input-textarea-padding: 0.625em !default;
   // colar variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
+
     &--#{$name} {
+      --#{$prefix}focus: #{createFocus($color)};
+
       border-color: var(--#{$prefix}variant-#{$name}, $color);
     }
+  }
+
+  // focus effect
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
   }
 }

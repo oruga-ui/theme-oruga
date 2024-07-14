@@ -24,6 +24,7 @@ $switch-width: 2.75 * 1em !default;
   display: inline-flex;
   align-items: center;
   position: relative;
+  border-radius: 50rem;
 
   // size variants
   @each $name, $value in $sizes {
@@ -35,12 +36,17 @@ $switch-width: 2.75 * 1em !default;
   // color variants
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
+
     &--#{$name} {
+      --#{$prefix}focus: #{createFocus($color)};
+
       .o-switch__check--checked {
         background: var(--#{$prefix}variant-#{$name}, $color);
       }
     }
     &--#{$name}-passive {
+      --#{$prefix}focus: #{createFocus($color)};
+
       .o-switch__check:not(.o-switch__check--checked) {
         background: var(--#{$prefix}variant-#{$name}, $color);
       }
@@ -134,5 +140,11 @@ $switch-width: 2.75 * 1em !default;
 
   &--disabled {
     opacity: var(--#{$prefix}switch-disabled-opacity, $switch-disabled-opacity);
+  }
+
+  // focus effect
+  &:focus &__check,
+  &:focus-within &__check {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
   }
 }

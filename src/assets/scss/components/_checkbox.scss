@@ -139,7 +139,10 @@ $checkbox-line-height: 1.5 !default;
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     $color-invert: list.nth($pair, 2);
+
     &--#{$name} {
+      --#{$prefix}focus: #{createFocus($color)};
+
       .o-chk__input {
         border-color: var(--#{$prefix}variant-#{$name}, $color);
         background-color: var(--#{$prefix}variant-#{$name}, $color);
@@ -153,5 +156,11 @@ $checkbox-line-height: 1.5 !default;
         background-image: url(svg_indeterminate($color-invert));
       }
     }
+  }
+
+  // focus effect
+  &:focus &__input,
+  &:focus-within &__input {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
   }
 }
