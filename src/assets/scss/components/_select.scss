@@ -141,6 +141,10 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
     left: 0;
   }
 
+  &[disabled] {
+    cursor: inherit;
+  }
+
   // focus effect
   &:focus,
   &:focus-within {

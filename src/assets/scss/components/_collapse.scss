@@ -2,8 +2,11 @@
 /* @docs */
 
 .o-clps {
+  width: 100%;
+
   &__trigger {
     cursor: pointer;
+    display: inline-block;
   }
 
   &__content {
