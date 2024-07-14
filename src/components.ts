@@ -21,7 +21,7 @@ export default [
   "Sidebar",
   "Slider",
   "Steps",
-  "Swtich",
+  "Switch",
   "Table",
   "Tabs",
   "Taginput",
