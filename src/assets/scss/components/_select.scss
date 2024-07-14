@@ -35,6 +35,7 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 
   &--expanded {
     width: 100%;
+    flex-grow: 1;
 
     .o-sel {
       width: 100%;

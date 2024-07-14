@@ -469,6 +469,11 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     height: 2.5rem;
   }
 
+  &--expanded {
+    width: 100%;
+    flex-grow: 1;
+  }
+
   &--mobile {
     .o-dpck__header__previous {
       order: 1;
