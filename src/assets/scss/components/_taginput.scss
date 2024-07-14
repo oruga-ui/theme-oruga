@@ -69,10 +69,20 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
       $color-invert: list.nth($pair, 2);
+
       &--#{$name} {
+        --#{$prefix}focus: #{createFocus($color)};
+
         background-color: var(--#{$prefix}variant-#{$name}, $color);
         color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
       }
+    }
+
+    // focus effect
+    &:focus,
+    &:focus-within {
+      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+      outline: 0;
     }
   }
 
@@ -91,4 +101,15 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     flex-grow: 1;
     flex-shrink: 1;
   }
+
+  // // focus effect
+  // &:focus &__container,
+  // &:focus-within &__container {
+  //   box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+
+  //   // disable focus effect for inner input
+  //   .o-input {
+  //     --#{$prefix}focus: transparent;
+  //   }
+  // }
 }

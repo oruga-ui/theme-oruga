@@ -139,8 +139,13 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
+
       &--#{$name} {
         background: var(--#{$prefix}variant-#{$name}, $color);
+
+        + .o-slide__thumb-wrapper {
+          --#{$prefix}focus: #{createFocus($color)};
+        }
       }
     }
   }
@@ -183,5 +188,12 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
     cursor: not-allowed;
     pointer-events: none;
     opacity: var(--#{$prefix}slider-track-disabled, $slider-track-disabled);
+  }
+
+  // focus effect
+  &:active &__thumb,
+  &:focus &__thumb,
+  &:focus-within &__thumb {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
   }
 }

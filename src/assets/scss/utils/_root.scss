@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "sass:meta";
 
 @mixin root() {
   $host-selector: if($enable-host, ":host", ":root");
@@ -15,7 +16,7 @@
 @include root() {
   // define color variables
   @each $name, $color in $colors {
-    @if type-of($color) == list {
+    @if meta.type-of($color) == list {
       --#{$prefix}#{$name}: #{list.nth($color, 1)};
       --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
     } @else {
@@ -30,6 +31,7 @@
   --#{$prefix}grey-light: #{$grey-light};
   --#{$prefix}grey-lighter: #{$grey-lighter};
   --#{$prefix}grey-dark: #{$grey-dark};
+  --#{$prefix}focus: #{createFocus($primary)};
 
   // define size variables
   @each $name, $size in $sizes {

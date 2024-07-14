@@ -102,6 +102,8 @@ $button-outlined-background-color: transparent !default;
     $color-invert: list.nth($pair, 2);
 
     &--#{$name} {
+      --#{$prefix}focus: #{createFocus($color)};
+
       border-color: transparent;
       background-color: var(--#{$prefix}variant-#{$name}, $color);
       color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
@@ -140,6 +142,8 @@ $button-outlined-background-color: transparent !default;
       $color-invert: list.nth($pair, 2);
 
       &-#{$name} {
+        --#{$prefix}focus: #{createFocus($color)};
+
         background-color: var(
           --#{$prefix}button-outlined-background-color,
           $button-outlined-background-color
@@ -147,6 +151,7 @@ $button-outlined-background-color: transparent !default;
         border-color: var(--#{$prefix}variant-#{$name}, $color);
         color: var(--#{$prefix}variant-#{$name}, $color);
 
+        &:focus,
         &:hover {
           border-color: transparent;
           background-color: var(--#{$prefix}variant-#{$name}, $color);
@@ -192,6 +197,8 @@ $button-outlined-background-color: transparent !default;
       $color-invert: list.nth($pair, 2);
 
       &-#{$name} {
+        --#{$prefix}focus: #{createFocus($color)};
+
         background-color: var(
           --#{$prefix}variant-invert-#{$name},
           $color-invert
@@ -199,6 +206,7 @@ $button-outlined-background-color: transparent !default;
         border-color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
         color: var(--#{$prefix}variant-#{$name}, $color);
 
+        &:focus,
         &:hover {
           // background-color: darken($color-invert, 5%)
           // IE 11 needs polyfill
@@ -206,5 +214,12 @@ $button-outlined-background-color: transparent !default;
         }
       }
     }
+  }
+
+  // focus effect
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+    outline: 0;
   }
 }
