@@ -137,4 +137,8 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
   &__icon-left {
     left: 0;
   }
+
+  &[disabled] {
+    cursor: inherit;
+  }
 }
