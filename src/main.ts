@@ -22,7 +22,7 @@ createApp(App)
           default: "",
           small: "fa-sm",
           medium: "fa-lg",
-          large: "fa-2x",
+          large: "fa-xl",
         },
       },
     },
