@@ -31,7 +31,7 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     font-size: var(--#{$prefix}base-font-size, $base-font-size);
     line-height: var(--#{$prefix}input-line-height, $input-line-height);
     margin: var(--#{$prefix}input-margin, $input-margin);
-    width: var(--oruga-taginput-width, inherit);
+    width: var(--#{$prefix}taginput-width, inherit);
 
     // size variants
     @each $name, $value in $sizes {

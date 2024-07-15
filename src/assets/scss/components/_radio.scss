@@ -60,7 +60,7 @@ $radio-line-height: 1.25 !default;
     box-shadow: var(--#{$prefix}radio-box-shadow, $radio-box-shadow);
     border-radius: 50%;
     background: var(
-      --#{$prefix}-radio-active-background-color,
+      --#{$prefix}radio-active-background-color,
       $radio-active-background-color
     );
     mask-image: url(svg_radio_empty());
@@ -100,7 +100,7 @@ $radio-line-height: 1.25 !default;
 
     &--#{$name} {
       --#{$prefix}focus: #{createFocus($color)};
-      --#{$prefix}-radio-active-background-color: #{$color};
+      --#{$prefix}radio-active-background-color: #{$color};
     }
   }
 
