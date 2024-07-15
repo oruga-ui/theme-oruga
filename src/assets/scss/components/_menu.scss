@@ -13,11 +13,10 @@ $menu-nested-list-padding-left: 0.75em !default;
 $menu-label-color: $grey !default;
 $menu-label-font-size: 0.75em !default;
 $menu-label-spacing: 1em !default;
+$menu-icon-spacer: 0.5rem !default;
 /* @docs */
 
 .o-menu {
-  font-size: var(--#{$prefix}base-font-size, $base-font-size);
-
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}menu-font-size-#{$name}, $value);
@@ -61,6 +60,7 @@ $menu-label-spacing: 1em !default;
     list-style: none;
     color: var(--#{$prefix}menu-item-color, $menu-item-color);
     padding: var(--#{$prefix}menu-item-padding, $menu-item-padding);
+    font-size: var(--#{$prefix}menu-item-size, $base-font-size);
 
     &:hover:not(&--active):not(&--disabled) {
       color: var(--#{$prefix}menu-item-hover-color, $menu-item-hover-color);
@@ -68,6 +68,10 @@ $menu-label-spacing: 1em !default;
         --#{$prefix}menu-item-hover-background-color,
         $menu-item-hover-background-color
       );
+    }
+
+    &--icon-text .o-icon {
+      margin-right: var(--#{$prefix}menu-icon-spacer, $menu-icon-spacer);
     }
 
     &--active {
