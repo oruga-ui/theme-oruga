@@ -21,13 +21,13 @@ $dropdown-menu-spacer: 0px !default;
 $dropdown-menu-margin: 0 !default;
 $dropdown-menu-padding: 0.5rem 0 0.5rem 0 !default;
 $dropdown-menu-width: 12rem !default;
-$dropdown-menu-zindex: 20 !default;
+$dropdown-menu-zindex: 50 !default;
 $dropdown-mobile-max-height: calc(100vh - 120px) !default;
 $dropdown-mobile-max-width: 460px !default;
 $dropdown-mobile-overlay-color: rgba(#000000, 0.86) !default;
-$dropdown-mobile-overlay-zindex: 40 !default;
+$dropdown-mobile-overlay-zindex: 55 !default;
 $dropdown-mobile-width: calc(100vw - 40px) !default;
-$dropdown-mobile-zindex: 50 !default;
+$dropdown-mobile-zindex: 60 !default;
 /* @docs */
 
 .o-drop {
