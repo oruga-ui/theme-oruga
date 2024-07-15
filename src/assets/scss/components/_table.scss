@@ -78,6 +78,9 @@ $table-th-padding: 0.5em 0.75em !default;
           --#{$prefix}table-background-color,
           $table-background-color
         );
+        z-index: calc(
+          var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) + 1
+        );
       }
     }
 
@@ -252,9 +255,7 @@ $table-th-padding: 0.5em 0.75em !default;
       position: sticky;
       left: 0;
       top: 0;
-      z-index: calc(
-        var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) + 0
-      );
+      z-index: var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex);
       background: var(
         --#{$prefix}table-background-color,
         $table-background-color
