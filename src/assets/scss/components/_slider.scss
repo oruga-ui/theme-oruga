@@ -131,7 +131,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
       --#{$prefix}slider-fill-background,
       $slider-fill-background
     );
-    border-radius: var(--#{$prefix}slider-track-radius $slider-track-radius);
+    border-radius: var(--#{$prefix}slider-track-radius, $slider-track-radius);
     border: var(--#{$prefix}slider-track-border, $slider-track-border);
     // Fix alignment in IE 11. Cancel out for others
     top: 50%;
