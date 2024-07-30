@@ -39,6 +39,14 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
     background: var(--#{$prefix}skeleton-background, $skeleton-background);
     margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
 
+    @include steps-size($base-font-size);
+
+    @each $name, $value in $sizes {
+      &--#{$name} {
+        @include steps-size($value, $name);
+      }
+    }
+
     &--rounded {
       border-radius: var(
         --#{$prefix}skeleton-border-radius,
@@ -58,14 +66,6 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
 
     &::after {
       content: "\00a0";
-    }
-
-    @include steps-size($base-font-size);
-
-    @each $name, $value in $sizes {
-      &--#{$name} {
-        @include steps-size($value, $name);
-      }
     }
   }
 
