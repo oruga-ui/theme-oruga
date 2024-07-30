@@ -60,12 +60,13 @@ $button-outlined-background-color: transparent !default;
   height: var(--#{$prefix}button-height, $button-height);
 
   &__wrapper {
-    @include side-flex-gap($button-margin-icon-to-text);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
     width: 100%;
+
+    @include side-flex-gap($button-margin-icon-to-text);
   }
 
   &__label {
@@ -89,14 +90,14 @@ $button-outlined-background-color: transparent !default;
     pointer-events: none;
   }
 
-  // size variants
+  /* size variants*/
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
     }
   }
 
-  // color variants
+  /* color variants*/
   @each $name, $pair in $colors {
     $color: list.nth($pair, 1);
     $color-invert: list.nth($pair, 2);
@@ -109,8 +110,8 @@ $button-outlined-background-color: transparent !default;
       color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
 
       &:hover {
-        // background-color: darken($color, 2.5%)
-        // IE 11 needs polyfill
+        /* background-color: darken($color, 2.5%)*/
+        /* IE 11 needs polyfill*/
         filter: brightness(97.5%);
       }
     }
@@ -187,8 +188,8 @@ $button-outlined-background-color: transparent !default;
     color: var(--#{$prefix}button-background-color, $button-background-color);
 
     &:hover {
-      // background-color: darken($color-invert, 5%)
-      // IE 11 needs polyfill
+      /* background-color: darken($color-invert, 5%)*/
+      /* IE 11 needs polyfill*/
       filter: brightness(95%);
     }
 
@@ -208,15 +209,15 @@ $button-outlined-background-color: transparent !default;
 
         &:focus,
         &:hover {
-          // background-color: darken($color-invert, 5%)
-          // IE 11 needs polyfill
+          /* background-color: darken($color-invert, 5%)*/
+          /* IE 11 needs polyfill*/
           filter: brightness(95%);
         }
       }
     }
   }
 
-  // focus effect
+  /* focus effect*/
   &:focus,
   &:focus-within {
     box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
