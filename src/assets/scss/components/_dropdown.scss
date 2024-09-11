@@ -141,7 +141,7 @@ $dropdown-mobile-zindex: 60 !default;
       right: 0;
       left: auto;
       top: calc(
-        100% + var(--#{$prefix}"dropdown-menu-spacer", $dropdown-menu-spacer)
+        100% + var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
       );
       bottom: auto;
     }
