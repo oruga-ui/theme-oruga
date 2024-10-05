@@ -132,6 +132,11 @@ $checkbox-line-height: 1.5 !default;
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
+
+      .o-chk__input {
+        width: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
+        height: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
+      }
     }
   }
 

@@ -28,38 +28,6 @@ $tabs-toggle-link-active-border-color: var(--#{$prefix}primary) !default;
 $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
 /* @docs */
 
-@mixin item {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  margin: 0;
-  border: 1px solid transparent;
-  background-color: transparent;
-  align-items: center;
-  line-height: $tabs-link-line-height;
-  display: flex;
-  justify-content: center;
-  margin-bottom: -1px;
-  vertical-align: top;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
-  border-bottom-color: var(
-    --#{$prefix}tabs-border-bottom-color,
-    $tabs-border-bottom-color
-  );
-  border-bottom-style: var(
-    --#{$prefix}tabs-border-bottom-style,
-    $tabs-border-bottom-style
-  );
-  border-bottom-width: var(
-    --#{$prefix}tabs-border-bottom-width,
-    $tabs-border-bottom-width
-  );
-  color: var(--#{$prefix}tabs-link-color, $tabs-link-color);
-  padding: var(--#{$prefix}tabs-link-padding, $tabs-link-padding);
-}
-
 .o-tabs {
   &--fullwidth {
     width: 100%;
@@ -85,6 +53,10 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       align-items: stretch;
       flex-grow: 0;
       border-bottom: none;
+    }
+
+    .o-tabs__nav-item-default {
+      border-radius: 0;
     }
 
     .o-tabs__nav-item-boxed {
@@ -139,6 +111,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
 
   &__nav {
     @include unselectable;
+
     margin: 0;
     padding: 0;
     align-items: center;
@@ -168,6 +141,36 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     }
 
     &-item {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      margin: 0;
+      border: 1px solid transparent;
+      background-color: transparent;
+      align-items: center;
+      line-height: $tabs-link-line-height;
+      display: flex;
+      justify-content: center;
+      margin-bottom: -1px;
+      vertical-align: top;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
+      border-bottom-color: var(
+        --#{$prefix}tabs-border-bottom-color,
+        $tabs-border-bottom-color
+      );
+      border-bottom-style: var(
+        --#{$prefix}tabs-border-bottom-style,
+        $tabs-border-bottom-style
+      );
+      border-bottom-width: var(
+        --#{$prefix}tabs-border-bottom-width,
+        $tabs-border-bottom-width
+      );
+      color: var(--#{$prefix}tabs-link-color, $tabs-link-color);
+      padding: var(--#{$prefix}tabs-link-padding, $tabs-link-padding);
+
       &-icon {
         margin-right: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
       }
@@ -181,8 +184,6 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       }
 
       &-default {
-        @include item;
-
         &--active {
           border-bottom-color: var(
             --#{$prefix}tabs-link-active-border-bottom-color,
@@ -216,8 +217,6 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       }
 
       &-boxed {
-        @include item;
-        border-bottom-color: transparent;
         border-radius: var(
           --#{$prefix}tabs-border-bottom-color,
           #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0 0
@@ -260,8 +259,6 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       }
 
       &-toggle {
-        @include item;
-        position: relative;
         border-color: var(
           --#{$prefix}tabs-toggle-link-border-color,
           $tabs-toggle-link-border-color
@@ -274,7 +271,6 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
           --#{$prefix}tabs-toggle-link-border-width,
           $tabs-toggle-link-border-width
         );
-        margin-bottom: 0;
 
         &--active {
           background-color: var(
@@ -308,6 +304,25 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
           border-color: var(
             --#{$prefix}tabs-toggle-link-hover-border-color,
             $tabs-toggle-link-hover-border-color
+          );
+        }
+      }
+
+      &-pills {
+        border-radius: var(
+          --#{$prefix}tabs-boxed-link-radius,
+          $tabs-boxed-link-radius
+        );
+        border-color: transparent;
+
+        &--active {
+          background-color: var(
+            --#{$prefix}tabs-toggle-link-active-background-color,
+            $tabs-toggle-link-active-background-color
+          );
+          color: var(
+            --#{$prefix}tabs-toggle-link-active-color,
+            $tabs-toggle-link-active-color
           );
         }
       }
