@@ -59,16 +59,17 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
   }
 
   .o-slide__tick-label {
+    $label-top-height: calc($track-height * 0.5 + 2px);
+
     @if $name {
       font-size: var(--#{$prefix}slider-mark-size-#{$name}, $slider-mark-size);
+      top: var(--#{$prefix}slider-tick-label-top-#{$name}, $label-top-height);
     } @else {
-      font-size: var(--#{$prefix}slider-mark-size $slider-mark-size);
+      font-size: var(--#{$prefix}slider-mark-size, $slider-mark-size);
+      top: var(--#{$prefix}slider-tick-label-top, $label-top-height);
     }
 
     position: absolute;
-    top: calc(
-      var(--#{$prefix}slider-tick-label-top-#{$name}, $track-height) * 0.5 + 2px
-    );
     left: 50%;
     transform: translateX(-50%);
   }
