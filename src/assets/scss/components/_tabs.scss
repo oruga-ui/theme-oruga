@@ -29,8 +29,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
 /* @docs */
 
 .o-tabs {
-  &--expanded,
-  &--fullwidth {
+  &--expanded {
     width: 100%;
 
     .o-tabs__tab--default,
