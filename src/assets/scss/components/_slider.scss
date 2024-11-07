@@ -61,10 +61,16 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
   .o-slide__tick-label {
     @if $name {
       font-size: var(--#{$prefix}slider-mark-size-#{$name}, $slider-mark-size);
-      top: var(--#{$prefix}slider-tick-label-top-#{$name}, $track-height) * 0.5 + 2px;
+      top: calc(
+        var(--#{$prefix}slider-tick-label-top-#{$name}, $track-height) *
+          0.5 +
+          2px
+      );
     } @else {
       font-size: var(--#{$prefix}slider-mark-size, $slider-mark-size);
-      top: var(--#{$prefix}slider-tick-label-top, $track-height) * 0.5 + 2px;
+      top: calc(
+        var(--#{$prefix}slider-tick-label-top, $track-height) * 0.5 + 2px
+      );
     }
 
     position: absolute;
