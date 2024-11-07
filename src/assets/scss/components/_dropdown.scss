@@ -236,7 +236,7 @@ $dropdown-mobile-zindex: 60 !default;
     pointer-events: none;
   }
 
-  &--mobile {
+  &--modal:not(.o-drop--inline):not(.o-drop--hoverable) {
     > .o-drop__menu {
       position: fixed;
       top: 25%;

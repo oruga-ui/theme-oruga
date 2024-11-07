@@ -6,6 +6,7 @@ $menu-item-active-color: var(--#{$prefix}primary-invert) !default;
 $menu-item-active-background-color: var(--#{$prefix}primary) !default;
 $menu-item-disabled-color: var(--#{$prefix}grey-light) !default;
 $menu-list-border-left: 1px solid var(--#{$prefix}primary) !default;
+$menu-list-border-radius: var(--#{$prefix}base-border-radius) !default;
 $menu-list-line-height: 1.25em !default;
 $menu-item-padding: 0.5em 0.75em !default;
 $menu-nested-list-margin: 0.75em !default;
@@ -24,7 +25,7 @@ $menu-icon-spacer: 0.5rem !default;
   }
 
   &__list,
-  &__item__wrapper {
+  &__item {
     list-style: none;
   }
 
@@ -55,12 +56,16 @@ $menu-icon-spacer: 0.5rem !default;
     }
   }
 
-  &__item {
+  &__item__button {
     display: block;
     list-style: none;
     color: var(--#{$prefix}menu-item-color, $menu-item-color);
     padding: var(--#{$prefix}menu-item-padding, $menu-item-padding);
     font-size: var(--#{$prefix}menu-item-size, $base-font-size);
+    border-radius: var(
+      --#{$prefix}menu-list-border-radius,
+      $menu-list-border-radius
+    );
 
     &:hover:not(&--active):not(&--disabled) {
       color: var(--#{$prefix}menu-item-hover-color, $menu-item-hover-color);
@@ -70,7 +75,7 @@ $menu-icon-spacer: 0.5rem !default;
       );
     }
 
-    &--icon-text .o-icon {
+    &--icon .o-icon {
       margin-right: var(--#{$prefix}menu-icon-spacer, $menu-icon-spacer);
     }
 
