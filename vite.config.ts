@@ -35,7 +35,6 @@ export default defineConfig(({ mode }) => {
       build: {
         emptyOutDir: true,
         copyPublicDir: false,
-        minify: "terser",
         lib: {
           entry: resolve(__dirname, "src/plugins/theme.ts"),
           name: "OrugaDefaultTheme",
