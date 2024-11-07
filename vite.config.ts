@@ -15,7 +15,7 @@ function generate(version: string): string {
     version = `${version} (build ${preview_build})`;
   }
 
-  return `/*! Oruga v${version} | MIT License | github.com/oruga-ui/oruga */`;
+  return `/*! Oruga Default Theme v${version} | MIT License | github.com/oruga-ui/theme-oruga */`;
 }
 
 // https://vitejs.dev/config/
