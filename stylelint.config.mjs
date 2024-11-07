@@ -26,11 +26,6 @@ export default {
         ignoreAtRules: ["if", "else"],
       },
     ],
-    "prettier/prettier": [
-      true,
-      {
-        endOfLine: "auto",
-      },
-    ],
+    "prettier/prettier": [true, { endOfLine: "auto" }],
   },
 };
