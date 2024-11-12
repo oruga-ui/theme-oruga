@@ -1,10 +1,12 @@
 @use "sass:list";
 
 /* @docs */
-$button-background-color: var(--#{$prefix}primary) !default;
-$button-color: var(--#{$prefix}primary-invert) !default;
+$button-background-color: transparent !default;
+$button-color: var(--#{$prefix}black) !default;
 $button-border-radius: var(--#{$prefix}base-border-radius) !default;
-$button-border: 1px solid $button-background-color !default;
+
+$button-border-color: var(--#{$prefix}grey-lighter) !default;
+$button-border: 1px solid $button-border-color !default;
 $button-box-shadow: none !default;
 $button-font-weight: 400 !default;
 $button-line-height: var(--#{$prefix}base-line-height) !default;
@@ -17,6 +19,7 @@ $button-rounded-border-radius: var(
 ) !default;
 $button-disabled-opacity: var(--#{$prefix}#{base-disabled-opacity}) !default;
 $button-outlined-background-color: transparent !default;
+$button-outlined-border-color: var(--#{$prefix}grey-light) !default;
 /* @docs */
 
 @keyframes spinAround {
@@ -118,22 +121,11 @@ $button-outlined-background-color: transparent !default;
   }
 
   &--outlined {
-    background-color: var(
-      --#{$prefix}button-outlined-background-color,
-      $button-outlined-background-color
-    );
-    border-color: var(
-      --#{$prefix}button-background-color,
-      $button-background-color
-    );
-    color: var(--#{$prefix}button-background-color, $button-background-color);
-
+    &:focus,
     &:hover {
-      border-color: transparent;
-
       background-color: var(
-        --#{$prefix}button-background-color,
-        $button-background-color
+        --#{$prefix}button-border-color,
+        $button-border-color
       );
       color: var(--#{$prefix}button-color, $button-color);
     }
@@ -162,30 +154,10 @@ $button-outlined-background-color: transparent !default;
     }
   }
 
-  &--loading {
-    color: transparent !important;
-    pointer-events: none;
-  }
-
-  &--loading::after {
-    -webkit-animation: spinAround 500ms infinite linear;
-    left: calc(50% - 0.5em);
-    top: calc(50% - 0.5em);
-    position: absolute !important;
-    border: 2px solid #dbdbdb;
-    border-radius: 9999px;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    content: "";
-    display: block;
-    height: 1em;
-    width: 1em;
-  }
-
   &--inverted {
     background-color: var(--#{$prefix}button-color, $button-color);
     border-color: var(--#{$prefix}button-color, $button-color);
-    color: var(--#{$prefix}button-background-color, $button-background-color);
+    color: var(--#{$prefix}button-border-color, $button-border-color);
 
     &:hover {
       /* background-color: darken($color-invert, 5%)*/
@@ -222,5 +194,25 @@ $button-outlined-background-color: transparent !default;
   &:focus-within {
     box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
     outline: 0;
+  }
+
+  &--loading {
+    color: transparent !important;
+    pointer-events: none;
+  }
+
+  &--loading::after {
+    -webkit-animation: spinAround 500ms infinite linear;
+    left: calc(50% - 0.5em);
+    top: calc(50% - 0.5em);
+    position: absolute !important;
+    border: 2px solid #dbdbdb;
+    border-radius: 9999px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 1em;
+    width: 1em;
   }
 }

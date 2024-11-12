@@ -2,13 +2,12 @@
 
 /* @docs */
 $datepicker-font-size: var(--#{$prefix}base-font-size) !default;
-$datepicker-box-line-height: var(--#{$prefix}base-line-height) !default;
-$datepicker-box-padding: 0.375rem 1rem !default;
-$datepicker-header-padding: 0 0 0.875rem 0 !default;
-$datepicker-header-margin: 0 0 0.875rem 0 !default;
+$datepicker-box-padding: 0.5rem 1rem !default;
+$datepicker-header-padding: 0.5rem 0 !default;
+$datepicker-header-margin: 0 0 0.5rem 0 !default;
 $datepicker-header-border-bottom: 1px solid var(--#{$prefix}grey-lighter) !default;
-$datepicker-footer-padding: 0.875rem 0.5rem 0 0.5rem !default;
-$datepicker-footer-margin: 0.875rem 0 0.875rem 0 !default;
+$datepicker-footer-padding: 0.5rem 0.5rem 0 0.5rem !default;
+$datepicker-footer-margin: 0.5rem 0 !default;
 $datepicker-footer-border-top: 1px solid var(--#{$prefix}grey-lighter) !default;
 $datepicker-table-head-padding: 0 0 0.875rem 0 !default;
 $datepicker-table-head-margin: 0 0 0.875rem 0 !default;
@@ -38,6 +37,7 @@ $datepicker-event-background-color: var(--#{$prefix}grey-light) !default;
 $datepicker-event-dots-size: 0.35em !default;
 $datepicker-event-dots-margin: 0 0.1em !default;
 $datepicker-event-bars-height: 0.25em !default;
+$datepicker-btn-background-color: transparent !default;
 $datepicker-btn-border-color: var(--#{$prefix}grey-lighter) !default;
 $datepicker-btn-border-radius: var(--#{$prefix}base-border-radius) !default;
 $datepicker-btn-border: 1px solid transparent !default;
@@ -66,8 +66,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
   }
 
   &__box {
-    --#{$prefix}dropdown-item-line-height: #{$datepicker-box-line-height};
-    --#{$prefix}dropdown-item-padding: #{$datepicker-box-padding};
+    padding: var(--#{$prefix}datepicker-box-padding, $datepicker-box-padding);
   }
 
   &__header {
@@ -123,6 +122,10 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       line-height: var(
         --#{$prefix}datepicker-btn-line-height,
         $datepicker-btn-line-height
+      );
+      background-color: var(
+        --#{$prefix}datepicker-btn-background-color,
+        $datepicker-btn-background-color
       );
       border: var(--#{$prefix}datepicker-btn-border, $datepicker-btn-border);
       border-radius: var(
@@ -489,6 +492,10 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
       order: 2;
       flex-grow: 1;
       flex-shrink: 1;
+    }
+
+    .o-drop__menu {
+      padding: 0;
     }
   }
 }

@@ -29,83 +29,18 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
 /* @docs */
 
 .o-tabs {
-  &--fullwidth {
+  &--expanded {
     width: 100%;
 
-    .o-tabs__nav-item-wrapper {
-      flex-grow: 1;
-      flex-shrink: 0;
-    }
-
-    .o-tabs__nav-item-default,
-    .o-tabs__nav-item-boxed,
-    .o-tabs__nav-item-toggle {
+    .o-tabs__tab--default,
+    .o-tabs__tab--boxed,
+    .o-tabs__tab--toggle {
       height: 100%;
     }
-  }
 
-  &--vertical {
-    display: flex;
-    flex-direction: row;
-
-    .o-tabs__nav {
-      flex-direction: column;
-      align-items: stretch;
-      flex-grow: 0;
-      border-bottom: none;
-    }
-
-    .o-tabs__nav-item-default {
-      border-radius: 0;
-    }
-
-    .o-tabs__nav-item-boxed {
-      border-bottom-color: transparent;
-      border-right-color: var(
-        --#{$prefix}tabs-border-bottom-color,
-        $tabs-border-bottom-color
-      );
-      border-radius: var(
-        --#{$prefix}tabs-border-bottom-color,
-        #{$tabs-boxed-link-radius} 0 0 #{$tabs-boxed-link-radius}
-      );
-
-      &--active {
-        border-right-color: transparent;
-        border-bottom-color: var(
-          --#{$prefix}tabs-border-bottom-color,
-          $tabs-border-bottom-color
-        );
-      }
-    }
-  }
-
-  &--right {
-    flex-direction: row-reverse;
-
-    .o-tabs__nav-item-boxed {
-      border-bottom-color: transparent;
-      border-right-color: transparent;
-      border-left-color: var(
-        --#{$prefix}tabs-border-bottom-color,
-        $tabs-border-bottom-color
-      );
-      border-radius: var(
-        --#{$prefix}tabs-border-bottom-color,
-        0 #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0
-      );
-
-      &--active {
-        border-left-color: transparent;
-        border-right-color: var(
-          --#{$prefix}tabs-border-bottom-color,
-          $tabs-border-bottom-color
-        );
-        border-bottom-color: var(
-          --#{$prefix}tabs-border-bottom-color,
-          $tabs-border-bottom-color
-        );
-      }
+    .o-tabs__nav-item {
+      flex-grow: 1;
+      flex-shrink: 0;
     }
   }
 
@@ -139,192 +74,242 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     &--right {
       justify-content: flex-end;
     }
+  }
 
-    &-item {
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      width: 100%;
-      margin: 0;
-      border: 1px solid transparent;
-      background-color: transparent;
-      align-items: center;
-      line-height: $tabs-link-line-height;
-      display: flex;
-      justify-content: center;
-      margin-bottom: -1px;
-      vertical-align: top;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
-      border-bottom-color: var(
+  &__tab {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 0;
+    border: 1px solid transparent;
+    background-color: transparent;
+    align-items: center;
+    line-height: $tabs-link-line-height;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1px;
+    vertical-align: top;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
+    border-bottom-color: var(
+      --#{$prefix}tabs-border-bottom-color,
+      $tabs-border-bottom-color
+    );
+    border-bottom-style: var(
+      --#{$prefix}tabs-border-bottom-style,
+      $tabs-border-bottom-style
+    );
+    border-bottom-width: var(
+      --#{$prefix}tabs-border-bottom-width,
+      $tabs-border-bottom-width
+    );
+    color: var(--#{$prefix}tabs-link-color, $tabs-link-color);
+    padding: var(--#{$prefix}tabs-link-padding, $tabs-link-padding);
+
+    &-icon {
+      margin-right: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
+    }
+
+    // focus effect
+    &:focus,
+    &:focus-within {
+      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+      outline: 0;
+      border-radius: #{$tabs-boxed-link-radius};
+    }
+
+    &--default {
+      &.o-tabs__tab--active {
+        border-bottom-color: var(
+          --#{$prefix}tabs-link-active-border-bottom-color,
+          $tabs-link-active-border-bottom-color
+        );
+        color: var(--#{$prefix}tabs-link-active-color, $tabs-link-active-color);
+      }
+
+      &.o-tabs__tab--disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
+      }
+
+      &:hover:not(.o-tabs__tab--active) {
+        background-color: var(
+          --#{$prefix}tabs-link-hover-background-color,
+          $tabs-boxed-link-hover-background-color
+        );
+        border-bottom-color: var(
+          --#{$prefix}tabs-link-hover-border-bottom-color,
+          $tabs-boxed-link-hover-border-bottom-color
+        );
+      }
+    }
+
+    &--boxed {
+      border-radius: var(
+        --#{$prefix}tabs-border-bottom-color,
+        #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0 0
+      );
+
+      &.o-tabs__tab--active {
+        color: var(--#{$prefix}tabs-link-active-color, $tabs-link-active-color);
+        background-color: var(
+          --#{$prefix}tabs-boxed-link-active-background-color,
+          $tabs-boxed-link-active-background-color
+        );
+        border-color: var(
+          --#{$prefix}tabs-boxed-link-active-border-color,
+          $tabs-boxed-link-active-border-color
+        );
+        border-bottom-color: var(
+          --#{$prefix}tabs-boxed-link-active-border-bottom-color,
+          $tabs-boxed-link-active-border-bottom-color
+        );
+      }
+
+      &.o-tabs__tab--disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
+      }
+
+      &:hover:not(.o-tabs__tab--active) {
+        background-color: var(
+          --#{$prefix}tabs-boxed-link-hover-background-color,
+          $tabs-boxed-link-hover-background-color
+        );
+      }
+    }
+
+    &--toggle {
+      border-color: var(
+        --#{$prefix}tabs-toggle-link-border-color,
+        $tabs-toggle-link-border-color
+      );
+      border-style: var(
+        --#{$prefix}tabs-toggle-link-border-style,
+        $tabs-toggle-link-border-style
+      );
+      border-width: var(
+        --#{$prefix}tabs-toggle-link-border-width,
+        $tabs-toggle-link-border-width
+      );
+
+      &.o-tabs__tab--active {
+        background-color: var(
+          --#{$prefix}tabs-toggle-link-active-background-color,
+          $tabs-toggle-link-active-background-color
+        );
+        border-color: var(
+          --#{$prefix}tabs-toggle-link-active-border-color,
+          $tabs-toggle-link-active-border-color
+        );
+        color: var(
+          --#{$prefix}tabs-toggle-link-active-color,
+          $tabs-toggle-link-active-color
+        );
+      }
+
+      &.o-tabs__tab--disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
+      }
+
+      &:hover:not(.o-tabs_tab--active) {
+        background-color: var(
+          --#{$prefix}tabs-toggle-link-hover-background-color,
+          $tabs-toggle-link-hover-background-color
+        );
+        border-color: var(
+          --#{$prefix}tabs-toggle-link-hover-border-color,
+          $tabs-toggle-link-hover-border-color
+        );
+      }
+    }
+
+    &--pills {
+      border-radius: var(
+        --#{$prefix}tabs-boxed-link-radius,
+        $tabs-boxed-link-radius
+      );
+      border-color: transparent;
+
+      &.o-tabs__tab--active {
+        background-color: var(
+          --#{$prefix}tabs-toggle-link-active-background-color,
+          $tabs-toggle-link-active-background-color
+        );
+        color: var(
+          --#{$prefix}tabs-toggle-link-active-color,
+          $tabs-toggle-link-active-color
+        );
+      }
+    }
+  }
+
+  &--vertical {
+    display: flex;
+    flex-direction: row;
+
+    .o-tabs__nav {
+      flex-direction: column;
+      align-items: stretch;
+      flex-grow: 0;
+      border-bottom: none;
+    }
+
+    .o-tabs__tab---default {
+      border-radius: 0;
+    }
+
+    .o-tabs__tab--boxed {
+      border-bottom-color: transparent;
+      border-right-color: var(
         --#{$prefix}tabs-border-bottom-color,
         $tabs-border-bottom-color
       );
-      border-bottom-style: var(
-        --#{$prefix}tabs-border-bottom-style,
-        $tabs-border-bottom-style
+      border-radius: var(
+        --#{$prefix}tabs-border-bottom-color,
+        #{$tabs-boxed-link-radius} 0 0 #{$tabs-boxed-link-radius}
       );
-      border-bottom-width: var(
-        --#{$prefix}tabs-border-bottom-width,
-        $tabs-border-bottom-width
-      );
-      color: var(--#{$prefix}tabs-link-color, $tabs-link-color);
-      padding: var(--#{$prefix}tabs-link-padding, $tabs-link-padding);
 
-      &-icon {
-        margin-right: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
-      }
-
-      // focus effect
-      &:focus,
-      &:focus-within {
-        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-        outline: 0;
-        border-radius: #{$tabs-boxed-link-radius};
-      }
-
-      &-default {
-        &--active {
-          border-bottom-color: var(
-            --#{$prefix}tabs-link-active-border-bottom-color,
-            $tabs-link-active-border-bottom-color
-          );
-          color: var(
-            --#{$prefix}tabs-link-active-color,
-            $tabs-link-active-color
-          );
-        }
-
-        &--disabled {
-          pointer-events: none;
-          cursor: not-allowed;
-          opacity: var(
-            --#{$prefix}tabs-disabled-opacity,
-            $tabs-disabled-opacity
-          );
-        }
-
-        &:hover:not(.o-tabs__nav-item-default--active) {
-          background-color: var(
-            --#{$prefix}tabs-link-hover-background-color,
-            $tabs-boxed-link-hover-background-color
-          );
-          border-bottom-color: var(
-            --#{$prefix}tabs-link-hover-border-bottom-color,
-            $tabs-boxed-link-hover-border-bottom-color
-          );
-        }
-      }
-
-      &-boxed {
-        border-radius: var(
+      &.o-tabs__tab--active {
+        border-right-color: transparent;
+        border-bottom-color: var(
           --#{$prefix}tabs-border-bottom-color,
-          #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0 0
+          $tabs-border-bottom-color
         );
-
-        &--active {
-          color: var(
-            --#{$prefix}tabs-link-active-color,
-            $tabs-link-active-color
-          );
-          background-color: var(
-            --#{$prefix}tabs-boxed-link-active-background-color,
-            $tabs-boxed-link-active-background-color
-          );
-          border-color: var(
-            --#{$prefix}tabs-boxed-link-active-border-color,
-            $tabs-boxed-link-active-border-color
-          );
-          border-bottom-color: var(
-            --#{$prefix}tabs-boxed-link-active-border-bottom-color,
-            $tabs-boxed-link-active-border-bottom-color
-          );
-        }
-
-        &--disabled {
-          pointer-events: none;
-          cursor: not-allowed;
-          opacity: var(
-            --#{$prefix}tabs-disabled-opacity,
-            $tabs-disabled-opacity
-          );
-        }
-
-        &:hover:not(.o-tabs__nav-item-boxed--active) {
-          background-color: var(
-            --#{$prefix}tabs-boxed-link-hover-background-color,
-            $tabs-boxed-link-hover-background-color
-          );
-        }
       }
+    }
+  }
 
-      &-toggle {
-        border-color: var(
-          --#{$prefix}tabs-toggle-link-border-color,
-          $tabs-toggle-link-border-color
+  &--right {
+    flex-direction: row-reverse;
+
+    .o-tabs__tab--boxed {
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-left-color: var(
+        --#{$prefix}tabs-border-bottom-color,
+        $tabs-border-bottom-color
+      );
+      border-radius: var(
+        --#{$prefix}tabs-border-bottom-color,
+        0 #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0
+      );
+
+      &.o-tabs__tab--active {
+        border-left-color: transparent;
+        border-right-color: var(
+          --#{$prefix}tabs-border-bottom-color,
+          $tabs-border-bottom-color
         );
-        border-style: var(
-          --#{$prefix}tabs-toggle-link-border-style,
-          $tabs-toggle-link-border-style
+        border-bottom-color: var(
+          --#{$prefix}tabs-border-bottom-color,
+          $tabs-border-bottom-color
         );
-        border-width: var(
-          --#{$prefix}tabs-toggle-link-border-width,
-          $tabs-toggle-link-border-width
-        );
-
-        &--active {
-          background-color: var(
-            --#{$prefix}tabs-toggle-link-active-background-color,
-            $tabs-toggle-link-active-background-color
-          );
-          border-color: var(
-            --#{$prefix}tabs-toggle-link-active-border-color,
-            $tabs-toggle-link-active-border-color
-          );
-          color: var(
-            --#{$prefix}tabs-toggle-link-active-color,
-            $tabs-toggle-link-active-color
-          );
-        }
-
-        &--disabled {
-          pointer-events: none;
-          cursor: not-allowed;
-          opacity: var(
-            --#{$prefix}tabs-disabled-opacity,
-            $tabs-disabled-opacity
-          );
-        }
-
-        &:hover:not(.o-tabs__nav-item-toggle--active) {
-          background-color: var(
-            --#{$prefix}tabs-toggle-link-hover-background-color,
-            $tabs-toggle-link-hover-background-color
-          );
-          border-color: var(
-            --#{$prefix}tabs-toggle-link-hover-border-color,
-            $tabs-toggle-link-hover-border-color
-          );
-        }
-      }
-
-      &-pills {
-        border-radius: var(
-          --#{$prefix}tabs-boxed-link-radius,
-          $tabs-boxed-link-radius
-        );
-        border-color: transparent;
-
-        &--active {
-          background-color: var(
-            --#{$prefix}tabs-toggle-link-active-background-color,
-            $tabs-toggle-link-active-background-color
-          );
-          color: var(
-            --#{$prefix}tabs-toggle-link-active-color,
-            $tabs-toggle-link-active-color
-          );
-        }
       }
     }
   }
@@ -335,10 +320,13 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: var(--#{$prefix}tabs-content-padding, $tabs-content-padding);
 
     &--transitioning {
       overflow: hidden;
+    }
+
+    &:not(:has(.o-tabs__panel:empty)) {
+      padding: var(--#{$prefix}tabs-content-padding, $tabs-content-padding);
     }
   }
 
