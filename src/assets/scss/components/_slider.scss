@@ -30,6 +30,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
 @mixin slider-size($size, $name: null) {
   $track-height: calc($size / $slider-thumb-to-track-ratio);
   $tick-height: calc($track-height * $slider-tick-to-track-ratio);
+  $tick-label-top: calc($track-height * 0.5 + 2px);
   $thumb-size: $size;
 
   .o-slide__track {
@@ -61,16 +62,10 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
   .o-slide__tick-label {
     @if $name {
       font-size: var(--#{$prefix}slider-mark-size-#{$name}, $slider-mark-size);
-      top: calc(
-        var(--#{$prefix}slider-tick-label-top-#{$name}, $track-height) *
-          0.5 +
-          2px
-      );
+      top: var(--#{$prefix}slider-tick-label-top-#{$name}, $tick-label-top);
     } @else {
       font-size: var(--#{$prefix}slider-mark-size, $slider-mark-size);
-      top: calc(
-        var(--#{$prefix}slider-tick-label-top, $track-height) * 0.5 + 2px
-      );
+      top: var(--#{$prefix}slider-tick-label-top, $tick-label-top);
     }
 
     position: absolute;
