@@ -4,7 +4,6 @@
 $button-background-color: transparent !default;
 $button-color: var(--#{$prefix}black) !default;
 $button-border-radius: var(--#{$prefix}base-border-radius) !default;
-
 $button-border-color: var(--#{$prefix}grey-lighter) !default;
 $button-border: 1px solid $button-border-color !default;
 $button-box-shadow: none !default;
@@ -12,6 +11,7 @@ $button-font-weight: 400 !default;
 $button-line-height: var(--#{$prefix}base-line-height) !default;
 $button-margin-icon-to-text: 0.1875em !default;
 $button-margin: 0 !default;
+$button-spacer: 0.5rem !default;
 $button-height: $control-height !default;
 $button-padding: $control-padding-vertical 0.75em !default;
 $button-rounded-border-radius: var(
@@ -214,5 +214,9 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
     display: block;
     height: 1em;
     width: 1em;
+  }
+
+  .o-icon:not(:last-child) {
+    margin-right: var(--#{$prefix}button-spacer, $button-spacer);
   }
 }
