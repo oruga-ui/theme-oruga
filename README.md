@@ -19,6 +19,9 @@
     <a href="https://discord.gg/RuKuBYN">
         <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg?logo=discord"  alt="Discord Link"/>
     </a>
+    <a href="https://ko-fi.com/mlmoravek">
+        <img src="https://img.shields.io/badge/ko--fi-donate-%23FF5E5B?style=flat&logo=ko-fi&logoColor=white" />
+    </a>
 </p>
 
 
@@ -95,9 +98,7 @@ createApp(App)
 Thank you to everyone involved for improving this project, day by day 💚
 
 <a href="https://github.com/oruga-ui/theme-oruga">
-  <img
-  src="https://contrib.rocks/image?repo=oruga-ui/theme-oruga"
-  />
+  <img src="https://contrib.rocks/image?repo=oruga-ui/theme-oruga" />
 </a>
 
 [Complete list](CONTRIBUTORS.md).
