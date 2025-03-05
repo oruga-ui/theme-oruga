@@ -36,7 +36,7 @@ $checkbox-line-height: 1.5 !default;
   @return svg-encode("#{$start}#{$content}#{$end}");
 }
 
-.o-chk {
+.o-checkbox {
   @include unselectable;
   display: inline-flex;
   align-items: center;
