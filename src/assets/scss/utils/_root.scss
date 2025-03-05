@@ -1,19 +1,12 @@
-@use "sass:list";
-@use "sass:meta";
-
-@mixin root() {
-  $host-selector: if($enable-host, ":host", ":root");
-
-  #{$host-selector} {
-    @content;
-  }
-}
-
 /*******************************
 *   Root variables extensions
 ********************************/
+@use "sass:list";
+@use "sass:meta";
 
-@include root() {
+$host-selector: if($enable-host, ":root, :host", ":root");
+
+#{$host-selector} {
   // define color variables
   @each $name, $color in $colors {
     @if meta.type-of($color) == list {
