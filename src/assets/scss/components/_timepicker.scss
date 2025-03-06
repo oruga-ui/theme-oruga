@@ -15,7 +15,7 @@ $timepicker-select-placeholder-opacity: var(
 $timepicker-separator-font-weight: 600 !default;
 /* @docs */
 
-.o-tpck {
+.o-timepicker {
   font-size: var(--#{$prefix}timepicker-font-size, $timepicker-font-size);
 
   @each $name, $value in $sizes {

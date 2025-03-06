@@ -35,6 +35,7 @@ $carousel-overlay-zindex: 40 !default;
 
 .o-carousel {
   @include unselectable;
+
   position: relative;
   overflow: hidden;
   width: 100%;

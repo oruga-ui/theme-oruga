@@ -39,6 +39,7 @@ $radio-line-height: 1.25 !default;
 
 .o-radio {
   @include unselectable;
+
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -59,7 +60,7 @@ $radio-line-height: 1.25 !default;
     cursor: pointer;
     box-shadow: var(--#{$prefix}radio-box-shadow, $radio-box-shadow);
     border-radius: 50%;
-    background: var(
+    background-color: var(
       --#{$prefix}radio-active-background-color,
       $radio-active-background-color
     );
@@ -72,7 +73,7 @@ $radio-line-height: 1.25 !default;
     transition: background var(--#{$prefix}transition-duration)
       var(--#{$prefix}transition-timing);
 
-    &--checked {
+    &:checked {
       mask-image: url(svg_radio_fill());
     }
   }
@@ -88,8 +89,12 @@ $radio-line-height: 1.25 !default;
   // size variants
   @each $name, $value in $sizes {
     &--#{$name} {
-      --#{$prefix}radio-font-size: #{$value};
-      --#{$prefix}radio-size: #{$value};
+      font-size: var(--#{$prefix}radio-font-size-#{$name}, $value);
+
+      .o-radio__input {
+        width: var(--#{$prefix}radio-font-size-#{$name}, $value);
+        height: var(--#{$prefix}radio-font-size-#{$name}, $value);
+      }
     }
   }
 
@@ -100,13 +105,23 @@ $radio-line-height: 1.25 !default;
 
     &--#{$name} {
       --#{$prefix}focus: #{createFocus($color)};
-      --#{$prefix}radio-active-background-color: #{$color};
+
+      .o-radio__input {
+        background-color: var(
+          --#{$prefix}radio-active-background-color-#{$name},
+          $color
+        );
+      }
     }
   }
 
   // focus effect
-  &:focus &__input,
-  &:focus-within &__input {
-    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    .o-radio__input {
+      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+      outline: none;
+    }
   }
 }

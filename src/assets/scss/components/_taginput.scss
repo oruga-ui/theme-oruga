@@ -8,7 +8,7 @@ $taginput-item-color: var(--#{$prefix}primary-invert) !default;
 $taginput-item-border-radius: var(--#{$prefix}base-border-radius) !default;
 $taginput-item-margin: 0.275em !default;
 $taginput-item-padding: 0 0.75em 0 0.75em !default;
-$taginput-margin-icon-to-text: 0.1875em !default;
+$taginput-item-icon-margin: 0.5em !default;
 /* @docs */
 
 .o-taginput {
@@ -32,13 +32,6 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     line-height: var(--#{$prefix}input-line-height, $input-line-height);
     margin: var(--#{$prefix}input-margin, $input-margin);
     width: var(--#{$prefix}taginput-width, inherit);
-
-    // size variants
-    @each $name, $value in $sizes {
-      &--#{$name} {
-        font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
-      }
-    }
   }
 
   &__autocomplete {
@@ -51,6 +44,13 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     border: none;
     box-shadow: none;
     width: 100%;
+  }
+
+  // size variants
+  @each $name, $value in $sizes {
+    &--#{$name} {
+      font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
+    }
   }
 
   &__item {
@@ -82,9 +82,17 @@ $taginput-margin-icon-to-text: 0.1875em !default;
 
     // focus effect
     &:focus,
+    &:focus-visible,
     &:focus-within {
       box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
       outline: 0;
+    }
+
+    &__close {
+      margin-left: var(
+        --#{$prefix}taginput-item-icon-margin,
+        $taginput-item-icon-margin
+      );
     }
   }
 
@@ -103,15 +111,4 @@ $taginput-margin-icon-to-text: 0.1875em !default;
     flex-grow: 1;
     flex-shrink: 1;
   }
-
-  // // focus effect
-  // &:focus &__container,
-  // &:focus-within &__container {
-  //   box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-
-  //   // disable focus effect for inner input
-  //   .o-input {
-  //     --#{$prefix}focus: transparent;
-  //   }
-  // }
 }

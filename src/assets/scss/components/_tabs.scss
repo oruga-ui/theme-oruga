@@ -1,97 +1,104 @@
 /* @docs */
 $tabs-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $tabs-font-size: var(--#{$prefix}base-font-size) !default;
-$tabs-icon-margin: 0.5em !default;
+$tabs-icon-margin: 0 0.5em 0 0 !default;
 $tabs-content-padding: 1rem !default;
 $tabs-margin-bottom: 1.5rem !default;
 $tabs-border-bottom-color: var(--#{$prefix}grey-lighter) !default;
 $tabs-border-bottom-style: solid !default;
 $tabs-border-bottom-width: 1px !default;
-$tabs-link-color: hsl(0, 0%, 29%) !default;
-$tabs-link-active-border-bottom-color: var(--#{$prefix}primary) !default;
-$tabs-link-active-color: var(--#{$prefix}primary) !default;
-$tabs-link-line-height: var(--#{$prefix}base-line-height) !default;
-$tabs-link-padding: 0.5em 1em !default;
-$tabs-boxed-link-radius: var(--#{$prefix}base-border-radius) !default;
-$tabs-boxed-link-hover-background-color: hsl(0, 0%, 96%) !default;
-$tabs-boxed-link-hover-border-bottom-color: hsl(0, 0%, 86%) !default;
-$tabs-boxed-link-active-background-color: hsl(0, 0%, 100%) !default;
-$tabs-boxed-link-active-border-color: hsl(0, 0%, 86%) !default;
-$tabs-boxed-link-active-border-bottom-color: transparent !default;
-$tabs-toggle-link-border-color: hsl(0, 0%, 86%) !default;
-$tabs-toggle-link-border-style: solid !default;
-$tabs-toggle-link-border-width: 1px !default;
-$tabs-toggle-link-hover-background-color: hsl(0, 0%, 96%) !default;
-$tabs-toggle-link-hover-border-color: hsl(0, 0%, 71%) !default;
-$tabs-toggle-link-active-background-color: var(--#{$prefix}primary) !default;
-$tabs-toggle-link-active-border-color: var(--#{$prefix}primary) !default;
-$tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
+$tabs-tab-color: hsl(0, 0%, 29%) !default;
+$tabs-tab-active-border-bottom-color: var(--#{$prefix}primary) !default;
+$tabs-tab-active-color: var(--#{$prefix}primary) !default;
+$tabs-tab-padding: 0.5em 1em !default;
+$tabs-boxed-tab-radius: var(--#{$prefix}base-border-radius) !default;
+$tabs-boxed-tab-hover-background-color: hsl(0, 0%, 96%) !default;
+$tabs-boxed-tab-hover-border-bottom-color: hsl(0, 0%, 86%) !default;
+$tabs-boxed-tab-active-background-color: hsl(0, 0%, 100%) !default;
+$tabs-boxed-tab-active-border-color: hsl(0, 0%, 86%) !default;
+$tabs-boxed-tab-active-border-bottom-color: transparent !default;
+$tabs-toggle-tab-border-color: hsl(0, 0%, 86%) !default;
+$tabs-toggle-tab-border-style: solid !default;
+$tabs-toggle-tab-border-width: 1px !default;
+$tabs-toggle-tab-hover-background-color: hsl(0, 0%, 96%) !default;
+$tabs-toggle-tab-hover-border-color: hsl(0, 0%, 71%) !default;
+$tabs-toggle-tab-active-background-color: var(--#{$prefix}primary) !default;
+$tabs-toggle-tab-active-border-color: var(--#{$prefix}primary) !default;
+$tabs-toggle-tab-active-color: var(--#{$prefix}primary-invert) !default;
 /* @docs */
 
 .o-tabs {
-  &--expanded {
-    width: 100%;
-
-    .o-tabs__tab--default,
-    .o-tabs__tab--boxed,
-    .o-tabs__tab--toggle {
-      height: 100%;
-    }
-
-    .o-tabs__nav-item {
-      flex-grow: 1;
-      flex-shrink: 0;
+  // size variants
+  @each $name, $value in $sizes {
+    &--#{$name} .o-tabs__tab {
+      font-size: var(--#{$prefix}tabs-font-size-#{$name}, $value);
     }
   }
 
-  &__nav {
+  &__list {
     @include unselectable;
 
     margin: 0;
     padding: 0;
-    align-items: center;
     display: flex;
+    align-items: center;
     flex-grow: 1;
     flex-shrink: 0;
-    justify-content: flex-start;
     // padding bottom to keep showing the border-bottom
     padding-bottom: var(
       --#{$prefix}tabs-border-bottom-width,
       $tabs-border-bottom-width
     );
-    font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
+  }
 
-    @each $name, $value in $sizes {
-      &--#{$name} {
-        font-size: var(--#{$prefix}tabs-font-size-#{$name}, $value);
-      }
-    }
+  &--left .o-tabs__list {
+    justify-content: flex-start;
+  }
 
-    &--centered {
-      justify-content: center;
-    }
+  &--centered .o-tabs__list {
+    justify-content: center;
+  }
 
-    &--right {
-      justify-content: flex-end;
-    }
+  &--right .o-tabs__list {
+    justify-content: flex-end;
   }
 
   &__tab {
     -moz-appearance: none;
     -webkit-appearance: none;
-    width: 100%;
-    margin: 0;
-    border: 1px solid transparent;
     background-color: transparent;
-    align-items: center;
-    line-height: $tabs-link-line-height;
-    display: flex;
-    justify-content: center;
     margin-bottom: -1px;
-    vertical-align: top;
     cursor: pointer;
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
     font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
+    color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
+    padding: var(--#{$prefix}tabs-tab-padding, $tabs-tab-padding);
+    border: 1px solid transparent;
+
+    &-icon {
+      margin: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
+    }
+
+    // focus effect
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+      outline: 0;
+      border-radius: #{$tabs-boxed-tab-radius};
+    }
+
+    &--disabled {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
+    }
+  }
+
+  &--default .o-tabs__tab {
     border-bottom-color: var(
       --#{$prefix}tabs-border-bottom-color,
       $tabs-border-bottom-color
@@ -104,148 +111,144 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       --#{$prefix}tabs-border-bottom-width,
       $tabs-border-bottom-width
     );
-    color: var(--#{$prefix}tabs-link-color, $tabs-link-color);
-    padding: var(--#{$prefix}tabs-link-padding, $tabs-link-padding);
 
-    &-icon {
-      margin-right: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-within {
-      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-      outline: 0;
-      border-radius: #{$tabs-boxed-link-radius};
-    }
-
-    &--default {
-      &.o-tabs__tab--active {
-        border-bottom-color: var(
-          --#{$prefix}tabs-link-active-border-bottom-color,
-          $tabs-link-active-border-bottom-color
-        );
-        color: var(--#{$prefix}tabs-link-active-color, $tabs-link-active-color);
-      }
-
-      &.o-tabs__tab--disabled {
-        pointer-events: none;
-        cursor: not-allowed;
-        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
-      }
-
-      &:hover:not(.o-tabs__tab--active) {
-        background-color: var(
-          --#{$prefix}tabs-link-hover-background-color,
-          $tabs-boxed-link-hover-background-color
-        );
-        border-bottom-color: var(
-          --#{$prefix}tabs-link-hover-border-bottom-color,
-          $tabs-boxed-link-hover-border-bottom-color
-        );
-      }
-    }
-
-    &--boxed {
-      border-radius: var(
-        --#{$prefix}tabs-border-bottom-color,
-        #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0 0
+    &--active {
+      border-bottom-color: var(
+        --#{$prefix}tabs-tab-active-border-bottom-color,
+        $tabs-tab-active-border-bottom-color
       );
-
-      &.o-tabs__tab--active {
-        color: var(--#{$prefix}tabs-link-active-color, $tabs-link-active-color);
-        background-color: var(
-          --#{$prefix}tabs-boxed-link-active-background-color,
-          $tabs-boxed-link-active-background-color
-        );
-        border-color: var(
-          --#{$prefix}tabs-boxed-link-active-border-color,
-          $tabs-boxed-link-active-border-color
-        );
-        border-bottom-color: var(
-          --#{$prefix}tabs-boxed-link-active-border-bottom-color,
-          $tabs-boxed-link-active-border-bottom-color
-        );
-      }
-
-      &.o-tabs__tab--disabled {
-        pointer-events: none;
-        cursor: not-allowed;
-        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
-      }
-
-      &:hover:not(.o-tabs__tab--active) {
-        background-color: var(
-          --#{$prefix}tabs-boxed-link-hover-background-color,
-          $tabs-boxed-link-hover-background-color
-        );
-      }
+      color: var(--#{$prefix}tabs-tab-active-color, $tabs-tab-active-color);
     }
 
-    &--toggle {
+    &:hover:not(.o-tabs__tab--active) {
+      background-color: var(
+        --#{$prefix}tabs-tab-hover-background-color,
+        $tabs-boxed-tab-hover-background-color
+      );
+      border-bottom-color: var(
+        --#{$prefix}tabs-tab-hover-border-bottom-color,
+        $tabs-boxed-tab-hover-border-bottom-color
+      );
+    }
+  }
+
+  &--boxed .o-tabs__tab {
+    border-radius: var(
+      --#{$prefix}tabs-border-bottom-color,
+      #{$tabs-boxed-tab-radius} #{$tabs-boxed-tab-radius} 0 0
+    );
+    border-bottom-color: var(
+      --#{$prefix}tabs-border-bottom-color,
+      $tabs-border-bottom-color
+    );
+    border-bottom-style: var(
+      --#{$prefix}tabs-border-bottom-style,
+      $tabs-border-bottom-style
+    );
+    border-bottom-width: var(
+      --#{$prefix}tabs-border-bottom-width,
+      $tabs-border-bottom-width
+    );
+
+    &--active {
+      color: var(--#{$prefix}tabs-tab-active-color, $tabs-tab-active-color);
+      background-color: var(
+        --#{$prefix}tabs-boxed-tab-active-background-color,
+        $tabs-boxed-tab-active-background-color
+      );
       border-color: var(
-        --#{$prefix}tabs-toggle-link-border-color,
-        $tabs-toggle-link-border-color
+        --#{$prefix}tabs-boxed-tab-active-border-color,
+        $tabs-boxed-tab-active-border-color
       );
-      border-style: var(
-        --#{$prefix}tabs-toggle-link-border-style,
-        $tabs-toggle-link-border-style
+      border-bottom-color: var(
+        --#{$prefix}tabs-boxed-tab-active-border-bottom-color,
+        $tabs-boxed-tab-active-border-bottom-color
       );
-      border-width: var(
-        --#{$prefix}tabs-toggle-link-border-width,
-        $tabs-toggle-link-border-width
-      );
-
-      &.o-tabs__tab--active {
-        background-color: var(
-          --#{$prefix}tabs-toggle-link-active-background-color,
-          $tabs-toggle-link-active-background-color
-        );
-        border-color: var(
-          --#{$prefix}tabs-toggle-link-active-border-color,
-          $tabs-toggle-link-active-border-color
-        );
-        color: var(
-          --#{$prefix}tabs-toggle-link-active-color,
-          $tabs-toggle-link-active-color
-        );
-      }
-
-      &.o-tabs__tab--disabled {
-        pointer-events: none;
-        cursor: not-allowed;
-        opacity: var(--#{$prefix}tabs-disabled-opacity, $tabs-disabled-opacity);
-      }
-
-      &:hover:not(.o-tabs_tab--active) {
-        background-color: var(
-          --#{$prefix}tabs-toggle-link-hover-background-color,
-          $tabs-toggle-link-hover-background-color
-        );
-        border-color: var(
-          --#{$prefix}tabs-toggle-link-hover-border-color,
-          $tabs-toggle-link-hover-border-color
-        );
-      }
     }
 
-    &--pills {
-      border-radius: var(
-        --#{$prefix}tabs-boxed-link-radius,
-        $tabs-boxed-link-radius
+    &:hover:not(.o-tabs__tab--active) {
+      background-color: var(
+        --#{$prefix}tabs-boxed-tab-hover-background-color,
+        $tabs-boxed-tab-hover-background-color
       );
-      border-color: transparent;
+    }
+  }
 
-      &.o-tabs__tab--active {
-        background-color: var(
-          --#{$prefix}tabs-toggle-link-active-background-color,
-          $tabs-toggle-link-active-background-color
-        );
-        color: var(
-          --#{$prefix}tabs-toggle-link-active-color,
-          $tabs-toggle-link-active-color
-        );
-      }
+  &--toggle .o-tabs__tab {
+    border-color: var(
+      --#{$prefix}tabs-toggle-tab-border-color,
+      $tabs-toggle-tab-border-color
+    );
+    border-style: var(
+      --#{$prefix}tabs-toggle-tab-border-style,
+      $tabs-toggle-tab-border-style
+    );
+    border-width: var(
+      --#{$prefix}tabs-toggle-tab-border-width,
+      $tabs-toggle-tab-border-width
+    );
+
+    &--active {
+      background-color: var(
+        --#{$prefix}tabs-toggle-tab-active-background-color,
+        $tabs-toggle-tab-active-background-color
+      );
+      border-color: var(
+        --#{$prefix}tabs-toggle-tab-active-border-color,
+        $tabs-toggle-tab-active-border-color
+      );
+      color: var(
+        --#{$prefix}tabs-toggle-tab-active-color,
+        $tabs-toggle-tab-active-color
+      );
+    }
+
+    &:hover:not(.o-tabs_tab--active) {
+      color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
+      background-color: var(
+        --#{$prefix}tabs-toggle-tab-hover-background-color,
+        $tabs-toggle-tab-hover-background-color
+      );
+      border-color: var(
+        --#{$prefix}tabs-toggle-tab-hover-border-color,
+        $tabs-toggle-tab-hover-border-color
+      );
+    }
+  }
+
+  &--pills .o-tabs__tab {
+    border-radius: var(
+      --#{$prefix}tabs-boxed-tab-radius,
+      $tabs-boxed-tab-radius
+    );
+    border-color: transparent;
+
+    &--active {
+      background-color: var(
+        --#{$prefix}tabs-toggle-tab-active-background-color,
+        $tabs-toggle-tab-active-background-color
+      );
+      color: var(
+        --#{$prefix}tabs-toggle-tab-active-color,
+        $tabs-toggle-tab-active-color
+      );
+    }
+
+    &:hover:not(.o-tabs_tab--active) {
+      color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
+      background-color: var(
+        --#{$prefix}tabs-toggle-tab-hover-background-color,
+        $tabs-toggle-tab-hover-background-color
+      );
+    }
+  }
+
+  &--expanded {
+    width: 100%;
+
+    .o-tabs__tab {
+      flex-grow: 1;
+      flex-shrink: 0;
     }
   }
 
@@ -253,18 +256,14 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
     display: flex;
     flex-direction: row;
 
-    .o-tabs__nav {
+    .o-tabs__list {
       flex-direction: column;
       align-items: stretch;
       flex-grow: 0;
       border-bottom: none;
     }
 
-    .o-tabs__tab---default {
-      border-radius: 0;
-    }
-
-    .o-tabs__tab--boxed {
+    &.o-tabs--boxed .o-tabs__tab {
       border-bottom-color: transparent;
       border-right-color: var(
         --#{$prefix}tabs-border-bottom-color,
@@ -272,7 +271,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       );
       border-radius: var(
         --#{$prefix}tabs-border-bottom-color,
-        #{$tabs-boxed-link-radius} 0 0 #{$tabs-boxed-link-radius}
+        #{$tabs-boxed-tab-radius} 0 0 #{$tabs-boxed-tab-radius}
       );
 
       &.o-tabs__tab--active {
@@ -288,7 +287,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
   &--right {
     flex-direction: row-reverse;
 
-    .o-tabs__tab--boxed {
+    &.o-tabs--boxed .o-tabs__tab {
       border-bottom-color: transparent;
       border-right-color: transparent;
       border-left-color: var(
@@ -297,7 +296,7 @@ $tabs-toggle-link-active-color: var(--#{$prefix}primary-invert) !default;
       );
       border-radius: var(
         --#{$prefix}tabs-border-bottom-color,
-        0 #{$tabs-boxed-link-radius} #{$tabs-boxed-link-radius} 0
+        0 #{$tabs-boxed-tab-radius} #{$tabs-boxed-tab-radius} 0
       );
 
       &.o-tabs__tab--active {

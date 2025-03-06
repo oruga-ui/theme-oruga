@@ -20,7 +20,7 @@ $pagination-rounded-border-radius: var(
 ) !default;
 /* @docs */
 
-.o-pag {
+.o-pagination {
   align-items: center;
   display: flex;
   text-align: center;
@@ -34,10 +34,11 @@ $pagination-rounded-border-radius: var(
     }
   }
 
-  &__btn {
+  &__button {
     @include unselectable;
     -moz-appearance: none;
     -webkit-appearance: none;
+
     align-items: center;
     box-shadow: none;
     display: inline-flex;
@@ -47,6 +48,7 @@ $pagination-rounded-border-radius: var(
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+
     line-height: var(
       --#{$prefix}pagination-link-line-height,
       $pagination-link-line-height
@@ -120,11 +122,11 @@ $pagination-rounded-border-radius: var(
     );
   }
 
-  &__btn-next {
+  &__button-next {
     order: 3;
   }
 
-  &__btn-previous {
+  &__button-previous {
     order: 2;
   }
 
@@ -149,15 +151,15 @@ $pagination-rounded-border-radius: var(
   &--centered {
     justify-content: center;
 
-    .o-pag__btn-previous {
+    .o-pagination__button-previous {
       order: 1;
     }
 
-    .o-pag__btn-next {
+    .o-pagination__button-next {
       order: 3;
     }
 
-    .o-pag__list {
+    .o-pagination__list {
       justify-content: center;
       order: 2;
     }
@@ -166,15 +168,15 @@ $pagination-rounded-border-radius: var(
   &--right {
     justify-content: flex-end;
 
-    .o-pag__btn-previous {
+    .o-pagination__button-previous {
       order: 1;
     }
 
-    .o-pag__btn-next {
+    .o-pagination__button-next {
       order: 2;
     }
 
-    .o-pag__list {
+    .o-pagination__list {
       justify-content: flex-end;
       order: 2;
     }
@@ -184,29 +186,29 @@ $pagination-rounded-border-radius: var(
     justify-content: flex-start;
     flex-wrap: wrap;
 
-    .o-pag__btn {
+    .o-pagination__button {
       flex-grow: 1;
       flex-shrink: 1;
     }
 
-    .o-pag__btn-previous {
-      flex-grow: 1;
-      flex-shrink: 1;
-      order: 0;
-    }
-
-    .o-pag__btn-next {
+    .o-pagination__button-previous {
       flex-grow: 1;
       flex-shrink: 1;
       order: 0;
     }
 
-    .o-pag__ellipsis {
+    .o-pagination__button-next {
+      flex-grow: 1;
+      flex-shrink: 1;
+      order: 0;
+    }
+
+    .o-pagination__ellipsis {
       flex-grow: 1;
       flex-shrink: 1;
     }
 
-    .o-pag__list {
+    .o-pagination__list {
       order: 0;
     }
   }

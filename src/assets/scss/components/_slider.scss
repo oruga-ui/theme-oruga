@@ -33,7 +33,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
   $tick-label-top: calc($track-height * 0.5 + 2px);
   $thumb-size: $size;
 
-  .o-slide__track {
+  .o-slider__track {
     @if $name {
       height: var(--#{$prefix}slider-track-height-#{$name}, $track-height);
     } @else {
@@ -41,7 +41,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
     }
   }
 
-  .o-slide__thumb {
+  .o-slider__thumb {
     @if $name {
       height: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
       width: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
@@ -51,7 +51,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
     }
   }
 
-  .o-slide__tick {
+  .o-slider__tick {
     @if $name {
       height: var(--#{$prefix}slider-tick-height-#{$name}, $tick-height);
     } @else {
@@ -59,7 +59,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
     }
   }
 
-  .o-slide__tick-label {
+  .o-slider__tick-label {
     @if $name {
       font-size: var(--#{$prefix}slider-mark-size-#{$name}, $slider-mark-size);
       top: var(--#{$prefix}slider-tick-label-top-#{$name}, $tick-label-top);
@@ -74,7 +74,7 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
   }
 }
 
-.o-slide {
+.o-slider {
   width: 100%;
   margin: var(--#{$prefix}slider-margin, $slider-margin);
   background: var(--#{$prefix}slider-background, $slider-background);

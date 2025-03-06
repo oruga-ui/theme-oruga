@@ -51,7 +51,7 @@ $datepicker-btn-min-width: 2.25em !default;
 $datepicker-btn-padding: 0.5em 0.5em !default;
 /* @docs */
 
-.o-dpck {
+.o-datepicker {
   font-size: var(--#{$prefix}datepicker-font-size, $datepicker-font-size);
 
   // size variants
@@ -108,6 +108,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     &__previous,
     &__next {
       @include unselectable;
+
       justify-content: center;
       text-align: center;
       text-decoration: none;

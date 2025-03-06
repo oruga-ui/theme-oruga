@@ -54,20 +54,27 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
     }
   }
 
-  &__nav {
+  &__list {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
   }
 
-  &__nav-item {
+  &__step {
     position: relative;
     display: flex;
     flex-grow: 1;
     flex-basis: 1em;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     list-style: none;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--#{$prefix}steps-link-color, $steps-link-color);
     margin: 0;
     padding: 0;
     margin-top: 0;
@@ -75,6 +82,22 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
       --#{$prefix}steps-item-line-height,
       $steps-item-line-height
     );
+
+    &--right {
+      flex-direction: row;
+    }
+
+    &--left {
+      flex-direction: row-reverse;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:not(&--clickable) {
+      cursor: not-allowed;
+    }
 
     @each $name, $pair in $colors {
       $color: list.nth($pair, 1);
@@ -91,7 +114,7 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
       );
 
       &--#{$name} {
-        &.o-steps__nav-item--active {
+        &.o-steps__step--active {
           .o-steps__marker {
             background-color: var(
               --#{$prefix}variant-invert-#{$name},
@@ -111,7 +134,7 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
           }
         }
 
-        &.o-steps__nav-item--previous {
+        &.o-steps__step--previous {
           .o-steps__marker {
             color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
             background-color: var(--#{$prefix}variant-#{$name}, $color);
@@ -170,34 +193,6 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
     }
   }
 
-  &__step {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: transparent;
-    border: transparent;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--#{$prefix}steps-link-color, $steps-link-color);
-
-    &-label-right {
-      flex-direction: row;
-    }
-
-    &-label-left {
-      flex-direction: row-reverse;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:not(&-clickable) {
-      cursor: not-allowed;
-    }
-  }
-
   &__step-label {
     text-align: center;
     z-index: 1;
@@ -237,7 +232,7 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
     }
   }
 
-  &__nav-item--active {
+  &__step--active {
     .o-steps__link {
       cursor: default;
     }
@@ -256,7 +251,7 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
     }
   }
 
-  &__nav-item--previous {
+  &__step--previous {
     .o-steps__marker {
       color: var(--#{$prefix}steps-marker-color, $steps-marker-color);
       background-color: var(
@@ -280,12 +275,12 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
     flex-direction: row;
     flex-wrap: wrap;
 
-    .o-steps__nav {
+    .o-steps__list {
       height: 100%;
       flex-direction: column;
     }
 
-    .o-steps__nav-item {
+    .o-steps__step {
       width: 100%;
       display: flex;
       align-items: center;
@@ -344,7 +339,7 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
       flex-basis: 100%;
     }
 
-    &.o-steps-position-right {
+    &.o-steps--position-right {
       flex-direction: row-reverse;
     }
   }

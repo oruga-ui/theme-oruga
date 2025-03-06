@@ -6,8 +6,8 @@ $field-label-font-weight: 600 !default;
 $field-margin-bottom: 0.75rem !default;
 $field-message-font-size: 0.75rem !default;
 $field-message-margin-top: 0.25rem !default;
-$field-margin-right: 0.37rem !default;
-$field-horizontal-label-margin: 0 1.5rem 0 0 !default;
+$field-spacer: 0.5rem !default;
+$field-horizontal-spacer: 0 1.5rem 0 0 !default;
 /* @docs */
 
 .o-field {
@@ -88,16 +88,11 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
 
   &--grouped {
     display: flex;
-
-    @include side-flex-gap($field-margin-right);
+    gap: var(--#{$prefix}field-spacer, $field-spacer);
   }
 
-  &--grouped-multiline {
+  &--multiline {
     flex-wrap: wrap;
-
-    &:last-child {
-      margin-bottom: var(--#{$prefix}field-margin-bottom, $field-margin-bottom);
-    }
   }
 
   &__horizontal-body {
@@ -105,8 +100,6 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
     flex-basis: 0;
     flex-grow: 5;
     flex-shrink: 1;
-
-    @include side-flex-gap($field-margin-right);
   }
 
   &--horizontal {
@@ -117,7 +110,7 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 0;
-    margin: $field-horizontal-label-margin;
+    margin: var(--#{$prefix}field-horizontal-spacer, $field-horizontal-spacer);
     text-align: right;
   }
 
