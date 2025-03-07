@@ -33,8 +33,8 @@
     "@oruga-ui/oruga-next": "^0.9.0"
   },
   "devDependencies": {
-    "@oruga-ui/examples": "0.10.0-pre.1",
-    "@oruga-ui/oruga-next": "0.10.0-pre.1",
+    "@oruga-ui/examples": "0.10.0-pre.2",
+    "@oruga-ui/oruga-next": "0.10.0-pre.2",
     "@vitejs/plugin-vue": "5.2.1",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.4.0",
