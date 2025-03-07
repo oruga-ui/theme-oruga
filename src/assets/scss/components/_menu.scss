@@ -19,7 +19,7 @@ $menu-icon-spacer: 0.5rem !default;
 /* @docs */
 
 .o-menu {
-  //sizes
+  // size variants
   @each $name, $value in $sizes {
     &--#{$name} {
       font-size: var(--#{$prefix}menu-font-size-#{$name}, $value);

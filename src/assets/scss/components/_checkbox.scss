@@ -152,14 +152,14 @@ $checkbox-line-height: 1.5 !default;
       .o-checkbox__input {
         border-color: var(--#{$prefix}variant-#{$name}, $color);
         background-color: var(--#{$prefix}variant-#{$name}, $color);
-      }
 
-      .o-checkbox__input:checked {
-        background-image: url(svg_checkmark($color-invert));
-      }
+        &:checked {
+          background-image: url(svg_checkmark($color-invert));
+        }
 
-      .o-checkbox__input:indeterminate {
-        background-image: url(svg_indeterminate($color-invert));
+        &:indeterminate {
+          background-image: url(svg_indeterminate($color-invert));
+        }
       }
     }
   }
