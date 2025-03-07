@@ -10,6 +10,10 @@ $carousel-arrow-border-radius: var(
 $carousel-arrow-border: 1px solid $carousel-arrow-background !default;
 $carousel-arrow-transition: var(--#{$prefix}transition-duration)
   var(--#{$prefix}transition-timing) !default;
+$carousel-autoplay-top: 1em !default;
+$carousel-autoplay-left: $carousel-arrow-icon-spaced !default;
+$carousel-autoplay-right: unset !default;
+$carousel-autoplay-bottom: unset !default;
 $carousel-indicators-background: rgba(var(--#{$prefix}white), 0.5) !default;
 $carousel-indicators-padding: 0.5rem !default;
 $carousel-indicator-margin: 0 0.5rem 0 0 !default;
@@ -102,14 +106,14 @@ $carousel-overlay-zindex: 40 !default;
 
     &--inside {
       position: absolute;
+    }
 
-      &--bottom {
-        bottom: 0;
-      }
+    &--bottom {
+      bottom: 0;
+    }
 
-      &--top {
-        top: 0;
-      }
+    &--top {
+      top: 0;
     }
   }
 
@@ -206,6 +210,18 @@ $carousel-overlay-zindex: 40 !default;
       --#{$prefix}carousel-arrow-transition,
       $carousel-arrow-transition
     );
+    z-index: 1;
+  }
+
+  &__icon-autoplay {
+    position: absolute;
+    top: var(--#{$prefix}carousel-autoplay-top, $carousel-autoplay-top);
+    left: var(--#{$prefix}carousel-autoplay-left, $carousel-autoplay-left);
+    right: var(--#{$prefix}carousel-autoplay-right, $carousel-autoplay-right);
+    bottom: var(
+      --#{$prefix}carousel-autoplay-bottom,
+      $carousel-autoplay-bottom
+    );
   }
 
   &__icon-prev,
@@ -215,7 +231,6 @@ $carousel-overlay-zindex: 40 !default;
     transform: translateY(
       var(--#{$prefix}carousel-arrow-top, -$carousel-arrow-top)
     );
-    z-index: 1;
   }
 
   &__icon-prev {

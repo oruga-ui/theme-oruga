@@ -87,13 +87,13 @@ $sidebar-zindex: 100 !default;
 
     &--reduced {
       width: var(--#{$prefix}sidebar-reduced-width, $sidebar-reduced-width);
+    }
 
-      &-expand {
-        &:hover {
-          transition: width var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
-          width: var(--#{$prefix}sidebar-width, $sidebar-width);
-        }
+    &--hover-expand {
+      &:hover {
+        transition: width var(--#{$prefix}transition-duration)
+          var(--#{$prefix}transition-timing);
+        width: var(--#{$prefix}sidebar-width, $sidebar-width);
       }
     }
 

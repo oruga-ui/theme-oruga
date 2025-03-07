@@ -39,6 +39,7 @@ $table-th-color: #363636 !default;
 $table-th-detail-width: 14px !default;
 $table-th-font-weight: 600 !default;
 $table-th-padding: 0.5em 0.75em !default;
+$table-pagination-padding: 0.5em 0 !default;
 /* @docs */
 
 .o-table {
@@ -159,7 +160,7 @@ $table-th-padding: 0.5em 0.75em !default;
           }
         }
 
-        &.o-table--detailed {
+        &.o-table__tr-detail {
           margin: var(
             --#{$prefix}table-card-detail-margin,
             $table-card-detail-margin
@@ -266,7 +267,7 @@ $table-th-padding: 0.5em 0.75em !default;
       @include unselectable;
     }
 
-    &--detailed {
+    &-detailed {
       width: var(--#{$prefix}table-th-detail-width, $table-th-detail-width);
     }
   }
@@ -306,6 +307,28 @@ $table-th-padding: 0.5em 0.75em !default;
         --#{$prefix}table-detail-chevron-color,
         $table-detail-chevron-color
       );
+    }
+  }
+
+  &__tr {
+    &-empty > td {
+      text-align: center;
+      padding: 2em;
+    }
+
+    &-detail {
+      box-shadow: var(
+        --#{$prefix}table-detail-box-shadow,
+        $table-detail-box-shadow
+      );
+      background: var(
+        --#{$prefix}table-detail-background,
+        $table-detail-background
+      );
+
+      & > td {
+        padding: var(--#{$prefix}table-detail-padding, $table-detail-padding);
+      }
     }
   }
 
@@ -359,21 +382,6 @@ $table-th-padding: 0.5em 0.75em !default;
     }
   }
 
-  &__detail {
-    box-shadow: var(
-      --#{$prefix}table-detail-box-shadow,
-      $table-detail-box-shadow
-    );
-    background: var(
-      --#{$prefix}table-detail-background,
-      $table-detail-background
-    );
-
-    td {
-      padding: var(--#{$prefix}table-detail-padding, $table-detail-padding);
-    }
-  }
-
   &__tr--selected {
     background-color: $table-row-active-background-color;
     color: $table-row-active-color;
@@ -392,6 +400,10 @@ $table-th-padding: 0.5em 0.75em !default;
     align-items: center;
     justify-content: space-between;
     display: flex;
+    padding: var(
+      --#{$prefix}table-pagination-padding,
+      $table-pagination-padding
+    );
 
     // left - right
     > div {

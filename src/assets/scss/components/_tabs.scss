@@ -51,6 +51,10 @@ $tabs-toggle-tab-active-color: var(--#{$prefix}primary-invert) !default;
     );
   }
 
+  &--multiline &__list {
+    flex-wrap: wrap;
+  }
+
   &--left .o-tabs__list {
     justify-content: flex-start;
   }

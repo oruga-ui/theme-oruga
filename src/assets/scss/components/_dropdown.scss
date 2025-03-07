@@ -55,6 +55,7 @@ $dropdown-mobile-zindex: 60 !default;
   }
 
   &__trigger {
+    display: inline-flex;
     width: 100%;
   }
 
@@ -196,24 +197,27 @@ $dropdown-mobile-zindex: 60 !default;
 
     &--clickable {
       cursor: pointer;
-    }
 
-    &--clickable:not(&--active):hover {
-      background-color: var(
-        --#{$prefix}dropdown-item-hover-background-color,
-        $dropdown-item-hover-background-color
-      );
-      color: var(
-        --#{$prefix}dropdown-item-hover-color,
-        $dropdown-item-hover-color
-      );
+      &:not(.o-dropdown__item--active) {
+        &:hover,
+        &.o-dropdown__item--focused {
+          background-color: var(
+            --#{$prefix}dropdown-item-hover-background-color,
+            $dropdown-item-hover-background-color
+          );
+          color: var(
+            --#{$prefix}dropdown-item-hover-color,
+            $dropdown-item-hover-color
+          );
+        }
+      }
     }
   }
 
   &--inline {
     display: inline;
 
-    .o-drop__menu {
+    .o-dropdown__menu {
       position: static;
       display: inline-block;
       padding: 0;
@@ -223,7 +227,7 @@ $dropdown-mobile-zindex: 60 !default;
   &--expanded {
     width: 100%;
 
-    .o-drop__menu {
+    .o-dropdown__menu {
       width: 100%;
     }
   }
@@ -236,8 +240,8 @@ $dropdown-mobile-zindex: 60 !default;
     pointer-events: none;
   }
 
-  &--modal:not(.o-drop--inline):not(.o-drop--hoverable) {
-    > .o-drop__menu {
+  &--modal:not(.o-dropdown--inline):not(.o-dropdown--hoverable) {
+    > .o-dropdown__menu {
       position: fixed;
       top: 25%;
       left: 50%;
@@ -257,7 +261,7 @@ $dropdown-mobile-zindex: 60 !default;
       z-index: var(--#{$prefix}dropdown-mobile-zindex, $dropdown-mobile-zindex);
     }
 
-    > .o-drop__overlay {
+    > .o-dropdown__overlay {
       display: block;
     }
   }
