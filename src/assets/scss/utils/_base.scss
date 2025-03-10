@@ -1,31 +1,31 @@
 *,
 :after,
 :before {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  font-family: var(--#{$prefix}base-font-family, $base-font-family);
-  font-size: var(--#{$prefix}base-font-size, $base-font-size);
-  font-weight: var(--#{$prefix}base-font-weight, $base-font-weight);
-  line-height: var(--#{$prefix}base-line-height, $base-line-height);
+    font-family: var(--#{$prefix}base-font-family, $base-font-family);
+    font-size: var(--#{$prefix}base-font-size, $base-font-size);
+    font-weight: var(--#{$prefix}base-font-weight, $base-font-weight);
+    line-height: var(--#{$prefix}base-line-height, $base-line-height);
 }
 
 .o-noscroll {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .o-clipped {
-  overflow: hidden;
+    overflow: hidden;
 }

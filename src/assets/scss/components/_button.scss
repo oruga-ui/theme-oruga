@@ -15,7 +15,7 @@ $button-spacer: 0.5rem !default;
 $button-height: $control-height !default;
 $button-padding: $control-padding-vertical 0.75em !default;
 $button-rounded-border-radius: var(
-  --#{$prefix}#{base-border-radius-rounded}
+    --#{$prefix}#{base-border-radius-rounded}
 ) !default;
 $button-disabled-opacity: var(--#{$prefix}#{base-disabled-opacity}) !default;
 $button-outlined-background-color: transparent !default;
@@ -23,200 +23,209 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
 /* @docs */
 
 @keyframes spinAround {
-  from {
-    transform: rotate(0deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
 
-  to {
-    transform: rotate(359deg);
-  }
+    to {
+        transform: rotate(359deg);
+    }
 }
 
 .o-btn {
-  position: relative;
-  display: inline-flex;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  align-items: center;
-  justify-content: center;
-  vertical-align: top;
-  text-decoration: none;
-
-  @include unselectable;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-
-  background-color: var(
-    --#{$prefix}button-background-color,
-    $button-background-color
-  );
-  color: var(--#{$prefix}button-color, $button-color);
-  padding: var(--#{$prefix}button-padding, $button-padding);
-  border: var(--#{$prefix}button-border, $button-border);
-  border-radius: var(--#{$prefix}button-border-radius, $button-border-radius);
-  box-shadow: var(--#{$prefix}button-box-shadow, $button-box-shadow);
-  font-size: var(--#{$prefix}base-font-size, $base-font-size);
-  font-weight: var(--#{$prefix}button-font-weight, $button-font-weight);
-  line-height: var(--#{$prefix}button-line-height, $button-line-height);
-  margin: var(--#{$prefix}button-margin, $button-margin);
-  height: var(--#{$prefix}button-height, $button-height);
-
-  &__wrapper {
+    position: relative;
     display: inline-flex;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 100%;
+    vertical-align: top;
+    text-decoration: none;
 
-    @include side-flex-gap($button-margin-icon-to-text);
-  }
+    @include unselectable;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 
-  &__label {
-    width: 100%;
-  }
-
-  &--expanded {
-    width: 100%;
-  }
-
-  &--rounded {
-    border-radius: var(
-      --#{$prefix}button-rounded-border-radius,
-      $button-rounded-border-radius
+    background-color: var(
+        --#{$prefix}button-background-color,
+        $button-background-color
     );
-  }
+    color: var(--#{$prefix}button-color, $button-color);
+    padding: var(--#{$prefix}button-padding, $button-padding);
+    border: var(--#{$prefix}button-border, $button-border);
+    border-radius: var(--#{$prefix}button-border-radius, $button-border-radius);
+    box-shadow: var(--#{$prefix}button-box-shadow, $button-box-shadow);
+    font-size: var(--#{$prefix}base-font-size, $base-font-size);
+    font-weight: var(--#{$prefix}button-font-weight, $button-font-weight);
+    line-height: var(--#{$prefix}button-line-height, $button-line-height);
+    margin: var(--#{$prefix}button-margin, $button-margin);
+    height: var(--#{$prefix}button-height, $button-height);
 
-  &--disabled {
-    opacity: var(--#{$prefix}button-disabled-opacity, $button-disabled-opacity);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
+    &__wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
 
-  /* size variants*/
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
+        @include side-flex-gap($button-margin-icon-to-text);
     }
-  }
 
-  /* color variants*/
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-    $color-invert: list.nth($pair, 2);
-
-    &--#{$name} {
-      --#{$prefix}focus: #{createFocus($color)};
-
-      border-color: transparent;
-      background-color: var(--#{$prefix}variant-#{$name}, $color);
-      color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-
-      &:hover {
-        /* background-color: darken($color, 2.5%)*/
-        /* IE 11 needs polyfill*/
-        filter: brightness(97.5%);
-      }
+    &__label {
+        width: 100%;
     }
-  }
 
-  &--outlined {
+    &--expanded {
+        width: 100%;
+    }
+
+    &--rounded {
+        border-radius: var(
+            --#{$prefix}button-rounded-border-radius,
+            $button-rounded-border-radius
+        );
+    }
+
+    &--disabled {
+        opacity: var(
+            --#{$prefix}button-disabled-opacity,
+            $button-disabled-opacity
+        );
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* size variants*/
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
+        }
+    }
+
+    /* color variants*/
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+        $color-invert: list.nth($pair, 2);
+
+        &--#{$name} {
+            --#{$prefix}focus: #{createFocus($color)};
+
+            border-color: transparent;
+            background-color: var(--#{$prefix}variant-#{$name}, $color);
+            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+
+            &:hover {
+                /* background-color: darken($color, 2.5%)*/
+                /* IE 11 needs polyfill*/
+                filter: brightness(97.5%);
+            }
+        }
+    }
+
+    &--outlined {
+        &:focus,
+        &:hover {
+            background-color: var(
+                --#{$prefix}button-border-color,
+                $button-border-color
+            );
+            color: var(--#{$prefix}button-color, $button-color);
+        }
+
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+            $color-invert: list.nth($pair, 2);
+
+            &-#{$name} {
+                --#{$prefix}focus: #{createFocus($color)};
+
+                background-color: var(
+                    --#{$prefix}button-outlined-background-color,
+                    $button-outlined-background-color
+                );
+                border-color: var(--#{$prefix}variant-#{$name}, $color);
+                color: var(--#{$prefix}variant-#{$name}, $color);
+
+                &:focus,
+                &:hover {
+                    border-color: transparent;
+                    background-color: var(--#{$prefix}variant-#{$name}, $color);
+                    color: var(
+                        --#{$prefix}variant-invert-#{$name},
+                        $color-invert
+                    );
+                }
+            }
+        }
+    }
+
+    &--inverted {
+        background-color: var(--#{$prefix}button-color, $button-color);
+        border-color: var(--#{$prefix}button-color, $button-color);
+        color: var(--#{$prefix}button-border-color, $button-border-color);
+
+        &:hover {
+            /* background-color: darken($color-invert, 5%)*/
+            /* IE 11 needs polyfill*/
+            filter: brightness(95%);
+        }
+
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+            $color-invert: list.nth($pair, 2);
+
+            &-#{$name} {
+                --#{$prefix}focus: #{createFocus($color)};
+
+                background-color: var(
+                    --#{$prefix}variant-invert-#{$name},
+                    $color-invert
+                );
+                border-color: var(
+                    --#{$prefix}variant-invert-#{$name},
+                    $color-invert
+                );
+                color: var(--#{$prefix}variant-#{$name}, $color);
+
+                &:focus,
+                &:hover {
+                    /* background-color: darken($color-invert, 5%)*/
+                    /* IE 11 needs polyfill*/
+                    filter: brightness(95%);
+                }
+            }
+        }
+    }
+
+    /* focus effect*/
     &:focus,
-    &:hover {
-      background-color: var(
-        --#{$prefix}button-border-color,
-        $button-border-color
-      );
-      color: var(--#{$prefix}button-color, $button-color);
+    &:focus-within {
+        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+        outline: 0;
     }
 
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-      $color-invert: list.nth($pair, 2);
-
-      &-#{$name} {
-        --#{$prefix}focus: #{createFocus($color)};
-
-        background-color: var(
-          --#{$prefix}button-outlined-background-color,
-          $button-outlined-background-color
-        );
-        border-color: var(--#{$prefix}variant-#{$name}, $color);
-        color: var(--#{$prefix}variant-#{$name}, $color);
-
-        &:focus,
-        &:hover {
-          border-color: transparent;
-          background-color: var(--#{$prefix}variant-#{$name}, $color);
-          color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-        }
-      }
-    }
-  }
-
-  &--inverted {
-    background-color: var(--#{$prefix}button-color, $button-color);
-    border-color: var(--#{$prefix}button-color, $button-color);
-    color: var(--#{$prefix}button-border-color, $button-border-color);
-
-    &:hover {
-      /* background-color: darken($color-invert, 5%)*/
-      /* IE 11 needs polyfill*/
-      filter: brightness(95%);
+    &--loading {
+        color: transparent !important;
+        pointer-events: none;
     }
 
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-      $color-invert: list.nth($pair, 2);
-
-      &-#{$name} {
-        --#{$prefix}focus: #{createFocus($color)};
-
-        background-color: var(
-          --#{$prefix}variant-invert-#{$name},
-          $color-invert
-        );
-        border-color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-        color: var(--#{$prefix}variant-#{$name}, $color);
-
-        &:focus,
-        &:hover {
-          /* background-color: darken($color-invert, 5%)*/
-          /* IE 11 needs polyfill*/
-          filter: brightness(95%);
-        }
-      }
+    &--loading::after {
+        -webkit-animation: spinAround 500ms infinite linear;
+        left: calc(50% - 0.5em);
+        top: calc(50% - 0.5em);
+        position: absolute !important;
+        border: 2px solid #dbdbdb;
+        border-radius: 9999px;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+        display: block;
+        height: 1em;
+        width: 1em;
     }
-  }
 
-  /* focus effect*/
-  &:focus,
-  &:focus-within {
-    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-    outline: 0;
-  }
-
-  &--loading {
-    color: transparent !important;
-    pointer-events: none;
-  }
-
-  &--loading::after {
-    -webkit-animation: spinAround 500ms infinite linear;
-    left: calc(50% - 0.5em);
-    top: calc(50% - 0.5em);
-    position: absolute !important;
-    border: 2px solid #dbdbdb;
-    border-radius: 9999px;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    content: "";
-    display: block;
-    height: 1em;
-    width: 1em;
-  }
-
-  .o-icon:not(:last-child) {
-    margin-right: var(--#{$prefix}button-spacer, $button-spacer);
-  }
+    .o-icon:not(:last-child) {
+        margin-right: var(--#{$prefix}button-spacer, $button-spacer);
+    }
 }

@@ -8,7 +8,7 @@ $notification-margin-bottom: 1.5rem !default;
 $notification-animantion: append-animate 0.3s linear !default;
 $notification-color: var(--#{$prefix}white) !default;
 $notification-close-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $notification-close-right: 0.5rem !default;
 $notification-close-top: 0.5rem !default;
@@ -21,155 +21,167 @@ $notification-notices-zindex: 1000 !default;
 /* @docs */
 
 .o-notification {
-  position: relative;
-  transform-origin: 50% 0;
-  // Modifiers
-  background-color: var(
-    --#{$prefix}notification-background-color,
-    $notification-background-color
-  );
-  color: var(--#{$prefix}notification-color, $notification-color);
-  border-radius: var(
-    --#{$prefix}notification-border-radius,
-    $notification-border-radius
-  );
-  padding: var(--#{$prefix}notification-padding, $notification-padding);
-  margin-bottom: var(
-    --#{$prefix}notification-margin-bottom,
-    $notification-margin-bottom
-  );
-
-  &__content {
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-    text-align: inherit;
-    overflow-y: hidden;
-    overflow-x: auto;
-  }
-
-  &__wrapper {
-    align-items: flex-start;
-    display: flex;
-    text-align: inherit;
-    padding-top: 0;
-    border: 0;
-  }
-
-  &__icon {
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin-right: var(
-      --#{$prefix}notification-icon-margin-right,
-      $notification-icon-margin-right
-    );
-  }
-
-  &__close {
-    position: absolute;
-    border: none;
-    cursor: pointer;
-    pointer-events: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 0;
-    flex-shrink: 0;
-    vertical-align: top;
+    position: relative;
+    transform-origin: 50% 0;
+    // Modifiers
     background-color: var(
-      --#{$prefix}notification-close-background-color,
-      $notification-close-background-color
+        --#{$prefix}notification-background-color,
+        $notification-background-color
     );
+    color: var(--#{$prefix}notification-color, $notification-color);
     border-radius: var(
-      --#{$prefix}notification-close-border-radius,
-      $notification-close-border-radius
+        --#{$prefix}notification-border-radius,
+        $notification-border-radius
     );
-    right: var(--#{$prefix}notification-close-right, $notification-close-right);
-    top: var(--#{$prefix}notification-close-top, $notification-close-top);
-    height: var(--#{$prefix}notification-close-size, $notification-close-size);
-    width: var(--#{$prefix}notification-close-size, $notification-close-size);
-    color: var(--#{$prefix}notification-close-color, $notification-close-color);
-  }
+    padding: var(--#{$prefix}notification-padding, $notification-padding);
+    margin-bottom: var(
+        --#{$prefix}notification-margin-bottom,
+        $notification-margin-bottom
+    );
 
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-    $color-invert: list.nth($pair, 2);
-    &--#{$name} {
-      border-color: transparent;
-      background-color: var(--#{$prefix}variant-#{$name}, $color);
-      color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-
-      &:hover {
-        // background-color: darken($color, 2.5%)
-        // IE 11 needs polyfill
-        filter: brightness(97.5%);
-      }
+    &__content {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: inherit;
+        overflow-y: hidden;
+        overflow-x: auto;
     }
-  }
+
+    &__wrapper {
+        align-items: flex-start;
+        display: flex;
+        text-align: inherit;
+        padding-top: 0;
+        border: 0;
+    }
+
+    &__icon {
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: var(
+            --#{$prefix}notification-icon-margin-right,
+            $notification-icon-margin-right
+        );
+    }
+
+    &__close {
+        position: absolute;
+        border: none;
+        cursor: pointer;
+        pointer-events: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 0;
+        flex-shrink: 0;
+        vertical-align: top;
+        background-color: var(
+            --#{$prefix}notification-close-background-color,
+            $notification-close-background-color
+        );
+        border-radius: var(
+            --#{$prefix}notification-close-border-radius,
+            $notification-close-border-radius
+        );
+        right: var(
+            --#{$prefix}notification-close-right,
+            $notification-close-right
+        );
+        top: var(--#{$prefix}notification-close-top, $notification-close-top);
+        height: var(
+            --#{$prefix}notification-close-size,
+            $notification-close-size
+        );
+        width: var(
+            --#{$prefix}notification-close-size,
+            $notification-close-size
+        );
+        color: var(
+            --#{$prefix}notification-close-color,
+            $notification-close-color
+        );
+    }
+
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+        $color-invert: list.nth($pair, 2);
+        &--#{$name} {
+            border-color: transparent;
+            background-color: var(--#{$prefix}variant-#{$name}, $color);
+            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+
+            &:hover {
+                // background-color: darken($color, 2.5%)
+                // IE 11 needs polyfill
+                filter: brightness(97.5%);
+            }
+        }
+    }
 }
 
 .o-notices {
-  position: fixed;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  pointer-events: none;
-  padding: var(
-    --#{$prefix}notification-notices-padding,
-    $notification-notices-padding
-  );
-  z-index: var(
-    --#{$prefix}notification-notices-zindex,
-    $notification-notices-zindex
-  );
-
-  .o-notification {
-    pointer-events: stroke;
-    max-width: 600px;
-    animation: var(
-      --#{$prefix}notification-animantion,
-      $notification-animantion
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    pointer-events: none;
+    padding: var(
+        --#{$prefix}notification-notices-padding,
+        $notification-notices-padding
+    );
+    z-index: var(
+        --#{$prefix}notification-notices-zindex,
+        $notification-notices-zindex
     );
 
-    &--top,
-    &--bottom {
-      align-self: center;
-    }
-
-    &--top-right,
-    &--bottom-right {
-      align-self: flex-end;
-    }
-
-    &--top-left,
-    &--bottom-left {
-      align-self: flex-start;
-    }
-  }
-
-  &--top {
-    flex-direction: column;
-  }
-
-  &--bottom {
-    flex-direction: column-reverse;
-
-    // Since the columns are reversed, we need to reverse the margin logic from
-    // :not(:last-child) to :not(:first-child)
     .o-notification {
-      margin-bottom: 0;
+        pointer-events: stroke;
+        max-width: 600px;
+        animation: var(
+            --#{$prefix}notification-animantion,
+            $notification-animantion
+        );
 
-      &:not(:first-child) {
-        margin-bottom: $notification-margin-bottom;
-      }
+        &--top,
+        &--bottom {
+            align-self: center;
+        }
+
+        &--top-right,
+        &--bottom-right {
+            align-self: flex-end;
+        }
+
+        &--top-left,
+        &--bottom-left {
+            align-self: flex-start;
+        }
     }
-  }
 
-  &__custom-container {
-    position: absolute;
-  }
+    &--top {
+        flex-direction: column;
+    }
+
+    &--bottom {
+        flex-direction: column-reverse;
+
+        // Since the columns are reversed, we need to reverse the margin logic from
+        // :not(:last-child) to :not(:first-child)
+        .o-notification {
+            margin-bottom: 0;
+
+            &:not(:first-child) {
+                margin-bottom: $notification-margin-bottom;
+            }
+        }
+    }
+
+    &__custom-container {
+        position: absolute;
+    }
 }

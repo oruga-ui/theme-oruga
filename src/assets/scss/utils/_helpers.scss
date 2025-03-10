@@ -16,18 +16,18 @@
 ///   Replacement. Default is ''.
 /// @return {string} string with characters replaced.
 @function str-replace($string, $search, $replace: "") {
-  $index: string.index($string, $search);
+    $index: string.index($string, $search);
 
-  @return if(
-    $index,
-    string.slice($string, 1, $index - 1) + $replace +
-      str-replace(
-        string.slice($string, $index + string.length($search)),
-        $search,
-        $replace
-      ),
-    $string
-  );
+    @return if(
+        $index,
+        string.slice($string, 1, $index - 1) + $replace +
+            str-replace(
+                string.slice($string, $index + string.length($search)),
+                $search,
+                $replace
+            ),
+        $string
+    );
 }
 
 /// Encodes an inline svg. Original source code: http://codepen.io/jakob-e/pen/doMoML
@@ -36,78 +36,78 @@
 ///   Inline svg to encode
 /// @return {string} encoded svg.
 @function svg-encode($svg) {
-  // Chunk up string in order to avoid "stack level too deep" error
-  $encoded: "";
-  $slice: 2000;
-  $index: 0;
-  $loops: math.ceil(divide(string.length($svg), $slice));
+    // Chunk up string in order to avoid "stack level too deep" error
+    $encoded: "";
+    $slice: 2000;
+    $index: 0;
+    $loops: math.ceil(divide(string.length($svg), $slice));
 
-  @for $i from 1 through $loops {
-    $chunk: string.slice($svg, $index, $index + $slice - 1);
-    // Encode
-    $chunk: str-replace($chunk, '"', "'");
-    $chunk: str-replace($chunk, "%", "%25");
-    $chunk: str-replace($chunk, "#", "%23");
-    $chunk: str-replace($chunk, "{", "%7B");
-    $chunk: str-replace($chunk, "}", "%7D");
-    $chunk: str-replace($chunk, "<", "%3C");
-    $chunk: str-replace($chunk, ">", "%3E");
+    @for $i from 1 through $loops {
+        $chunk: string.slice($svg, $index, $index + $slice - 1);
+        // Encode
+        $chunk: str-replace($chunk, '"', "'");
+        $chunk: str-replace($chunk, "%", "%25");
+        $chunk: str-replace($chunk, "#", "%23");
+        $chunk: str-replace($chunk, "{", "%7B");
+        $chunk: str-replace($chunk, "}", "%7D");
+        $chunk: str-replace($chunk, "<", "%3C");
+        $chunk: str-replace($chunk, ">", "%3E");
 
-    $encoded: #{$encoded}#{$chunk};
-    $index: $index + $slice;
-  }
+        $encoded: #{$encoded}#{$chunk};
+        $index: $index + $slice;
+    }
 
-  @return "data:image/svg+xml,#{$encoded}";
+    @return "data:image/svg+xml,#{$encoded}";
 }
 
 @mixin unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 @mixin side-flex-gap($gap) {
-  //flex-wrap: wrap;
-  margin-left: -$gap;
-  margin-right: -$gap;
+    //flex-wrap: wrap;
+    margin-left: -$gap;
+    margin-right: -$gap;
 
-  & > * {
-    margin-left: $gap;
-    margin-right: $gap;
-  }
+    & > * {
+        margin-left: $gap;
+        margin-right: $gap;
+    }
 }
 
 // Custom divide function by @mdo from https://github.com/twbs/bootstrap/pull/34245
 // Replaces old slash division deprecated in Dart Sass
 @function divide($dividend, $divisor, $precision: 10) {
-  $sign: if($dividend > 0 and $divisor > 0, 1, -1);
-  $dividend: math.abs($dividend);
-  $divisor: math.abs($divisor);
-  $quotient: 0;
-  $remainder: $dividend;
-  @if $dividend == 0 {
-    @return 0;
-  }
-  @if $divisor == 0 {
-    @error "Cannot divide by 0";
-  }
-  @if $divisor == 1 {
-    @return $dividend;
-  }
+    $sign: if($dividend > 0 and $divisor > 0, 1, -1);
+    $dividend: math.abs($dividend);
+    $divisor: math.abs($divisor);
+    $quotient: 0;
+    $remainder: $dividend;
+    @if $dividend == 0 {
+        @return 0;
+    }
+    @if $divisor == 0 {
+        @error "Cannot divide by 0";
+    }
+    @if $divisor == 1 {
+        @return $dividend;
+    }
 
-  @while $remainder >= $divisor {
-    $quotient: $quotient + 1;
-    $remainder: $remainder - $divisor;
-  }
-  @if $remainder > 0 and $precision > 0 {
-    $remainder: divide($remainder * 10, $divisor, $precision - 1) * 0.1;
-  }
+    @while $remainder >= $divisor {
+        $quotient: $quotient + 1;
+        $remainder: $remainder - $divisor;
+    }
+    @if $remainder > 0 and $precision > 0 {
+        $remainder: divide($remainder * 10, $divisor, $precision - 1) * 0.1;
+    }
 
-  @return ($quotient + $remainder) * $sign;
+    @return ($quotient + $remainder) * $sign;
 }
 
 // create a focus color based on a given color
 @function createFocus($color) {
-  @return color.adjust($color, $alpha: -0.75);
+    @return color.adjust($color, $alpha: -0.75);
 }

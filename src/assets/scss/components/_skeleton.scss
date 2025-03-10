@@ -1,9 +1,9 @@
 /* @docs */
 $skeleton-background: linear-gradient(
-  90deg,
-  $grey-lighter 25%,
-  rgba($grey-lighter, 0.5) 50%,
-  $grey-lighter 75%
+    90deg,
+    $grey-lighter 25%,
+    rgba($grey-lighter, 0.5) 50%,
+    $grey-lighter 75%
 ) !default;
 $skeleton-border-radius: var(--#{$prefix}base-border-radius) !default;
 $skeleton-duration: 1.5s !default;
@@ -11,70 +11,70 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
 /* @docs */
 
 @keyframes skeleton-loading {
-  0% {
-    background-position: 100% 50%;
-  }
+    0% {
+        background-position: 100% 50%;
+    }
 
-  100% {
-    background-position: 0 50%;
-  }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 @mixin steps-size($size, $name: null) {
-  @if $name {
-    line-height: var(--#{$prefix}skeleton-font-size-#{$name}, $size);
-  } @else {
-    line-height: var(--#{$prefix}skeleton-font-size, $size);
-  }
+    @if $name {
+        line-height: var(--#{$prefix}skeleton-font-size-#{$name}, $size);
+    } @else {
+        line-height: var(--#{$prefix}skeleton-font-size, $size);
+    }
 }
 
 .o-sklt {
-  display: inline-flex;
-  flex-direction: column;
-  vertical-align: middle;
-  width: 100%;
-
-  &__item {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
     width: 100%;
-    background: var(--#{$prefix}skeleton-background, $skeleton-background);
-    margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
 
-    @include steps-size($base-font-size);
+    &__item {
+        width: 100%;
+        background: var(--#{$prefix}skeleton-background, $skeleton-background);
+        margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
 
-    @each $name, $value in $sizes {
-      &--#{$name} {
-        @include steps-size($value, $name);
-      }
+        @include steps-size($base-font-size);
+
+        @each $name, $value in $sizes {
+            &--#{$name} {
+                @include steps-size($value, $name);
+            }
+        }
+
+        &--rounded {
+            border-radius: var(
+                --#{$prefix}skeleton-border-radius,
+                $skeleton-border-radius
+            );
+        }
+
+        &--animated {
+            background-size: 400% 100%;
+            animation-name: skeleton-loading;
+            animation-iteration-count: infinite;
+            animation-duration: var(
+                --#{$prefix}skeleton-duration,
+                $skeleton-duration
+            );
+        }
+
+        &::after {
+            content: "\00a0";
+        }
     }
 
-    &--rounded {
-      border-radius: var(
-        --#{$prefix}skeleton-border-radius,
-        $skeleton-border-radius
-      );
+    &--centered {
+        align-items: center;
     }
 
-    &--animated {
-      background-size: 400% 100%;
-      animation-name: skeleton-loading;
-      animation-iteration-count: infinite;
-      animation-duration: var(
-        --#{$prefix}skeleton-duration,
-        $skeleton-duration
-      );
+    &--right {
+        align-items: flex-end;
+        margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
     }
-
-    &::after {
-      content: "\00a0";
-    }
-  }
-
-  &--centered {
-    align-items: center;
-  }
-
-  &--right {
-    align-items: flex-end;
-    margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
-  }
 }

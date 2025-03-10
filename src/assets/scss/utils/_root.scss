@@ -2,11 +2,11 @@
 @use "sass:meta";
 
 @mixin root() {
-  $host-selector: if($enable-host, ":host", ":root");
+    $host-selector: if($enable-host, ":host", ":root");
 
-  #{$host-selector} {
-    @content;
-  }
+    #{$host-selector} {
+        @content;
+    }
 }
 
 /*******************************
@@ -14,41 +14,41 @@
 ********************************/
 
 @include root() {
-  // define color variables
-  @each $name, $color in $colors {
-    @if meta.type-of($color) == list {
-      --#{$prefix}#{$name}: #{list.nth($color, 1)};
-      --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
-    } @else {
-      --#{$prefix}#{$name}: $color;
+    // define color variables
+    @each $name, $color in $colors {
+        @if meta.type-of($color) == list {
+            --#{$prefix}#{$name}: #{list.nth($color, 1)};
+            --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
+        } @else {
+            --#{$prefix}#{$name}: $color;
+        }
     }
-  }
 
-  // define additional colors
-  --#{$prefix}white: #{$white};
-  --#{$prefix}black: #{$black};
-  --#{$prefix}grey: #{$grey};
-  --#{$prefix}grey-light: #{$grey-light};
-  --#{$prefix}grey-lighter: #{$grey-lighter};
-  --#{$prefix}grey-dark: #{$grey-dark};
-  --#{$prefix}focus: #{createFocus($primary)};
+    // define additional colors
+    --#{$prefix}white: #{$white};
+    --#{$prefix}black: #{$black};
+    --#{$prefix}grey: #{$grey};
+    --#{$prefix}grey-light: #{$grey-light};
+    --#{$prefix}grey-lighter: #{$grey-lighter};
+    --#{$prefix}grey-dark: #{$grey-dark};
+    --#{$prefix}focus: #{createFocus($primary)};
 
-  // define size variables
-  @each $name, $size in $sizes {
-    --#{$prefix}size-#{$name}: #{$size};
-  }
+    // define size variables
+    @each $name, $size in $sizes {
+        --#{$prefix}size-#{$name}: #{$size};
+    }
 
-  // define base variables
-  --#{$prefix}base-font-family: #{$base-font-family};
-  --#{$prefix}base-font-size: #{$base-font-size};
-  --#{$prefix}base-font-weight: #{$base-font-weight};
-  --#{$prefix}base-line-height: #{$base-line-height};
+    // define base variables
+    --#{$prefix}base-font-family: #{$base-font-family};
+    --#{$prefix}base-font-size: #{$base-font-size};
+    --#{$prefix}base-font-weight: #{$base-font-weight};
+    --#{$prefix}base-line-height: #{$base-line-height};
 
-  --#{$prefix}base-border-radius: #{$base-border-radius};
-  --#{$prefix}base-border-radius-rounded: #{$base-border-radius-rounded};
-  --#{$prefix}base-line-height: #{$base-line-height};
-  --#{$prefix}base-disabled-opacity: #{$base-disabled-opacity};
+    --#{$prefix}base-border-radius: #{$base-border-radius};
+    --#{$prefix}base-border-radius-rounded: #{$base-border-radius-rounded};
+    --#{$prefix}base-line-height: #{$base-line-height};
+    --#{$prefix}base-disabled-opacity: #{$base-disabled-opacity};
 
-  --#{$prefix}transition-duration: #{$animation-speed};
-  --#{$prefix}transition-timing: #{$animation-timing};
+    --#{$prefix}transition-duration: #{$animation-speed};
+    --#{$prefix}transition-timing: #{$animation-timing};
 }

@@ -11,122 +11,128 @@ $field-horizontal-label-margin: 0 1.5rem 0 0 !default;
 /* @docs */
 
 .o-field {
-  flex-grow: 1;
-
-  &:not(:last-child) {
-    margin-bottom: var(--#{$prefix}field-margin-bottom, $field-margin-bottom);
-  }
-
-  &__label {
-    display: block;
-    color: var(--#{$prefix}field-label-color, $field-label-color);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    font-weight: var(
-      --#{$prefix}field-label-font-weight,
-      $field-label-font-weight
-    );
-
-    @each $name, $value in $sizes {
-      &-#{$name} {
-        font-size: var(--#{$prefix}field-font-size-#{$name}, $value);
-      }
-    }
-  }
-
-  &__message {
-    display: block;
-    font-size: var(
-      --#{$prefix}field-message-font-size,
-      $field-message-font-size
-    );
-    margin-top: var(
-      --#{$prefix}field-message-margin-top,
-      $field-message-margin-top
-    );
-
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-      &-#{$name} {
-        color: var(--#{$prefix}variant-#{$name}, $color);
-      }
-    }
-  }
-
-  &--addons {
-    display: flex;
-    justify-content: flex-start;
-
-    > button:first-child,
-    > *:first-child:not(:only-child) button,
-    > input:first-child,
-    > *:first-child:not(:only-child) input,
-    > select:first-child,
-    > *:first-child:not(:only-child) select {
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
-    }
-
-    > button:last-child,
-    > *:last-child:not(:only-child) button,
-    > input:last-child,
-    > *:last-child:not(:only-child) input,
-    > select:last-child,
-    > *:last-child:not(:only-child) select {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-    }
-
-    > *:not(:first-child):not(:last-child) button,
-    > button:not(:first-child):not(:last-child),
-    > *:not(:first-child):not(:last-child) input,
-    > input:not(:first-child):not(:last-child),
-    > *:not(:first-child):not(:last-child) select,
-    > select:not(:first-child):not(:last-child) {
-      border-radius: 0;
-    }
-  }
-
-  &--grouped {
-    display: flex;
-
-    @include side-flex-gap($field-margin-right);
-  }
-
-  &--grouped-multiline {
-    flex-wrap: wrap;
-
-    &:last-child {
-      margin-bottom: var(--#{$prefix}field-margin-bottom, $field-margin-bottom);
-    }
-  }
-
-  &__horizontal-body {
-    display: flex;
-    flex-basis: 0;
-    flex-grow: 5;
-    flex-shrink: 1;
-
-    @include side-flex-gap($field-margin-right);
-  }
-
-  &--horizontal {
-    display: flex;
-  }
-
-  &__horizontal-label {
-    flex-basis: 0;
     flex-grow: 1;
-    flex-shrink: 0;
-    margin: $field-horizontal-label-margin;
-    text-align: right;
-  }
 
-  &--mobile {
-    &.o-field--horizontal,
-    .o-field__horizontal-label,
-    .o-field__horizontal-body {
-      display: block;
-      text-align: inherit;
+    &:not(:last-child) {
+        margin-bottom: var(
+            --#{$prefix}field-margin-bottom,
+            $field-margin-bottom
+        );
     }
-  }
+
+    &__label {
+        display: block;
+        color: var(--#{$prefix}field-label-color, $field-label-color);
+        font-size: var(--#{$prefix}base-font-size, $base-font-size);
+        font-weight: var(
+            --#{$prefix}field-label-font-weight,
+            $field-label-font-weight
+        );
+
+        @each $name, $value in $sizes {
+            &-#{$name} {
+                font-size: var(--#{$prefix}field-font-size-#{$name}, $value);
+            }
+        }
+    }
+
+    &__message {
+        display: block;
+        font-size: var(
+            --#{$prefix}field-message-font-size,
+            $field-message-font-size
+        );
+        margin-top: var(
+            --#{$prefix}field-message-margin-top,
+            $field-message-margin-top
+        );
+
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+            &-#{$name} {
+                color: var(--#{$prefix}variant-#{$name}, $color);
+            }
+        }
+    }
+
+    &--addons {
+        display: flex;
+        justify-content: flex-start;
+
+        > button:first-child,
+        > *:first-child:not(:only-child) button,
+        > input:first-child,
+        > *:first-child:not(:only-child) input,
+        > select:first-child,
+        > *:first-child:not(:only-child) select {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        > button:last-child,
+        > *:last-child:not(:only-child) button,
+        > input:last-child,
+        > *:last-child:not(:only-child) input,
+        > select:last-child,
+        > *:last-child:not(:only-child) select {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        > *:not(:first-child):not(:last-child) button,
+        > button:not(:first-child):not(:last-child),
+        > *:not(:first-child):not(:last-child) input,
+        > input:not(:first-child):not(:last-child),
+        > *:not(:first-child):not(:last-child) select,
+        > select:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+    }
+
+    &--grouped {
+        display: flex;
+
+        @include side-flex-gap($field-margin-right);
+    }
+
+    &--grouped-multiline {
+        flex-wrap: wrap;
+
+        &:last-child {
+            margin-bottom: var(
+                --#{$prefix}field-margin-bottom,
+                $field-margin-bottom
+            );
+        }
+    }
+
+    &__horizontal-body {
+        display: flex;
+        flex-basis: 0;
+        flex-grow: 5;
+        flex-shrink: 1;
+
+        @include side-flex-gap($field-margin-right);
+    }
+
+    &--horizontal {
+        display: flex;
+    }
+
+    &__horizontal-label {
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin: $field-horizontal-label-margin;
+        text-align: right;
+    }
+
+    &--mobile {
+        &.o-field--horizontal,
+        .o-field__horizontal-label,
+        .o-field__horizontal-body {
+            display: block;
+            text-align: inherit;
+        }
+    }
 }
