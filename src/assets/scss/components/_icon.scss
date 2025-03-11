@@ -5,49 +5,49 @@ $icon-spin-duration: 2s !default;
 /* @docs */
 
 @keyframes icon-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
 
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
 }
 
 .o-icon {
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-  transition:
-    transform $animation-speed $animation-timing,
-    opacity $animation-speed-fast $animation-timing;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    transition:
+        transform $animation-speed $animation-timing,
+        opacity $animation-speed-fast $animation-timing;
 
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      font-size: var(--#{$prefix}icon-font-size-#{$name}, $value);
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}icon-font-size-#{$name}, $value);
+        }
     }
-  }
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-    &--#{$name} {
-      color: var(--#{$prefix}variant-#{$name}, $color);
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+        &--#{$name} {
+            color: var(--#{$prefix}variant-#{$name}, $color);
+        }
     }
-  }
 
-  &--clickable {
-    pointer-events: auto;
-    cursor: pointer;
-  }
+    &--clickable {
+        pointer-events: auto;
+        cursor: pointer;
+    }
 
-  &--spin {
-    animation-name: icon-spin;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-duration: var(
-      --#{$prefix}icon-spin-duration,
-      $icon-spin-duration
-    );
-  }
+    &--spin {
+        animation-name: icon-spin;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: var(
+            --#{$prefix}icon-spin-duration,
+            $icon-spin-duration
+        );
+    }
 }

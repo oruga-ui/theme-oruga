@@ -16,198 +16,213 @@ $pagination-link-min-width: 2.25em !default;
 $pagination-link-padding: 0.5em 0.5em !default;
 $pagination-margin: -0.25rem !default;
 $pagination-rounded-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 /* @docs */
 
 .o-pag {
-  align-items: center;
-  display: flex;
-  text-align: center;
-  justify-content: space-between;
-  font-size: var(--#{$prefix}base-font-size, $base-font-size);
-  margin: var(--#{$prefix}pagination-margin, $pagination-margin);
-
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      font-size: var(--#{$prefix}pagination-font-size-#{$name}, $value);
-    }
-  }
-
-  &__btn {
-    @include unselectable;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    align-items: center;
-    box-shadow: none;
-    display: inline-flex;
-    position: relative;
-    vertical-align: top;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    line-height: var(
-      --#{$prefix}pagination-link-line-height,
-      $pagination-link-line-height
-    );
-    border: var(--#{$prefix}pagination-link-border, $pagination-link-border);
-    border-radius: var(
-      --#{$prefix}pagination-link-border-radius,
-      $pagination-link-border-radius
-    );
-    border-color: var(
-      --#{$prefix}pagination-link-border-color,
-      $pagination-link-border-color
-    );
-    color: var(--#{$prefix}pagination-link-color, $pagination-link-color);
-    min-width: var(
-      --#{$prefix}pagination-link-min-width,
-      $pagination-link-min-width
-    );
-    height: var(--#{$prefix}pagination-link-height, $pagination-link-height);
-    padding: var(--#{$prefix}pagination-link-padding, $pagination-link-padding);
-    margin: var(--#{$prefix}pagination-link-margin, $pagination-link-margin);
-
-    &:hover {
-      text-decoration: none;
-      border-color: var(
-        --#{$prefix}pagination-link-hover-border-color,
-        $pagination-link-hover-border-color
-      );
-    }
-
-    &--rounded {
-      border-radius: var(
-        --#{$prefix}pagination-rounded-border-radius,
-        $pagination-rounded-border-radius
-      );
-    }
-
-    &--disabled {
-      pointer-events: none;
-      opacity: var(
-        --#{$prefix}pagination-disabled-opacity,
-        $pagination-disabled-opacity
-      );
-    }
-
-    &--current {
-      pointer-events: none;
-      background-color: var(
-        --#{$prefix}pagination-link-current-background-color,
-        $pagination-link-current-background-color
-      );
-      border-color: var(
-        --#{$prefix}pagination-link-current-border-color,
-        $pagination-link-current-border-color
-      );
-      color: var(
-        --#{$prefix}pagination-link-current-color,
-        $pagination-link-current-color
-      );
-    }
-  }
-
-  &__ellipsis {
-    justify-content: center;
-    text-align: center;
-    pointer-events: none;
-    margin: var(--#{$prefix}pagination-link-margin, $pagination-link-margin);
-    color: var(
-      --#{$prefix}pagination-ellipsis-color,
-      $pagination-ellipsis-color
-    );
-  }
-
-  &__btn-next {
-    order: 3;
-  }
-
-  &__btn-previous {
-    order: 2;
-  }
-
-  &__list {
     align-items: center;
     display: flex;
     text-align: center;
-    list-style: none;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
-    justify-content: flex-start;
-    order: 1;
-  }
+    justify-content: space-between;
+    font-size: var(--#{$prefix}base-font-size, $base-font-size);
+    margin: var(--#{$prefix}pagination-margin, $pagination-margin);
 
-  &--simple {
-    justify-content: normal;
-  }
-
-  &--centered {
-    justify-content: center;
-
-    .o-pag__btn-previous {
-      order: 1;
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}pagination-font-size-#{$name}, $value);
+        }
     }
 
-    .o-pag__btn-next {
-      order: 3;
+    &__btn {
+        @include unselectable;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        align-items: center;
+        box-shadow: none;
+        display: inline-flex;
+        position: relative;
+        vertical-align: top;
+        justify-content: center;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: var(
+            --#{$prefix}pagination-link-line-height,
+            $pagination-link-line-height
+        );
+        border: var(
+            --#{$prefix}pagination-link-border,
+            $pagination-link-border
+        );
+        border-radius: var(
+            --#{$prefix}pagination-link-border-radius,
+            $pagination-link-border-radius
+        );
+        border-color: var(
+            --#{$prefix}pagination-link-border-color,
+            $pagination-link-border-color
+        );
+        color: var(--#{$prefix}pagination-link-color, $pagination-link-color);
+        min-width: var(
+            --#{$prefix}pagination-link-min-width,
+            $pagination-link-min-width
+        );
+        height: var(
+            --#{$prefix}pagination-link-height,
+            $pagination-link-height
+        );
+        padding: var(
+            --#{$prefix}pagination-link-padding,
+            $pagination-link-padding
+        );
+        margin: var(
+            --#{$prefix}pagination-link-margin,
+            $pagination-link-margin
+        );
+
+        &:hover {
+            text-decoration: none;
+            border-color: var(
+                --#{$prefix}pagination-link-hover-border-color,
+                $pagination-link-hover-border-color
+            );
+        }
+
+        &--rounded {
+            border-radius: var(
+                --#{$prefix}pagination-rounded-border-radius,
+                $pagination-rounded-border-radius
+            );
+        }
+
+        &--disabled {
+            pointer-events: none;
+            opacity: var(
+                --#{$prefix}pagination-disabled-opacity,
+                $pagination-disabled-opacity
+            );
+        }
+
+        &--current {
+            pointer-events: none;
+            background-color: var(
+                --#{$prefix}pagination-link-current-background-color,
+                $pagination-link-current-background-color
+            );
+            border-color: var(
+                --#{$prefix}pagination-link-current-border-color,
+                $pagination-link-current-border-color
+            );
+            color: var(
+                --#{$prefix}pagination-link-current-color,
+                $pagination-link-current-color
+            );
+        }
     }
 
-    .o-pag__list {
-      justify-content: center;
-      order: 2;
-    }
-  }
-
-  &--right {
-    justify-content: flex-end;
-
-    .o-pag__btn-previous {
-      order: 1;
-    }
-
-    .o-pag__btn-next {
-      order: 2;
+    &__ellipsis {
+        justify-content: center;
+        text-align: center;
+        pointer-events: none;
+        margin: var(
+            --#{$prefix}pagination-link-margin,
+            $pagination-link-margin
+        );
+        color: var(
+            --#{$prefix}pagination-ellipsis-color,
+            $pagination-ellipsis-color
+        );
     }
 
-    .o-pag__list {
-      justify-content: flex-end;
-      order: 2;
-    }
-  }
-
-  &--mobile {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-
-    .o-pag__btn {
-      flex-grow: 1;
-      flex-shrink: 1;
+    &__btn-next {
+        order: 3;
     }
 
-    .o-pag__btn-previous {
-      flex-grow: 1;
-      flex-shrink: 1;
-      order: 0;
+    &__btn-previous {
+        order: 2;
     }
 
-    .o-pag__btn-next {
-      flex-grow: 1;
-      flex-shrink: 1;
-      order: 0;
+    &__list {
+        align-items: center;
+        display: flex;
+        text-align: center;
+        list-style: none;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        justify-content: flex-start;
+        order: 1;
     }
 
-    .o-pag__ellipsis {
-      flex-grow: 1;
-      flex-shrink: 1;
+    &--simple {
+        justify-content: normal;
     }
 
-    .o-pag__list {
-      order: 0;
+    &--centered {
+        justify-content: center;
+
+        .o-pag__btn-previous {
+            order: 1;
+        }
+
+        .o-pag__btn-next {
+            order: 3;
+        }
+
+        .o-pag__list {
+            justify-content: center;
+            order: 2;
+        }
     }
-  }
+
+    &--right {
+        justify-content: flex-end;
+
+        .o-pag__btn-previous {
+            order: 1;
+        }
+
+        .o-pag__btn-next {
+            order: 2;
+        }
+
+        .o-pag__list {
+            justify-content: flex-end;
+            order: 2;
+        }
+    }
+
+    &--mobile {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        .o-pag__btn {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        .o-pag__btn-previous {
+            flex-grow: 1;
+            flex-shrink: 1;
+            order: 0;
+        }
+
+        .o-pag__btn-next {
+            flex-grow: 1;
+            flex-shrink: 1;
+            order: 0;
+        }
+
+        .o-pag__ellipsis {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        .o-pag__list {
+            order: 0;
+        }
+    }
 }

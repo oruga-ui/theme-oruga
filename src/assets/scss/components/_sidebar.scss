@@ -13,127 +13,143 @@ $sidebar-zindex: 100 !default;
 /* @docs */
 
 .o-side {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: none;
-
-  &__content {
-    position: absolute;
-    background-color: var(
-      --#{$prefix}sidebar-content-background-color,
-      $sidebar-content-background-color
-    );
-    border-radius: var(
-      --#{$prefix}sidebar-border-radius,
-      $sidebar-border-radius
-    );
-    box-shadow: var(--#{$prefix}sidebar-box-shadow, $sidebar-box-shadow);
-
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-      &--#{$name} {
-        background-color: var(--#{$prefix}variant-#{$name}), $color;
-      }
-    }
-
-    // position
-    &--right,
-    &--left {
-      transition: width var(--#{$prefix}transition-duration)
-        var(--#{$prefix}transition-timing);
-      width: var(--#{$prefix}sidebar-width, $sidebar-width);
-    }
-
-    &--top,
-    &--bottom {
-      transition: height var(--#{$prefix}transition-duration)
-        var(--#{$prefix}transition-timing);
-      height: var(--#{$prefix}sidebar-width, $sidebar-width);
-    }
-
-    &--right {
-      left: auto;
-      right: 0;
-      border-left: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
-        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
-    }
-
-    &--left {
-      left: 0;
-      right: auto;
-      border-right: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
-        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
-    }
-
-    &--top {
-      top: 0;
-      bottom: auto;
-      border-bottom: var(
-          --#{$prefix}sidebar-border-width,
-          $sidebar-border-width
-        )
-        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
-    }
-
-    &--bottom {
-      top: auto;
-      bottom: 0;
-      border-top: var(--#{$prefix}sidebar-border-width, $sidebar-border-width)
-        solid var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
-    }
-
-    &--reduced {
-      width: var(--#{$prefix}sidebar-reduced-width, $sidebar-reduced-width);
-
-      &-expand {
-        &:hover {
-          transition: width var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
-          width: var(--#{$prefix}sidebar-width, $sidebar-width);
-        }
-      }
-    }
-
-    &--fullwidth {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    &--fullheight {
-      height: 100%;
-      max-height: 100%;
-    }
-  }
-
-  &__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: fixed;
     top: 0;
-    background: var(--#{$prefix}sidebar-overlay, $sidebar-overlay);
-  }
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
 
-  &--active {
-    display: block;
-  }
+    &__content {
+        position: absolute;
+        background-color: var(
+            --#{$prefix}sidebar-content-background-color,
+            $sidebar-content-background-color
+        );
+        border-radius: var(
+            --#{$prefix}sidebar-border-radius,
+            $sidebar-border-radius
+        );
+        box-shadow: var(--#{$prefix}sidebar-box-shadow, $sidebar-box-shadow);
 
-  &--inline {
-    position: relative;
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+            &--#{$name} {
+                background-color: var(--#{$prefix}variant-#{$name}), $color;
+            }
+        }
 
-    .o-side__overlay {
-      position: absolute;
+        // position
+        &--right,
+        &--left {
+            transition: width var(--#{$prefix}transition-duration)
+                var(--#{$prefix}transition-timing);
+            width: var(--#{$prefix}sidebar-width, $sidebar-width);
+        }
+
+        &--top,
+        &--bottom {
+            transition: height var(--#{$prefix}transition-duration)
+                var(--#{$prefix}transition-timing);
+            height: var(--#{$prefix}sidebar-width, $sidebar-width);
+        }
+
+        &--right {
+            left: auto;
+            right: 0;
+            border-left: var(
+                    --#{$prefix}sidebar-border-width,
+                    $sidebar-border-width
+                )
+                solid
+                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+        }
+
+        &--left {
+            left: 0;
+            right: auto;
+            border-right: var(
+                    --#{$prefix}sidebar-border-width,
+                    $sidebar-border-width
+                )
+                solid
+                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+        }
+
+        &--top {
+            top: 0;
+            bottom: auto;
+            border-bottom: var(
+                    --#{$prefix}sidebar-border-width,
+                    $sidebar-border-width
+                )
+                solid
+                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+        }
+
+        &--bottom {
+            top: auto;
+            bottom: 0;
+            border-top: var(
+                    --#{$prefix}sidebar-border-width,
+                    $sidebar-border-width
+                )
+                solid
+                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+        }
+
+        &--reduced {
+            width: var(
+                --#{$prefix}sidebar-reduced-width,
+                $sidebar-reduced-width
+            );
+
+            &-expand {
+                &:hover {
+                    transition: width var(--#{$prefix}transition-duration)
+                        var(--#{$prefix}transition-timing);
+                    width: var(--#{$prefix}sidebar-width, $sidebar-width);
+                }
+            }
+        }
+
+        &--fullwidth {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        &--fullheight {
+            height: 100%;
+            max-height: 100%;
+        }
     }
 
-    .o-side__content {
-      position: relative;
+    &__overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: var(--#{$prefix}sidebar-overlay, $sidebar-overlay);
     }
-  }
 
-  &:not(&--inline) {
-    z-index: var(--#{$prefix}sidebar-zindex, $sidebar-zindex);
-  }
+    &--active {
+        display: block;
+    }
+
+    &--inline {
+        position: relative;
+
+        .o-side__overlay {
+            position: absolute;
+        }
+
+        .o-side__content {
+            position: relative;
+        }
+    }
+
+    &:not(&--inline) {
+        z-index: var(--#{$prefix}sidebar-zindex, $sidebar-zindex);
+    }
 }

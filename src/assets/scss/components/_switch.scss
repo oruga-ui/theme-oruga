@@ -6,145 +6,158 @@ $switch-action-background: #f5f5f5 !default;
 $switch-background: var(--#{$prefix}grey-light) !default;
 $switch-border-radius: var(--#{$prefix}base-border-radius) !default;
 $switch-box-shadow:
-  0 3px 1px 0 rgba(0, 0, 0, 0.05),
-  0 2px 2px 0 rgba(0, 0, 0, 0.1),
-  0 3px 3px 0 rgba(0, 0, 0, 0.05) !default;
+    0 3px 1px 0 rgba(0, 0, 0, 0.05),
+    0 2px 2px 0 rgba(0, 0, 0, 0.1),
+    0 3px 3px 0 rgba(0, 0, 0, 0.05) !default;
 $switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $switch-margin-label: 0.5em !default;
 $switch-padding: 0.2em !default;
 $switch-rounded-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $switch-width: 2.75 * 1em !default;
 /* @docs */
 
 .o-switch {
-  @include unselectable;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  border-radius: 50rem;
-
-  // size variants
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      font-size: var(--#{$prefix}font-size-#{name}, $value);
-    }
-  }
-
-  // color variants
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-
-    &--#{$name} {
-      --#{$prefix}focus: #{createFocus($color)};
-
-      .o-switch__check--checked {
-        background: var(--#{$prefix}variant-#{$name}, $color);
-      }
-    }
-    &--#{$name}-passive {
-      --#{$prefix}focus: #{createFocus($color)};
-
-      .o-switch__check:not(.o-switch__check--checked) {
-        background: var(--#{$prefix}variant-#{$name}, $color);
-      }
-    }
-  }
-
-  &__label {
-    margin-left: var(--#{$prefix}switch-margin-label, $switch-margin-label);
-  }
-
-  &--left {
-    flex-direction: row-reverse;
-
-    .o-switch__label {
-      margin-left: 0;
-      margin-right: var(--#{$prefix}switch-margin-label, $switch-margin-label);
-    }
-  }
-
-  &__check-switch {
-    content: "";
-    display: block;
-    height: calc(
-      (
-          var(--#{$prefix}switch-width, $switch-width) - var(
-              --#{$prefix}switch-padding,
-              $switch-padding
-            ) * 2
-        ) * 0.5
-    );
-    width: calc(
-      (
-          var(--#{$prefix}switch-width, $switch-width) - var(
-              --#{$prefix}switch-padding,
-              $switch-padding
-            ) * 2
-        ) * 0.5
-    );
-    background: var(
-      --#{$prefix}switch-action-background,
-      $switch-action-background
-    );
-    box-shadow: var(--#{$prefix}switch-box-shadow, $switch-box-shadow);
-    transition: transform var(--#{$prefix}transition-duration)
-      var(--#{$prefix}transition-timing);
-    will-change: transform;
-    transform-origin: left;
-  }
-
-  &__check {
-    display: flex;
+    @include unselectable;
+    cursor: pointer;
+    display: inline-flex;
     align-items: center;
-    flex-shrink: 0;
-    width: var(--#{$prefix}switch-width, $switch-width);
-    height: calc(
-      var(--#{$prefix}switch-width, $switch-width) * 0.5 +
-        var(--#{$prefix}switch-padding, $switch-padding)
-    );
+    position: relative;
+    border-radius: 50rem;
 
-    padding: var(--#{$prefix}switch-padding, $switch-padding);
-    background: var(--#{$prefix}switch-background, $switch-background);
-    border-radius: var(--#{$prefix}switch-border-radius, $switch-border-radius);
-    transition: background var(--#{$prefix}transition-duration)
-      var(--#{$prefix}transition-timing);
-
-    &--checked {
-      background: var(
-        --#{$prefix}switch-active-background-color,
-        $switch-active-background-color
-      );
-
-      .o-switch__check-switch {
-        transform: translate3d(100%, 0, 0);
-      }
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}font-size-#{name}, $value);
+        }
     }
-  }
 
-  &__input {
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    z-index: -1;
-  }
+    // color variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
 
-  &--rounded {
-    border-radius: var(
-      --#{$prefix}switch-rounded-border-radius,
-      $switch-rounded-border-radius
-    );
-  }
+        &--#{$name} {
+            --#{$prefix}focus: #{createFocus($color)};
 
-  &--disabled {
-    opacity: var(--#{$prefix}switch-disabled-opacity, $switch-disabled-opacity);
-  }
+            .o-switch__check--checked {
+                background: var(--#{$prefix}variant-#{$name}, $color);
+            }
+        }
+        &--#{$name}-passive {
+            --#{$prefix}focus: #{createFocus($color)};
 
-  // focus effect
-  &:focus &__check,
-  &:focus-within &__check {
-    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-  }
+            .o-switch__check:not(.o-switch__check--checked) {
+                background: var(--#{$prefix}variant-#{$name}, $color);
+            }
+        }
+    }
+
+    &__label {
+        margin-left: var(--#{$prefix}switch-margin-label, $switch-margin-label);
+    }
+
+    &--left {
+        flex-direction: row-reverse;
+
+        .o-switch__label {
+            margin-left: 0;
+            margin-right: var(
+                --#{$prefix}switch-margin-label,
+                $switch-margin-label
+            );
+        }
+    }
+
+    &__check-switch {
+        content: "";
+        display: block;
+        height: calc(
+            (
+                    var(--#{$prefix}switch-width, $switch-width) - var(
+                            --#{$prefix}switch-padding,
+                            $switch-padding
+                        ) *
+                        2
+                ) *
+                0.5
+        );
+        width: calc(
+            (
+                    var(--#{$prefix}switch-width, $switch-width) - var(
+                            --#{$prefix}switch-padding,
+                            $switch-padding
+                        ) *
+                        2
+                ) *
+                0.5
+        );
+        background: var(
+            --#{$prefix}switch-action-background,
+            $switch-action-background
+        );
+        box-shadow: var(--#{$prefix}switch-box-shadow, $switch-box-shadow);
+        transition: transform var(--#{$prefix}transition-duration)
+            var(--#{$prefix}transition-timing);
+        will-change: transform;
+        transform-origin: left;
+    }
+
+    &__check {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: var(--#{$prefix}switch-width, $switch-width);
+        height: calc(
+            var(--#{$prefix}switch-width, $switch-width) * 0.5 +
+                var(--#{$prefix}switch-padding, $switch-padding)
+        );
+
+        padding: var(--#{$prefix}switch-padding, $switch-padding);
+        background: var(--#{$prefix}switch-background, $switch-background);
+        border-radius: var(
+            --#{$prefix}switch-border-radius,
+            $switch-border-radius
+        );
+        transition: background var(--#{$prefix}transition-duration)
+            var(--#{$prefix}transition-timing);
+
+        &--checked {
+            background: var(
+                --#{$prefix}switch-active-background-color,
+                $switch-active-background-color
+            );
+
+            .o-switch__check-switch {
+                transform: translate3d(100%, 0, 0);
+            }
+        }
+    }
+
+    &__input {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &--rounded {
+        border-radius: var(
+            --#{$prefix}switch-rounded-border-radius,
+            $switch-rounded-border-radius
+        );
+    }
+
+    &--disabled {
+        opacity: var(
+            --#{$prefix}switch-disabled-opacity,
+            $switch-disabled-opacity
+        );
+    }
+
+    // focus effect
+    &:focus &__check,
+    &:focus-within &__check {
+        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+    }
 }

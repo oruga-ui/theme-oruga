@@ -6,32 +6,35 @@ $loading-fullpage-zindex: 999 !default;
 /* @docs */
 
 .o-load {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  z-index: var(--#{$prefix}loading-zindex, $loading-zindex);
-
-  &--fullpage {
-    position: fixed;
-    z-index: var(--#{$prefix}loading-fullpage-zindex, $loading-fullpage-zindex);
-  }
-
-  &__overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
-    background: var(
-      --#{$prefix}loading-overlay-legacy,
-      $loading-overlay-legacy
-    );
-    background: var(--#{$prefix}loading-overlay, $loading-overlay);
-  }
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    z-index: var(--#{$prefix}loading-zindex, $loading-zindex);
+
+    &--fullpage {
+        position: fixed;
+        z-index: var(
+            --#{$prefix}loading-fullpage-zindex,
+            $loading-fullpage-zindex
+        );
+    }
+
+    &__overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background: var(
+            --#{$prefix}loading-overlay-legacy,
+            $loading-overlay-legacy
+        );
+        background: var(--#{$prefix}loading-overlay, $loading-overlay);
+    }
 }

@@ -3,7 +3,7 @@ $modal-content-background-color: var(--#{$prefix}white) !default;
 $modal-content-border-radius: var(--#{$prefix}base-border-radius) !default;
 $modal-overlay-background-color: hsla(0, 0%, 4%, 0.86) !default;
 $modal-close-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $modal-close-right: 20px !default;
 $modal-close-top: 20px !default;
@@ -16,79 +16,79 @@ $modal-zindex: 40 !default;
 /* @docs */
 
 .o-modal {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: var(--#{$prefix}modal-zindex, $modal-zindex);
-
-  &__overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
     bottom: 0;
     left: 0;
-    position: absolute;
     right: 0;
     top: 0;
-    background-color: var(
-      --#{$prefix}modal-overlay-background-color,
-      $modal-overlay-background-color
-    );
-  }
+    z-index: var(--#{$prefix}modal-zindex, $modal-zindex);
 
-  &__content {
-    overflow: auto;
-    position: relative;
-    margin: var(--#{$prefix}modal-content-margin, $modal-content-margin);
-    max-height: var(
-      --#{$prefix}modal-content-max-height,
-      $modal-content-max-height
-    );
-    background-color: var(
-      --#{$prefix}modal-content-background-color,
-      $modal-content-background-color
-    );
-    border-radius: var(
-      --#{$prefix}modal-content-border-radius,
-      $modal-content-border-radius
-    );
-
-    &--full-screen {
-      width: 100%;
-      height: 100%;
-      max-height: 100vh;
-      margin: 0;
-      background-color: var(
-        --#{$prefix}modal-content-fullscreen-background-color,
-        $modal-content-fullscreen-background-color
-      );
+    &__overlay {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: var(
+            --#{$prefix}modal-overlay-background-color,
+            $modal-overlay-background-color
+        );
     }
-  }
 
-  &__close {
-    background: none;
-    position: fixed;
-    border: none;
-    display: inline-block;
-    vertical-align: top;
-    border-radius: var(
-      --#{$prefix}modal-close-border-radius,
-      $modal-close-border-radius
-    );
-    right: var(--#{$prefix}modal-close-right, $modal-close-right);
-    top: var(--#{$prefix}modal-close-top, $modal-close-top);
-    height: var(--#{$prefix}modal-close-size, $modal-close-size);
-    width: var(--#{$prefix}modal-close-size, $modal-close-size);
-    color: var(--#{$prefix}modal-close-color, $modal-close-color);
-  }
+    &__content {
+        overflow: auto;
+        position: relative;
+        margin: var(--#{$prefix}modal-content-margin, $modal-content-margin);
+        max-height: var(
+            --#{$prefix}modal-content-max-height,
+            $modal-content-max-height
+        );
+        background-color: var(
+            --#{$prefix}modal-content-background-color,
+            $modal-content-background-color
+        );
+        border-radius: var(
+            --#{$prefix}modal-content-border-radius,
+            $modal-content-border-radius
+        );
 
-  &--mobile {
-    .o-modal__content {
-      width: 100%;
+        &--full-screen {
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            margin: 0;
+            background-color: var(
+                --#{$prefix}modal-content-fullscreen-background-color,
+                $modal-content-fullscreen-background-color
+            );
+        }
     }
-  }
+
+    &__close {
+        background: none;
+        position: fixed;
+        border: none;
+        display: inline-block;
+        vertical-align: top;
+        border-radius: var(
+            --#{$prefix}modal-close-border-radius,
+            $modal-close-border-radius
+        );
+        right: var(--#{$prefix}modal-close-right, $modal-close-right);
+        top: var(--#{$prefix}modal-close-top, $modal-close-top);
+        height: var(--#{$prefix}modal-close-size, $modal-close-size);
+        width: var(--#{$prefix}modal-close-size, $modal-close-size);
+        color: var(--#{$prefix}modal-close-color, $modal-close-color);
+    }
+
+    &--mobile {
+        .o-modal__content {
+            width: 100%;
+        }
+    }
 }

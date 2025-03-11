@@ -12,106 +12,112 @@ $taginput-margin-icon-to-text: 0.1875em !default;
 /* @docs */
 
 .o-taginput {
-  display: flex;
-
-  &__container {
     display: flex;
-    flex-wrap: wrap;
 
-    box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
-    background-color: var(
-      --#{$prefix}input-background-color,
-      $input-background-color
-    );
-    border-color: var(--#{$prefix}input-border-color, $input-border-color);
-    border-style: var(--#{$prefix}input-border-style, $input-border-style);
-    border-width: var(--#{$prefix}input-border-width, $input-border-width);
-    border-radius: var(--#{$prefix}input-border-radius, $input-border-radius);
-    color: var(--#{$prefix}input-color, $input-color);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    line-height: var(--#{$prefix}input-line-height, $input-line-height);
-    margin: var(--#{$prefix}input-margin, $input-margin);
-    width: var(--#{$prefix}taginput-width, inherit);
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
 
-    // size variants
-    @each $name, $value in $sizes {
-      &--#{$name} {
-        font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
-      }
-    }
-  }
+        box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
+        background-color: var(
+            --#{$prefix}input-background-color,
+            $input-background-color
+        );
+        border-color: var(--#{$prefix}input-border-color, $input-border-color);
+        border-style: var(--#{$prefix}input-border-style, $input-border-style);
+        border-width: var(--#{$prefix}input-border-width, $input-border-width);
+        border-radius: var(
+            --#{$prefix}input-border-radius,
+            $input-border-radius
+        );
+        color: var(--#{$prefix}input-color, $input-color);
+        font-size: var(--#{$prefix}base-font-size, $base-font-size);
+        line-height: var(--#{$prefix}input-line-height, $input-line-height);
+        margin: var(--#{$prefix}input-margin, $input-margin);
+        width: var(--#{$prefix}taginput-width, inherit);
 
-  &__autocomplete {
-    flex-grow: 1;
-    flex-shrink: 1;
-    width: auto;
-  }
-
-  &__input {
-    border: none;
-    box-shadow: none;
-    width: 100%;
-  }
-
-  &__item {
-    display: inline-flex;
-    margin: var(--#{$prefix}taginput-item-margin, $taginput-item-margin);
-    padding: var(--#{$prefix}taginput-item-padding, $taginput-item-padding);
-    color: var(--#{$prefix}taginput-item-color, $taginput-item-color);
-    background-color: var(
-      --#{$prefix}taginput-item-background-color,
-      $taginput-item-background-color
-    );
-    border-radius: var(
-      --#{$prefix}taginput-item-border-radius,
-      $taginput-item-border-radius
-    );
-
-    // color variants
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-      $color-invert: list.nth($pair, 2);
-
-      &--#{$name} {
-        --#{$prefix}focus: #{createFocus($color)};
-
-        background-color: var(--#{$prefix}variant-#{$name}, $color);
-        color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-      }
+        // size variants
+        @each $name, $value in $sizes {
+            &--#{$name} {
+                font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
+            }
+        }
     }
 
-    // focus effect
-    &:focus,
-    &:focus-within {
-      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-      outline: 0;
+    &__autocomplete {
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: auto;
     }
-  }
 
-  &__counter {
-    display: block;
-    float: right;
-    font-size: var(
-      --#{$prefix}taginput-counter-font-size,
-      $taginput-counter-font-size
-    );
-    margin: var(--#{$prefix}taginput-counter-margin, $taginput-counter-margin);
-  }
+    &__input {
+        border: none;
+        box-shadow: none;
+        width: 100%;
+    }
 
-  &--expanded {
-    width: 100%;
-    flex-grow: 1;
-    flex-shrink: 1;
-  }
+    &__item {
+        display: inline-flex;
+        margin: var(--#{$prefix}taginput-item-margin, $taginput-item-margin);
+        padding: var(--#{$prefix}taginput-item-padding, $taginput-item-padding);
+        color: var(--#{$prefix}taginput-item-color, $taginput-item-color);
+        background-color: var(
+            --#{$prefix}taginput-item-background-color,
+            $taginput-item-background-color
+        );
+        border-radius: var(
+            --#{$prefix}taginput-item-border-radius,
+            $taginput-item-border-radius
+        );
 
-  // // focus effect
-  // &:focus &__container,
-  // &:focus-within &__container {
-  //   box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+        // color variants
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+            $color-invert: list.nth($pair, 2);
 
-  //   // disable focus effect for inner input
-  //   .o-input {
-  //     --#{$prefix}focus: transparent;
-  //   }
-  // }
+            &--#{$name} {
+                --#{$prefix}focus: #{createFocus($color)};
+
+                background-color: var(--#{$prefix}variant-#{$name}, $color);
+                color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+            }
+        }
+
+        // focus effect
+        &:focus,
+        &:focus-within {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: 0;
+        }
+    }
+
+    &__counter {
+        display: block;
+        float: right;
+        font-size: var(
+            --#{$prefix}taginput-counter-font-size,
+            $taginput-counter-font-size
+        );
+        margin: var(
+            --#{$prefix}taginput-counter-margin,
+            $taginput-counter-margin
+        );
+    }
+
+    &--expanded {
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    // // focus effect
+    // &:focus &__container,
+    // &:focus-within &__container {
+    //   box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+
+    //   // disable focus effect for inner input
+    //   .o-input {
+    //     --#{$prefix}focus: transparent;
+    //   }
+    // }
 }
