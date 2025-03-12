@@ -2,16 +2,16 @@
 /* @docs */
 
 .o-collapse {
-  &__trigger {
-    cursor: pointer;
-    display: inline-block;
+    &__trigger {
+        cursor: pointer;
+        display: inline-block;
 
-    &--expanded {
-      width: 100%;
+        &--expanded {
+            width: 100%;
+        }
     }
-  }
 
-  &__content {
-    display: inherit;
-  }
+    &__content {
+        display: inherit;
+    }
 }

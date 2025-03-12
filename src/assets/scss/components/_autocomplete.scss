@@ -3,21 +3,21 @@ $autocomplete-item-hover-background-color: #f5f5f5 !default;
 /* @docs */
 
 .o-autocomplete {
-  &__item {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    &__item {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
-    &-group-title,
-    &--empty {
-      @extend .o-dropdown--disabled;
-    }
+        &-group-title,
+        &--empty {
+            @extend .o-dropdown--disabled;
+        }
 
-    &--focused {
-      background-color: var(
-        --#{$prefix}autocomplete-item-hover-background-color,
-        $autocomplete-item-hover-background-color
-      );
+        &--focused {
+            background-color: var(
+                --#{$prefix}autocomplete-item-hover-background-color,
+                $autocomplete-item-hover-background-color
+            );
+        }
     }
-  }
 }

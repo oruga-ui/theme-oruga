@@ -7,7 +7,7 @@ $select-border-style: solid !default;
 $select-border-width: 1px !default;
 $select-border-radius: var(--#{$prefix}base-border-radius) !default;
 $select-rounded-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $select-box-shadow: $control-box-shadow !default;
 $select-color: #363636 !default;
@@ -22,139 +22,158 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 /* @docs */
 
 @function svg_arrow($color) {
-  $start: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
-  $content: '<g transform="matrix(5.70052,0,0,5.70052,-1329.79,-547.054)"><path d="M233.451,101.749L235.617,99.422L242.013,105.565L248.463,99.422L250.642,101.749L242.013,110.052L233.451,101.749Z" style="fill:#{$color};stroke:white;stroke-width:0.18px;"/></g>';
-  $end: "</svg>";
+    $start: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
+    $content: '<g transform="matrix(5.70052,0,0,5.70052,-1329.79,-547.054)"><path d="M233.451,101.749L235.617,99.422L242.013,105.565L248.463,99.422L250.642,101.749L242.013,110.052L233.451,101.749Z" style="fill:#{$color};stroke:white;stroke-width:0.18px;"/></g>';
+    $end: "</svg>";
 
-  @return svg-encode("#{$start}#{$content}#{$end}");
+    @return svg-encode("#{$start}#{$content}#{$end}");
 }
 
 .o-select {
-  display: inline-flex;
-  position: relative;
-
-  &__input {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    display: inline-block;
+    display: inline-flex;
     position: relative;
-    vertical-align: top;
-    cursor: pointer;
-    justify-content: flex-start;
-    align-items: center;
 
-    box-shadow: var(--#{$prefix}select-box-shadow, $select-box-shadow);
-    background-color: var(
-      --#{$prefix}select-background-color,
-      $select-background-color
-    );
-    border-color: var(--#{$prefix}select-border-color, $select-border-color);
-    border-width: var(--#{$prefix}select-border-width, $select-border-width);
-    border-style: var(--#{$prefix}select-border-style, $select-border-style);
-    border-radius: var(--#{$prefix}select-border-radius, $select-border-radius);
-    color: var(--#{$prefix}select-color, $select-color);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    height: var(--#{$prefix}select-height, $select-height);
-    line-height: var(--#{$prefix}select-line-height, $select-line-height);
-    padding: var(--#{$prefix}select-padding, $select-padding);
-    margin: var(--#{$prefix}select-margin, $select-margin);
+    &__input {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        cursor: pointer;
+        justify-content: flex-start;
+        align-items: center;
 
-    &--arrowed {
-      background-image: url(svg_arrow($select-arrow-color));
-      background-repeat: no-repeat;
-      background-size: var(--#{$prefix}select-arrow-size, $select-arrow-size);
-      background-position: calc(
-          100% - var(--#{$prefix}select-arrow-size, $select-arrow-size) * 0.5
-        )
-        center;
-      padding-right: calc(
-        var(--#{$prefix}select-arrow-size, $select-arrow-size) * 2
-      );
+        box-shadow: var(--#{$prefix}select-box-shadow, $select-box-shadow);
+        background-color: var(
+            --#{$prefix}select-background-color,
+            $select-background-color
+        );
+        border-color: var(
+            --#{$prefix}select-border-color,
+            $select-border-color
+        );
+        border-width: var(
+            --#{$prefix}select-border-width,
+            $select-border-width
+        );
+        border-style: var(
+            --#{$prefix}select-border-style,
+            $select-border-style
+        );
+        border-radius: var(
+            --#{$prefix}select-border-radius,
+            $select-border-radius
+        );
+        color: var(--#{$prefix}select-color, $select-color);
+        font-size: var(--#{$prefix}base-font-size, $base-font-size);
+        height: var(--#{$prefix}select-height, $select-height);
+        line-height: var(--#{$prefix}select-line-height, $select-line-height);
+        padding: var(--#{$prefix}select-padding, $select-padding);
+        margin: var(--#{$prefix}select-margin, $select-margin);
+
+        &--arrowed {
+            background-image: url(svg_arrow($select-arrow-color));
+            background-repeat: no-repeat;
+            background-size: var(
+                --#{$prefix}select-arrow-size,
+                $select-arrow-size
+            );
+            background-position: calc(
+                    100% - var(
+                            --#{$prefix}select-arrow-size,
+                            $select-arrow-size
+                        ) *
+                        0.5
+                )
+                center;
+            padding-right: calc(
+                var(--#{$prefix}select-arrow-size, $select-arrow-size) * 2
+            );
+        }
+
+        &--placeholder {
+            opacity: var(
+                --#{$prefix}select-placeholder-opacity,
+                $select-placeholder-opacity
+            );
+        }
+
+        &--iconspace-left {
+            padding-left: var(--#{$prefix}select-height, $select-height);
+        }
+
+        &--iconspace-right {
+            padding-right: var(--#{$prefix}select-height, $select-height);
+        }
+
+        &[disabled] {
+            cursor: inherit;
+        }
     }
 
-    &--placeholder {
-      opacity: var(
-        --#{$prefix}select-placeholder-opacity,
-        $select-placeholder-opacity
-      );
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} .o-select__input {
+            font-size: var(--#{$prefix}select-font-size-#{$name}, $value);
+        }
     }
 
-    &--iconspace-left {
-      padding-left: var(--#{$prefix}select-height, $select-height);
+    // color variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+
+        &--#{$name} .o-select__input {
+            --#{$prefix}focus: #{createFocus($color)};
+
+            border-color: var(--#{$prefix}variant-#{$name}, $color);
+        }
     }
 
-    &--iconspace-right {
-      padding-right: var(--#{$prefix}select-height, $select-height);
+    &--rounded .o-select__input {
+        border-radius: var(
+            --#{$prefix}select-rounded-border-radius,
+            $select-rounded-border-radius
+        );
     }
 
-    &[disabled] {
-      cursor: inherit;
+    &--expanded {
+        width: 100%;
+        flex-grow: 1;
+
+        .o-select__input {
+            width: 100%;
+        }
     }
-  }
 
-  // size variants
-  @each $name, $value in $sizes {
-    &--#{$name} .o-select__input {
-      font-size: var(--#{$prefix}select-font-size-#{$name}, $value);
+    &--multiple .o-select__input {
+        height: auto;
+        padding: 0;
     }
-  }
 
-  // color variants
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
-
-    &--#{$name} .o-select__input {
-      --#{$prefix}focus: #{createFocus($color)};
-
-      border-color: var(--#{$prefix}variant-#{$name}, $color);
+    &__icon-left,
+    &__icon-right {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: var(--#{$prefix}select-height, $select-height);
+        z-index: var(--#{$prefix}select-icon-zindex, $select-icon-zindex);
     }
-  }
 
-  &--rounded .o-select__input {
-    border-radius: var(
-      --#{$prefix}select-rounded-border-radius,
-      $select-rounded-border-radius
-    );
-  }
-
-  &--expanded {
-    width: 100%;
-    flex-grow: 1;
-
-    .o-select__input {
-      width: 100%;
+    &__icon-right {
+        right: 0;
     }
-  }
 
-  &--multiple .o-select__input {
-    height: auto;
-    padding: 0;
-  }
-
-  &__icon-left,
-  &__icon-right {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: var(--#{$prefix}select-height, $select-height);
-    z-index: var(--#{$prefix}select-icon-zindex, $select-icon-zindex);
-  }
-
-  &__icon-right {
-    right: 0;
-  }
-
-  &__icon-left {
-    left: 0;
-  }
-
-  // focus effect
-  &:focus,
-  &:focus-visible,
-  &:focus-within {
-    .o-select__input {
-      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-      outline: none;
+    &__icon-left {
+        left: 0;
     }
-  }
+
+    // focus effect
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        .o-select__input {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: none;
+        }
+    }
 }

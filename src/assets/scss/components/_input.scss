@@ -7,7 +7,7 @@ $input-border-style: solid !default;
 $input-border-width: 1px !default;
 $input-border-radius: var(--#{$prefix}base-border-radius) !default;
 $input-rounded-border-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $input-box-shadow: $control-box-shadow !default;
 $input-color: #363636 !default;
@@ -24,135 +24,141 @@ $input-textarea-padding: 0.625em !default;
 /* @docs */
 
 .o-input {
-  display: inline-block;
-  position: relative;
-
-  &__input {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    display: inline-flex;
+    display: inline-block;
     position: relative;
-    vertical-align: top;
 
-    color: var(--#{$prefix}input-color, $input-color);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
-    background-color: var(
-      --#{$prefix}input-background-color,
-      $input-background-color
-    );
-    border-color: var(--#{$prefix}input-border-color, $input-border-color);
-    border-style: var(--#{$prefix}input-border-style, $input-border-style);
-    border-width: var(--#{$prefix}input-border-width, $input-border-width);
-    border-radius: var(--#{$prefix}input-border-radius, $input-border-radius);
+    &__input {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        display: inline-flex;
+        position: relative;
+        vertical-align: top;
 
-    height: var(--#{$prefix}input-height, $input-height);
-    line-height: var(--#{$prefix}input-line-height, $input-line-height);
-    padding: var(--#{$prefix}input-padding, $input-padding);
-    margin: var(--#{$prefix}input-margin, $input-margin);
+        color: var(--#{$prefix}input-color, $input-color);
+        font-size: var(--#{$prefix}base-font-size, $base-font-size);
+        box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
+        background-color: var(
+            --#{$prefix}input-background-color,
+            $input-background-color
+        );
+        border-color: var(--#{$prefix}input-border-color, $input-border-color);
+        border-style: var(--#{$prefix}input-border-style, $input-border-style);
+        border-width: var(--#{$prefix}input-border-width, $input-border-width);
+        border-radius: var(
+            --#{$prefix}input-border-radius,
+            $input-border-radius
+        );
 
-    &--iconspace-left {
-      padding-left: var(--#{$prefix}input-height, $input-height);
+        height: var(--#{$prefix}input-height, $input-height);
+        line-height: var(--#{$prefix}input-line-height, $input-line-height);
+        padding: var(--#{$prefix}input-padding, $input-padding);
+        margin: var(--#{$prefix}input-margin, $input-margin);
+
+        &--iconspace-left {
+            padding-left: var(--#{$prefix}input-height, $input-height);
+        }
+
+        &--iconspace-right {
+            padding-right: var(--#{$prefix}input-height, $input-height);
+        }
+
+        &[disabled] {
+            cursor: inherit;
+        }
     }
 
-    &--iconspace-right {
-      padding-right: var(--#{$prefix}input-height, $input-height);
+    &--textarea textarea {
+        display: block;
+        max-width: 100%;
+        min-width: 100%;
+        height: auto;
+        resize: vertical;
+        padding: var(
+            --#{$prefix}input-textarea-padding,
+            $input-textarea-padding
+        );
+
+        &:not([rows]) {
+            max-height: var(
+                --#{$prefix}input-textarea-max-height,
+                $input-textarea-max-height
+            );
+            min-height: var(
+                --#{$prefix}input-textarea-min-height,
+                $input-textarea-min-height
+            );
+        }
     }
 
-    &[disabled] {
-      cursor: inherit;
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} .o-input__input {
+            font-size: var(--#{$prefix}input-font-size-#{$name}, $value);
+        }
     }
-  }
 
-  &--textarea textarea {
-    display: block;
-    max-width: 100%;
-    min-width: 100%;
-    height: auto;
-    resize: vertical;
-    padding: var(--#{$prefix}input-textarea-padding, $input-textarea-padding);
+    // colar variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
 
-    &:not([rows]) {
-      max-height: var(
-        --#{$prefix}input-textarea-max-height,
-        $input-textarea-max-height
-      );
-      min-height: var(
-        --#{$prefix}input-textarea-min-height,
-        $input-textarea-min-height
-      );
+        &--#{$name} .o-input__input {
+            --#{$prefix}focus: #{createFocus($color)};
+
+            border-color: var(--#{$prefix}variant-#{$name}, $color);
+        }
     }
-  }
 
-  // size variants
-  @each $name, $value in $sizes {
-    &--#{$name} .o-input__input {
-      font-size: var(--#{$prefix}input-font-size-#{$name}, $value);
+    &--rounded .o-input__input {
+        border-radius: var(
+            --#{$prefix}input-rounded-border-radius,
+            $input-rounded-border-radius
+        );
     }
-  }
 
-  // colar variants
-  @each $name, $pair in $colors {
-    $color: list.nth($pair, 1);
+    &--expanded {
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 1;
 
-    &--#{$name} .o-input__input {
-      --#{$prefix}focus: #{createFocus($color)};
-
-      border-color: var(--#{$prefix}variant-#{$name}, $color);
+        .o-input__input {
+            width: 100%;
+        }
     }
-  }
 
-  &--rounded .o-input__input {
-    border-radius: var(
-      --#{$prefix}input-rounded-border-radius,
-      $input-rounded-border-radius
-    );
-  }
-
-  &--expanded {
-    width: 100%;
-    flex-grow: 1;
-    flex-shrink: 1;
-
-    .o-input__input {
-      width: 100%;
+    &__counter {
+        display: block;
+        float: right;
+        font-size: var(
+            --#{$prefix}input-counter-font-size,
+            $input-counter-font-size
+        );
+        margin: var(--#{$prefix}input-counter-margin, $input-counter-margin);
     }
-  }
 
-  &__counter {
-    display: block;
-    float: right;
-    font-size: var(
-      --#{$prefix}input-counter-font-size,
-      $input-counter-font-size
-    );
-    margin: var(--#{$prefix}input-counter-margin, $input-counter-margin);
-  }
-
-  &__icon-left,
-  &__icon-right {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: var(--#{$prefix}input-height, $input-height);
-    z-index: var(--#{$prefix}input-icon-zindex, $input-icon-zindex);
-  }
-
-  &__icon-right {
-    right: 0;
-  }
-
-  &__icon-left {
-    left: 0;
-  }
-
-  // focus effect
-  &:focus,
-  &:focus-visible,
-  &:focus-within {
-    .o-input__input {
-      box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-      outline: none;
+    &__icon-left,
+    &__icon-right {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: var(--#{$prefix}input-height, $input-height);
+        z-index: var(--#{$prefix}input-icon-zindex, $input-icon-zindex);
     }
-  }
+
+    &__icon-right {
+        right: 0;
+    }
+
+    &__icon-left {
+        left: 0;
+    }
+
+    // focus effect
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        .o-input__input {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: none;
+        }
+    }
 }

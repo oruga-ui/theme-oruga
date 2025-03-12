@@ -6,7 +6,7 @@ $slider-margin: 1em 0 !default;
 $slider-mark-size: 0.75rem !default;
 $slider-font-size: var(--#{$prefix}base-font-size) !default;
 $slider-rounded-borded-radius: var(
-  --#{$prefix}base-border-radius-rounded
+    --#{$prefix}base-border-radius-rounded
 ) !default;
 $slider-thumb-background: var(--#{$prefix}white) !default;
 $slider-thumb-border: 1px solid var(--#{$prefix}grey-light) !default;
@@ -28,172 +28,187 @@ $slider-track-shadow: 0px 0px 0px var(--#{$prefix}grey) !default;
 /* @docs */
 
 @mixin slider-size($size, $name: null) {
-  $track-height: calc($size / $slider-thumb-to-track-ratio);
-  $tick-height: calc($track-height * $slider-tick-to-track-ratio);
-  $tick-label-top: calc($track-height * 0.5 + 2px);
-  $thumb-size: $size;
+    $track-height: calc($size / $slider-thumb-to-track-ratio);
+    $tick-height: calc($track-height * $slider-tick-to-track-ratio);
+    $tick-label-top: calc($track-height * 0.5 + 2px);
+    $thumb-size: $size;
 
-  .o-slider__track {
-    @if $name {
-      height: var(--#{$prefix}slider-track-height-#{$name}, $track-height);
-    } @else {
-      height: var(--#{$prefix}slider-track-height, $track-height);
-    }
-  }
-
-  .o-slider__thumb {
-    @if $name {
-      height: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
-      width: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
-    } @else {
-      height: var(--#{$prefix}slider-thumb-size, $thumb-size);
-      width: var(--#{$prefix}slider-thumb-size, $thumb-size);
-    }
-  }
-
-  .o-slider__tick {
-    @if $name {
-      height: var(--#{$prefix}slider-tick-height-#{$name}, $tick-height);
-    } @else {
-      height: var(--#{$prefix}slider-tick-height, $tick-height);
-    }
-  }
-
-  .o-slider__tick-label {
-    @if $name {
-      font-size: var(--#{$prefix}slider-mark-size-#{$name}, $slider-mark-size);
-      top: var(--#{$prefix}slider-tick-label-top-#{$name}, $tick-label-top);
-    } @else {
-      font-size: var(--#{$prefix}slider-mark-size, $slider-mark-size);
-      top: var(--#{$prefix}slider-tick-label-top, $tick-label-top);
+    .o-slider__track {
+        @if $name {
+            height: var(
+                --#{$prefix}slider-track-height-#{$name},
+                $track-height
+            );
+        } @else {
+            height: var(--#{$prefix}slider-track-height, $track-height);
+        }
     }
 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    .o-slider__thumb {
+        @if $name {
+            height: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
+            width: var(--#{$prefix}slider-thumb-size-#{$name}, $thumb-size);
+        } @else {
+            height: var(--#{$prefix}slider-thumb-size, $thumb-size);
+            width: var(--#{$prefix}slider-thumb-size, $thumb-size);
+        }
+    }
+
+    .o-slider__tick {
+        @if $name {
+            height: var(--#{$prefix}slider-tick-height-#{$name}, $tick-height);
+        } @else {
+            height: var(--#{$prefix}slider-tick-height, $tick-height);
+        }
+    }
+
+    .o-slider__tick-label {
+        @if $name {
+            font-size: var(
+                --#{$prefix}slider-mark-size-#{$name},
+                $slider-mark-size
+            );
+            top: var(
+                --#{$prefix}slider-tick-label-top-#{$name},
+                $tick-label-top
+            );
+        } @else {
+            font-size: var(--#{$prefix}slider-mark-size, $slider-mark-size);
+            top: var(--#{$prefix}slider-tick-label-top, $tick-label-top);
+        }
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .o-slider {
-  width: 100%;
-  margin: var(--#{$prefix}slider-margin, $slider-margin);
-  background: var(--#{$prefix}slider-background, $slider-background);
+    width: 100%;
+    margin: var(--#{$prefix}slider-margin, $slider-margin);
+    background: var(--#{$prefix}slider-background, $slider-background);
 
-  &__thumb {
-    box-shadow: var(--#{$prefix}slider-thumb-shadow, $slider-thumb-shadow);
-    border: var(--#{$prefix}slider-thumb-border, $slider-thumb-border);
-    border-radius: var(--#{$prefix}slider-thumb-radius, $slider-thumb-radius);
-    background: var(
-      --#{$prefix}slider-thumb-background,
-      $slider-thumb-background
-    );
+    &__thumb {
+        box-shadow: var(--#{$prefix}slider-thumb-shadow, $slider-thumb-shadow);
+        border: var(--#{$prefix}slider-thumb-border, $slider-thumb-border);
+        border-radius: var(
+            --#{$prefix}slider-thumb-radius,
+            $slider-thumb-radius
+        );
+        background: var(
+            --#{$prefix}slider-thumb-background,
+            $slider-thumb-background
+        );
 
-    &:focus {
-      transform: var(
-        --#{$prefix}slider-thumb-transform,
-        $slider-thumb-transform
-      );
-    }
-
-    &--rounded {
-      border-radius: var(
-        --#{$prefix}slider-rounded-borded-radius,
-        $slider-rounded-borded-radius
-      );
-    }
-
-    &--dragging {
-      cursor: grabbing;
-      filter: brightness(0.8);
-    }
-  }
-
-  &__track {
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    background: var(
-      --#{$prefix}slider-track-background,
-      $slider-track-background
-    );
-    border-radius: var(
-      --#{$prefix}slider-track-border-radius,
-      $slider-track-border-radius
-    );
-  }
-
-  &__fill {
-    position: absolute;
-    height: 100%;
-    box-shadow: var(--#{$prefix}slider-track-shadow, $slider-track-shadow);
-    background: var(
-      --#{$prefix}slider-fill-background,
-      $slider-fill-background
-    );
-    border-radius: var(--#{$prefix}slider-track-radius, $slider-track-radius);
-    border: var(--#{$prefix}slider-track-border, $slider-track-border);
-    // Fix alignment in IE 11. Cancel out for others
-    top: 50%;
-    transform: translateY(-50%);
-
-    @each $name, $pair in $colors {
-      $color: list.nth($pair, 1);
-
-      &--#{$name} {
-        background: var(--#{$prefix}variant-#{$name}, $color);
-
-        + .o-slide__thumb-wrapper {
-          --#{$prefix}focus: #{createFocus($color)};
+        &:focus {
+            transform: var(
+                --#{$prefix}slider-thumb-transform,
+                $slider-thumb-transform
+            );
         }
-      }
+
+        &--rounded {
+            border-radius: var(
+                --#{$prefix}slider-rounded-borded-radius,
+                $slider-rounded-borded-radius
+            );
+        }
+
+        &--dragging {
+            cursor: grabbing;
+            filter: brightness(0.8);
+        }
     }
-  }
 
-  @include slider-size($slider-font-size);
-
-  @each $name, $value in $sizes {
-    &--#{$name} {
-      @include slider-size($value, $name);
+    &__track {
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        background: var(
+            --#{$prefix}slider-track-background,
+            $slider-track-background
+        );
+        border-radius: var(
+            --#{$prefix}slider-track-border-radius,
+            $slider-track-border-radius
+        );
     }
-  }
 
-  &__tick {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    width: var(--#{$prefix}slider-tick-width, $slider-tick-width);
-    background: var(
-      --#{$prefix}slider-tick-background,
-      $slider-tick-background
-    );
-    border-radius: var(--#{$prefix}slider-tick-radius, $slider-tick-radius);
+    &__fill {
+        position: absolute;
+        height: 100%;
+        box-shadow: var(--#{$prefix}slider-track-shadow, $slider-track-shadow);
+        background: var(
+            --#{$prefix}slider-fill-background,
+            $slider-fill-background
+        );
+        border-radius: var(
+            --#{$prefix}slider-track-radius,
+            $slider-track-radius
+        );
+        border: var(--#{$prefix}slider-track-border, $slider-track-border);
+        // Fix alignment in IE 11. Cancel out for others
+        top: 50%;
+        transform: translateY(-50%);
 
-    &--hidden {
-      background: transparent;
+        @each $name, $pair in $colors {
+            $color: list.nth($pair, 1);
+
+            &--#{$name} {
+                background: var(--#{$prefix}variant-#{$name}, $color);
+
+                + .o-slide__thumb-wrapper {
+                    --#{$prefix}focus: #{createFocus($color)};
+                }
+            }
+        }
     }
-  }
 
-  &__thumb-wrapper {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    cursor: grab;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    flex-direction: column; // Fix shrinked thumb at the end in IE 11
-  }
+    @include slider-size($slider-font-size);
 
-  &--disabled {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: var(--#{$prefix}slider-track-disabled, $slider-track-disabled);
-  }
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            @include slider-size($value, $name);
+        }
+    }
 
-  // focus effect
-  &:active &__thumb,
-  &:focus &__thumb,
-  &:focus-within &__thumb {
-    box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-  }
+    &__tick {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        width: var(--#{$prefix}slider-tick-width, $slider-tick-width);
+        background: var(
+            --#{$prefix}slider-tick-background,
+            $slider-tick-background
+        );
+        border-radius: var(--#{$prefix}slider-tick-radius, $slider-tick-radius);
+
+        &--hidden {
+            background: transparent;
+        }
+    }
+
+    &__thumb-wrapper {
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        cursor: grab;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        flex-direction: column; // Fix shrinked thumb at the end in IE 11
+    }
+
+    &--disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: var(--#{$prefix}slider-track-disabled, $slider-track-disabled);
+    }
+
+    // focus effect
+    &:active &__thumb,
+    &:focus &__thumb,
+    &:focus-within &__thumb {
+        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+    }
 }

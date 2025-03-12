@@ -13,20 +13,20 @@ import "@oruga-ui/examples/dist/examples.css";
 import "./assets/scss/oruga-build.scss";
 
 createApp(App)
-  .use(router)
-  .use(Oruga, {
-    iconPack: "fas",
-    iconComponent: "vue-fontawesome",
-    customIconPacks: {
-      fas: {
-        sizes: {
-          default: "",
-          small: "fa-sm",
-          medium: "fa-lg",
-          large: "fa-xl",
+    .use(router)
+    .use(Oruga, {
+        iconPack: "fas",
+        iconComponent: "vue-fontawesome",
+        customIconPacks: {
+            fas: {
+                sizes: {
+                    default: "",
+                    small: "fa-sm",
+                    medium: "fa-lg",
+                    large: "fa-xl",
+                },
+            },
         },
-      },
-    },
-  })
-  .use(Examples)
-  .mount("#app");
+    })
+    .use(Examples)
+    .mount("#app");
