@@ -40,7 +40,7 @@ To link the main Oruga packages locally, build both the `oruga` and the `example
 Then run `npm run link ../oruga/packages/oruga ../oruga/packages/examples` in the theme repo to link the build output of the main Oruga packages.
 
 
-## NPM scripts
+## Common NPM scripts
 
 To compile the code in watch mode and run the live server on [http://localhost:5173](http://localhost:5173):
 
