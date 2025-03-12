@@ -91,6 +91,11 @@ $field-horizontal-spacer: 0 1.5rem 0 0 !default;
 
     &--grouped {
         display: flex;
+        gap: var(--#{$prefix}field-spacer, $field-spacer);
+    }
+
+    &--multiline {
+        display: flex;
         flex-wrap: wrap;
         gap: var(--#{$prefix}field-spacer, $field-spacer);
     }

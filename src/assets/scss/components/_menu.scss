@@ -10,7 +10,7 @@ $menu-list-border-left: 1px solid var(--#{$prefix}primary) !default;
 $menu-list-border-radius: var(--#{$prefix}base-border-radius) !default;
 $menu-list-line-height: 1.25em !default;
 $menu-item-padding: 0.5em 0.75em !default;
-$menu-nested-list-margin: 0.75em !default;
+$menu-nested-list-margin: 0.75em 1.25em !default;
 $menu-nested-list-padding-left: 0.75em !default;
 $menu-label-color: $grey !default;
 $menu-label-font-size: 0.75em !default;
@@ -36,6 +36,10 @@ $menu-icon-spacer: 0.5rem !default;
         line-height: var(
             --#{$prefix}menu-list-line-height,
             $menu-list-line-height
+        );
+        padding-left: var(
+            --#{$prefix}menu-nested-list-padding-left,
+            $menu-nested-list-padding-left
         );
     }
 
