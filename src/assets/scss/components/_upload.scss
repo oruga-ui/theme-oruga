@@ -7,10 +7,10 @@ $upload-draggable-disabled-opacity: var(
     --#{$prefix}base-disabled-opacity
 ) !default;
 $upload-draggable-hover-border-color: var(--#{$prefix}grey) !default;
-$upload-draggable-padding: 0.25em !default;
+$upload-draggable-padding: 2em !default;
 /* @docs */
 
-.o-upl {
+.o-upload {
     position: relative;
     display: inline-flex;
 

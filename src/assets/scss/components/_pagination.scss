@@ -1,26 +1,30 @@
 /* @docs */
 $pagination-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 $pagination-ellipsis-color: var(--#{$prefix}grey-light) !default;
-$pagination-link-border-color: var(--#{$prefix}grey-lighter) !default;
-$pagination-link-border-radius: var(--#{$prefix}base-border-radius) !default;
-$pagination-link-border: 1px solid transparent !default;
-$pagination-link-color: #363636 !default;
-$pagination-link-current-background-color: var(--#{$prefix}primary) !default;
-$pagination-link-current-border-color: var(--#{$prefix}primary) !default;
-$pagination-link-current-color: #fff !default;
-$pagination-link-height: 2.25em !default;
-$pagination-link-hover-border-color: var(--#{$prefix}grey-light) !default;
-$pagination-link-line-height: var(--#{$prefix}base-line-height) !default;
-$pagination-link-margin: 0.25rem !default;
-$pagination-link-min-width: 2.25em !default;
-$pagination-link-padding: 0.5em 0.5em !default;
+$pagination-button-border-color: var(--#{$prefix}grey-light) !default;
+$pagination-button-border-radius: var(--#{$prefix}base-border-radius) !default;
+$pagination-button-border: 1px solid transparent !default;
+$pagination-button-color: var(--#{$prefix}black) !default;
+$pagination-button-background-color: transparent !default;
+$pagination-button-background-color-hover: var(
+    --#{$prefix}grey-lighter
+) !default;
+$pagination-button-current-background-color: var(--#{$prefix}primary) !default;
+$pagination-button-current-border-color: var(--#{$prefix}primary) !default;
+$pagination-button-current-color: #fff !default;
+$pagination-button-height: 2.25em !default;
+$pagination-button-hover-border-color: var(--#{$prefix}grey-light) !default;
+$pagination-button-line-height: var(--#{$prefix}base-line-height) !default;
+$pagination-button-margin: 0.25rem !default;
+$pagination-button-min-width: 2.25em !default;
+$pagination-button-padding: 0.5em 0.5em !default;
 $pagination-margin: -0.25rem !default;
 $pagination-rounded-border-radius: var(
     --#{$prefix}base-border-radius-rounded
 ) !default;
 /* @docs */
 
-.o-pag {
+.o-pagination {
     align-items: center;
     display: flex;
     text-align: center;
@@ -34,10 +38,11 @@ $pagination-rounded-border-radius: var(
         }
     }
 
-    &__btn {
+    &__button {
         @include unselectable;
         -moz-appearance: none;
         -webkit-appearance: none;
+
         align-items: center;
         box-shadow: none;
         display: inline-flex;
@@ -47,45 +52,54 @@ $pagination-rounded-border-radius: var(
         text-align: center;
         text-decoration: none;
         cursor: pointer;
+
         line-height: var(
             --#{$prefix}pagination-link-line-height,
-            $pagination-link-line-height
+            $pagination-button-line-height
+        );
+        background-color: var(
+            --#{$prefix}pagination-button-background-color,
+            $pagination-button-background-color
         );
         border: var(
             --#{$prefix}pagination-link-border,
-            $pagination-link-border
+            $pagination-button-border
         );
         border-radius: var(
             --#{$prefix}pagination-link-border-radius,
-            $pagination-link-border-radius
+            $pagination-button-border-radius
         );
         border-color: var(
             --#{$prefix}pagination-link-border-color,
-            $pagination-link-border-color
+            $pagination-button-border-color
         );
-        color: var(--#{$prefix}pagination-link-color, $pagination-link-color);
+        color: var(--#{$prefix}pagination-link-color, $pagination-button-color);
         min-width: var(
             --#{$prefix}pagination-link-min-width,
-            $pagination-link-min-width
+            $pagination-button-min-width
         );
         height: var(
             --#{$prefix}pagination-link-height,
-            $pagination-link-height
+            $pagination-button-height
         );
         padding: var(
             --#{$prefix}pagination-link-padding,
-            $pagination-link-padding
+            $pagination-button-padding
         );
         margin: var(
             --#{$prefix}pagination-link-margin,
-            $pagination-link-margin
+            $pagination-button-margin
         );
 
         &:hover {
             text-decoration: none;
             border-color: var(
                 --#{$prefix}pagination-link-hover-border-color,
-                $pagination-link-hover-border-color
+                $pagination-button-hover-border-color
+            );
+            background-color: var(
+                --#{$prefix}pagination-button-background-color-hover,
+                $pagination-button-background-color-hover
             );
         }
 
@@ -108,15 +122,15 @@ $pagination-rounded-border-radius: var(
             pointer-events: none;
             background-color: var(
                 --#{$prefix}pagination-link-current-background-color,
-                $pagination-link-current-background-color
+                $pagination-button-current-background-color
             );
             border-color: var(
                 --#{$prefix}pagination-link-current-border-color,
-                $pagination-link-current-border-color
+                $pagination-button-current-border-color
             );
             color: var(
                 --#{$prefix}pagination-link-current-color,
-                $pagination-link-current-color
+                $pagination-button-current-color
             );
         }
     }
@@ -127,7 +141,7 @@ $pagination-rounded-border-radius: var(
         pointer-events: none;
         margin: var(
             --#{$prefix}pagination-link-margin,
-            $pagination-link-margin
+            $pagination-button-margin
         );
         color: var(
             --#{$prefix}pagination-ellipsis-color,
@@ -135,11 +149,11 @@ $pagination-rounded-border-radius: var(
         );
     }
 
-    &__btn-next {
+    &__button-next {
         order: 3;
     }
 
-    &__btn-previous {
+    &__button-previous {
         order: 2;
     }
 
@@ -164,15 +178,15 @@ $pagination-rounded-border-radius: var(
     &--centered {
         justify-content: center;
 
-        .o-pag__btn-previous {
+        .o-pagination__button-previous {
             order: 1;
         }
 
-        .o-pag__btn-next {
+        .o-pagination__button-next {
             order: 3;
         }
 
-        .o-pag__list {
+        .o-pagination__list {
             justify-content: center;
             order: 2;
         }
@@ -181,15 +195,15 @@ $pagination-rounded-border-radius: var(
     &--right {
         justify-content: flex-end;
 
-        .o-pag__btn-previous {
+        .o-pagination__button-previous {
             order: 1;
         }
 
-        .o-pag__btn-next {
+        .o-pagination__button-next {
             order: 2;
         }
 
-        .o-pag__list {
+        .o-pagination__list {
             justify-content: flex-end;
             order: 2;
         }
@@ -199,29 +213,29 @@ $pagination-rounded-border-radius: var(
         justify-content: flex-start;
         flex-wrap: wrap;
 
-        .o-pag__btn {
+        .o-pagination__button {
             flex-grow: 1;
             flex-shrink: 1;
         }
 
-        .o-pag__btn-previous {
-            flex-grow: 1;
-            flex-shrink: 1;
-            order: 0;
-        }
-
-        .o-pag__btn-next {
+        .o-pagination__button-previous {
             flex-grow: 1;
             flex-shrink: 1;
             order: 0;
         }
 
-        .o-pag__ellipsis {
+        .o-pagination__button-next {
+            flex-grow: 1;
+            flex-shrink: 1;
+            order: 0;
+        }
+
+        .o-pagination__ellipsis {
             flex-grow: 1;
             flex-shrink: 1;
         }
 
-        .o-pag__list {
+        .o-pagination__list {
             order: 0;
         }
     }

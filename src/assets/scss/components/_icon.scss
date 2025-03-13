@@ -24,13 +24,17 @@ $icon-spin-duration: 2s !default;
         transform $animation-speed $animation-timing,
         opacity $animation-speed-fast $animation-timing;
 
+    // sizes
     @each $name, $value in $sizes {
         &--#{$name} {
             font-size: var(--#{$prefix}icon-font-size-#{$name}, $value);
         }
     }
+
+    // color variants
     @each $name, $pair in $colors {
         $color: list.nth($pair, 1);
+
         &--#{$name} {
             color: var(--#{$prefix}variant-#{$name}, $color);
         }

@@ -18,6 +18,23 @@ body {
     line-height: var(--#{$prefix}base-line-height, $base-line-height);
 }
 
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
 .o-noscroll {
     position: fixed;
     width: 100%;

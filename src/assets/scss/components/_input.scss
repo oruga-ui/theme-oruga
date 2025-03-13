@@ -17,51 +17,57 @@ $input-line-height: var(--#{$prefix}base-line-height) !default;
 $input-margin: 0 !default;
 $input-padding: $control-padding-vertical $control-padding-horizontal !default;
 $input-counter-font-size: 0.75rem !default;
-$input-counter-margin: 0.25rem 0 0 0.5rem !default;
+$input-counter-margin: 0.25rem 0.5rem !default;
 $input-textarea-max-height: 600px !default;
 $input-textarea-min-height: 120px !default;
 $input-textarea-padding: 0.625em !default;
 /* @docs */
 
 .o-input {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    display: inline-flex;
+    display: inline-block;
     position: relative;
-    vertical-align: top;
 
-    box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
-    background-color: var(
-        --#{$prefix}input-background-color,
-        $input-background-color
-    );
-    border-color: var(--#{$prefix}input-border-color, $input-border-color);
-    border-style: var(--#{$prefix}input-border-style, $input-border-style);
-    border-width: var(--#{$prefix}input-border-width, $input-border-width);
-    border-radius: var(--#{$prefix}input-border-radius, $input-border-radius);
-    color: var(--#{$prefix}input-color, $input-color);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    height: var(--#{$prefix}input-height, $input-height);
-    line-height: var(--#{$prefix}input-line-height, $input-line-height);
-    padding: var(--#{$prefix}input-padding, $input-padding);
-    margin: var(--#{$prefix}input-margin, $input-margin);
-
-    &__wrapper {
-        display: inline-block;
+    &__input {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        display: inline-flex;
         position: relative;
+        vertical-align: top;
 
-        &--expanded {
-            width: 100%;
-            flex-grow: 1;
-            flex-shrink: 1;
+        color: var(--#{$prefix}input-color, $input-color);
+        font-size: var(--#{$prefix}base-font-size, $base-font-size);
+        box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
+        background-color: var(
+            --#{$prefix}input-background-color,
+            $input-background-color
+        );
+        border-color: var(--#{$prefix}input-border-color, $input-border-color);
+        border-style: var(--#{$prefix}input-border-style, $input-border-style);
+        border-width: var(--#{$prefix}input-border-width, $input-border-width);
+        border-radius: var(
+            --#{$prefix}input-border-radius,
+            $input-border-radius
+        );
 
-            .o-input {
-                width: 100%;
-            }
+        height: var(--#{$prefix}input-height, $input-height);
+        line-height: var(--#{$prefix}input-line-height, $input-line-height);
+        padding: var(--#{$prefix}input-padding, $input-padding);
+        margin: var(--#{$prefix}input-margin, $input-margin);
+
+        &--iconspace-left {
+            padding-left: var(--#{$prefix}input-height, $input-height);
+        }
+
+        &--iconspace-right {
+            padding-right: var(--#{$prefix}input-height, $input-height);
+        }
+
+        &[disabled] {
+            cursor: inherit;
         }
     }
 
-    &__textarea {
+    &--textarea textarea {
         display: block;
         max-width: 100%;
         min-width: 100%;
@@ -81,6 +87,41 @@ $input-textarea-padding: 0.625em !default;
                 --#{$prefix}input-textarea-min-height,
                 $input-textarea-min-height
             );
+        }
+    }
+
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} .o-input__input {
+            font-size: var(--#{$prefix}input-font-size-#{$name}, $value);
+        }
+    }
+
+    // colar variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+
+        &--#{$name} .o-input__input {
+            --#{$prefix}focus: #{createFocus($color)};
+
+            border-color: var(--#{$prefix}variant-#{$name}, $color);
+        }
+    }
+
+    &--rounded .o-input__input {
+        border-radius: var(
+            --#{$prefix}input-rounded-border-radius,
+            $input-rounded-border-radius
+        );
+    }
+
+    &--expanded {
+        width: 100%;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .o-input__input {
+            width: 100%;
         }
     }
 
@@ -111,42 +152,13 @@ $input-textarea-padding: 0.625em !default;
         left: 0;
     }
 
-    &--iconspace-left {
-        padding-left: var(--#{$prefix}input-height, $input-height);
-    }
-
-    &--iconspace-right {
-        padding-right: var(--#{$prefix}input-height, $input-height);
-    }
-
-    &--rounded {
-        border-radius: var(
-            --#{$prefix}input-rounded-border-radius,
-            $input-rounded-border-radius
-        );
-    }
-
-    // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} {
-            font-size: var(--#{$prefix}input-font-size-#{$name}, $value);
-        }
-    }
-
-    // colar variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-
-        &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            border-color: var(--#{$prefix}variant-#{$name}, $color);
-        }
-    }
-
     // focus effect
     &:focus,
+    &:focus-visible,
     &:focus-within {
-        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+        .o-input__input {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: none;
+        }
     }
 }

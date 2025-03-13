@@ -4,10 +4,9 @@
 $datepicker-font-size: var(--#{$prefix}base-font-size) !default;
 $datepicker-box-padding: 0.5rem 1rem !default;
 $datepicker-header-padding: 0.5rem 0 !default;
-$datepicker-header-margin: 0 0 0.5rem 0 !default;
+$datepicker-header-spacer: 0.5rem !default;
 $datepicker-header-border-bottom: 1px solid var(--#{$prefix}grey-lighter) !default;
 $datepicker-footer-padding: 0.5rem 0.5rem 0 0.5rem !default;
-$datepicker-footer-margin: 0.5rem 0 !default;
 $datepicker-footer-border-top: 1px solid var(--#{$prefix}grey-lighter) !default;
 $datepicker-table-head-padding: 0 0 0.875rem 0 !default;
 $datepicker-table-head-margin: 0 0 0.875rem 0 !default;
@@ -45,13 +44,12 @@ $datepicker-btn-color: #363636 !default;
 $datepicker-btn-height: 2.25em !default;
 $datepicker-btn-hover-border-color: var(--#{$prefix}grey-light) !default;
 $datepicker-btn-hover-color: #363636 !default;
-$datepicker-btn-line-height: var(--#{$prefix}base-line-height) !default;
-$datepicker-btn-margin: 0.25rem !default;
+$datepicker-btn-hover-background-color: transparent !default;
 $datepicker-btn-min-width: 2.25em !default;
 $datepicker-btn-padding: 0.5em 0.5em !default;
 /* @docs */
 
-.o-dpck {
+.o-datepicker {
     font-size: var(--#{$prefix}datepicker-font-size, $datepicker-font-size);
 
     // size variants
@@ -73,35 +71,24 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     }
 
     &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        gap: var(
+            --#{$prefix}datepicker-header-spacer,
+            $datepicker-header-spacer
+        );
+        min-width: max-content;
+
         padding: var(
             --#{$prefix}datepicker-header-padding,
             $datepicker-header-padding
-        );
-        margin: var(
-            --#{$prefix}datepicker-header-margin,
-            $datepicker-header-margin
         );
         border-bottom: var(
             --#{$prefix}datepicker-header-border-bottom,
             $datepicker-header-border-bottom
         );
-
-        &__buttons {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-
-            // size variants
-            @each $name, $value in $sizes {
-                &--#{$name} {
-                    font-size: var(
-                        --#{$prefix}datepicker-font-size-#{$name},
-                        $value
-                    );
-                }
-            }
-        }
 
         &__previous {
             order: 1;
@@ -114,7 +101,7 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
         &__previous,
         &__next {
             @include unselectable;
-            justify-content: center;
+
             text-align: center;
             text-decoration: none;
             cursor: pointer;
@@ -123,12 +110,6 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
             align-items: center;
             box-shadow: none;
             display: inline-flex;
-            position: relative;
-            vertical-align: top;
-            line-height: var(
-                --#{$prefix}datepicker-btn-line-height,
-                $datepicker-btn-line-height
-            );
             background-color: var(
                 --#{$prefix}datepicker-btn-background-color,
                 $datepicker-btn-background-color
@@ -158,13 +139,8 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
                 --#{$prefix}datepicker-btn-padding,
                 $datepicker-btn-padding
             );
-            margin: var(
-                --#{$prefix}datepicker-btn-margin,
-                $datepicker-btn-margin
-            );
 
             &:hover {
-                text-decoration: none;
                 border-color: var(
                     --#{$prefix}datepicker-btn-hover-border-color,
                     $datepicker-btn-hover-border-color
@@ -172,6 +148,10 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
                 color: var(
                     --#{$prefix}datepicker-btn-hover-color,
                     $datepicker-btn-hover-color
+                );
+                background-color: var(
+                    --#{$prefix}datepicker-btn-hover-background-color,
+                    $datepicker-btn-hover-background-color
                 );
             }
         }
@@ -183,11 +163,9 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
             justify-content: center;
             text-align: center;
             list-style: none;
-            flex-wrap: wrap;
             margin: 0;
             padding: 0;
-
-            @include side-flex-gap($datepicker-btn-margin * 0.5);
+            gap: inherit;
         }
     }
 
@@ -195,10 +173,6 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
         padding: var(
             --#{$prefix}datepicker-header-padding,
             $datepicker-footer-padding
-        );
-        margin: var(
-            --#{$prefix}datepicker-header-margin,
-            $datepicker-footer-margin
         );
         border-top: var(
             --#{$prefix}datepicker-header-border-top,
@@ -494,25 +468,25 @@ $datepicker-btn-padding: 0.5em 0.5em !default;
     }
 
     &--mobile {
-        .o-dpck__header__previous {
+        .o-datepicker__header__previous {
             order: 1;
             flex-grow: 1;
             flex-shrink: 1;
         }
 
-        .o-dpck__header__next {
+        .o-datepicker__header__next {
             order: 3;
             flex-grow: 1;
             flex-shrink: 1;
         }
 
-        .o-dpck__header__list {
+        .o-datepicker__header__list {
             order: 2;
             flex-grow: 1;
             flex-shrink: 1;
         }
 
-        .o-drop__menu {
+        .o-dropdown__menu {
             padding: 0;
         }
     }

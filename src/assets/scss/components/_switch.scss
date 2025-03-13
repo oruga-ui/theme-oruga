@@ -1,30 +1,71 @@
 @use "sass:list";
+@use "sass:color";
 
 /* @docs */
-$switch-active-background-color: var(--#{$prefix}primary) !default;
-$switch-action-background: #f5f5f5 !default;
+$switch-spacer: 0.5em !default;
+$switch-width: 2.75em !default;
+$switch-height: 1.5em !default;
 $switch-background: var(--#{$prefix}grey-light) !default;
+$switch-toggle-background: #f5f5f5 !default;
+$switch-border: $control-border-width solid var(--#{$prefix}grey-lighter) !default;
 $switch-border-radius: var(--#{$prefix}base-border-radius) !default;
-$switch-box-shadow:
-    0 3px 1px 0 rgba(0, 0, 0, 0.05),
-    0 2px 2px 0 rgba(0, 0, 0, 0.1),
-    0 3px 3px 0 rgba(0, 0, 0, 0.05) !default;
-$switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$switch-margin-label: 0.5em !default;
-$switch-padding: 0.2em !default;
-$switch-rounded-border-radius: var(
+$switch-border-radius-rounded: var(
     --#{$prefix}base-border-radius-rounded
 ) !default;
-$switch-width: 2.75 * 1em !default;
+$switch-checked-background: var(--#{$prefix}primary) !default;
+$switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 /* @docs */
+
+@function switchSVG($color) {
+    $svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$color}'/></svg>";
+
+    @return svg-encode($svg);
+}
 
 .o-switch {
     @include unselectable;
+
     cursor: pointer;
-    display: inline-flex;
+    display: block;
     align-items: center;
     position: relative;
-    border-radius: 50rem;
+
+    &__input {
+        flex-shrink: 0;
+        width: var(--#{$prefix}switch-width, $switch-width);
+        height: var(--#{$prefix}switch-height, $switch-height);
+        margin-top: 0.25em;
+        vertical-align: top;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: var(
+            --#{$prefix}switch-background,
+            $switch-background
+        );
+        background-image: url(switchSVG($switch-toggle-background));
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: var(--#{$prefix}switch-border, $switch-border);
+        border-radius: var(
+            --#{$prefix}switch-border-radius,
+            $switch-border-radius
+        );
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        transition: background-position var(--#{$prefix}transition-duration)
+            var(--#{$prefix}transition-timing);
+
+        &:checked {
+            background-position: right center;
+            background-color: var(
+                --#{$prefix}switch-checked-background,
+                $switch-checked-background
+            );
+        }
+    }
 
     // size variants
     @each $name, $value in $sizes {
@@ -36,115 +77,44 @@ $switch-width: 2.75 * 1em !default;
     // color variants
     @each $name, $pair in $colors {
         $color: list.nth($pair, 1);
-
         &--#{$name} {
             --#{$prefix}focus: #{createFocus($color)};
 
-            .o-switch__check--checked {
-                background: var(--#{$prefix}variant-#{$name}, $color);
+            input:checked {
+                border-color: var(--#{$prefix}#{$name});
+                background-color: var(--#{$prefix}variant-#{$name}, $color);
             }
         }
+
+        // possive variant
         &--#{$name}-passive {
             --#{$prefix}focus: #{createFocus($color)};
 
-            .o-switch__check:not(.o-switch__check--checked) {
-                background: var(--#{$prefix}variant-#{$name}, $color);
+            input {
+                background-color: var(--#{$prefix}#{$name});
+                border-color: var(--#{$prefix}#{$name});
             }
         }
     }
 
     &__label {
-        margin-left: var(--#{$prefix}switch-margin-label, $switch-margin-label);
+        margin-left: var(--#{$prefix}switch-spacer, $switch-spacer);
     }
 
     &--left {
+        display: inline-flex;
         flex-direction: row-reverse;
 
         .o-switch__label {
             margin-left: 0;
-            margin-right: var(
-                --#{$prefix}switch-margin-label,
-                $switch-margin-label
-            );
+            margin-right: var(--#{$prefix}switch-spacer, $switch-spacer);
         }
     }
 
-    &__check-switch {
-        content: "";
-        display: block;
-        height: calc(
-            (
-                    var(--#{$prefix}switch-width, $switch-width) - var(
-                            --#{$prefix}switch-padding,
-                            $switch-padding
-                        ) *
-                        2
-                ) *
-                0.5
-        );
-        width: calc(
-            (
-                    var(--#{$prefix}switch-width, $switch-width) - var(
-                            --#{$prefix}switch-padding,
-                            $switch-padding
-                        ) *
-                        2
-                ) *
-                0.5
-        );
-        background: var(
-            --#{$prefix}switch-action-background,
-            $switch-action-background
-        );
-        box-shadow: var(--#{$prefix}switch-box-shadow, $switch-box-shadow);
-        transition: transform var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
-        will-change: transform;
-        transform-origin: left;
-    }
-
-    &__check {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-        width: var(--#{$prefix}switch-width, $switch-width);
-        height: calc(
-            var(--#{$prefix}switch-width, $switch-width) * 0.5 +
-                var(--#{$prefix}switch-padding, $switch-padding)
-        );
-
-        padding: var(--#{$prefix}switch-padding, $switch-padding);
-        background: var(--#{$prefix}switch-background, $switch-background);
+    &--rounded .o-switch__input {
         border-radius: var(
-            --#{$prefix}switch-border-radius,
-            $switch-border-radius
-        );
-        transition: background var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
-
-        &--checked {
-            background: var(
-                --#{$prefix}switch-active-background-color,
-                $switch-active-background-color
-            );
-
-            .o-switch__check-switch {
-                transform: translate3d(100%, 0, 0);
-            }
-        }
-    }
-
-    &__input {
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        z-index: -1;
-    }
-
-    &--rounded {
-        border-radius: var(
-            --#{$prefix}switch-rounded-border-radius,
-            $switch-rounded-border-radius
+            --#{$prefix}switch-border-radius-rounded,
+            $switch-border-radius-rounded
         );
     }
 
@@ -156,8 +126,12 @@ $switch-width: 2.75 * 1em !default;
     }
 
     // focus effect
-    &:focus &__check,
-    &:focus-within &__check {
-        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        .o-switch__input {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: none;
+        }
     }
 }

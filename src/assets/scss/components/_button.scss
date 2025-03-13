@@ -32,7 +32,9 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
     }
 }
 
-.o-btn {
+.o-button {
+    @include unselectable;
+
     position: relative;
     display: inline-flex;
     cursor: pointer;
@@ -42,8 +44,6 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
     justify-content: center;
     vertical-align: top;
     text-decoration: none;
-
-    @include unselectable;
     -moz-appearance: none;
     -webkit-appearance: none;
 

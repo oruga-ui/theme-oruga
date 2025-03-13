@@ -12,7 +12,7 @@ $sidebar-width: 260px !default;
 $sidebar-zindex: 100 !default;
 /* @docs */
 
-.o-side {
+.o-sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -103,13 +103,13 @@ $sidebar-zindex: 100 !default;
                 --#{$prefix}sidebar-reduced-width,
                 $sidebar-reduced-width
             );
+        }
 
-            &-expand {
-                &:hover {
-                    transition: width var(--#{$prefix}transition-duration)
-                        var(--#{$prefix}transition-timing);
-                    width: var(--#{$prefix}sidebar-width, $sidebar-width);
-                }
+        &--hover-expand {
+            &:hover {
+                transition: width var(--#{$prefix}transition-duration)
+                    var(--#{$prefix}transition-timing);
+                width: var(--#{$prefix}sidebar-width, $sidebar-width);
             }
         }
 
@@ -140,11 +140,11 @@ $sidebar-zindex: 100 !default;
     &--inline {
         position: relative;
 
-        .o-side__overlay {
+        .o-sidebar__overlay {
             position: absolute;
         }
 
-        .o-side__content {
+        .o-sidebar__content {
             position: relative;
         }
     }
