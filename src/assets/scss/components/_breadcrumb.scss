@@ -1,0 +1,157 @@
+@use "sass:list";
+
+/* @docs */
+$breadcrumb-list-line-height: 1.25em !default;
+$breadcrumb-item-spacer: 0.25rem !default;
+$breadcrumb-item-font-size: $base-font-size !default;
+$breadcrumb-list-border-radius: var(--#{$prefix}base-border-radius) !default;
+$breadcrumb-item-color: var(--#{$prefix}grey-dark) !default;
+$breadcrumb-item-background-color: transparent !default;
+$breadcrumb-item-active-color: var(--#{$prefix}primary) !default;
+$breadcrumb-item-active-background-color: transparent !default;
+$breadcrumb-item-disabled-color: var(--#{$prefix}grey-light) !default;
+$breadcrumb-item-hover-color: var(--#{$prefix}black) !default;
+$breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
+
+/* @docs */
+
+.o-breadcrumb {
+    &__list {
+        list-style: none;
+        display: flex;
+        padding: unset;
+        line-height: var(
+            --#{$prefix}breadcrumb-list-line-height,
+            $breadcrumb-list-line-height
+        );
+    }
+
+    &__item {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        display: block;
+        list-style: none;
+        border: transparent;
+        background-color: var(
+            --#{$prefix}breadcrumb-item-background-color,
+            $breadcrumb-item-background-color
+        );
+        color: var(--#{$prefix}breadcrumb-item-color, $breadcrumb-item-color);
+        font-size: var(
+            --#{$prefix}breadcrumb-item-size,
+            $breadcrumb-item-font-size
+        );
+        border-radius: var(
+            --#{$prefix}breadcrumb-list-border-radius,
+            $breadcrumb-list-border-radius
+        );
+
+        &:focus-within:not(&--disabled),
+        &:focus:not(&--disabled),
+        &:hover:not(&--disabled) {
+            .o-breadcrumb__item__link {
+                color: var(
+                    --#{$prefix}breadcrumb-item-hover-color,
+                    $breadcrumb-item-hover-color
+                );
+                background-color: var(
+                    --#{$prefix}breadcrumb-item-hover-background-color,
+                    $breadcrumb-item-hover-background-color
+                );
+            }
+        }
+
+        &--active .o-breadcrumb__item__link {
+            font-weight: 500;
+
+            color: var(
+                --#{$prefix}breadcrumb-item-active-color,
+                $breadcrumb-item-active-color
+            );
+            background-color: var(
+                --#{$prefix}breadcrumb-item-active-background-color,
+                $breadcrumb-item-active-background-color
+            );
+        }
+
+        &--disabled .o-breadcrumb__item__link {
+            cursor: inherit;
+            color: var(
+                --#{$prefix}breadcrumb-item-disabled-color,
+                $breadcrumb-item-disabled-color
+            );
+        }
+
+        &__icon {
+            &--left {
+                padding-right: var(
+                    --#{$prefix}breadcrumb-item-spacer,
+                    $breadcrumb-item-spacer
+                );
+            }
+
+            &--right {
+                padding-left: var(
+                    --#{$prefix}breadcrumb-item-spacer,
+                    $breadcrumb-item-spacer
+                );
+            }
+        }
+
+        &__seperator {
+            padding: 0
+                var(--#{$prefix}breadcrumb-item-spacer, $breadcrumb-item-spacer);
+        }
+
+        &__link {
+            padding: 0
+                var(--#{$prefix}breadcrumb-item-spacer, $breadcrumb-item-spacer);
+        }
+    }
+
+    /* size variants*/
+    @each $name, $value in $sizes {
+        &--#{$name} .o-breadcrumb__item {
+            font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
+        }
+    }
+
+    /* color variants*/
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+
+        &--#{$name} {
+            .o-breadcrumb__item {
+                color: var(--#{$prefix}variant-#{$name}, $color);
+
+                &:hover {
+                    /* background-color: darken($color, 2.5%)*/
+                    /* IE 11 needs polyfill*/
+                    filter: brightness(97.5%);
+                }
+            }
+        }
+    }
+
+    /** alignment **/
+    &--left {
+        ol,
+        ul {
+            justify-content: flex-start;
+        }
+    }
+
+    &--centered {
+        ol,
+        ul {
+            justify-content: center;
+        }
+    }
+
+    &--right {
+        ol,
+        ul {
+            justify-content: flex-end;
+        }
+    }
+}
