@@ -121,6 +121,8 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
         $color: list.nth($pair, 1);
 
         &--#{$name} {
+            --#{$prefix}focus: #{createFocus($color)};
+
             .o-breadcrumb__item {
                 color: var(--#{$prefix}variant-#{$name}, $color);
 
@@ -152,6 +154,16 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
         ol,
         ul {
             justify-content: flex-end;
+        }
+    }
+
+    // focus effect
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        .o-breadcrumb__item {
+            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
+            outline: none;
         }
     }
 }
