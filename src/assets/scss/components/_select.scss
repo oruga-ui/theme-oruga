@@ -111,7 +111,7 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
         }
     }
 
-    // size variants
+    // size sizes
     @each $name, $value in $sizes {
         &--#{$name} .o-select__input {
             font-size: var(--#{$prefix}select-font-size-#{$name}, $value);

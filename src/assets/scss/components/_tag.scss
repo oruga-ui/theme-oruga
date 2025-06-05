@@ -1,0 +1,19 @@
+.o-tag {
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
+        }
+    }
+
+    // color variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+
+        &--#{$name} {
+            --#{$prefix}focus: #{createFocus($color)};
+
+            border-color: var(--#{$prefix}variant-#{$name}, $color);
+        }
+    }
+}
