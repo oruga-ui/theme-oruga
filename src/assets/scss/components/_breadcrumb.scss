@@ -2,16 +2,18 @@
 
 /* @docs */
 $breadcrumb-list-line-height: 1.25em !default;
-$breadcrumb-item-spacer: 0.25rem !default;
+$breadcrumb-item-spacer: 0.25em !default;
 $breadcrumb-item-font-size: $base-font-size !default;
+$breadcrumb-item-padding: 0.3em !default;
 $breadcrumb-list-border-radius: var(--#{$prefix}base-border-radius) !default;
 $breadcrumb-item-color: var(--#{$prefix}grey-dark) !default;
 $breadcrumb-item-background-color: transparent !default;
 $breadcrumb-item-active-color: var(--#{$prefix}primary) !default;
 $breadcrumb-item-active-background-color: transparent !default;
 $breadcrumb-item-disabled-color: var(--#{$prefix}grey-light) !default;
-$breadcrumb-item-hover-color: var(--#{$prefix}black) !default;
-$breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
+$breadcrumb-item-hover-color: var(--#{$prefix}white) !default;
+$breadcrumb-item-hover-background-color: var(--#{$prefix}secondary) !default;
+$breadcrumb-seperator-color: inherit;
 
 /* @docs */
 
@@ -46,6 +48,21 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
             $breadcrumb-list-border-radius
         );
 
+        // define seprator
+        &:not(:first-child)::before {
+            float: left;
+            color: var(
+                --#{$prefix}breadcrumb-seperator-color,
+                $breadcrumb-seperator-color
+            );
+            content: var(--seperator, "/");
+        }
+
+        // remove sperator when custom seperator is used
+        &:not(:has(.o-breadcrumb__item__link:first-child))::before {
+            content: unset;
+        }
+
         &:focus-within:not(&--disabled),
         &:focus:not(&--disabled),
         &:hover:not(&--disabled) {
@@ -57,6 +74,10 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
                 background-color: var(
                     --#{$prefix}breadcrumb-item-hover-background-color,
                     $breadcrumb-item-hover-background-color
+                );
+                border-radius: var(
+                    --#{$prefix}breadcrumb-list-border-radius,
+                    $breadcrumb-list-border-radius
                 );
             }
         }
@@ -98,14 +119,15 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
             }
         }
 
-        &__seperator {
-            padding: 0
-                var(--#{$prefix}breadcrumb-item-spacer, $breadcrumb-item-spacer);
-        }
-
         &__link {
-            padding: 0
-                var(--#{$prefix}breadcrumb-item-spacer, $breadcrumb-item-spacer);
+            margin: var(
+                --#{$prefix}breadcrumb-item-spacer,
+                $breadcrumb-item-spacer
+            );
+            padding: var(
+                --#{$prefix}breadcrumb-item-padding,
+                $breadcrumb-item-padding
+            );
         }
     }
 
@@ -123,7 +145,7 @@ $breadcrumb-item-hover-background-color: var(--#{$prefix}grey-light) !default;
         &--#{$name} {
             --#{$prefix}focus: #{createFocus($color)};
 
-            .o-breadcrumb__item {
+            .o-breadcrumb__item .o-breadcrumb__item__link {
                 color: var(--#{$prefix}variant-#{$name}, $color);
 
                 &:hover {
