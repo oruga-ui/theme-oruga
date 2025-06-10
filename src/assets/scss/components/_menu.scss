@@ -1,8 +1,8 @@
 /* @docs */
 $menu-item-color: var(--#{$prefix}grey-dark) !default;
 $menu-item-background-color: transparent !default;
-$menu-item-hover-color: var(--#{$prefix}black) !default;
-$menu-item-hover-background-color: var(--#{$prefix}grey-light) !default;
+$menu-item-hover-color: var(--#{$prefix}white) !default;
+$menu-item-hover-background-color: var(--#{$prefix}secondary) !default;
 $menu-item-active-color: var(--#{$prefix}primary-invert) !default;
 $menu-item-active-background-color: var(--#{$prefix}primary) !default;
 $menu-item-disabled-color: var(--#{$prefix}grey-light) !default;
