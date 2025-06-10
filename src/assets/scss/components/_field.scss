@@ -30,7 +30,7 @@ $field-horizontal-spacer: 0 1.5rem 0 0 !default;
         );
 
         @each $name, $value in $sizes {
-            &-#{$name} {
+            &--#{$name} {
                 font-size: var(--#{$prefix}field-font-size-#{$name}, $value);
             }
         }
@@ -49,7 +49,7 @@ $field-horizontal-spacer: 0 1.5rem 0 0 !default;
 
         @each $name, $pair in $colors {
             $color: list.nth($pair, 1);
-            &-#{$name} {
+            &--#{$name} {
                 color: var(--#{$prefix}variant-#{$name}, $color);
             }
         }
