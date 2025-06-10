@@ -46,13 +46,13 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
     text-decoration: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+    padding: unset;
 
     background-color: var(
         --#{$prefix}button-background-color,
         $button-background-color
     );
     color: var(--#{$prefix}button-color, $button-color);
-    padding: var(--#{$prefix}button-padding, $button-padding);
     border: var(--#{$prefix}button-border, $button-border);
     border-radius: var(--#{$prefix}button-border-radius, $button-border-radius);
     box-shadow: var(--#{$prefix}button-box-shadow, $button-box-shadow);
@@ -68,6 +68,7 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
         justify-content: center;
         position: relative;
         width: 100%;
+        padding: var(--#{$prefix}button-padding, $button-padding);
 
         @include side-flex-gap($button-margin-icon-to-text);
     }
@@ -227,5 +228,9 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
 
     .o-icon:not(:last-child) {
         margin-right: var(--#{$prefix}button-spacer, $button-spacer);
+    }
+
+    &:has(.o-tag--badge) {
+        position: relative;
     }
 }

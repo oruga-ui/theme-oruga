@@ -3,12 +3,7 @@
 /* @docs */
 $taginput-counter-font-size: 0.75em !default;
 $taginput-counter-margin: 0.25rem 0 0 0.5rem !default;
-$taginput-item-background-color: var(--#{$prefix}primary) !default;
-$taginput-item-color: var(--#{$prefix}primary-invert) !default;
-$taginput-item-border-radius: var(--#{$prefix}base-border-radius) !default;
 $taginput-item-margin: 0.275em !default;
-$taginput-item-padding: 0 0.75em 0 0.75em !default;
-$taginput-item-icon-margin: 0.5em !default;
 /* @docs */
 
 .o-taginput {
@@ -56,46 +51,7 @@ $taginput-item-icon-margin: 0.5em !default;
     }
 
     &__item {
-        display: inline-flex;
         margin: var(--#{$prefix}taginput-item-margin, $taginput-item-margin);
-        padding: var(--#{$prefix}taginput-item-padding, $taginput-item-padding);
-        color: var(--#{$prefix}taginput-item-color, $taginput-item-color);
-        background-color: var(
-            --#{$prefix}taginput-item-background-color,
-            $taginput-item-background-color
-        );
-        border-radius: var(
-            --#{$prefix}taginput-item-border-radius,
-            $taginput-item-border-radius
-        );
-
-        // color variants
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-
-            &--#{$name} {
-                --#{$prefix}focus: #{createFocus($color)};
-
-                background-color: var(--#{$prefix}variant-#{$name}, $color);
-                color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-            }
-        }
-
-        // focus effect
-        &:focus,
-        &:focus-visible,
-        &:focus-within {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: 0;
-        }
-
-        &__close {
-            margin-left: var(
-                --#{$prefix}taginput-item-icon-margin,
-                $taginput-item-icon-margin
-            );
-        }
     }
 
     &__counter {
