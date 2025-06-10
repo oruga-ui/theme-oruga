@@ -35,7 +35,7 @@ textarea {
     line-height: inherit;
 }
 
-.o-noscroll {
+.o-scroll-keep {
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -43,6 +43,6 @@ textarea {
     overflow-y: scroll;
 }
 
-.o-clipped {
+.o-scroll-clip {
     overflow: hidden;
 }
