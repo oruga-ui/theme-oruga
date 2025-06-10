@@ -14,7 +14,6 @@ $breadcrumb-item-disabled-color: var(--#{$prefix}grey-light) !default;
 $breadcrumb-item-hover-color: var(--#{$prefix}white) !default;
 $breadcrumb-item-hover-background-color: var(--#{$prefix}secondary) !default;
 $breadcrumb-seperator-color: inherit;
-
 /* @docs */
 
 .o-breadcrumb {
@@ -83,8 +82,6 @@ $breadcrumb-seperator-color: inherit;
         }
 
         &--active .o-breadcrumb__item__link {
-            font-weight: 500;
-
             color: var(
                 --#{$prefix}breadcrumb-item-active-color,
                 $breadcrumb-item-active-color
@@ -96,7 +93,8 @@ $breadcrumb-seperator-color: inherit;
         }
 
         &--disabled .o-breadcrumb__item__link {
-            cursor: inherit;
+            cursor: unset;
+            pointer-events: none;
             color: var(
                 --#{$prefix}breadcrumb-item-disabled-color,
                 $breadcrumb-item-disabled-color
