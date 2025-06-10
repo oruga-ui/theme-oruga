@@ -1,0 +1,90 @@
+@use "sass:list";
+
+/* @docs */
+$tag-item-color: var(--#{$prefix}grey-dark) !default;
+$tag-background-color: $control-brackground-color !default;
+$tag-border-radius: var(--#{$prefix}base-border-radius) !default;
+$tag-rounded-border-radius: var(
+    --#{$prefix}base-border-radius-rounded
+) !default;
+$tag-item-padding: 0 0.75em !default;
+$tag-item-icon-margin: 0.5em !default;
+/* @docs */
+
+.o-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    white-space: nowrap;
+    color: var(--#{$prefix}tag-item-color, $tag-item-color);
+    background-color: var(
+        --#{$prefix}tag-background-color,
+        $tag-background-color
+    );
+    border-radius: var(--#{$prefix}tag-border-radius, $tag-border-radius);
+    padding: var(--#{$prefix}tag-item-padding, $tag-item-padding);
+
+    &:empty {
+        width: 1em;
+        height: 1em;
+        padding-right: 0;
+    }
+
+    &--rounded {
+        border-radius: var(
+            --#{$prefix}tag-rounded-border-radius,
+            $tag-rounded-border-radius
+        );
+    }
+
+    &--badge {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__icon {
+        margin-right: var(
+            --#{$prefix}tag-item-icon-margin,
+            $tag-item-icon-margin
+        );
+    }
+
+    &__close {
+        margin-left: var(
+            --#{$prefix}tag-item-icon-margin,
+            $tag-item-icon-margin
+        );
+    }
+
+    // size variants
+    @each $name, $value in $sizes {
+        &--#{$name} {
+            font-size: var(--#{$prefix}tag-font-size-#{$name}, $value);
+        }
+    }
+
+    // color variants
+    @each $name, $pair in $colors {
+        $color: list.nth($pair, 1);
+        $color-invert: list.nth($pair, 2);
+
+        &--#{$name} {
+            background-color: var(--#{$prefix}variant-#{$name}, $color);
+            border-color: var(
+                --#{$prefix}variant-invert-#{$name},
+                $color-invert
+            );
+            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+
+            &:focus,
+            &:hover {
+                /* background-color: darken($color-invert, 5%)*/
+                /* IE 11 needs polyfill*/
+                filter: brightness(95%);
+            }
+        }
+    }
+}

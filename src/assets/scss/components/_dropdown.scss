@@ -7,7 +7,7 @@ $dropdown-item-disabled-opacity: var(
     --#{$prefix}base-disabled-opacity
 ) !default;
 $dropdown-item-font-size: var(--#{$prefix}base-font-size) !default;
-$dropdown-item-hover-background-color: #f5f5f5 !default;
+$dropdown-item-hover-background-color: $control-brackground-color !default;
 $dropdown-item-hover-color: #000000 !default;
 $dropdown-item-line-height: var(--#{$prefix}base-line-height) !default;
 $dropdown-item-padding: 0.375rem 1rem !default;

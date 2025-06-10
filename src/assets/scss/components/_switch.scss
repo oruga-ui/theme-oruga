@@ -6,7 +6,7 @@ $switch-spacer: 0.5em !default;
 $switch-width: 2.75em !default;
 $switch-height: 1.5em !default;
 $switch-background: var(--#{$prefix}grey-light) !default;
-$switch-toggle-background: #f5f5f5 !default;
+$switch-toggle-background: $control-brackground-color !default;
 $switch-border: $control-border-width solid var(--#{$prefix}grey-lighter) !default;
 $switch-border-radius: var(--#{$prefix}base-border-radius) !default;
 $switch-border-radius-rounded: var(
