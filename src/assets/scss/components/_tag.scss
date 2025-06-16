@@ -1,14 +1,14 @@
 @use "sass:list";
 
 /* @docs */
-$tag-item-color: var(--#{$prefix}grey-dark) !default;
+$tag-color: var(--#{$prefix}grey-dark) !default;
 $tag-background-color: $control-brackground-color !default;
 $tag-border-radius: var(--#{$prefix}base-border-radius) !default;
 $tag-rounded-border-radius: var(
     --#{$prefix}base-border-radius-rounded
 ) !default;
-$tag-item-padding: 0 0.75em !default;
-$tag-item-icon-margin: 0.5em !default;
+$tag-padding: 0 0.75em !default;
+$tag-icon-margin: 0.5em !default;
 /* @docs */
 
 .o-tag {
@@ -17,13 +17,13 @@ $tag-item-icon-margin: 0.5em !default;
     justify-content: center;
     line-height: 1.5;
     white-space: nowrap;
-    color: var(--#{$prefix}tag-item-color, $tag-item-color);
+    color: var(--#{$prefix}tag-color, $tag-color);
     background-color: var(
         --#{$prefix}tag-background-color,
         $tag-background-color
     );
     border-radius: var(--#{$prefix}tag-border-radius, $tag-border-radius);
-    padding: var(--#{$prefix}tag-item-padding, $tag-item-padding);
+    padding: var(--#{$prefix}tag-padding, $tag-padding);
 
     &:empty {
         width: 1em;
@@ -46,17 +46,11 @@ $tag-item-icon-margin: 0.5em !default;
     }
 
     &__icon {
-        margin-right: var(
-            --#{$prefix}tag-item-icon-margin,
-            $tag-item-icon-margin
-        );
+        margin-right: var(--#{$prefix}tag-icon-margin, $tag-icon-margin);
     }
 
     &__close {
-        margin-left: var(
-            --#{$prefix}tag-item-icon-margin,
-            $tag-item-icon-margin
-        );
+        margin-left: var(--#{$prefix}tag-icon-margin, $tag-icon-margin);
     }
 
     // size variants
