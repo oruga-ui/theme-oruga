@@ -57,7 +57,7 @@ The Oruga Default theme uses the default classes set by Oruga and doesn't come w
 
 ### Customization (SASS/SCSS)
 
-For customasing any SASS variables you have to set them pefore the SCSS Import.
+In order to customize any SASS variables, you have to set them before the SCSS Import.
 
 
 ```scss
