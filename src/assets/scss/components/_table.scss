@@ -84,10 +84,13 @@ $table-pagination-padding: 0.5em 0 !default;
                 );
 
                 &--sticky {
-                    z-index:  calc(
-                            var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) +
-                                2
-                        );
+                    z-index: calc(
+                        var(
+                                --#{$prefix}table-sticky-zindex,
+                                $table-sticky-zindex
+                            ) +
+                            2
+                    );
                 }
             }
         }
