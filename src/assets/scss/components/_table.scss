@@ -70,10 +70,9 @@ $table-pagination-padding: 0.5em 0 !default;
             );
             overflow-y: auto;
 
-            th {
+            .o-table__th {
                 position: -webkit-sticky;
                 position: sticky;
-                left: 0;
                 top: 0;
                 background: var(
                     --#{$prefix}table-background-color,
@@ -83,6 +82,16 @@ $table-pagination-padding: 0.5em 0 !default;
                     var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) +
                         1
                 );
+
+                &--sticky {
+                    z-index: calc(
+                        var(
+                                --#{$prefix}table-sticky-zindex,
+                                $table-sticky-zindex
+                            ) +
+                            2
+                    );
+                }
             }
         }
 
@@ -267,7 +276,6 @@ $table-pagination-padding: 0.5em 0 !default;
             position: -webkit-sticky;
             position: sticky;
             left: 0;
-            top: 0;
             z-index: var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex);
             background: var(
                 --#{$prefix}table-background-color,
