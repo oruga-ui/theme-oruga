@@ -1,116 +1,152 @@
-@use "sass:list";
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$sidebar-overlay: hsla(0, 0%, 4%, 0.86) !default;
-$sidebar-box-shadow: 5px 0px 13px 3px rgba(var(--#{$prefix}black), 0.1) !default;
-$sidebar-content-background-color: var(--#{$prefix}grey-lighter) !default;
-$sidebar-border-radius: var(--#{$prefix}base-border-radius) !default;
-$sidebar-border-width: 1px !default;
-$sidebar-border-color: rgba(0, 0, 0, 0.175) !default;
-$sidebar-reduced-width: 80px !default;
-$sidebar-width: 260px !default;
-$sidebar-zindex: 100 !default;
+$sidebar-zindex: map.get(vars.$zindex, "fixed") !default;
+
+$sidebar-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
+$sidebar-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
+
+$sidebar-content-zindex: map.get(vars.$zindex, "sidebar") !default;
+$sidebar-content-max-width: 50vw !default;
+$sidebar-content-max-height: 50vh !default;
+$sidebar-content-box-shadow: h.useVar("overlay-box-shadow") !default;
+$sidebar-content-background-color: h.useVar(
+    "control-brackground-color"
+) !default;
+$sidebar-content-border-radius: h.useVar("border-radius") !default;
+$sidebar-content-border-width: h.useVar("control-border-width") !default;
+$sidebar-content-border-style: solid !default;
+$sidebar-content-border-color: h.useVar("control-border-color") !default;
+
+$sidebar-close-top: 20px !default;
+$sidebar-close-right: 20px !default;
+$sidebar-close-color: h.useVar("white") !default;
+$sidebar-close-size: 2rem !default;
+$sidebar-close-border-radius: h.useVar("border-radius-rounded") !default;
+$sidebar-close-background-color: h.useVar("control-shadow-color") !default;
 /* @docs */
 
 .o-sidebar {
+    @include h.defineVar("sidebar-zindex", $sidebar-zindex);
+    @include h.defineVar(
+        "sidebar-overlay-background-color",
+        $sidebar-overlay-background-color
+    );
+    @include h.defineVar("sidebar-overlay-zindex", $sidebar-overlay-zindex);
+
+    @include h.defineVar("sidebar-content-zindex", $sidebar-content-zindex);
+    @include h.defineVar(
+        "sidebar-content-box-shadow",
+        $sidebar-content-box-shadow
+    );
+    @include h.defineVar(
+        "sidebar-content-background-color",
+        $sidebar-content-background-color
+    );
+    @include h.defineVar(
+        "sidebar-content-border-radius",
+        $sidebar-content-border-radius
+    );
+    @include h.defineVar(
+        "sidebar-content-border-width",
+        $sidebar-content-border-width
+    );
+    @include h.defineVar(
+        "sidebar-content-border-style",
+        $sidebar-content-border-style
+    );
+    @include h.defineVar(
+        "sidebar-content-border-color",
+        $sidebar-content-border-color
+    );
+
+    @include h.defineVar("sidebar-close-top", $sidebar-close-top);
+    @include h.defineVar("sidebar-close-right", $sidebar-close-right);
+    @include h.defineVar("sidebar-close-color", $sidebar-close-color);
+    @include h.defineVar("sidebar-close-size", $sidebar-close-size);
+    @include h.defineVar(
+        "sidebar-close-border-radius",
+        $sidebar-close-border-radius
+    );
+    @include h.defineVar(
+        "sidebar-close-background-color",
+        $sidebar-close-background-color
+    );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    // disable clickable
+    pointer-events: none;
+
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
+    right: 0;
+    top: 0;
     height: 100%;
     width: 100%;
-    display: none;
+    z-index: h.useVar("sidebar-zindex");
+
+    &__overlay {
+        pointer-events: auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: h.useVar("sidebar-overlay-background-color");
+        z-index: h.useVar("sidebar-overlay-zindex");
+    }
 
     &__content {
+        pointer-events: auto;
         position: absolute;
-        background-color: var(
-            --#{$prefix}sidebar-content-background-color,
-            $sidebar-content-background-color
-        );
-        border-radius: var(
-            --#{$prefix}sidebar-border-radius,
-            $sidebar-border-radius
-        );
-        box-shadow: var(--#{$prefix}sidebar-box-shadow, $sidebar-box-shadow);
+        overflow: auto;
+        z-index: h.useVar("sidebar-content-zindex");
 
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            &--#{$name} {
-                background-color: var(--#{$prefix}variant-#{$name}), $color;
-            }
-        }
+        background-color: h.useVar("sidebar-content-background-color");
+        border-width: 0;
+        border-style: h.useVar("sidebar-content-border-style");
+        border-color: h.useVar("sidebar-content-border-color");
+        border-radius: h.useVar("sidebar-content-border-radius");
+
+        box-shadow: h.useVar("sidebar-content-box-shadow");
+
+        transition:
+            width h.useVar("transition-duration") h.useVar("transition-timing"),
+            height h.useVar("transition-duration") h.useVar("transition-timing");
 
         // position
-        &--right,
-        &--left {
-            transition: width var(--#{$prefix}transition-duration)
-                var(--#{$prefix}transition-timing);
-            width: var(--#{$prefix}sidebar-width, $sidebar-width);
-        }
-
-        &--top,
-        &--bottom {
-            transition: height var(--#{$prefix}transition-duration)
-                var(--#{$prefix}transition-timing);
-            height: var(--#{$prefix}sidebar-width, $sidebar-width);
-        }
-
         &--right {
             left: auto;
             right: 0;
-            border-left: var(
-                    --#{$prefix}sidebar-border-width,
-                    $sidebar-border-width
-                )
-                solid
-                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+            border-left-width: h.useVar("sidebar-content-border-width");
         }
 
         &--left {
             left: 0;
             right: auto;
-            border-right: var(
-                    --#{$prefix}sidebar-border-width,
-                    $sidebar-border-width
-                )
-                solid
-                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+            border-right-width: h.useVar("sidebar-content-border-width");
         }
 
         &--top {
             top: 0;
             bottom: auto;
-            border-bottom: var(
-                    --#{$prefix}sidebar-border-width,
-                    $sidebar-border-width
-                )
-                solid
-                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
+            border-bottom-width: h.useVar("sidebar-content-border-width");
         }
 
         &--bottom {
             top: auto;
             bottom: 0;
-            border-top: var(
-                    --#{$prefix}sidebar-border-width,
-                    $sidebar-border-width
-                )
-                solid
-                var(--#{$prefix}sidebar-border-color, $sidebar-border-color);
-        }
-
-        &--reduced {
-            width: var(
-                --#{$prefix}sidebar-reduced-width,
-                $sidebar-reduced-width
-            );
-        }
-
-        &--hover-expand {
-            &:hover {
-                transition: width var(--#{$prefix}transition-duration)
-                    var(--#{$prefix}transition-timing);
-                width: var(--#{$prefix}sidebar-width, $sidebar-width);
-            }
+            border-top-width: h.useVar("sidebar-content-border-width");
         }
 
         &--fullwidth {
@@ -124,32 +160,38 @@ $sidebar-zindex: 100 !default;
         }
     }
 
-    &__overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        background: var(--#{$prefix}sidebar-overlay, $sidebar-overlay);
-    }
-
-    &--active {
-        display: block;
-    }
-
     &--inline {
-        position: relative;
+        @include h.defineVar("sidebar-zindex", "unset");
+        @include h.defineVar("sidebar-content-zindex", "unset");
 
-        .o-sidebar__overlay {
-            position: absolute;
-        }
+        position: relative;
 
         .o-sidebar__content {
             position: relative;
+            border-width: 0;
+            width: 100%;
+            height: 100%;
         }
     }
 
-    &:not(&--inline) {
-        z-index: var(--#{$prefix}sidebar-zindex, $sidebar-zindex);
+    &__close {
+        // add clickable cursor
+        @include h.clickable;
+
+        position: fixed;
+        top: h.useVar("sidebar-close-top");
+        right: h.useVar("sidebar-close-right");
+
+        display: inline-flex;
+        vertical-align: top;
+
+        height: h.useVar("sidebar-close-size");
+        width: h.useVar("sidebar-close-size");
+
+        color: h.useVar("sidebar-close-color");
+
+        border: none;
+        border-radius: h.useVar("sidebar-close-border-radius");
+        background-color: h.useVar("sidebar-close-background-color");
     }
 }

@@ -1,10 +1,26 @@
+/**********************************
+*   Utility mixins and functions
+***********************************/
+
 @use "sass:string";
 @use "sass:math";
 @use "sass:color";
 
-/**********************************
-*   Utility mixins and functions
-***********************************/
+@use "./variables" as vars;
+
+/// register a css variable with global prefix
+@mixin defineVar($name, $value) {
+    $varName: "--#{vars.$prefix}-#{$name}";
+
+    #{$varName}: #{$value};
+}
+
+/// use a css variable with global prefix
+@function useVar($name) {
+    $varName: "--#{vars.$prefix}-#{$name}";
+
+    @return var(#{$varName});
+}
 
 /// Replaces characters in a string
 ///
@@ -60,24 +76,6 @@
     @return "data:image/svg+xml,#{$encoded}";
 }
 
-@mixin unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-@mixin side-flex-gap($gap) {
-    //flex-wrap: wrap;
-    margin-left: -$gap;
-    margin-right: -$gap;
-
-    & > * {
-        margin-left: $gap;
-        margin-right: $gap;
-    }
-}
-
 // Custom divide function by @mdo from https://github.com/twbs/bootstrap/pull/34245
 // Replaces old slash division deprecated in Dart Sass
 @function divide($dividend, $divisor, $precision: 10) {
@@ -86,12 +84,15 @@
     $divisor: math.abs($divisor);
     $quotient: 0;
     $remainder: $dividend;
+
     @if $dividend == 0 {
         @return 0;
     }
+
     @if $divisor == 0 {
         @error "Cannot divide by 0";
     }
+
     @if $divisor == 1 {
         @return $dividend;
     }
@@ -100,6 +101,7 @@
         $quotient: $quotient + 1;
         $remainder: $remainder - $divisor;
     }
+
     @if $remainder > 0 and $precision > 0 {
         $remainder: divide($remainder * 10, $divisor, $precision - 1) * 0.1;
     }
@@ -107,7 +109,68 @@
     @return ($quotient + $remainder) * $sign;
 }
 
-// create a focus color based on a given color
+/// create a focus color variant based on a given color
 @function createFocus($color) {
     @return color.adjust($color, $alpha: -0.75);
+}
+
+/// create a lighter color variant based on a given color
+@function createLighter($color) {
+    @return color.scale($color, $lightness: 15%);
+}
+
+/// create a darker color variant based on a given color
+@function createDarker($color) {
+    @return color.scale($color, $lightness: -15%);
+}
+
+/// define disabled state
+@mixin disabled($opacity) {
+    opacity: $opacity;
+    cursor: unset;
+    pointer-events: none;
+    text-decoration: none;
+
+    // define unselectable state
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/// define clickable state
+@mixin clickable {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/// remove default appearance
+@mixin removeAppearance {
+    appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/// add focus effect
+@mixin focusable($selector: "&") {
+    &:not(&--disabled) {
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            #{$selector} {
+                box-shadow: vars.$control-focus-box-shadow useVar("focus");
+                outline: none;
+            }
+        }
+    }
+
+    @each $name, $pair in vars.$colors {
+        &--#{$name},
+        &--#{$name}-passive {
+            @include defineVar("focus", useVar("#{$name}-focus"));
+        }
+    }
 }

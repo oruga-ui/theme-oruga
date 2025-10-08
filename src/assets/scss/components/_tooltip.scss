@@ -1,22 +1,64 @@
 @use "sass:list";
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
+$tooltip-zindex: map.get(vars.$zindex, "tooltip") !default;
+
+$tooltip-content-font-size: 0.85rem !default;
+$tooltip-content-color: h.useVar("white") !default;
+$tooltip-content-font-weight: h.useVar("font-weight") !default;
+$tooltip-content-line-height: h.useVar("line-height") !default;
+
+$tooltip-content-padding: 0.35em 0.75em !default;
+$tooltip-content-multiline-width: 300px !default;
+
+$tooltip-content-box-shadow: h.useVar("overlay-box-shadow") !default;
+$tooltip-content-background-color: h.useVar("grey-darkest") !default;
+$tooltip-content-border-radius: h.useVar("border-radius") !default;
+
 $tooltip-arrow-margin: 2px !default;
 $tooltip-arrow-size: 5px !default;
-$tooltip-background-color: var(--#{$prefix}primary) !default;
-$tooltip-color: var(--#{$prefix}primary-invert) !default;
-$tooltip-content-box-shadow: 0px 1px 2px 1px rgba(0, 1, 0, 0.2) !default;
-$tooltip-content-font-size: 0.85rem !default;
-$tooltip-content-max-width: 300px !default;
-$tooltip-content-multiline-width: 300px !default;
-$tooltip-content-padding: 0.35rem 0.75rem !default;
-$tooltip-content-radius-large: 6px !default;
-$tooltip-content-weight-normal: 400 !default;
-$tooltip-content-zindex: 38 !default;
 /* @docs */
 
-// Base
 .o-tooltip {
+    @include h.defineVar("tooltip-zindex", $tooltip-zindex);
+    @include h.defineVar("tooltip-arrow-size", $tooltip-arrow-size);
+    @include h.defineVar("tooltip-arrow-margin", $tooltip-arrow-margin);
+
+    @include h.defineVar("tooltip-content-color", $tooltip-content-color);
+    @include h.defineVar(
+        "tooltip-content-font-size",
+        $tooltip-content-font-size
+    );
+    @include h.defineVar(
+        "tooltip-content-font-weight",
+        $tooltip-content-font-weight
+    );
+    @include h.defineVar(
+        "tooltip-content-line-height",
+        $tooltip-content-line-height
+    );
+
+    @include h.defineVar(
+        "tooltip-content-box-shadow",
+        $tooltip-content-box-shadow
+    );
+    @include h.defineVar(
+        "tooltip-content-background-color",
+        $tooltip-content-background-color
+    );
+    @include h.defineVar(
+        "tooltip-content-border-radius",
+        $tooltip-content-border-radius
+    );
+    @include h.defineVar("tooltip-content-padding", $tooltip-content-padding);
+    @include h.defineVar(
+        "tooltip-content-multiline-width",
+        $tooltip-content-multiline-width
+    );
+
     position: relative;
     display: inline-flex;
 
@@ -25,26 +67,10 @@ $tooltip-content-zindex: 38 !default;
         content: "";
         pointer-events: none;
 
-        z-index: var(
-            --#{$prefix}tooltip-content-zindex,
-            $tooltip-content-zindex
-        );
-        color: var(
-            --#{$prefix}tooltip-background-color,
-            $tooltip-background-color
-        );
+        z-index: h.useVar("tooltip-zindex");
+        color: h.useVar("tooltip-content-background-color");
 
-        // variants
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-
-            &--#{$name} {
-                color: var(--#{$prefix}variant-#{$name}, $color);
-            }
-        }
-
-        // position
+        // position variants
         &--bottom {
             top: auto;
             right: auto;
@@ -59,18 +85,9 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-bottom-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-right-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-left-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
+            border-bottom-width: h.useVar("tooltip-arrow-size");
+            border-right-width: h.useVar("tooltip-arrow-size");
+            border-left-width: h.useVar("tooltip-arrow-size");
         }
 
         &--top {
@@ -87,18 +104,9 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-top-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-right-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-left-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
+            border-top-width: h.useVar("tooltip-arrow-size");
+            border-right-width: h.useVar("tooltip-arrow-size");
+            border-left-width: h.useVar("tooltip-arrow-size");
         }
 
         &--left {
@@ -114,18 +122,9 @@ $tooltip-content-zindex: 38 !default;
             border-bottom-style: solid;
             border-bottom-color: transparent;
 
-            border-left-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-top-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-bottom-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
+            border-left-width: h.useVar("tooltip-arrow-size");
+            border-top-width: h.useVar("tooltip-arrow-size");
+            border-bottom-width: h.useVar("tooltip-arrow-size");
         }
 
         &--right {
@@ -141,18 +140,9 @@ $tooltip-content-zindex: 38 !default;
             border-bottom-style: solid;
             border-bottom-color: transparent;
 
-            border-right-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-top-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-bottom-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
+            border-right-width: h.useVar("tooltip-arrow-size");
+            border-top-width: h.useVar("tooltip-arrow-size");
+            border-bottom-width: h.useVar("tooltip-arrow-size");
         }
 
         &--top-right {
@@ -169,13 +159,8 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-top-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-right-width: calc(
-                var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) * 2
-            );
+            border-top-width: h.useVar("tooltip-arrow-size");
+            border-right-width: calc(h.useVar("tooltip-arrow-size") * 2);
             border-left-width: 0;
         }
 
@@ -193,13 +178,8 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-top-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-left-width: calc(
-                var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) * 2
-            );
+            border-top-width: h.useVar("tooltip-arrow-size");
+            border-left-width: calc(h.useVar("tooltip-arrow-size") * 2);
             border-right-width: 0;
         }
 
@@ -217,13 +197,8 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-bottom-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-left-width: calc(
-                var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) * 2
-            );
+            border-bottom-width: h.useVar("tooltip-arrow-size");
+            border-left-width: calc(h.useVar("tooltip-arrow-size") * 2);
             border-right-width: 0;
         }
 
@@ -241,13 +216,8 @@ $tooltip-content-zindex: 38 !default;
             border-left-style: solid;
             border-left-color: transparent;
 
-            border-bottom-width: var(
-                --#{$prefix}tooltip-arrow-size,
-                $tooltip-arrow-size
-            );
-            border-right-width: calc(
-                var(--#{$prefix}tooltip-arrow-size, $tooltip-arrow-size) * 2
-            );
+            border-bottom-width: h.useVar("tooltip-arrow-size");
+            border-right-width: calc(h.useVar("tooltip-arrow-size") * 2);
             border-left-width: 0;
         }
     }
@@ -256,66 +226,40 @@ $tooltip-content-zindex: 38 !default;
         position: absolute;
         white-space: nowrap;
 
-        max-width: var(
-            --#{$prefix}tooltip-content-max-width,
-            $tooltip-content-max-width
-        );
-        padding: var(
-            --#{$prefix}tooltip-content-padding,
-            $tooltip-content-padding
-        );
-        border-radius: var(
-            --#{$prefix}tooltip-content-radius-large,
-            $tooltip-content-radius-large
-        );
-        font-size: var(
-            --#{$prefix}tooltip-content-font-size,
-            $tooltip-content-font-size
-        );
-        font-weight: var(
-            --#{$prefix}tooltip-content-weight-normal,
-            $tooltip-content-weight-normal
-        );
-        box-shadow: var(
-            --#{$prefix}tooltip-content-box-shadow,
-            $tooltip-content-box-shadow
-        );
-        z-index: var(
-            --#{$prefix}tooltip-content-zindex,
-            $tooltip-content-zindex
-        );
-        background-color: var(
-            --#{$prefix}tooltip-background-color,
-            $tooltip-background-color
-        );
-        color: var(--#{$prefix}tooltip-color, $tooltip-color);
+        z-index: h.useVar("tooltip-zindex");
+        padding: h.useVar("tooltip-content-padding");
 
-        // variants
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
+        color: h.useVar("tooltip-content-color");
+        font-size: h.useVar("tooltip-content-font-size");
+        font-weight: h.useVar("tooltip-content-font-weight");
+        line-height: h.useVar("tooltip-content-line-height");
 
+        box-shadow: h.useVar("tooltip-content-box-shadow");
+        background-color: h.useVar("tooltip-content-background-color");
+        border-radius: h.useVar("tooltip-content-border-radius");
+
+        // color variants
+        @each $name, $pair in vars.$colors {
             &--#{$name} {
-                background: var(--#{$prefix}variant-#{$name}, $color);
-                color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+                @include h.defineVar(
+                    "tooltip-content-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "tooltip-content-background-color",
+                    h.useVar($name)
+                );
             }
         }
 
-        // position
+        // position variants
         &--top {
             top: auto;
             right: auto;
-
             bottom: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -326,14 +270,8 @@ $tooltip-content-zindex: 38 !default;
         &--bottom {
             top: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -349,14 +287,8 @@ $tooltip-content-zindex: 38 !default;
             bottom: auto;
             left: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -367,14 +299,8 @@ $tooltip-content-zindex: 38 !default;
             top: 50%;
             right: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -388,14 +314,8 @@ $tooltip-content-zindex: 38 !default;
             top: auto;
             bottom: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -407,14 +327,8 @@ $tooltip-content-zindex: 38 !default;
             top: auto;
             bottom: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -426,14 +340,8 @@ $tooltip-content-zindex: 38 !default;
             bottom: auto;
             top: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -445,14 +353,8 @@ $tooltip-content-zindex: 38 !default;
             bottom: auto;
             top: calc(
                 (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     ) +
                     100%
             );
@@ -467,30 +369,25 @@ $tooltip-content-zindex: 38 !default;
         &--multiline {
             text-align: center;
             white-space: normal;
-            width: var(
-                --#{$prefix}tooltip-content-multiline-width,
-                $tooltip-content-multiline-width
-            );
+            width: h.useVar("tooltip-content-multiline-width");
         }
     }
 
+    &__trigger {
+        width: 100%;
+    }
+
     &--teleport {
-        .o-tip__content {
-            // position
+        .o-tooltip__content {
+            // position variants
             &--top,
             &--top-left,
             &--top-right {
                 margin-top: calc(
                     -1 *
                         (
-                            var(
-                                    --#{$prefix}tooltip-arrow-size,
-                                    $tooltip-arrow-size
-                                ) +
-                                var(
-                                    --#{$prefix}tooltip-arrow-margin,
-                                    $tooltip-arrow-margin
-                                )
+                            h.useVar("tooltip-arrow-size") +
+                                h.useVar("tooltip-arrow-margin")
                         )
                 );
             }
@@ -500,14 +397,8 @@ $tooltip-content-zindex: 38 !default;
             &--bottom-right {
                 margin-top: calc(
                     (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     )
                 );
             }
@@ -515,14 +406,8 @@ $tooltip-content-zindex: 38 !default;
             &--right {
                 margin-left: calc(
                     (
-                        var(
-                                --#{$prefix}tooltip-arrow-size,
-                                $tooltip-arrow-size
-                            ) +
-                            var(
-                                --#{$prefix}tooltip-arrow-margin,
-                                $tooltip-arrow-margin
-                            )
+                        h.useVar("tooltip-arrow-size") +
+                            h.useVar("tooltip-arrow-margin")
                     )
                 );
             }
@@ -531,21 +416,11 @@ $tooltip-content-zindex: 38 !default;
                 margin-left: calc(
                     -1 *
                         (
-                            var(
-                                    --#{$prefix}tooltip-arrow-size,
-                                    $tooltip-arrow-size
-                                ) +
-                                var(
-                                    --#{$prefix}tooltip-arrow-margin,
-                                    $tooltip-arrow-margin
-                                )
+                            h.useVar("tooltip-arrow-size") +
+                                h.useVar("tooltip-arrow-margin")
                         )
                 );
             }
         }
-    }
-
-    &__trigger {
-        width: 100%;
     }
 }

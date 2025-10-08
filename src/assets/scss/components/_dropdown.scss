@@ -1,58 +1,117 @@
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$dropdown-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$dropdown-item-active-background-color: var(--#{$prefix}primary) !default;
-$dropdown-item-active-color: var(--#{$prefix}primary-invert) !default;
-$dropdown-item-color: #000000 !default;
-$dropdown-item-disabled-opacity: var(
-    --#{$prefix}base-disabled-opacity
-) !default;
-$dropdown-item-font-size: var(--#{$prefix}base-font-size) !default;
-$dropdown-item-hover-background-color: $control-brackground-color !default;
-$dropdown-item-hover-color: #000000 !default;
-$dropdown-item-line-height: var(--#{$prefix}base-line-height) !default;
-$dropdown-item-padding: 0.375rem 1rem !default;
-$dropdown-item-font-weight: 400 !default;
-$dropdown-menu-background: #ffffff !default;
-$dropdown-menu-border-radius: var(--#{$prefix}base-border-radius) !default;
+$dropdown-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$dropdown-menu-zindex: map.get(vars.$zindex, "dropdown") !default;
+$dropdown-menu-spacer: 0px !default;
+$dropdown-menu-padding: h.useVar("control-spacer") 0 !default;
 $dropdown-menu-box-shadow:
     0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.02) !default;
-$dropdown-menu-spacer: 0px !default;
-$dropdown-menu-margin: 0 !default;
-$dropdown-menu-padding: 0.5rem 0 0.5rem 0 !default;
-$dropdown-menu-width: 12rem !default;
-$dropdown-menu-zindex: 50 !default;
-$dropdown-mobile-max-height: calc(100vh - 120px) !default;
-$dropdown-mobile-max-width: 460px !default;
-$dropdown-mobile-overlay-color: rgba(#000000, 0.86) !default;
-$dropdown-mobile-overlay-zindex: 55 !default;
-$dropdown-mobile-width: calc(100vw - 40px) !default;
-$dropdown-mobile-zindex: 60 !default;
+$dropdown-menu-background-color: h.useVar("control-brackground-color") !default;
+$dropdown-menu-border-color: h.useVar("control-border-color") !default;
+$dropdown-menu-border-style: solid !default;
+$dropdown-menu-border-width: h.useVar("control-border-width") !default;
+$dropdown-menu-border-radius: h.useVar("border-radius") !default;
+
+$dropdown-item-padding: 0.25rem 1rem !default;
+$dropdown-item-color: h.useVar("font-color") !default;
+$dropdown-item-font-size: h.useVar("font-size") !default;
+$dropdown-item-font-weight: h.useVar("font-weight") !default;
+$dropdown-item-line-height: h.useVar("line-height") !default;
+
+$dropdown-item-background-color: transparent !default;
+$dropdown-item-active-color: h.useVar("primary-invert") !default;
+$dropdown-item-active-background-color: h.useVar("primary") !default;
+$dropdown-item-hover-background-color: h.useVar("grey-lighter") !default;
+$dropdown-item-hover-color: h.useVar("font-color") !default;
+
+$dropdown-modal-zindex: map.get(vars.$zindex, "modal") !default;
+$dropdown-modal-max-height: min(50vh, calc(100vh - 160px)) !default;
+$dropdown-modal-max-width: min(50vw, calc(100vw - 160px)) !default;
+$dropdown-modal-min-width: min(80vw, 400px) !default;
+
+$dropdown-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
+$dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
+
 /* @docs */
 
 .o-dropdown {
+    @include h.defineVar(
+        "dropdown-disabled-opacity",
+        $dropdown-disabled-opacity
+    );
+    @include h.defineVar(
+        "dropdown-overlay-background-color",
+        $dropdown-overlay-background-color
+    );
+    @include h.defineVar("dropdown-overlay-zindex", $dropdown-overlay-zindex);
+
+    @include h.defineVar("dropdown-item-color", $dropdown-item-color);
+    @include h.defineVar("dropdown-item-font-size", $dropdown-item-font-size);
+    @include h.defineVar(
+        "dropdown-item-font-weight",
+        $dropdown-item-font-weight
+    );
+    @include h.defineVar(
+        "dropdown-item-line-height",
+        $dropdown-item-line-height
+    );
+    @include h.defineVar("dropdown-item-padding", $dropdown-item-padding);
+    @include h.defineVar(
+        "dropdown-item-background-color",
+        $dropdown-item-background-color
+    );
+    @include h.defineVar(
+        "dropdown-item-active-color",
+        $dropdown-item-active-color
+    );
+    @include h.defineVar(
+        "dropdown-item-active-background-color",
+        $dropdown-item-active-background-color
+    );
+    @include h.defineVar(
+        "dropdown-item-hover-color",
+        $dropdown-item-hover-color
+    );
+    @include h.defineVar(
+        "dropdown-item-hover-background-color",
+        $dropdown-item-hover-background-color
+    );
+
+    @include h.defineVar("dropdown-menu-zindex", $dropdown-menu-zindex);
+    @include h.defineVar("dropdown-menu-spacer", $dropdown-menu-spacer);
+    @include h.defineVar("dropdown-menu-box-shadow", $dropdown-menu-box-shadow);
+    @include h.defineVar("dropdown-menu-padding", $dropdown-menu-padding);
+    @include h.defineVar(
+        "dropdown-menu-background-color",
+        $dropdown-menu-background-color
+    );
+    @include h.defineVar(
+        "dropdown-menu-border-style",
+        $dropdown-menu-border-style
+    );
+    @include h.defineVar(
+        "dropdown-menu-border-color",
+        $dropdown-menu-border-color
+    );
+    @include h.defineVar(
+        "dropdown-menu-border-width",
+        $dropdown-menu-border-width
+    );
+    @include h.defineVar(
+        "dropdown-menu-border-radius",
+        $dropdown-menu-border-radius
+    );
+
     display: inline-flex;
     position: relative;
     vertical-align: top;
-
-    &__overlay {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        cursor: pointer;
-        display: none;
-
-        background-color: var(
-            --#{$prefix}dropdown-mobile-overlay-color,
-            $dropdown-mobile-overlay-color
-        );
-        z-index: var(
-            --#{$prefix}dropdown-mobile-overlay-zindex,
-            $dropdown-mobile-overlay-zindex
-        );
-    }
 
     &__trigger {
         display: inline-flex;
@@ -62,31 +121,24 @@ $dropdown-mobile-zindex: 60 !default;
     &__menu {
         position: absolute;
         display: block;
+        width: max-content;
+        min-width: 100%;
 
-        min-width: var(--#{$prefix}dropdown-menu-width, $dropdown-menu-width);
-        z-index: var(--#{$prefix}dropdown-menu-zindex, $dropdown-menu-zindex);
-        background-color: var(
-            --#{$prefix}dropdown-menu-background,
-            $dropdown-menu-background
-        );
-        border-radius: var(
-            --#{$prefix}dropdown-menu-border-radius,
-            $dropdown-menu-border-radius
-        );
-        box-shadow: var(
-            --#{$prefix}dropdown-menu-box-shadow,
-            $dropdown-menu-box-shadow
-        );
-        padding: var(--#{$prefix}dropdown-menu-padding, $dropdown-menu-padding);
-        margin: var(--#{$prefix}dropdown-menu-margin, $dropdown-menu-margin);
+        z-index: h.useVar("dropdown-menu-zindex");
+        padding: h.useVar("dropdown-menu-padding");
 
+        box-shadow: h.useVar("dropdown-menu-box-shadow");
+        background-color: h.useVar("dropdown-menu-background-color");
+        border-color: h.useVar("dropdown-menu-border-color");
+        border-style: h.useVar("dropdown-menu-border-style");
+        border-width: h.useVar("dropdown-menu-border-width");
+        border-radius: h.useVar("dropdown-menu-border-radius");
+
+        // position variants
         &--bottom {
             left: 50%;
             right: auto;
-            top: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            top: calc(100% + h.useVar("dropdown-menu-spacer"));
             bottom: auto;
             transform: translateX(-50%);
         }
@@ -95,18 +147,12 @@ $dropdown-mobile-zindex: 60 !default;
             left: 50%;
             right: auto;
             top: auto;
-            bottom: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
             transform: translateX(-50%);
         }
 
         &--left {
-            right: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            right: calc(100% + h.useVar("dropdown-menu-spacer"));
             left: auto;
             top: 50%;
             bottom: auto;
@@ -115,10 +161,7 @@ $dropdown-mobile-zindex: 60 !default;
 
         &--right {
             right: auto;
-            left: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            left: calc(100% + h.useVar("dropdown-menu-spacer"));
             top: 50%;
             bottom: auto;
             transform: translateY(-50%);
@@ -128,39 +171,27 @@ $dropdown-mobile-zindex: 60 !default;
             right: 0;
             left: auto;
             top: auto;
-            bottom: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
         }
 
         &--top-left {
             right: auto;
             left: 0;
             top: auto;
-            bottom: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
         }
 
         &--bottom-right {
             right: 0;
             left: auto;
-            top: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            top: calc(100% + h.useVar("dropdown-menu-spacer"));
             bottom: auto;
         }
 
         &--bottom-left {
             right: auto;
             left: 0;
-            top: calc(
-                100% +
-                    var(--#{$prefix}dropdown-menu-spacer, $dropdown-menu-spacer)
-            );
+            top: calc(100% + h.useVar("dropdown-menu-spacer"));
             bottom: auto;
         }
     }
@@ -169,55 +200,45 @@ $dropdown-mobile-zindex: 60 !default;
         display: block;
         position: relative;
 
-        color: var(--#{$prefix}dropdown-item-color, $dropdown-item-color);
-        font-size: var(
-            --#{$prefix}dropdown-item-font-size,
-            $dropdown-item-font-size
-        );
-        font-weight: var(
-            --#{$prefix}dropdown-item-font-weight,
-            $dropdown-item-font-weight
-        );
-        line-height: var(
-            --#{$prefix}dropdown-item-line-height,
-            $dropdown-item-line-height
-        );
-        padding: var(--#{$prefix}dropdown-item-padding, $dropdown-item-padding);
+        padding: h.useVar("dropdown-item-padding");
+
+        color: h.useVar("dropdown-item-color");
+        font-size: h.useVar("dropdown-item-font-size");
+        font-weight: h.useVar("dropdown-item-font-weight");
+        line-height: h.useVar("dropdown-item-line-height");
+
+        background-color: h.useVar("dropdown-item-background-color");
 
         &--disabled {
-            opacity: var(
-                --#{$prefix}dropdown-item-disabled-opacity,
-                $dropdown-item-disabled-opacity
-            );
-            pointer-events: none;
+            @include h.disabled(h.useVar("dropdown-disabled-opacity"));
         }
 
         &--active {
-            background-color: var(
-                --#{$prefix}dropdown-item-active-background-color,
-                $dropdown-item-active-background-color
+            @include h.defineVar(
+                "dropdown-item-color",
+                h.useVar("dropdown-item-active-color")
             );
-            color: var(
-                --#{$prefix}dropdown-item-active-color,
-                $dropdown-item-active-color
+            @include h.defineVar(
+                "dropdown-item-background-color",
+                h.useVar("dropdown-item-active-background-color")
             );
         }
 
         &--clickable {
-            cursor: pointer;
+            @include h.clickable;
+        }
 
-            &:not(.o-dropdown__item--active) {
-                &:hover,
-                &.o-dropdown__item--focused {
-                    background-color: var(
-                        --#{$prefix}dropdown-item-hover-background-color,
-                        $dropdown-item-hover-background-color
-                    );
-                    color: var(
-                        --#{$prefix}dropdown-item-hover-color,
-                        $dropdown-item-hover-color
-                    );
-                }
+        &--clickable:not(&--active) {
+            &:hover,
+            &.o-dropdown__item--focused {
+                @include h.defineVar(
+                    "dropdown-item-color",
+                    h.useVar("dropdown-item-hover-color")
+                );
+                @include h.defineVar(
+                    "dropdown-item-background-color",
+                    h.useVar("dropdown-item-hover-background-color")
+                );
             }
         }
     }
@@ -241,46 +262,52 @@ $dropdown-mobile-zindex: 60 !default;
     }
 
     &--disabled {
-        opacity: var(
-            --#{$prefix}dropdown-disabled-opacity,
-            $dropdown-disabled-opacity
-        );
-        pointer-events: none;
-    }
-
-    &--modal:not(.o-dropdown--inline):not(.o-dropdown--hoverable) {
-        > .o-dropdown__menu {
-            position: fixed;
-            top: 25%;
-            left: 50%;
-            bottom: auto;
-            right: auto;
-            transform: translate3d(-50%, -25%, 0);
-            overflow-y: auto;
-            width: var(
-                --#{$prefix}dropdown-mobile-width,
-                $dropdown-mobile-width
-            );
-            max-width: var(
-                --#{$prefix}dropdown-mobile-max-width,
-                $dropdown-mobile-max-width
-            );
-            max-height: var(
-                --#{$prefix}dropdown-mobile-max-height,
-                $dropdown-mobile-max-height
-            );
-            z-index: var(
-                --#{$prefix}dropdown-mobile-zindex,
-                $dropdown-mobile-zindex
-            );
-        }
-
-        > .o-dropdown__overlay {
-            display: block;
-        }
+        @include h.disabled(h.useVar("dropdown-disabled-opacity"));
     }
 
     &--teleport {
         width: unset;
+    }
+
+    &--modal {
+        @include h.defineVar("dropdown-modal-zindex", $dropdown-modal-zindex);
+        @include h.defineVar(
+            "dropdown-modal-max-height",
+            $dropdown-modal-max-height
+        );
+        @include h.defineVar(
+            "dropdown-modal-min-width",
+            $dropdown-modal-min-width
+        );
+        @include h.defineVar(
+            "dropdown-modal-max-width",
+            $dropdown-modal-max-width
+        );
+
+        > .o-dropdown__overlay {
+            pointer-events: auto;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            background-color: h.useVar("dropdown-overlay-background-color");
+            z-index: h.useVar("dropdown-overlay-zindex");
+        }
+
+        > .o-dropdown__menu {
+            pointer-events: auto;
+            position: fixed;
+            top: 25%;
+            left: 50%;
+            bottom: unset;
+            right: unset;
+            transform: translate3d(-50%, -25%, 0);
+
+            min-width: h.useVar("dropdown-modal-min-width");
+            max-width: h.useVar("dropdown-modal-max-width");
+            max-height: h.useVar("dropdown-modal-max-height");
+            z-index: h.useVar("dropdown-modal-zindex");
+        }
     }
 }

@@ -1,13 +1,19 @@
+@use "../utils/helpers" as h;
+
 /* @docs */
 /* @docs */
 
 .o-datetimepicker {
     &__time {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
 
-        // override time dropdown shadow
-        --#{$prefix}dropdown-menu-box-shadow: 0, 0, 0, 0;
+        .o-dropdown {
+            // override time dropdown variables
+            @include h.defineVar("dropdown-menu-box-shadow", #{0, 0, 0, 0});
+            @include h.defineVar("dropdown-menu-border-width", #{0});
+        }
     }
 }

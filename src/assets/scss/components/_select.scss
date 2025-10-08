@@ -1,144 +1,148 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$select-background-color: #fff !default;
-$select-border-color: var(--#{$prefix}grey-lighter) !default;
+$select-height: h.useVar("control-height") !default;
+$select-padding: h.useVar("control-padding-vertical")
+    h.useVar("control-padding-horizontal") !default;
+$select-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$select-color: h.useVar("font-color") !default;
+$select-font-size: h.useVar("font-size") !default;
+$select-font-weight: h.useVar("font-weight") !default;
+$select-line-height: h.useVar("line-height") !default;
+
+$select-box-shadow: h.useVar("control-box-shadow-inset") !default;
+$select-background-color: h.useVar("control-brackground-color") !default;
+$select-border-color: h.useVar("control-border-color") !default;
 $select-border-style: solid !default;
-$select-border-width: 1px !default;
-$select-border-radius: var(--#{$prefix}base-border-radius) !default;
-$select-rounded-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$select-box-shadow: $control-box-shadow !default;
-$select-color: #363636 !default;
-$select-icon-zindex: 4 !default;
-$select-height: $control-height !default;
-$select-line-height: var(--#{$prefix}base-line-height) !default;
-$select-margin: 0 !default;
-$select-padding: $control-padding-vertical $control-padding-horizontal !default;
-$select-arrow-color: $select-color !default;
-$select-arrow-size: 1rem !default;
-$select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
+$select-border-width: h.useVar("control-border-width") !default;
+$select-border-radius: h.useVar("border-radius") !default;
+$select-border-radius-rounded: h.useVar("border-radius-rounded") !default;
+
+$select-multiple-padding: h.useVar("control-spacer") !default;
+$select-arrow-color: vars.$font-color !default;
+$select-arrow-size: 1em !default;
 /* @docs */
 
 @function svg_arrow($color) {
-    $start: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
-    $content: '<g transform="matrix(5.70052,0,0,5.70052,-1329.79,-547.054)"><path d="M233.451,101.749L235.617,99.422L242.013,105.565L248.463,99.422L250.642,101.749L242.013,110.052L233.451,101.749Z" style="fill:#{$color};stroke:white;stroke-width:0.18px;"/></g>';
+    $start: '<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
+    $content: '<g transform="matrix(5.70052,0,0,5.70052,-1329.79,-547.054)"><path d="M233.451,101.749L235.617,99.422L242.013,105.565L248.463,99.422L250.642,101.749L242.013,110.052L233.451,101.749Z" style="fill:#{$color}"/></g>';
     $end: "</svg>";
 
-    @return svg-encode("#{$start}#{$content}#{$end}");
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 .o-select {
-    display: inline-flex;
+    @include h.defineVar("select-height", $select-height);
+    @include h.defineVar("select-padding", $select-padding);
+    @include h.defineVar("select-disabled-opacity", $select-disabled-opacity);
+
+    @include h.defineVar("select-color", $select-color);
+    @include h.defineVar("select-font-size", $select-font-size);
+    @include h.defineVar("select-font-weight", $select-font-weight);
+    @include h.defineVar("select-line-height", $select-line-height);
+
+    @include h.defineVar("select-box-shadow", $select-box-shadow);
+    @include h.defineVar("select-background-color", $select-background-color);
+    @include h.defineVar("select-border-color", $select-border-color);
+    @include h.defineVar("select-border-style", $select-border-style);
+    @include h.defineVar("select-border-width", $select-border-width);
+    @include h.defineVar("select-border-radius", $select-border-radius);
+    @include h.defineVar(
+        "select-border-radius-rounded",
+        $select-border-radius-rounded
+    );
+    @include h.defineVar("select-arrow-size", $select-arrow-size);
+    @include h.defineVar(
+        "select-arrow-background-image",
+        url(svg_arrow($select-arrow-color))
+    );
+    @include h.defineVar("select-multiple-padding", $select-multiple-padding);
+
+    // define focus shadow effect
+    @include h.focusable(".o-select__input");
+
+    display: inline-block;
     position: relative;
 
-    &__input {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        display: inline-block;
-        position: relative;
-        vertical-align: top;
-        cursor: pointer;
-        justify-content: flex-start;
-        align-items: center;
-
-        box-shadow: var(--#{$prefix}select-box-shadow, $select-box-shadow);
-        background-color: var(
-            --#{$prefix}select-background-color,
-            $select-background-color
-        );
-        border-color: var(
-            --#{$prefix}select-border-color,
-            $select-border-color
-        );
-        border-width: var(
-            --#{$prefix}select-border-width,
-            $select-border-width
-        );
-        border-style: var(
-            --#{$prefix}select-border-style,
-            $select-border-style
-        );
-        border-radius: var(
-            --#{$prefix}select-border-radius,
-            $select-border-radius
-        );
-        color: var(--#{$prefix}select-color, $select-color);
-        font-size: var(--#{$prefix}base-font-size, $base-font-size);
-        height: var(--#{$prefix}select-height, $select-height);
-        line-height: var(--#{$prefix}select-line-height, $select-line-height);
-        padding: var(--#{$prefix}select-padding, $select-padding);
-        margin: var(--#{$prefix}select-margin, $select-margin);
-
-        &--arrowed {
-            background-image: url(svg_arrow($select-arrow-color));
-            background-repeat: no-repeat;
-            background-size: var(
-                --#{$prefix}select-arrow-size,
-                $select-arrow-size
-            );
-            background-position: calc(
-                    100% - var(
-                            --#{$prefix}select-arrow-size,
-                            $select-arrow-size
-                        ) *
-                        0.5
-                )
-                center;
-            padding-right: calc(
-                var(--#{$prefix}select-arrow-size, $select-arrow-size) * 2
-            );
-        }
-
-        &--placeholder {
-            opacity: var(
-                --#{$prefix}select-placeholder-opacity,
-                $select-placeholder-opacity
-            );
-        }
-
-        &--iconspace-left {
-            padding-left: var(--#{$prefix}select-height, $select-height);
-        }
-
-        &--iconspace-right {
-            padding-right: var(--#{$prefix}select-height, $select-height);
-        }
-
-        &[disabled] {
-            cursor: inherit;
-        }
-    }
-
-    // size sizes
-    @each $name, $value in $sizes {
-        &--#{$name} .o-select__input {
-            font-size: var(--#{$prefix}select-font-size-#{$name}, $value);
+    // size variants
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar("select-font-size", h.useVar("size-#{$name}"));
         }
     }
 
     // color variants
-    @each $name, $pair in $colors {
+    @each $name, $pair in vars.$colors {
         $color: list.nth($pair, 1);
-
-        &--#{$name} .o-select__input {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            border-color: var(--#{$prefix}variant-#{$name}, $color);
+        &--#{$name} {
+            @include h.defineVar("select-border-color", h.useVar($name));
+            @include h.defineVar(
+                "select-arrow-background-image",
+                url(svg_arrow($color))
+            );
         }
     }
 
-    &--rounded .o-select__input {
-        border-radius: var(
-            --#{$prefix}select-rounded-border-radius,
-            $select-rounded-border-radius
+    &__input {
+        // remove default appearance
+        @include h.removeAppearance;
+
+        display: inline-block;
+        position: relative;
+
+        height: h.useVar("select-height");
+        padding: h.useVar("select-padding");
+
+        color: h.useVar("select-color");
+        font-size: h.useVar("select-font-size");
+        font-weight: h.useVar("select-font-weight");
+        line-height: h.useVar("select-line-height");
+
+        box-shadow: h.useVar("select-box-shadow");
+        background-color: h.useVar("select-background-color");
+        border-color: h.useVar("select-border-color");
+        border-style: h.useVar("select-border-style");
+        border-width: h.useVar("select-border-width");
+        border-radius: h.useVar("select-border-radius");
+
+        &--arrowed {
+            background-image: h.useVar("select-arrow-background-image");
+            background-repeat: no-repeat;
+            background-size: h.useVar("select-arrow-size");
+            background-position: calc(
+                    100% - h.useVar("select-arrow-size") * 0.5
+                )
+                center;
+            padding-right: calc(h.useVar("select-arrow-size") * 2);
+        }
+
+        &--iconspace-left {
+            padding-left: h.useVar("select-height");
+        }
+
+        &--iconspace-right {
+            padding-right: h.useVar("select-height");
+        }
+    }
+
+    &--rounded {
+        @include h.defineVar(
+            "select-border-radius",
+            h.useVar("select-border-radius-rounded")
         );
+    }
+
+    &--disabled {
+        @include h.disabled(h.useVar("select-disabled-opacity"));
     }
 
     &--expanded {
         width: 100%;
         flex-grow: 1;
+        flex-shrink: 1;
 
         .o-select__input {
             width: 100%;
@@ -147,7 +151,7 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 
     &--multiple .o-select__input {
         height: auto;
-        padding: 0;
+        padding: h.useVar("select-multiple-padding");
     }
 
     &__icon-left,
@@ -155,8 +159,7 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
         position: absolute;
         top: 0;
         height: 100%;
-        width: var(--#{$prefix}select-height, $select-height);
-        z-index: var(--#{$prefix}select-icon-zindex, $select-icon-zindex);
+        width: h.useVar("select-height");
     }
 
     &__icon-right {
@@ -165,15 +168,5 @@ $select-placeholder-opacity: var(--#{$prefix}base-disabled-opacity) !default;
 
     &__icon-left {
         left: 0;
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-select__input {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
-        }
     }
 }

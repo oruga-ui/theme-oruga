@@ -1,57 +1,85 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$field-label-color: #363636 !default;
+$field-spacer: h.useVar("control-spacer") !default;
+$field-margin-bottom: calc(1.5 * $field-spacer) !default;
+
+$field-label-color: h.useVar("font-color") !default;
+$field-label-font-size: h.useVar("font-size") !default;
 $field-label-font-weight: 600 !default;
-$field-margin-bottom: 0.75rem !default;
-$field-message-font-size: 0.75rem !default;
-$field-message-margin-top: 0.25rem !default;
-$field-spacer: 0.5rem !default;
-$field-horizontal-spacer: 0 1.5rem 0 0 !default;
+$field-label-line-height: h.useVar("line-height") !default;
+
+$field-message-spacer: calc(0.5 * $field-spacer) !default;
+$field-message-color: h.useVar("secondary") !default;
+$field-message-font-size: 0.75em !default;
+$field-message-font-weight: h.useVar("font-weight") !default;
+$field-message-line-height: h.useVar("line-height") !default;
 /* @docs */
 
 .o-field {
-    flex-grow: 1;
+    @include h.defineVar("field-spacer", $field-spacer);
+    @include h.defineVar("field-margin-bottom", $field-margin-bottom);
+    @include h.defineVar("field-label-color", $field-label-color);
+    @include h.defineVar("field-label-font-size", $field-label-font-size);
+    @include h.defineVar("field-label-font-weight", $field-label-font-weight);
+    @include h.defineVar("field-label-line-height", $field-label-line-height);
+    @include h.defineVar("field-message-color", $field-message-color);
+    @include h.defineVar("field-message-font-size", $field-message-font-size);
+    @include h.defineVar(
+        "field-message-font-weight",
+        $field-message-font-weight
+    );
+    @include h.defineVar(
+        "field-message-line-height",
+        $field-message-line-height
+    );
+    @include h.defineVar("field-message-spacer", $field-message-spacer);
 
     &:not(:last-child) {
-        margin-bottom: var(
-            --#{$prefix}field-margin-bottom,
-            $field-margin-bottom
-        );
+        margin-bottom: h.useVar("field-margin-bottom");
     }
 
     &__label {
         display: block;
-        color: var(--#{$prefix}field-label-color, $field-label-color);
-        font-size: var(--#{$prefix}base-font-size, $base-font-size);
-        font-weight: var(
-            --#{$prefix}field-label-font-weight,
-            $field-label-font-weight
-        );
+        color: h.useVar("field-label-color");
+        font-size: h.useVar("field-label-font-size");
+        font-weight: h.useVar("field-label-font-weight");
+        line-height: h.useVar("field-label-line-weight");
 
-        @each $name, $value in $sizes {
+        // size variants
+        @each $name, $value in vars.$sizes {
             &--#{$name} {
-                font-size: var(--#{$prefix}field-font-size-#{$name}, $value);
+                @include h.defineVar(
+                    "field-label-font-size",
+                    h.useVar("size-#{$name}")
+                );
             }
         }
     }
 
     &__message {
         display: block;
-        font-size: var(
-            --#{$prefix}field-message-font-size,
-            $field-message-font-size
-        );
-        margin-top: var(
-            --#{$prefix}field-message-margin-top,
-            $field-message-margin-top
-        );
+        color: h.useVar("field-message-color");
+        font-size: h.useVar("field-message-font-size");
+        font-weight: h.useVar("field-message-font-weight");
+        line-height: h.useVar("field-message-line-height");
 
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
+        margin-top: h.useVar("field-message-spacer");
+
+        // color variants
+        @each $name, $pair in vars.$colors {
             &--#{$name} {
-                color: var(--#{$prefix}variant-#{$name}, $color);
+                @include h.defineVar("field-message-color", h.useVar($name));
             }
+        }
+    }
+
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar("field-message-color", h.useVar($name));
         }
     }
 
@@ -89,15 +117,14 @@ $field-horizontal-spacer: 0 1.5rem 0 0 !default;
         }
     }
 
+    &--multiline,
     &--grouped {
         display: flex;
-        gap: var(--#{$prefix}field-spacer, $field-spacer);
+        gap: h.useVar("field-spacer");
     }
 
     &--multiline {
-        display: flex;
         flex-wrap: wrap;
-        gap: var(--#{$prefix}field-spacer, $field-spacer);
     }
 
     &__horizontal-body {
@@ -115,10 +142,6 @@ $field-horizontal-spacer: 0 1.5rem 0 0 !default;
         flex-basis: 0;
         flex-grow: 1;
         flex-shrink: 0;
-        margin: var(
-            --#{$prefix}field-horizontal-spacer,
-            $field-horizontal-spacer
-        );
         text-align: right;
     }
 

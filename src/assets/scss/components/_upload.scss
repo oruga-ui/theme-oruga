@@ -1,25 +1,69 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$upload-draggable-border: 1px dashed var(--#{$prefix}grey-light) !default;
-$upload-draggable-border-radius: var(--#{$prefix}base-border-radius) !default;
-$upload-draggable-disabled-opacity: var(
-    --#{$prefix}base-disabled-opacity
+$upload-draggable-padding: calc(4 * h.useVar("control-spacer")) !default;
+$upload-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$upload-draggable-background-color: h.useVar(
+    "control-background-color"
 ) !default;
-$upload-draggable-hover-border-color: var(--#{$prefix}grey) !default;
-$upload-draggable-padding: 2em !default;
+$upload-draggable-border-color: h.useVar("control-border-color") !default;
+$upload-draggable-border-style: solid !default;
+$upload-draggable-border-radius: h.useVar("border-radius") !default;
+$upload-draggable-border-width: calc(h.useVar("control-border-width")) !default;
+$upload-draggable-hover-border-color: h.useVar("secondary") !default;
+$upload-draggable-hover-background-color: h.useVar(
+    "control-background-color"
+) !default;
 /* @docs */
 
 .o-upload {
+    @include h.defineVar("upload-draggable-padding", $upload-draggable-padding);
+    @include h.defineVar("upload-disabled-opacity", $upload-disabled-opacity);
+
+    @include h.defineVar(
+        "upload-draggable-background-color",
+        $upload-draggable-background-color
+    );
+    @include h.defineVar(
+        "upload-draggable-border-color",
+        $upload-draggable-border-color
+    );
+    @include h.defineVar(
+        "upload-draggable-border-style",
+        $upload-draggable-border-style
+    );
+    @include h.defineVar(
+        "upload-draggable-border-radius",
+        $upload-draggable-border-radius
+    );
+    @include h.defineVar(
+        "upload-draggable-border-radius",
+        $upload-draggable-border-radius
+    );
+    @include h.defineVar(
+        "upload-draggable-border-width",
+        $upload-draggable-border-width
+    );
+    @include h.defineVar(
+        "upload-draggable-hover-border-color",
+        $upload-draggable-hover-border-color
+    );
+    @include h.defineVar(
+        "upload-draggable-hover-background-color",
+        $upload-draggable-hover-background-color
+    );
+
     position: relative;
     display: inline-flex;
 
+    // add clickable cursor
+    @include h.clickable;
+
     &--disabled {
-        opacity: var(
-            --#{$prefix}upload-draggable-disabled-opacity,
-            $upload-draggable-disabled-opacity
-        );
-        cursor: not-allowed;
+        @include h.disabled(h.useVar("upload-disabled-opacity"));
     }
 
     &--expanded {
@@ -27,34 +71,34 @@ $upload-draggable-padding: 2em !default;
     }
 
     &__draggable {
-        cursor: pointer;
         width: 100%;
+        padding: h.useVar("upload-draggable-padding");
 
-        padding: var(
-            --#{$prefix}upload-draggable-padding,
-            $upload-draggable-padding
-        );
-        border: var(
-            --#{$prefix}upload-draggable-border,
-            $upload-draggable-border
-        );
-        border-radius: var(
-            --#{$prefix}upload-draggable-border-radius,
-            $upload-draggable-border-radius
-        );
+        background-color: h.useVar("upload-draggable-background-color");
+        border-radius: h.useVar("upload-draggable-border-radius");
+        border-width: h.useVar("upload-draggable-border-width");
+        border-color: h.useVar("upload-draggable-border-color");
+        border-style: h.useVar("upload-draggable-border-style");
 
+        &:hover,
         &--hovered {
-            border-color: var(
-                --#{$prefix}upload-draggable-hover-border-color,
-                $upload-draggable-hover-border-color
+            border-color: h.useVar("upload-draggable-hover-border-color");
+            background-color: h.useVar(
+                "upload-draggable-hover-background-color"
             );
+        }
 
-            @each $name, $pair in $colors {
-                $color: list.nth($pair, 1);
-
-                &-#{$name} {
-                    border-color: var(--#{$prefix}variant-#{$name}, $color);
-                }
+        // color variants
+        @each $name, $pair in vars.$colors {
+            &-#{$name} {
+                @include h.defineVar(
+                    "upload-draggable-hover-background-color",
+                    h.useVar("#{$name}-lighter")
+                );
+                @include h.defineVar(
+                    "upload-draggable-hover-border-color",
+                    h.useVar($name)
+                );
             }
         }
     }

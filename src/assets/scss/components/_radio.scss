@@ -1,133 +1,140 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$radio-active-background-color: $primary !default;
+$radio-spacer: h.useVar("control-spacer") !default;
+$radio-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+$radio-width: 1em !default;
+$radio-height: 1em !default;
+
+$radio-color: h.useVar("font-color") !default;
+$radio-font-size: h.useVar("font-size") !default;
+$radio-font-weight: h.useVar("font-weight") !default;
+$radio-line-height: h.useVar("line-height") !default;
+
+$radio-box-shadow: h.useVar("control-box-shadow-inset") !default;
+$radio-border-color: h.useVar("primary") !default;
+$radio-border-style: solid !default;
+$radio-border-radius: h.useVar("border-radius-rounded") !default;
+$radio-border-width: calc(2 * h.useVar("control-border-width")) !default;
+$radio-background-color: h.useVar("white") !default;
+$radio-active-background-color: h.useVar("primary") !default;
+
 $radio-checked-box-shadow-length: 0 0 0.5em !default;
 $radio-checked-box-shadow-opacity: 0.8 !default;
-$radio-box-shadow: $control-box-shadow !default;
-$radio-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$radio-label-padding: 0 0 0 0.5em !default;
-$radio-margin-sibiling: 0.5em !default;
-$radio-size: 1rem !default;
-$radio-line-height: 1.25 !default;
 /* @docs */
 
 // filled svg calculation
-@function svg_radio_fill() {
+@function svg_radio_filled() {
     $start: '<svg width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#e11919" stroke="#000" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
-    $content: '<g id="SVGRepo_bgCarrier" stroke-width="0"></g>' +
-        '<g id="SVGRepo_iconCarrier">' +
-        '<path d="M483 260c0-123-100-223-223-223S37 137 37 260s100 223 223 223S483 383 483 260Z" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:64px"></path>' +
-        '<circle cx="256" cy="256" r="144"></circle>' + "</g>";
-
+    $content: '<g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"><path d="M483 260c0-123-100-223-223-223S37 137 37 260s100 223 223 223S483 383 483 260Z" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:64px"></path><circle cx="256" cy="256" r="144"></circle></g>';
     $end: "</svg>";
 
-    @return svg-encode("#{$start}#{$content}#{$end}");
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 // empty svg calculation
 @function svg_radio_empty() {
     $start: '<svg width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000" stroke="#000" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
-    $content: '<g id="SVGRepo_bgCarrier" stroke-width="0"></g>' +
-        '<g id="SVGRepo_iconCarrier">' +
-        '<path d="M483 260c0-123-100-223-223-223S37 137 37 260s100 223 223 223S483 383 483 260Z" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:64px"></path>' +
-        "</g>";
+    $content: '<g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"><path d="M483 260c0-123-100-223-223-223S37 137 37 260s100 223 223 223S483 383 483 260Z" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:64px"></path></g>';
     $end: "</svg>";
 
-    @return svg-encode("#{$start}#{$content}#{$end}");
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 .o-radio {
-    @include unselectable;
+    @include h.defineVar("radio-spacer", $radio-spacer);
+    @include h.defineVar("radio-disabled-opacity", $radio-disabled-opacity);
+    @include h.defineVar("radio-width", $radio-width);
+    @include h.defineVar("radio-height", $radio-height);
+    @include h.defineVar("radio-color", $radio-color);
+    @include h.defineVar("radio-font-size", $radio-font-size);
+    @include h.defineVar("radio-font-weight", $radio-font-weight);
+    @include h.defineVar("radio-line-height", $radio-line-height);
+
+    @include h.defineVar("radio-box-shadow", $radio-box-shadow);
+    @include h.defineVar("radio-background-color", $radio-background-color);
+    @include h.defineVar(
+        "radio-active-background-color",
+        $radio-active-background-color
+    );
+    @include h.defineVar("radio-border-radius", $radio-border-radius);
+    @include h.defineVar("radio-border-width", $radio-border-width);
+    @include h.defineVar("radio-border-style", $radio-border-style);
+    @include h.defineVar("radio-border-color", $radio-border-color);
+
+    // define focus shadow effect
+    @include h.focusable(".o-radio__input");
+
+    // add clickable cursor
+    @include h.clickable;
 
     display: inline-flex;
     align-items: center;
-    cursor: pointer;
-    line-height: var(--#{$prefix}radio-line-height, $radio-line-height);
-    margin-right: var(
-        --#{$prefix}radio-margin-sibiling,
-        $radio-margin-sibiling
-    );
+    position: relative;
+
+    color: h.useVar("radio-color");
+    font-size: h.useVar("radio-font-size");
+    font-weight: h.useVar("radio-font-weight");
+    line-height: h.useVar("radio-line-height");
 
     &__input {
-        font-size: var(--#{$prefix}radio-font-size, inherit);
-        width: var(--#{$prefix}radio-size, $radio-size);
-        height: var(--#{$prefix}radio-size, $radio-size);
-        margin: 0;
-        vertical-align: top;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        cursor: pointer;
-        box-shadow: var(--#{$prefix}radio-box-shadow, $radio-box-shadow);
-        border-radius: 50%;
-        background-color: var(
-            --#{$prefix}radio-active-background-color,
-            $radio-active-background-color
-        );
-        mask-image: url(svg_radio_empty());
-        background-image: none;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
 
-        transition: background var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
+        font-size: inherit;
+        vertical-align: top;
+        width: h.useVar("radio-width");
+        height: h.useVar("radio-height");
+
+        transition: background h.useVar("transition-duration")
+            h.useVar("transition-timing");
+
+        box-shadow: h.useVar("radio-box-shadow");
+
+        border-radius: h.useVar("radio-border-radius");
+        /* The background will be the inner filled circle */
+        background-color: h.useVar("radio-background-color");
+        /* The border will be the inner white border circle */
+        border: 2px solid h.useVar("radio-background-color");
+        /* The outline will be the outer circle */
+        outline: h.useVar("radio-border-width") h.useVar("radio-border-style")
+            h.useVar("radio-border-color");
 
         &:checked {
-            mask-image: url(svg_radio_fill());
+            background-color: h.useVar("radio-active-background-color");
         }
     }
 
     &__label {
-        padding: var(--#{$prefix}radio-label-padding, $radio-label-padding);
+        padding: 0 0 0 h.useVar("radio-spacer");
     }
 
     &--disabled {
-        opacity: var(
-            --#{$prefix}radio-disabled-opacity,
-            $radio-disabled-opacity
-        );
+        @include h.disabled(h.useVar("radio-disabled-opacity"));
     }
 
     // size variants
-    @each $name, $value in $sizes {
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}radio-font-size-#{$name}, $value);
-
-            .o-radio__input {
-                width: var(--#{$prefix}radio-font-size-#{$name}, $value);
-                height: var(--#{$prefix}radio-font-size-#{$name}, $value);
-            }
+            @include h.defineVar("radio-font-size", h.useVar("size-#{$name}"));
         }
     }
 
     // color variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-        $color-invert: list.nth($pair, 2);
-
+    @each $name, $pair in vars.$colors {
         &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            .o-radio__input {
-                background-color: var(
-                    --#{$prefix}radio-active-background-color-#{$name},
-                    $color
-                );
-            }
-        }
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-radio__input {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
+            @include h.defineVar("radio-border-color", h.useVar($name));
+            @include h.defineVar(
+                "radio-active-background-color",
+                h.useVar($name)
+            );
         }
     }
 }

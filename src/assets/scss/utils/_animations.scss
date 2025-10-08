@@ -1,5 +1,21 @@
 // Some of the animations are from animate.css (https://daneden.github.io/animate.css)
 
+@use "./helpers" as h;
+@use "./variables" as vars;
+
+// Spin around
+@keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
 // Fade out
 @keyframes fadeOut {
     from {
@@ -111,7 +127,8 @@
 // Fade
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity $animation-speed $animation-timing;
+    transition: opacity h.useVar("animation-speed-fast")
+        h.useVar("animation-timing");
 }
 
 .fade-enter,
@@ -123,10 +140,12 @@
 // Zoom In
 .zoom-in-enter-active,
 .zoom-in-leave-active {
-    transition: opacity $animation-speed $animation-timing;
+    transition: opacity h.useVar("animation-speed-fast")
+        h.useVar("animation-timing");
 
     .animation-content {
-        transition: transform $animation-speed $animation-timing;
+        transition: transform h.useVar("animation-speed-fast")
+            h.useVar("animation-timing");
     }
 }
 
@@ -143,10 +162,12 @@
 // Zoom Out
 .zoom-out-enter-active,
 .zoom-out-leave-active {
-    transition: opacity $animation-speed $animation-timing;
+    transition: opacity h.useVar("animation-speed-fast")
+        h.useVar("animation-timing");
 
     .animation-content {
-        transition: transform $animation-speed $animation-timing;
+        transition: transform h.useVar("animation-speed-fast")
+            h.useVar("animation-timing");
     }
 }
 
@@ -165,7 +186,7 @@
 .slide-next-leave-active,
 .slide-prev-enter-active,
 .slide-prev-leave-active {
-    transition: transform $animation-speed-fast
+    transition: transform vars.$animation-speed
         cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -189,7 +210,7 @@
 .slide-down-leave-active,
 .slide-up-enter-active,
 .slide-up-leave-active {
-    transition: transform $animation-speed-fast
+    transition: transform vars.$animation-speed
         cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -210,11 +231,11 @@
 }
 
 .slide-enter-active {
-    transition: $animation-speed $animation-timing;
+    transition: h.useVar("animation-speed-fast") h.useVar("animation-timing");
 }
 
 .slide-leave-active {
-    transition: $animation-speed $animation-timing;
+    transition: h.useVar("animation-speed-fast") h.useVar("animation-timing");
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 

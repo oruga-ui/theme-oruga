@@ -1,44 +1,140 @@
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$carousel-arrow-background: var(--#{$prefix}white) !default;
-$carousel-arrow-color: var(--#{$prefix}primary) !default;
-$carousel-arrow-icon-spaced: 1.5rem !default;
+$carousel-arrow-icon-spacer: 1.5rem !default;
 $carousel-arrow-top: 50% !default;
 $carousel-arrow-size: 1.5rem !default;
-$carousel-arrow-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$carousel-arrow-border: 1px solid $carousel-arrow-background !default;
-$carousel-arrow-transition: var(--#{$prefix}transition-duration)
-    var(--#{$prefix}transition-timing) !default;
+$carousel-arrow-color: h.useVar("primary") !default;
+$carousel-arrow-border-width: 1px !default;
+$carousel-arrow-border-style: solid !default;
+$carousel-arrow-border-color: h.useVar("white") !default;
+$carousel-arrow-border-radius: h.useVar("border-radius-rounded") !default;
+$carousel-arrow-background-color: $carousel-arrow-border-color !default;
+$carousel-arrow-transition: h.useVar("transition-duration")
+    h.useVar("transition-timing") !default;
+
 $carousel-autoplay-top: 1em !default;
-$carousel-autoplay-left: $carousel-arrow-icon-spaced !default;
+$carousel-autoplay-left: $carousel-arrow-icon-spacer !default;
 $carousel-autoplay-right: unset !default;
 $carousel-autoplay-bottom: unset !default;
-$carousel-indicators-background: rgba(var(--#{$prefix}white), 0.5) !default;
+
+$carousel-indicators-background: rgba(h.useVar("white"), 0.5) !default;
 $carousel-indicators-padding: 0.5rem !default;
-$carousel-indicator-margin: 0 0.5rem 0 0 !default;
-$carousel-indicator-color: var(--#{$prefix}primary) !default;
-$carousel-indicator-background: var(--#{$prefix}white) !default;
-$carousel-indicator-border: 1px solid $carousel-indicator-color !default;
-$carousel-indicator-active-background: $carousel-indicator-color !default;
-$carousel-indicator-active-border: 1px solid $carousel-indicator-color !default;
-$carousel-indicator-transition: var(--#{$prefix}transition-duration)
-    var(--#{$prefix}transition-timing) !default;
-$carousel-indicator-size: 10px !default;
-$carousel-indicator-dots-border-radius: var(
-    --#{$prefix}base-border-radius
-) !default;
+
+$carousel-indicator-spacer: 0.5rem !default;
+$carousel-indicator-size: 0.75em !default;
 $carousel-indicator-lines-height: 5px !default;
 $carousel-indicator-lines-width: 25px !default;
-$carousel-items-transition: all var(--#{$prefix}transition-duration)
-    var(--#{$prefix}transition-timing) 0s !default;
+$carousel-indicator-color: h.useVar("primary") !default;
+$carousel-indicator-border: 1px solid $carousel-indicator-color !default;
+$carousel-indicator-background: h.useVar("white") !default;
+$carousel-indicator-transition: h.useVar("transition-duration")
+    h.useVar("transition-timing") !default;
+$carousel-indicator-dots-radius: h.useVar("border-radius") !default;
+
+$carousel-indicator-active-background: $carousel-indicator-color !default;
+$carousel-indicator-active-border: 1px solid $carousel-indicator-color !default;
+
+$carousel-items-transition: all h.useVar("transition-duration")
+    h.useVar("transition-timing") 0s !default;
 $carousel-item-border: 2px solid transparent !default;
-$carousel-overlay-background: hsla(0, 0%, 4%, 0.86) !default;
-$carousel-overlay-zindex: 40 !default;
+
+$carousel-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
+$carousel-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
 /* @docs */
 
 .o-carousel {
-    @include unselectable;
+    @include h.defineVar(
+        "carousel-arrow-icon-spacer",
+        $carousel-arrow-icon-spacer
+    );
+    @include h.defineVar("carousel-arrow-color", $carousel-arrow-color);
+    @include h.defineVar(
+        "carousel-arrow-border-width",
+        $carousel-arrow-border-width
+    );
+    @include h.defineVar(
+        "carousel-arrow-border-style",
+        $carousel-arrow-border-style
+    );
+    @include h.defineVar(
+        "carousel-arrow-border-color",
+        $carousel-arrow-border-color
+    );
+    @include h.defineVar(
+        "carousel-arrow-border-radius",
+        $carousel-arrow-border-radius
+    );
+    @include h.defineVar(
+        "carousel-arrow-background-color",
+        $carousel-arrow-background-color
+    );
+    @include h.defineVar("carousel-arrow-top", $carousel-arrow-top);
+    @include h.defineVar("carousel-arrow-size", $carousel-arrow-size);
+    @include h.defineVar(
+        "carousel-arrow-transition",
+        $carousel-arrow-transition
+    );
+    @include h.defineVar("carousel-autoplay-top", $carousel-autoplay-top);
+    @include h.defineVar("carousel-autoplay-left", $carousel-autoplay-left);
+    @include h.defineVar("carousel-autoplay-right", $carousel-autoplay-right);
+    @include h.defineVar("carousel-autoplay-bottom", $carousel-autoplay-bottom);
+    @include h.defineVar(
+        "carousel-indicators-padding",
+        $carousel-indicators-padding
+    );
+    @include h.defineVar(
+        "carousel-indicator-spacer",
+        $carousel-indicator-spacer
+    );
+    @include h.defineVar("carousel-indicator-color", $carousel-indicator-color);
+    @include h.defineVar(
+        "carousel-indicator-background",
+        $carousel-indicator-background
+    );
+    @include h.defineVar(
+        "carousel-indicator-border",
+        $carousel-indicator-border
+    );
+    @include h.defineVar(
+        "carousel-indicator-active-background",
+        $carousel-indicator-active-background
+    );
+    @include h.defineVar(
+        "carousel-indicator-active-border",
+        $carousel-indicator-active-border
+    );
+    @include h.defineVar(
+        "carousel-indicator-transition",
+        $carousel-indicator-transition
+    );
+    @include h.defineVar("carousel-indicator-size", $carousel-indicator-size);
+    @include h.defineVar(
+        "carousel-indicator-dots-radius",
+        $carousel-indicator-dots-radius
+    );
+    @include h.defineVar(
+        "carousel-indicator-lines-height",
+        $carousel-indicator-lines-height
+    );
+    @include h.defineVar(
+        "carousel-indicator-lines-width",
+        $carousel-indicator-lines-width
+    );
+    @include h.defineVar(
+        "carousel-items-transition",
+        $carousel-items-transition
+    );
+    @include h.defineVar("carousel-item-border", $carousel-item-border);
+    @include h.defineVar(
+        "carousel-overlay-background-color",
+        $carousel-overlay-background-color
+    );
+    @include h.defineVar("carousel-overlay-zindex", $carousel-overlay-zindex);
 
     position: relative;
     overflow: hidden;
@@ -55,15 +151,8 @@ $carousel-overlay-zindex: 40 !default;
         justify-content: center;
         display: flex;
         max-height: 100vh;
-
-        background-color: var(
-            --#{$prefix}carousel-overlay-background,
-            $carousel-overlay-background
-        );
-        z-index: var(
-            --#{$prefix}carousel-overlay-zindex,
-            $carousel-overlay-zindex
-        );
+        background-color: h.useVar("carousel-overlay-background-color");
+        z-index: h.useVar("carousel-overlay-zindex");
     }
 
     &__wrapper {
@@ -76,19 +165,16 @@ $carousel-overlay-zindex: 40 !default;
         width: 100%;
 
         &:not(&--dragging) {
-            transition: var(
-                --#{$prefix}carousel-items-transition,
-                $carousel-items-transition
-            );
+            transition: h.useVar("carousel-items-transition");
         }
     }
 
     &__item {
-        border: var(--#{$prefix}carousel-item-border, $carousel-item-border);
+        border: h.useVar("carousel-item-border");
         flex-shrink: 0;
 
         &--clickable {
-            cursor: pointer;
+            @include h.clickable;
         }
     }
 
@@ -98,14 +184,8 @@ $carousel-overlay-zindex: 40 !default;
         align-items: center;
         justify-content: center;
 
-        padding: var(
-            --#{$prefix}carousel-indicators-padding,
-            $carousel-indicators-padding
-        );
-        background: var(
-            --#{$prefix}carousel-indicators-background,
-            $carousel-indicators-background
-        );
+        padding: h.useVar("carousel-indicators-padding");
+        background: h.useVar("carousel-indicators-background");
 
         &--inside {
             position: absolute;
@@ -122,134 +202,76 @@ $carousel-overlay-zindex: 40 !default;
 
     &__indicator {
         &:not(:last-child) {
-            margin: var(
-                --#{$prefix}carousel-indicator-margin,
-                $carousel-indicator-margin
-            );
+            margin-right: h.useVar("carousel-indicator-spacer");
         }
 
         &__item {
             display: block;
-
-            border: var(
-                --#{$prefix}carousel-indicator-border,
-                $carousel-indicator-border
-            );
-            background: var(
-                --#{$prefix}carousel-indicator-background,
-                $carousel-indicator-background
-            );
-            transition: var(
-                --#{$prefix}carousel-indicator-transition,
-                $carousel-indicator-transition
-            );
+            cursor: pointer;
+            border: h.useVar("carousel-indicator-border");
+            background: h.useVar("carousel-indicator-background");
+            transition: h.useVar("carousel-indicator-transition");
 
             &--active,
             :hover {
-                background: var(
-                    --#{$prefix}carousel-indicator-active-background,
-                    $carousel-indicator-active-background
-                );
-                border: var(
-                    --#{$prefix}carousel-indicator-active-border,
-                    $carousel-indicator-active-border
-                );
+                background: h.useVar("carousel-indicator-active-background");
+                border: h.useVar("carousel-indicator-active-border");
             }
 
             &--boxes {
-                width: var(
-                    --#{$prefix}carousel-indicator-size,
-                    $carousel-indicator-size
-                );
-                height: var(
-                    --#{$prefix}carousel-indicator-size,
-                    $carousel-indicator-size
-                );
+                width: h.useVar("carousel-indicator-size");
+                height: h.useVar("carousel-indicator-size");
             }
 
             &--dots {
-                border-radius: var(
-                    --#{$prefix}carousel-indicator-dots-border-radius,
-                    $carousel-indicator-dots-border-radius
-                );
-                width: var(
-                    --#{$prefix}carousel-indicator-size,
-                    $carousel-indicator-size
-                );
-                height: var(
-                    --#{$prefix}carousel-indicator-size,
-                    $carousel-indicator-size
-                );
+                border-radius: h.useVar("carousel-indicator-dots-radius");
+                width: h.useVar("carousel-indicator-size");
+                height: h.useVar("carousel-indicator-size");
             }
 
             &--lines {
-                width: var(
-                    --#{$prefix}carousel-indicator-lines-width,
-                    $carousel-indicator-lines-width
-                );
-                height: var(
-                    --#{$prefix}carousel-indicator-lines-height,
-                    $carousel-indicator-lines-height
-                );
+                width: h.useVar("carousel-indicator-lines-width");
+                height: h.useVar("carousel-indicator-lines-height");
             }
         }
     }
 
     &__icon {
-        cursor: pointer;
-        background: var(
-            --#{$prefix}carousel-arrow-background,
-            $carousel-arrow-background
-        );
-        color: var(--#{$prefix}carousel-arrow-color, $carousel-arrow-color);
-        width: var(--#{$prefix}carousel-arrow-size, $carousel-arrow-size);
-        height: var(--#{$prefix}carousel-arrow-size, $carousel-arrow-size);
-        border-radius: var(
-            --#{$prefix}carousel-arrow-border-radius,
-            $carousel-arrow-border-radius
-        );
-        border: var(--#{$prefix}carousel-arrow-border, $carousel-arrow-border);
-        transition: var(
-            --#{$prefix}carousel-arrow-transition,
-            $carousel-arrow-transition
-        );
+        // add clickable cursor
+        @include h.clickable;
+
+        color: h.useVar("carousel-arrow-color");
+        width: h.useVar("carousel-arrow-size");
+        height: h.useVar("carousel-arrow-size");
+        border-width: h.useVar("carousel-arrow-border-width");
+        border-style: h.useVar("carousel-arrow-border-style");
+        border-color: h.useVar("carousel-arrow-border-color");
+        border-radius: h.useVar("carousel-arrow-border-radius");
+        background: h.useVar("carousel-arrow-background-color");
+        transition: h.useVar("carousel-arrow-transition");
         z-index: 1;
     }
 
     &__icon-autoplay {
         position: absolute;
-        top: var(--#{$prefix}carousel-autoplay-top, $carousel-autoplay-top);
-        left: var(--#{$prefix}carousel-autoplay-left, $carousel-autoplay-left);
-        right: var(
-            --#{$prefix}carousel-autoplay-right,
-            $carousel-autoplay-right
-        );
-        bottom: var(
-            --#{$prefix}carousel-autoplay-bottom,
-            $carousel-autoplay-bottom
-        );
+        top: h.useVar("carousel-autoplay-top");
+        left: h.useVar("carousel-autoplay-left");
+        right: h.useVar("carousel-autoplay-right");
+        bottom: h.useVar("carousel-autoplay-bottom");
     }
 
     &__icon-prev,
     &__icon-next {
         position: absolute;
-        top: var(--#{$prefix}carousel-arrow-top, $carousel-arrow-top);
-        transform: translateY(
-            var(--#{$prefix}carousel-arrow-top, -$carousel-arrow-top)
-        );
+        top: h.useVar("carousel-arrow-top");
+        transform: translateY(calc(-1 * h.useVar("carousel-arrow-top")));
     }
 
     &__icon-prev {
-        left: var(
-            --#{$prefix}carousel-arrow-icon-spaced,
-            $carousel-arrow-icon-spaced
-        );
+        left: h.useVar("carousel-arrow-icon-spacer");
     }
 
     &__icon-next {
-        right: var(
-            --#{$prefix}carousel-arrow-icon-spaced,
-            $carousel-arrow-icon-spaced
-        );
+        right: h.useVar("carousel-arrow-icon-spacer");
     }
 }
