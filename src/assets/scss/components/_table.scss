@@ -254,13 +254,12 @@ $table-card-margin: 0 0 1rem 0;
             height: h.useVar("table-sticky-header-height");
             overflow-y: auto;
 
-            th:not(.o-table__th--sticky) {
+            .o-table__th:not(.o-table__th--sticky) {
                 position: -webkit-sticky;
                 position: sticky;
-                left: 0;
                 top: 0;
-                z-index: h.useVar("table-sticky-zindex");
                 background: h.useVar("table-background-color");
+                z-index: calc(h.useVar("table-sticky-zindex") + 1);
             }
         }
 
@@ -445,7 +444,6 @@ $table-card-margin: 0 0 1rem 0;
             position: -webkit-sticky;
             position: sticky;
             left: 0;
-            top: 0;
             z-index: calc(h.useVar("table-sticky-zindex") + 1);
             background-color: h.useVar("table-background-color");
         }
