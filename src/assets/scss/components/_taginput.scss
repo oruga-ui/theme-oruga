@@ -1,35 +1,50 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+@use "./input";
 
 /* @docs */
-$taginput-counter-font-size: 0.75em !default;
-$taginput-counter-margin: 0.25rem 0 0 0.5rem !default;
-$taginput-item-margin: 0.275em !default;
+$taginput-counter-font-size: 0.85rem !default;
+$taginput-counter-spacer: h.useVar("control-spacer") !default;
+$taginput-item-spacer: h.useVar("control-spacer") !default;
 /* @docs */
 
 .o-taginput {
+    @include h.defineVar(
+        "taginput-counter-font-size",
+        $taginput-counter-font-size
+    );
+    @include h.defineVar("taginput-counter-spacer", $taginput-counter-spacer);
+    @include h.defineVar("taginput-item-spacer", $taginput-item-spacer);
+
     display: flex;
+
+    // extend o-input design
+    @extend .o-input;
+
+    // define focus shadow effect
+    @include h.focusable(".o-taginput__container");
+
+    // disable input focus
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+        .o-input__input:not(.o-taginput__container) {
+            box-shadow: unset !important;
+        }
+    }
 
     &__container {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
 
-        box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
-        background-color: var(
-            --#{$prefix}input-background-color,
-            $input-background-color
-        );
-        border-color: var(--#{$prefix}input-border-color, $input-border-color);
-        border-style: var(--#{$prefix}input-border-style, $input-border-style);
-        border-width: var(--#{$prefix}input-border-width, $input-border-width);
-        border-radius: var(
-            --#{$prefix}input-border-radius,
-            $input-border-radius
-        );
-        color: var(--#{$prefix}input-color, $input-color);
-        line-height: var(--#{$prefix}input-line-height, $input-line-height);
-        margin: var(--#{$prefix}input-margin, $input-margin);
-        width: var(--#{$prefix}taginput-width, inherit);
+        padding: 0;
+        height: fit-content;
+
+        // pretend container is input element
+        @extend .o-input__input;
     }
 
     &__autocomplete {
@@ -43,28 +58,25 @@ $taginput-item-margin: 0.275em !default;
         box-shadow: none;
     }
 
-    // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} {
-            font-size: var(--#{$prefix}taginput-font-size-#{$name}, $value);
+    &__item {
+        margin: calc(0.75 * h.useVar("taginput-item-spacer"))
+            calc(0.5 * h.useVar("taginput-item-spacer"));
+
+        &:first-child {
+            margin-left: h.useVar("taginput-item-spacer");
         }
     }
 
-    &__item {
-        margin: var(--#{$prefix}taginput-item-margin, $taginput-item-margin);
+    &__counter {
+        display: inline-flex;
+        float: right;
+        align-items: center;
+        font-size: h.useVar("taginput-counter-font-size");
+        margin: h.useVar("taginput-counter-spacer");
     }
 
-    &__counter {
-        display: block;
-        float: right;
-        font-size: var(
-            --#{$prefix}taginput-counter-font-size,
-            $taginput-counter-font-size
-        );
-        margin: var(
-            --#{$prefix}taginput-counter-margin,
-            $taginput-counter-margin
-        );
+    &--disabled {
+        @include h.disabled(h.useVar("input-disabled-opacity"));
     }
 
     &--expanded {

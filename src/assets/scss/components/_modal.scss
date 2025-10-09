@@ -1,94 +1,154 @@
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$modal-content-background-color: var(--#{$prefix}white) !default;
-$modal-content-border-radius: var(--#{$prefix}base-border-radius) !default;
-$modal-overlay-background-color: hsla(0, 0%, 4%, 0.86) !default;
-$modal-close-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$modal-close-right: 20px !default;
-$modal-close-top: 20px !default;
-$modal-close-size: 32px !default;
-$modal-close-color: var(--#{$prefix}white) !default;
-$modal-content-fullscreen-background-color: $control-brackground-color !default;
+$modal-zindex: map.get(vars.$zindex, "fixed") !default;
+
+$modal-overlay-background-color: h.useVar("overlay-background-color") !default;
+$modal-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
+
+$modal-content-zindex: map.get(vars.$zindex, "modal") !default;
 $modal-content-max-height: calc(100vh - 160px) !default;
-$modal-content-margin: 0 auto !default;
-$modal-zindex: 40 !default;
+$modal-content-max-width: calc(100vw - 160px) !default;
+$modal-content-box-shadow: h.useVar("overlay-box-shadow") !default;
+$modal-content-border-radius: h.useVar("border-radius") !default;
+$modal-content-background-color: h.useVar("control-brackground-color") !default;
+
+$modal-close-top: 20px !default;
+$modal-close-right: 20px !default;
+$modal-close-color: h.useVar("white") !default;
+$modal-close-size: 2rem !default;
+$modal-close-border-radius: h.useVar("border-radius-rounded") !default;
+$modal-close-background-color: h.useVar("control-shadow-color") !default;
 /* @docs */
 
 .o-modal {
+    @include h.defineVar("modal-zindex", $modal-zindex);
+    @include h.defineVar(
+        "modal-overlay-background-color",
+        $modal-overlay-background-color
+    );
+    @include h.defineVar("modal-overlay-zindex", $modal-overlay-zindex);
+
+    @include h.defineVar("modal-content-zindex", $modal-content-zindex);
+    @include h.defineVar("modal-content-box-shadow", $modal-content-box-shadow);
+    @include h.defineVar("modal-content-max-height", $modal-content-max-height);
+    @include h.defineVar("modal-content-max-width", $modal-content-max-width);
+    @include h.defineVar(
+        "modal-content-border-radius",
+        $modal-content-border-radius
+    );
+    @include h.defineVar(
+        "modal-content-background-color",
+        $modal-content-background-color
+    );
+
+    @include h.defineVar("modal-close-top", $modal-close-top);
+    @include h.defineVar("modal-close-right", $modal-close-right);
+    @include h.defineVar("modal-close-color", $modal-close-color);
+    @include h.defineVar("modal-close-size", $modal-close-size);
+    @include h.defineVar(
+        "modal-close-border-radius",
+        $modal-close-border-radius
+    );
+    @include h.defineVar(
+        "modal-close-background-color",
+        $modal-close-background-color
+    );
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    // disable clickable
+    pointer-events: none;
+
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
-    z-index: var(--#{$prefix}modal-zindex, $modal-zindex);
+    height: 100%;
+    width: 100%;
+    z-index: h.useVar("modal-zindex");
 
     &__overlay {
+        pointer-events: auto;
+        position: absolute;
         bottom: 0;
         left: 0;
-        position: absolute;
         right: 0;
         top: 0;
-        background-color: var(
-            --#{$prefix}modal-overlay-background-color,
-            $modal-overlay-background-color
-        );
+        background-color: h.useVar("modal-overlay-background-color");
+        z-index: h.useVar("modal-overlay-zindex");
     }
 
     &__content {
-        overflow: auto;
+        pointer-events: auto;
         position: relative;
-        margin: var(--#{$prefix}modal-content-margin, $modal-content-margin);
-        max-height: var(
-            --#{$prefix}modal-content-max-height,
-            $modal-content-max-height
-        );
-        background-color: var(
-            --#{$prefix}modal-content-background-color,
-            $modal-content-background-color
-        );
-        border-radius: var(
-            --#{$prefix}modal-content-border-radius,
-            $modal-content-border-radius
-        );
+        overflow: auto;
+        margin: 0 auto;
+        z-index: h.useVar("modal-content-zindex");
 
+        max-height: h.useVar("modal-content-max-height");
+        max-width: h.useVar("modal-content-max-width");
+        background-color: h.useVar("modal-content-background-color");
+        border-radius: h.useVar("modal-content-border-radius");
+
+        box-shadow: h.useVar("modal-content-box-shadow");
+
+        /// @deprecated
         &--full-screen {
             width: 100%;
             height: 100%;
+            max-width: 100vh;
             max-height: 100vh;
             margin: 0;
-            background-color: var(
-                --#{$prefix}modal-content-fullscreen-background-color,
-                $modal-content-fullscreen-background-color
-            );
+        }
+
+        &--fullwidth {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        &--fullheight {
+            height: 100%;
+            max-height: 100%;
         }
     }
 
     &__close {
-        background: none;
+        // add clickable cursor
+        @include h.clickable;
+
         position: fixed;
-        border: none;
-        display: inline-block;
+        top: h.useVar("modal-close-top");
+        right: h.useVar("modal-close-right");
+
+        display: inline-flex;
         vertical-align: top;
-        border-radius: var(
-            --#{$prefix}modal-close-border-radius,
-            $modal-close-border-radius
-        );
-        right: var(--#{$prefix}modal-close-right, $modal-close-right);
-        top: var(--#{$prefix}modal-close-top, $modal-close-top);
-        height: var(--#{$prefix}modal-close-size, $modal-close-size);
-        width: var(--#{$prefix}modal-close-size, $modal-close-size);
-        color: var(--#{$prefix}modal-close-color, $modal-close-color);
+
+        height: h.useVar("modal-close-size");
+        width: h.useVar("modal-close-size");
+
+        color: h.useVar("modal-close-color");
+
+        border: none;
+        border-radius: h.useVar("modal-close-border-radius");
+        background-color: h.useVar("modal-close-background-color");
     }
 
     &--mobile {
         .o-modal__content {
-            width: 100%;
+            @media screen and (max-width: 1199px) {
+                width: 75vw;
+            }
+            @media screen and (max-width: 575px) {
+                width: 90vw;
+            }
         }
     }
 }

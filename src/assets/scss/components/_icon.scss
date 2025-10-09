@@ -1,57 +1,52 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$icon-spin-duration: 2s !default;
+$icon-color: inherit;
+$icon-font-size: inherit;
+$icon-spin-animation-duration: 2s !default;
 /* @docs */
-
-@keyframes icon-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
-}
 
 .o-icon {
+    @include h.defineVar("icon-color", $icon-color);
+    @include h.defineVar("icon-font-size", $icon-font-size);
+    @include h.defineVar(
+        "icon-spin-animation-duration",
+        $icon-spin-animation-duration
+    );
+
     align-items: center;
     display: inline-flex;
     justify-content: center;
+    color: h.useVar("icon-color");
+    font-size: h.useVar("icon-font-size");
     transition:
-        transform $animation-speed $animation-timing,
-        opacity $animation-speed-fast $animation-timing;
+        transform h.useVar("animation-speed-fast") h.useVar("animation-timing"),
+        opacity h.useVar("animation-speed") h.useVar("animation-timing");
 
-    // sizes
-    @each $name, $value in $sizes {
+    // size variants
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}icon-font-size-#{$name}, $value);
+            @include h.defineVar("icon-font-size", h.useVar("size-#{$name}"));
         }
     }
 
     // color variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-
+    @each $name, $pair in vars.$colors {
         &--#{$name} {
-            color: var(--#{$prefix}variant-#{$name}, $color);
+            @include h.defineVar("icon-color", h.useVar($name));
         }
     }
 
     &--clickable {
-        pointer-events: auto;
-        cursor: pointer;
+        @include h.clickable;
     }
 
     &--spin {
-        animation-name: icon-spin;
+        animation-name: spinAround;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-        animation-duration: var(
-            --#{$prefix}icon-spin-duration,
-            $icon-spin-duration
-        );
+        animation-duration: h.useVar("icon-spin-animation-duration");
     }
 }

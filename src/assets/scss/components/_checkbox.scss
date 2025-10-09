@@ -1,179 +1,179 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$checkbox-active-background-color: var(--#{$prefix}primary) !default;
-$checkbox-background-color: var(--#{$prefix}primary) !default;
-$checkbox-box-shadow: $control-box-shadow !default;
-$checkbox-border-color: var(--#{$prefix}primary) !default;
+$checkbox-spacer: h.useVar("control-spacer") !default;
+$checkbox-height: 1.2em !default;
+$checkbox-width: 1.2em !default;
+
+$checkbox-color: h.useVar("font-color") !default;
+$checkbox-font-size: h.useVar("font-size") !default;
+$checkbox-font-weight: h.useVar("font-weight") !default;
+$checkbox-line-height: h.useVar("line-height") !default;
+
+$checkbox-box-shadow: h.useVar("control-box-shadow-inset") !default;
+$checkbox-border-color: h.useVar("primary") !default;
+$checkbox-border-width: calc(2 * h.useVar("control-border-width")) !default;
 $checkbox-border-style: solid !default;
-$checkbox-border-radius: var(--#{$prefix}base-border-radius) !default;
-$checkbox-border-width: 2px !default;
-$checkbox-checked-box-shadow-length: 0 0 0.5em !default;
-$checkbox-checked-box-shadow-opacity: 0.8 !default;
-$checkbox-checkmark-color: $primary-invert !default;
-$checkbox-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$checkbox-label-padding: 0 0 0 0.5em !default;
-$checkbox-margin-sibiling: 0.5em !default;
-$checkbox-size: 1rem !default;
-$checkbox-line-height: 1.5 !default;
+$checkbox-border-radius: h.useVar("border-radius") !default;
+$checkbox-background-color: h.useVar("primary") !default;
+$checkbox-active-background-color: h.useVar("primary") !default;
+
+$checkbox-checkmark-color: vars.$primary-invert !default;
+$checkbox-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 /* @docs */
 
 // checkmark svg calculation
 @function svg_checkmark($color) {
-    $start: '<svg width="100%" height="100%" viewBox="0 0 234 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
+    $start: '<svg width="100%" height="100%" viewBox="0 0 234 225" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">';
     $content: '<g transform="matrix(4.16667,0,0,4.16667,0,0)"><g transform="matrix(3.13817,0,0,3.13817,-69.2796,-49.5156)"><path style="fill:#{$color}" d="M22.504,26.219L28.637,32.386L39.494,18.284L37.348,16.379L28,27.725L24.46,24.196L22.504,26.219Z"></path></g></g>';
     $end: "</svg>";
 
-    @return svg-encode("#{$start}#{$content}#{$end}");
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 // indeterminate svg calculation
 @function svg_indeterminate($color) {
-    $start: '<svg width="100%" height="100%" viewBox="0 0 417 417" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">';
+    $start: '<svg width="100%" height="100%" viewBox="0 0 417 417" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">';
     $content: '<g transform="matrix(4.16667,0,0,4.16667,0,0)"><g transform="matrix(6.96176,0,0,20.5682,-118.661,-806.753)"><path style="fill:#{$color}" d="M31.265,41.654C31.265,41.324 30.474,41.057 29.5,41.057L18.953,41.057C17.979,41.057 17.188,41.324 17.188,41.654C17.188,41.984 17.979,42.252 18.953,42.252L29.5,42.252C30.474,42.252 31.265,41.984 31.265,41.654Z"/></g></g>';
     $end: "</svg>";
 
-    @return svg-encode("#{$start}#{$content}#{$end}");
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 .o-checkbox {
-    @include unselectable;
+    @include h.defineVar("checkbox-color", $checkbox-color);
+    @include h.defineVar("checkbox-font-size", $checkbox-font-size);
+    @include h.defineVar("checkbox-font-weight", $checkbox-font-weight);
+    @include h.defineVar("checkbox-line-height", $checkbox-line-height);
+    @include h.defineVar("checkbox-width", $checkbox-width);
+    @include h.defineVar("checkbox-height", $checkbox-height);
+    @include h.defineVar("checkbox-spacer", $checkbox-spacer);
+    @include h.defineVar("checkbox-box-shadow", $checkbox-box-shadow);
+    @include h.defineVar(
+        "checkbox-background-color",
+        $checkbox-background-color
+    );
+    @include h.defineVar("checkbox-border-radius", $checkbox-border-radius);
+    @include h.defineVar("checkbox-border-width", $checkbox-border-width);
+    @include h.defineVar("checkbox-border-style", $checkbox-border-style);
+    @include h.defineVar("checkbox-border-color", $checkbox-border-color);
+    @include h.defineVar(
+        "checkbox-active-background-color",
+        $checkbox-active-background-color
+    );
+    @include h.defineVar(
+        "checkbox-disabled-opacity",
+        $checkbox-disabled-opacity
+    );
+    @include h.defineVar(
+        "checkbox-checkmark",
+        url(svg_checkmark($checkbox-checkmark-color))
+    );
+    @include h.defineVar(
+        "checkbox-indeterminate",
+        url(svg_indeterminate($checkbox-checkmark-color))
+    );
+
+    // define focus shadow effect
+    @include h.focusable(".o-checkbox__input");
+
+    // add clickable cursor
+    @include h.clickable;
 
     display: inline-flex;
     align-items: center;
-    cursor: pointer;
     position: relative;
 
-    line-height: var(--#{$prefix}checkbox-line-height, $checkbox-line-height);
-    margin-right: var(
-        --#{$prefix}checkbox-margin-sibiling,
-        $checkbox-margin-sibiling
-    );
+    color: h.useVar("checkbox-color");
+    font-size: h.useVar("checkbox-font-size");
+    font-weight: h.useVar("checkbox-font-weight");
+    line-height: h.useVar("checkbox-line-height");
 
     &__input {
-        width: var(--#{$prefix}checkbox-size, $checkbox-size);
-        height: var(--#{$prefix}checkbox-size, $checkbox-size);
-        margin: 0;
-        outline: none;
-        vertical-align: top;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        flex-shrink: 0;
-        cursor: pointer;
 
-        box-shadow: var(--#{$prefix}checkbox-box-shadow, $checkbox-box-shadow);
-        background-color: var(
-            --#{$prefix}checkbox-background-color,
-            $checkbox-background-color
-        );
+        font-size: inherit;
+        outline: none;
+        vertical-align: top;
+        width: h.useVar("checkbox-width");
+        height: h.useVar("checkbox-height");
+
+        transition: background h.useVar("transition-duration")
+            h.useVar("transition-timing");
+
+        box-shadow: h.useVar("checkbox-box-shadow");
+
+        background-color: h.useVar("checkbox-background-color");
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
 
-        transition: background var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
+        border-radius: h.useVar("checkbox-border-radius");
+        border-width: h.useVar("checkbox-border-width");
+        border-color: h.useVar("checkbox-border-color");
+        border-style: h.useVar("checkbox-border-style");
 
-        border-radius: var(
-            --#{$prefix}checkbox-border-radius,
-            $checkbox-border-radius
-        );
-        border-width: var(
-            --#{$prefix}checkbox-border-width,
-            $checkbox-border-width
-        );
-        border-color: var(
-            --#{$prefix}checkbox-border-color,
-            $checkbox-border-color
-        );
-        border-style: var(
-            --#{$prefix}checkbox-border-style,
-            $checkbox-border-style
-        );
+        &:checked,
+        &:indeterminate {
+            background-color: h.useVar("checkbox-active-background-color");
+            border-color: h.useVar("checkbox-active-background-color");
+        }
 
         &:checked {
-            background-color: var(
-                --#{$prefix}checkbox-active-background-color,
-                $checkbox-active-background-color
-            );
-            border-color: var(
-                --#{$prefix}checkbox-active-background-color,
-                $checkbox-active-background-color
-            );
-            background-image: url(svg_checkmark($checkbox-checkmark-color));
+            background-image: h.useVar("checkbox-checkmark");
         }
 
         &:indeterminate {
-            background-color: var(
-                --#{$prefix}checkbox-active-background-color,
-                $checkbox-active-background-color
-            );
-            border-color: var(
-                --#{$prefix}checkbox-active-background-color,
-                $checkbox-active-background-color
-            );
-            background-image: url(svg_indeterminate($checkbox-checkmark-color));
+            background-image: h.useVar("checkbox-indeterminate");
         }
     }
 
     &__label {
-        padding: var(
-            --#{$prefix}checkbox-label-padding,
-            $checkbox-label-padding
-        );
+        padding: 0 0 0 h.useVar("checkbox-spacer");
     }
 
     &--disabled {
-        opacity: var(
-            --#{$prefix}checkbox-disabled-opacity,
-            $checkbox-disabled-opacity
-        );
+        @include h.disabled(h.useVar("checkbox-disabled-opacity"));
     }
 
     // size variants
-    @each $name, $value in $sizes {
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
-
-            .o-checkbox__input {
-                width: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
-                height: var(--#{$prefix}checkbox-font-size-#{$name}, $value);
-            }
+            @include h.defineVar(
+                "checkbox-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 
     // color variants
-    @each $name, $pair in $colors {
+    @each $name, $pair in vars.$colors {
         $color: list.nth($pair, 1);
         $color-invert: list.nth($pair, 2);
 
         &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            .o-checkbox__input {
-                border-color: var(--#{$prefix}variant-#{$name}, $color);
-                background-color: var(--#{$prefix}variant-#{$name}, $color);
-
-                &:checked {
-                    background-image: url(svg_checkmark($color-invert));
-                }
-
-                &:indeterminate {
-                    background-image: url(svg_indeterminate($color-invert));
-                }
-            }
-        }
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-checkbox__input {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
+            @include h.defineVar("checkbox-background-color", h.useVar($name));
+            @include h.defineVar(
+                "checkbox-active-background-color",
+                h.useVar($name)
+            );
+            @include h.defineVar("checkbox-border-color", h.useVar($name));
+            @include h.defineVar(
+                "checkbox-checkmark",
+                url(svg_checkmark($color-invert))
+            );
+            @include h.defineVar(
+                "checkbox-indeterminate",
+                url(svg_indeterminate($color-invert))
+            );
         }
     }
 }

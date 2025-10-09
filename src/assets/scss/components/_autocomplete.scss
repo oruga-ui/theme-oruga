@@ -1,6 +1,4 @@
-/* @docs */
-$autocomplete-item-hover-background-color: $control-brackground-color !default;
-/* @docs */
+@use "../utils/helpers" as h;
 
 .o-autocomplete {
     &__item {
@@ -10,14 +8,7 @@ $autocomplete-item-hover-background-color: $control-brackground-color !default;
 
         &-group-title,
         &--empty {
-            @extend .o-dropdown--disabled;
-        }
-
-        &--focused {
-            background-color: var(
-                --#{$prefix}autocomplete-item-hover-background-color,
-                $autocomplete-item-hover-background-color
-            );
+            @include h.disabled(h.useVar("control-disabled-opacity"));
         }
     }
 }

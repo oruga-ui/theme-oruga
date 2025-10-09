@@ -1,66 +1,145 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$button-background-color: transparent !default;
-$button-color: var(--#{$prefix}black) !default;
-$button-border-radius: var(--#{$prefix}base-border-radius) !default;
-$button-border-color: var(--#{$prefix}grey-lighter) !default;
-$button-border: 1px solid $button-border-color !default;
+$button-spacer: h.useVar("control-spacer") !default;
+$button-height: h.useVar("control-height") !default;
+$button-padding: h.useVar("control-padding-vertical")
+    h.useVar("control-padding-horizontal") !default;
+$button-loading-animation-duration: h.useVar("animation-speed-slow") !default;
+$button-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$button-color: h.useVar("font-color") !default;
+$button-font-size: h.useVar("font-size") !default;
+$button-font-weight: h.useVar("font-weight") !default;
+$button-line-height: h.useVar("line-height") !default;
+
 $button-box-shadow: none !default;
-$button-font-weight: 400 !default;
-$button-line-height: var(--#{$prefix}base-line-height) !default;
-$button-margin-icon-to-text: 0.1875em !default;
-$button-margin: 0 !default;
-$button-spacer: 0.5rem !default;
-$button-height: $control-height !default;
-$button-padding: $control-padding-vertical 0.75em !default;
-$button-rounded-border-radius: var(
-    --#{$prefix}#{base-border-radius-rounded}
-) !default;
-$button-disabled-opacity: var(--#{$prefix}#{base-disabled-opacity}) !default;
+$button-border-width: h.useVar("control-border-width") !default;
+$button-border-style: solid !default;
+$button-border-color: h.useVar("control-border-color") !default;
+$button-border-radius: h.useVar("border-radius") !default;
+$button-background-color: h.useVar("control-brackground-color") !default;
+
+$button-hover-color: $button-color;
+$button-hover-background-color: $button-background-color;
+$button-hover-border-color: h.useVar("grey-light");
+
 $button-outlined-background-color: transparent !default;
-$button-outlined-border-color: var(--#{$prefix}grey-light) !default;
+$button-outlined-border-color: h.useVar("grey-light") !default;
 /* @docs */
-
-@keyframes spinAround {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(359deg);
-    }
-}
 
 .o-button {
-    @include unselectable;
+    @include h.defineVar("button-spacer", $button-spacer);
+    @include h.defineVar("button-height", $button-height);
+    @include h.defineVar("button-padding", $button-padding);
+    @include h.defineVar(
+        "button-loading-animation-duration",
+        $button-loading-animation-duration
+    );
+    @include h.defineVar("button-disabled-opacity", $button-disabled-opacity);
+
+    @include h.defineVar("button-color", $button-color);
+    @include h.defineVar("button-font-size", $button-font-size);
+    @include h.defineVar("button-font-weight", $button-font-weight);
+    @include h.defineVar("button-line-height", $button-line-height);
+
+    @include h.defineVar("button-box-shadow", $button-box-shadow);
+    @include h.defineVar("button-background-color", $button-background-color);
+    @include h.defineVar("button-border-width", $button-border-width);
+    @include h.defineVar("button-border-style", $button-border-style);
+    @include h.defineVar("button-border-color", $button-border-color);
+    @include h.defineVar("button-border-radius", $button-border-radius);
+    @include h.defineVar("button-hover-color", $button-hover-color);
+    @include h.defineVar(
+        "button-hover-border-color",
+        $button-hover-border-color
+    );
+    @include h.defineVar(
+        "button-hover-background-color",
+        $button-hover-background-color
+    );
+    @include h.defineVar(
+        "button-outlined-background-color",
+        $button-outlined-background-color
+    );
+    @include h.defineVar(
+        "button-outlined-border-color",
+        $button-outlined-border-color
+    );
+
+    // define focus shadow effect
+    @include h.focusable();
+
+    // add clickable cursor
+    @include h.clickable;
+
+    // remove default appearance
+    @include h.removeAppearance;
+    text-decoration: none;
 
     position: relative;
     display: inline-flex;
-    cursor: pointer;
     text-align: center;
     white-space: nowrap;
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    text-decoration: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     padding: unset;
 
-    background-color: var(
-        --#{$prefix}button-background-color,
-        $button-background-color
-    );
-    color: var(--#{$prefix}button-color, $button-color);
-    border: var(--#{$prefix}button-border, $button-border);
-    border-radius: var(--#{$prefix}button-border-radius, $button-border-radius);
-    box-shadow: var(--#{$prefix}button-box-shadow, $button-box-shadow);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    font-weight: var(--#{$prefix}button-font-weight, $button-font-weight);
-    line-height: var(--#{$prefix}button-line-height, $button-line-height);
-    margin: var(--#{$prefix}button-margin, $button-margin);
-    height: var(--#{$prefix}button-height, $button-height);
+    height: h.useVar("button-height");
+
+    color: h.useVar("button-color");
+    font-size: h.useVar("button-font-size");
+    font-weight: h.useVar("button-font-weight");
+    line-height: h.useVar("button-line-height");
+
+    box-shadow: h.useVar("button-box-shadow");
+    background-color: h.useVar("button-background-color");
+
+    border-color: h.useVar("button-border-color");
+    border-style: h.useVar("button-border-style");
+    border-width: h.useVar("button-border-width");
+    border-radius: h.useVar("button-border-radius");
+
+    // size variants
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar("button-font-size", h.useVar("size-#{$name}"));
+        }
+    }
+
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar("button-color", h.useVar("#{$name}-invert"));
+            @include h.defineVar("button-background-color", h.useVar($name));
+            @include h.defineVar("button-border-color", transparent);
+            @include h.defineVar(
+                "button-hover-color",
+                h.useVar("#{$name}-invert")
+            );
+            @include h.defineVar(
+                "button-hover-background-color",
+                h.useVar("#{$name}")
+            );
+            @include h.defineVar(
+                "button-hover-border-color",
+                h.useVar("#{$name}")
+            );
+        }
+    }
+
+    &:focus,
+    &:hover {
+        color: h.useVar("button-hover-color");
+        background-color: h.useVar("button-hover-background-color");
+        border-color: h.useVar("button-hover-border-color");
+
+        // darken color on hover
+        filter: brightness(95%);
+    }
 
     &__wrapper {
         display: inline-flex;
@@ -68,9 +147,7 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
         justify-content: center;
         position: relative;
         width: 100%;
-        padding: var(--#{$prefix}button-padding, $button-padding);
-
-        @include side-flex-gap($button-margin-icon-to-text);
+        padding: h.useVar("button-padding");
     }
 
     &__label {
@@ -82,152 +159,131 @@ $button-outlined-border-color: var(--#{$prefix}grey-light) !default;
     }
 
     &--rounded {
-        border-radius: var(
-            --#{$prefix}button-rounded-border-radius,
-            $button-rounded-border-radius
+        @include h.defineVar(
+            "button-border-radius",
+            h.useVar("border-radius-rounded")
         );
     }
 
     &--disabled {
-        opacity: var(
-            --#{$prefix}button-disabled-opacity,
-            $button-disabled-opacity
-        );
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    /* size variants*/
-    @each $name, $value in $sizes {
-        &--#{$name} {
-            font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
-        }
-    }
-
-    /* color variants*/
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-        $color-invert: list.nth($pair, 2);
-
-        &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            border-color: transparent;
-            background-color: var(--#{$prefix}variant-#{$name}, $color);
-            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-
-            &:hover {
-                /* background-color: darken($color, 2.5%)*/
-                /* IE 11 needs polyfill*/
-                filter: brightness(97.5%);
-            }
-        }
+        @include h.disabled(h.useVar("button-disabled-opacity"));
     }
 
     &--outlined {
-        &:focus,
-        &:hover {
-            background-color: var(
-                --#{$prefix}button-border-color,
-                $button-border-color
-            );
-            color: var(--#{$prefix}button-color, $button-color);
-        }
+        @include h.defineVar(
+            "button-background-color",
+            h.useVar("button-outlined-background-color")
+        );
+        @include h.defineVar(
+            "button-border-color",
+            h.useVar("button-outlined-border-color")
+        );
+        @include h.defineVar(
+            "button-hover-background-color",
+            $button-background-color
+        );
 
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-
+        @each $name, $pair in vars.$colors {
             &-#{$name} {
-                --#{$prefix}focus: #{createFocus($color)};
-
-                background-color: var(
-                    --#{$prefix}button-outlined-background-color,
-                    $button-outlined-background-color
+                @include h.defineVar("button-color", h.useVar("#{$name}"));
+                @include h.defineVar(
+                    "button-background-color",
+                    h.useVar("button-outlined-background-color")
                 );
-                border-color: var(--#{$prefix}variant-#{$name}, $color);
-                color: var(--#{$prefix}variant-#{$name}, $color);
-
-                &:focus,
-                &:hover {
-                    border-color: transparent;
-                    background-color: var(--#{$prefix}variant-#{$name}, $color);
-                    color: var(
-                        --#{$prefix}variant-invert-#{$name},
-                        $color-invert
-                    );
-                }
+                @include h.defineVar(
+                    "button-border-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-background-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-border-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-color",
+                    h.useVar("#{$name}-invert")
+                );
             }
         }
     }
 
     &--inverted {
-        background-color: var(--#{$prefix}button-color, $button-color);
-        border-color: var(--#{$prefix}button-color, $button-color);
-        color: var(--#{$prefix}button-border-color, $button-border-color);
+        @include h.defineVar(
+            "button-background-color",
+            h.useVar("button-color")
+        );
+        @include h.defineVar("button-border-color", h.useVar("button-color"));
+        @include h.defineVar("button-color", h.useVar("button-border-color"));
+        @include h.defineVar(
+            "button-hover-background-color",
+            h.useVar("button-color")
+        );
+        @include h.defineVar(
+            "button-hover-color",
+            h.useVar("button-border-color")
+        );
 
-        &:hover {
-            /* background-color: darken($color-invert, 5%)*/
-            /* IE 11 needs polyfill*/
-            filter: brightness(95%);
-        }
-
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-
+        @each $name, $pair in vars.$colors {
             &-#{$name} {
-                --#{$prefix}focus: #{createFocus($color)};
-
-                background-color: var(
-                    --#{$prefix}variant-invert-#{$name},
-                    $color-invert
+                @include h.defineVar(
+                    "button-background-color",
+                    h.useVar("#{$name}-invert")
                 );
-                border-color: var(
-                    --#{$prefix}variant-invert-#{$name},
-                    $color-invert
+                @include h.defineVar(
+                    "button-border-color",
+                    h.useVar("#{$name}-invert")
                 );
-                color: var(--#{$prefix}variant-#{$name}, $color);
-
-                &:focus,
-                &:hover {
-                    /* background-color: darken($color-invert, 5%)*/
-                    /* IE 11 needs polyfill*/
-                    filter: brightness(95%);
-                }
+                @include h.defineVar("button-color", h.useVar($name));
+                @include h.defineVar(
+                    "button-hover-background-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "button-hover-border-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar("button-hover-color", h.useVar($name));
             }
         }
-    }
-
-    /* focus effect*/
-    &:focus,
-    &:focus-within {
-        box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-        outline: 0;
     }
 
     &--loading {
         color: transparent !important;
         pointer-events: none;
-    }
 
-    &--loading::after {
-        -webkit-animation: spinAround 500ms infinite linear;
-        left: calc(50% - 0.5em);
-        top: calc(50% - 0.5em);
-        position: absolute !important;
-        border: 2px solid #dbdbdb;
-        border-radius: 9999px;
-        border-right-color: transparent;
-        border-top-color: transparent;
-        content: "";
-        display: block;
-        height: 1em;
-        width: 1em;
+        &::after {
+            -webkit-animation: h.useVar("button-loading-animation-speed");
+            animation-name: spinAround;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-duration: h.useVar("button-loading-animation-duration");
+
+            position: absolute !important;
+            left: calc(50% - 0.5em);
+            top: calc(50% - 0.5em);
+
+            display: block;
+            height: 1em;
+            width: 1em;
+
+            content: "";
+
+            border: 2px solid h.useVar("button-color");
+            border-radius: 9999px;
+            border-right-color: transparent;
+            border-top-color: transparent;
+        }
     }
 
     .o-icon:not(:last-child) {
-        margin-right: var(--#{$prefix}button-spacer, $button-spacer);
+        margin-right: h.useVar("button-spacer");
+    }
+
+    .o-icon:last-child:not(:first-child) {
+        margin-left: h.useVar("button-spacer");
     }
 
     &:has(.o-tag--badge) {

@@ -1,87 +1,153 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$steps-title-background-color: hsl(0, 0%, 100%) !default;
-$steps-title-padding: 0.2em !default;
-$steps-title-font-weight: 500 !default;
-$steps-marker-background: var(--#{$prefix}grey-light) !default;
-$steps-marker-color: var(--#{$prefix}primary-invert) !default;
-$steps-marker-border: 0.2em solid #fff !default;
-$steps-marker-font-weight: 700 !default;
-$steps-marker-rounded-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$steps-color: var(--#{$prefix}grey-lighter) !default;
-$steps-previous-color: var(--#{$prefix}primary) !default;
-$steps-active-color: var(--#{$prefix}primary) !default;
-$steps-divider-height: 0.2em !default;
-$steps-vertical-padding: 1em 0 !default;
-$steps-item-line-height: var(--#{$prefix}base-line-height) !default;
-$steps-link-color: hsl(0, 0%, 29%) !default;
-$steps-content-spacer: 1rem !default;
-$steps-content-padding: 1rem !default;
-$steps-font-size: var(--#{$prefix}base-font-size) !default;
+$steps-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+$steps-vertical-padding: calc(2 * h.useVar("control-spacer")) 0 !default;
+
+$steps-step-color: h.useVar("font-color") !default;
+$steps-step-font-size: h.useVar("font-size") !default;
+$steps-step-font-weight: 500 !default;
+$steps-step-line-height: h.useVar("line-height") !default;
+
+$steps-step-border-color: h.useVar(
+    "control-brackground-color"
+) !default; // color scheme is inverted for steps
+$steps-step-background-color: h.useVar(
+    "control-border-color"
+) !default; // color scheme is inverted for steps
+$steps-step-active-border-color: h.useVar("primary") !default;
+$steps-step-active-background-color: h.useVar("primary-invert") !default;
+$steps-step-previous-border-color: $steps-step-active-background-color !default; // previus is the inverted active color scheme
+$steps-step-previous-background-color: $steps-step-active-border-color !default; // previus is the inverted active color scheme
+
+$steps-step-border-radius: h.useVar("border-radius") !default;
+$steps-step-border-radius-rounded: h.useVar("border-radius-rounded") !default;
+
+$steps-step-divider-height: 0.2em !default;
+
+$steps-step-label-padding: 0.2em !default;
+$steps-step-label-background-color: h.useVar("white") !default;
+
+$steps-content-padding: calc(2 * h.useVar("control-spacer")) !default;
 /* @docs */
-
-@mixin steps-size($size, $name: null) {
-    $sizeVarName: if($name != null, "size-" + #{$name}, "steps-size");
-
-    font-size: var(--#{$prefix}#{$sizeVarName}, $size);
-    min-height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
-
-    .o-steps__divider {
-        height: var(--#{$prefix}steps-divider-height, $steps-divider-height);
-        top: var(--#{$prefix}#{$sizeVarName}, $size);
-    }
-
-    .o-steps__marker {
-        height: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
-        width: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 2);
-    }
-
-    .o-steps__step-label {
-        font-size: calc(var(--#{$prefix}#{$sizeVarName}, $size) * 1.2);
-        line-height: var(--#{$prefix}#{$sizeVarName}, $size);
-    }
-}
 
 .o-steps {
-    @include steps-size($steps-font-size);
+    @include h.defineVar("steps-disabled-opacity", $steps-disabled-opacity);
+    @include h.defineVar("steps-vertical-padding", $steps-vertical-padding);
 
-    @each $name, $value in $sizes {
+    @include h.defineVar("steps-step-color", $steps-step-color);
+    @include h.defineVar("steps-step-font-size", $steps-step-font-size);
+    @include h.defineVar("steps-step-font-weight", $steps-step-font-weight);
+    @include h.defineVar("steps-step-line-height", $steps-step-line-height);
+
+    @include h.defineVar("steps-step-border-color", $steps-step-border-color);
+    @include h.defineVar(
+        "steps-step-background-color",
+        $steps-step-background-color
+    );
+    @include h.defineVar(
+        "steps-step-active-border-color",
+        $steps-step-active-border-color
+    );
+    @include h.defineVar(
+        "steps-step-active-background-color",
+        $steps-step-active-background-color
+    );
+    @include h.defineVar(
+        "steps-step-previous-border-color",
+        $steps-step-previous-border-color
+    );
+    @include h.defineVar(
+        "steps-step-previous-background-color",
+        $steps-step-previous-background-color
+    );
+
+    @include h.defineVar("steps-step-border-radius", $steps-step-border-radius);
+    @include h.defineVar(
+        "steps-step-border-radius-rounded",
+        $steps-step-border-radius-rounded
+    );
+
+    @include h.defineVar(
+        "steps-step-divider-height",
+        $steps-step-divider-height
+    );
+
+    @include h.defineVar("steps-step-label-padding", $steps-step-label-padding);
+    @include h.defineVar(
+        "steps-step-label-background-color",
+        $steps-step-label-background-color
+    );
+
+    @include h.defineVar("steps-content-padding", $steps-content-padding);
+
+    // size variants
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            @include steps-size($value, $name);
+            @include h.defineVar(
+                "steps-step-font-size",
+                h.useVar("size-#{$name}")
+            );
+        }
+    }
+
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar(
+                "steps-step-active-border-color",
+                h.useVar($name)
+            );
+            @include h.defineVar(
+                "steps-step-active-background-color",
+                h.useVar("#{$name}-invert")
+            );
+            @include h.defineVar(
+                "steps-step-previous-border-color",
+                h.useVar("#{$name}-invert")
+            );
+            @include h.defineVar(
+                "steps-step-previous-background-color",
+                h.useVar($name)
+            );
         }
     }
 
     &__list {
         display: flex;
         flex-wrap: wrap;
+        flex-grow: 1;
+        flex-shrink: 0;
+
         margin: 0;
         padding: 0;
+
+        transition: background h.useVar("transition-duration")
+            h.useVar("transition-timing");
     }
 
     &__step {
         position: relative;
+
         display: flex;
         flex-grow: 1;
         flex-basis: 1em;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        list-style: none;
-        background: transparent;
-        border: transparent;
-        cursor: pointer;
-        text-decoration: none;
-        color: var(--#{$prefix}steps-link-color, $steps-link-color);
+
         margin: 0;
         padding: 0;
-        margin-top: 0;
-        line-height: var(
-            --#{$prefix}steps-item-line-height,
-            $steps-item-line-height
-        );
+
+        color: h.useVar("steps-step-color");
+        font-size: h.useVar("steps-step-font-size");
+        font-weight: h.useVar("steps-step-font-weight");
+        line-height: h.useVar("steps-step-line-height");
+
+        background: transparent;
+        border: transparent;
 
         &--right {
             flex-direction: row;
@@ -91,82 +157,46 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
             flex-direction: row-reverse;
         }
 
-        &:hover {
-            text-decoration: none;
+        &--clickable {
+            // add clickable cursor
+            @include h.clickable;
         }
 
-        &:not(&--clickable) {
-            cursor: not-allowed;
+        &--disabled {
+            @include h.disabled(h.useVar("steps-disabled-opacity"));
         }
 
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-            $bgVarName: if(
-                $name != null,
-                "steps-divider-color-bg-" + #{$name},
-                "steps-divider-color-bg"
+        &--active {
+            @include h.defineVar(
+                "steps-step-border-color",
+                h.useVar("steps-step-active-border-color")
             );
-            $colorVarName: if(
-                $name != null,
-                "steps-divider-color-" + #{$name},
-                "steps-divider-color"
+            @include h.defineVar(
+                "steps-step-background-color",
+                h.useVar("steps-step-active-background-color")
             );
+        }
 
-            &--#{$name} {
-                &.o-steps__step--active {
-                    .o-steps__marker {
-                        background-color: var(
-                            --#{$prefix}variant-invert-#{$name},
-                            $color-invert
-                        );
-                        border-color: var(--#{$prefix}variant-#{$name}, $color);
-                        color: var(--#{$prefix}variant-#{$name}, $color);
-                    }
+        &--previous {
+            @include h.defineVar(
+                "steps-step-border-color",
+                h.useVar("steps-step-previous-border-color")
+            );
+            @include h.defineVar(
+                "steps-step-background-color",
+                h.useVar("steps-step-previous-background-color")
+            );
+        }
 
-                    .o-steps__divider {
-                        background: linear-gradient(
-                            to left,
-                            var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
-                            var(--#{$prefix}#{$colorVarName}, $color) 50%
-                        );
-                        background-size: 200% 100%;
-                    }
-                }
-
-                &.o-steps__step--previous {
-                    .o-steps__marker {
-                        color: var(
-                            --#{$prefix}variant-invert-#{$name},
-                            $color-invert
-                        );
-                        background-color: var(
-                            --#{$prefix}variant-#{$name},
-                            $color
-                        );
-                    }
-
-                    .o-steps__divider {
-                        background: linear-gradient(
-                            to left,
-                            var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
-                            var(--#{$prefix}#{$colorVarName}, $color) 50%
-                        );
-                        background-size: 200% 100%;
-                    }
-                }
+        &--previous,
+        &--active {
+            .o-steps__divider {
+                background-position: left bottom;
             }
         }
     }
 
     &__divider {
-        background: linear-gradient(
-            to left,
-            var(--#{$prefix}steps-divider-color-bg, $steps-color) 50%,
-            var(--#{$prefix}steps-divider-color, var(--#{$prefix}primary)) 50%
-        );
-        background-size: 200% 100%;
-        background-position: right bottom;
         // This will contain the divider
         content: " ";
         display: block;
@@ -174,112 +204,79 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
         bottom: 0;
         left: -50%;
         width: 100%;
+        top: h.useVar("steps-step-font-size");
+        height: h.useVar("steps-step-divider-height");
+
+        background: linear-gradient(
+            to left,
+            h.useVar("steps-step-background-color") 50%,
+            h.useVar("steps-step-border-color") 50%
+        );
+        background-size: 200% 100%;
+        background-position: right bottom;
+    }
+
+    // marker inside the step
+    &__marker {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        height: calc(h.useVar("steps-step-font-size") * 2);
+        width: calc(h.useVar("steps-step-font-size") * 2);
+
+        color: h.useVar("steps-step-border-color");
+
+        border-width: h.useVar("steps-step-divider-height");
+        border-style: solid;
+        border-color: h.useVar("steps-step-border-color");
+        border-radius: h.useVar("steps-step-border-radius");
+
+        background-color: h.useVar("steps-step-background-color");
+
+        &--rounded {
+            @include h.defineVar(
+                "steps-step-border-radius",
+                h.useVar("steps-step-border-radius-rounded")
+            );
+        }
+    }
+
+    // label inside the step
+    &__step-label {
+        z-index: 1;
+        text-align: center;
+
+        font-size: calc(h.useVar("steps-step-font-size") * 1.2);
+
+        padding: h.useVar("steps-step-label-padding");
+
+        background-color: h.useVar("steps-step-label-background-color");
     }
 
     &__content {
         position: relative;
         overflow: visible;
+
         display: flex;
         flex-direction: column;
-        margin-top: var(
-            --#{$prefix}steps-content-spacer,
-            $steps-content-spacer
-        );
 
         &-transitioning {
             overflow: hidden;
         }
 
         &:not(:has(.o-steps__panel:empty)) {
-            padding: var(
-                --#{$prefix}steps-content-padding,
-                $steps-content-padding
-            );
+            padding: h.useVar("steps-content-padding");
         }
     }
 
-    &--animated {
-        .o-steps__divider {
-            transition: background var(--#{$prefix}transition-duration)
-                var(--#{$prefix}transition-timing);
-        }
+    &:not(:last-child) {
+        margin-bottom: h.useVar("tabs-content-padding");
     }
 
-    &__step-label {
-        text-align: center;
-        z-index: 1;
-        background-color: var(
-            --#{$prefix}steps-title-background-color,
-            $steps-title-background-color
-        );
-        padding: var(--#{$prefix}steps-title-padding, $steps-title-padding);
-        font-weight: var(
-            --#{$prefix}steps-title-font-weight,
-            $steps-title-font-weight
-        );
-    }
-
-    &__marker {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        z-index: 1;
-        font-weight: var(
-            --#{$prefix}steps-marker-font-weight,
-            $steps-marker-font-weight
-        );
-        background: var(
-            --#{$prefix}steps-marker-background,
-            $steps-marker-background
-        );
-        color: var(--#{$prefix}steps-marker-color, $steps-marker-color);
-        border: var(--#{$prefix}steps-marker-border, $steps-marker-border);
-
-        &--rounded {
-            border-radius: var(
-                --#{$prefix}steps-marker-rounded-border-radius,
-                $steps-marker-rounded-border-radius
-            );
-        }
-    }
-
-    &__step--active {
-        .o-steps__link {
-            cursor: default;
-        }
-
-        .o-steps__marker {
-            background-color: var(
-                --#{$prefix}steps-marker-color,
-                $steps-marker-color
-            );
-            border-color: var(
-                --#{$prefix}steps-active-color,
-                $steps-active-color
-            );
-            color: var(--#{$prefix}steps-active-color, $steps-active-color);
-        }
-
-        .o-steps__divider {
-            background-position: left bottom;
-        }
-    }
-
-    &__step--previous {
-        .o-steps__marker {
-            color: var(--#{$prefix}steps-marker-color, $steps-marker-color);
-            background-color: var(
-                --#{$prefix}steps-previous-color,
-                $steps-previous-color
-            );
-        }
-
-        .o-steps__divider {
-            background-position: left bottom;
-        }
-    }
-
+    // content item
     &__item {
         flex-shrink: 0;
         flex-basis: auto;
@@ -290,71 +287,36 @@ $steps-font-size: var(--#{$prefix}base-font-size) !default;
         flex-direction: row;
         flex-wrap: wrap;
 
-        .o-steps__list {
-            height: 100%;
-            flex-direction: column;
-        }
-
-        .o-steps__step {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: var(
-                --#{$prefix}steps-vertical-padding,
-                $steps-vertical-padding
-            );
-
-            // Override marker connector color per step
-            @each $name, $pair in $colors {
-                $color: list.nth($pair, 1);
-                $bgVarName: if(
-                    $name != null,
-                    "steps-divider-color-bg-" + #{$name},
-                    "steps-divider-color-bg"
-                );
-                $colorVarName: if(
-                    $name != null,
-                    "steps-divider-color-" + #{$name},
-                    "steps-divider-color"
-                );
-
-                &--#{$name} {
-                    .o-steps__divider {
-                        background: linear-gradient(
-                            to left,
-                            var(--#{$prefix}#{$bgVarName}, $steps-color) 50%,
-                            var(--#{$prefix}#{$colorVarName}, $color) 50%
-                        );
-                        background-size: 100% 200%;
-                        background-position: left bottom;
-                    }
-                }
+        .o-steps {
+            &__list {
+                height: 100%;
+                flex-direction: column;
             }
-        }
 
-        .o-steps__divider {
-            height: 100%;
-            width: var(--#{$prefix}steps-divider-height, $steps-divider-height);
-            top: -50%;
-            left: calc(50% - #{$steps-divider-height * 0.5});
-        }
+            &__step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-        .o-steps__item--active,
-        .o-steps__item--previous {
-            .o-steps__divider {
-                background-position: right top;
+                padding: h.useVar("steps-vertical-padding");
             }
-        }
 
-        .o-steps__content {
-            flex-grow: 1;
-            flex-basis: 70%;
-        }
+            &__divider {
+                height: 100%;
+                width: h.useVar("steps-step-divider-height");
+                top: -50%;
+                left: calc(50% - h.useVar("steps-step-divider-height") * 0.5);
+            }
 
-        .o-steps__navigation {
-            flex-basis: 100%;
+            &__content {
+                flex-grow: 1;
+                flex-basis: 70%;
+            }
+
+            &__navigation {
+                flex-basis: 100%;
+            }
         }
 
         &.o-steps--position-right {

@@ -1,328 +1,320 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$tabs-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$tabs-font-size: var(--#{$prefix}base-font-size) !default;
-$tabs-icon-margin: 0 0.5em 0 0 !default;
-$tabs-content-padding: 1rem !default;
-$tabs-margin-bottom: 1.5rem !default;
-$tabs-border-bottom-color: var(--#{$prefix}grey-lighter) !default;
-$tabs-border-bottom-style: solid !default;
-$tabs-border-bottom-width: 1px !default;
-$tabs-tab-color: hsl(0, 0%, 29%) !default;
-$tabs-tab-active-border-bottom-color: var(--#{$prefix}primary) !default;
-$tabs-tab-active-color: var(--#{$prefix}primary) !default;
-$tabs-tab-padding: 0.5em 1em !default;
-$tabs-boxed-tab-radius: var(--#{$prefix}base-border-radius) !default;
-$tabs-boxed-tab-hover-background-color: hsl(0, 0%, 96%) !default;
-$tabs-boxed-tab-hover-border-bottom-color: hsl(0, 0%, 86%) !default;
-$tabs-boxed-tab-active-background-color: hsl(0, 0%, 100%) !default;
-$tabs-boxed-tab-active-border-color: hsl(0, 0%, 86%) !default;
-$tabs-boxed-tab-active-border-bottom-color: transparent !default;
-$tabs-toggle-tab-border-color: hsl(0, 0%, 86%) !default;
-$tabs-toggle-tab-border-style: solid !default;
-$tabs-toggle-tab-border-width: 1px !default;
-$tabs-toggle-tab-hover-background-color: hsl(0, 0%, 96%) !default;
-$tabs-toggle-tab-hover-border-color: hsl(0, 0%, 71%) !default;
-$tabs-toggle-tab-active-background-color: var(--#{$prefix}primary) !default;
-$tabs-toggle-tab-active-border-color: var(--#{$prefix}primary) !default;
-$tabs-toggle-tab-active-color: var(--#{$prefix}primary-invert) !default;
+$tabs-sapcer: h.useVar("control-spacer");
+$tabs-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$tabs-tab-padding: h.useVar("control-spacer")
+    calc(2 * h.useVar("control-spacer")) !default;
+$tabs-tab-icon-margin: 0 h.useVar("control-spacer") 0 0 !default;
+
+$tabs-tab-color: h.useVar("font-color") !default;
+$tabs-tab-font-size: h.useVar("font-size") !default;
+$tabs-tab-font-weight: h.useVar("font-weight") !default;
+$tabs-tab-line-height: h.useVar("line-height") !default;
+
+$tabs-tab-border-width: h.useVar("control-border-width") !default;
+$tabs-tab-border-style: solid !default;
+$tabs-tab-border-color: h.useVar("control-border-color") !default;
+$tabs-tab-border-radius: h.useVar("border-radius") !default;
+$tabs-tab-background-color: transparent !default;
+
+$tabs-tab-hover-color: $tabs-tab-color !default;
+$tabs-tab-hover-background-color: hsl(0, 0%, 96%) !default;
+$tabs-tab-hover-border-color: hsl(0, 0%, 86%) !default;
+$tabs-tab-hover-border-radius: $tabs-tab-border-radius !default;
+
+$tabs-tab-active-color: h.useVar("primary") !default;
+$tabs-tab-active-background-color: h.useVar("primary-invert") !default;
+$tabs-tab-active-border-color: h.useVar("primary") !default;
+$tabs-tab-active-border-radius: $tabs-tab-border-radius !default;
+
+$tabs-content-padding: calc(2 * h.useVar("control-spacer")) !default;
 /* @docs */
 
 .o-tabs {
+    @include h.defineVar("tabs-sapcer", $tabs-sapcer);
+    @include h.defineVar("tabs-disabled-opacity", $tabs-disabled-opacity);
+    @include h.defineVar("tabs-tab-padding", $tabs-tab-padding);
+    @include h.defineVar("tabs-tab-icon-margin", $tabs-tab-icon-margin);
+
+    @include h.defineVar("tabs-tab-color", $tabs-tab-color);
+    @include h.defineVar("tabs-tab-font-size", $tabs-tab-font-size);
+    @include h.defineVar("tabs-tab-font-weight", $tabs-tab-font-weight);
+    @include h.defineVar("tabs-tab-line-height", $tabs-tab-line-height);
+
+    @include h.defineVar(
+        "tabs-tab-background-color",
+        $tabs-tab-background-color
+    );
+    @include h.defineVar("tabs-tab-border-width", $tabs-tab-border-width);
+    @include h.defineVar("tabs-tab-border-style", $tabs-tab-border-style);
+    @include h.defineVar("tabs-tab-border-color", $tabs-tab-border-color);
+    @include h.defineVar("tabs-tab-border-radius", $tabs-tab-border-radius);
+
+    @include h.defineVar("tabs-tab-active-color", $tabs-tab-active-color);
+    @include h.defineVar(
+        "tabs-tab-active-background-color",
+        $tabs-tab-active-background-color
+    );
+    @include h.defineVar(
+        "tabs-tab-active-border-color",
+        $tabs-tab-active-border-color
+    );
+    @include h.defineVar(
+        "tabs-tab-active-border-radius",
+        $tabs-tab-active-border-radius
+    );
+
+    @include h.defineVar("tabs-tab-hover-color", $tabs-tab-hover-color);
+    @include h.defineVar(
+        "tabs-tab-hover-background-color",
+        $tabs-tab-hover-background-color
+    );
+    @include h.defineVar(
+        "tabs-tab-hover-border-color",
+        $tabs-tab-hover-border-color
+    );
+    @include h.defineVar(
+        "tabs-tab-hover-border-radius",
+        $tabs-tab-hover-border-radius
+    );
+
+    @include h.defineVar("tabs-content-padding", $tabs-content-padding);
+
     // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} .o-tabs__tab {
-            font-size: var(--#{$prefix}tabs-font-size-#{$name}, $value);
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar(
+                "tabs-tab-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 
     &__list {
-        @include unselectable;
-
-        margin: 0;
-        padding: 0;
         display: flex;
         align-items: center;
         flex-grow: 1;
         flex-shrink: 0;
-        // padding bottom to keep showing the border-bottom
-        padding-bottom: var(
-            --#{$prefix}tabs-border-bottom-width,
-            $tabs-border-bottom-width
-        );
+
+        margin: 0;
+        padding: 0;
+
+        transition: background h.useVar("transition-duration")
+            h.useVar("transition-timing");
     }
 
     &--multiline &__list {
         flex-wrap: wrap;
     }
 
-    &--left .o-tabs__list {
+    &--left &__list {
         justify-content: flex-start;
     }
 
-    &--centered .o-tabs__list {
+    &--centered &__list {
         justify-content: center;
     }
 
-    &--right .o-tabs__list {
+    &--right &__list {
         justify-content: flex-end;
     }
 
     &__tab {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        background-color: transparent;
-        margin-bottom: -1px;
-        cursor: pointer;
+        // add clickable cursor
+        @include h.clickable;
+
+        // define focus shadow effect
+        @include h.focusable();
+
+        // remove default appearance
+        @include h.removeAppearance;
+
         display: flex;
         align-items: center;
         justify-content: center;
         vertical-align: top;
-        font-size: var(--#{$prefix}tabs-font-size, $tabs-font-size);
-        color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
-        padding: var(--#{$prefix}tabs-tab-padding, $tabs-tab-padding);
-        border: 1px solid transparent;
 
-        &-icon {
-            margin: var(--#{$prefix}tabs-icon-margin, $tabs-icon-margin);
-        }
+        padding: h.useVar("tabs-tab-padding");
+
+        color: h.useVar("tabs-tab-color");
+        font-size: h.useVar("tabs-tab-font-size");
+        font-weight: h.useVar("tabs-tab-font-weight");
+        line-height: h.useVar("tabs-tab-line-height");
+
+        background-color: h.useVar("tabs-tab-background-color");
+        border-color: h.useVar("tabs-tab-border-color");
+        border-style: h.useVar("tabs-tab-border-style");
+        border-width: h.useVar("tabs-tab-border-width");
+        border-radius: h.useVar("tabs-tab-border-radius");
 
         // focus effect
+        &:hover,
         &:focus,
         &:focus-visible,
         &:focus-within {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: 0;
-            border-radius: #{$tabs-boxed-tab-radius};
+            @include h.defineVar(
+                "tabs-tab-border-radius",
+                h.useVar("tabs-tab-hover-border-radius")
+            ); // check this
+
+            &:not(.o-tabs__tab--active) {
+                @include h.defineVar(
+                    "tabs-tab-color",
+                    h.useVar("tabs-tab-hover-color")
+                );
+                @include h.defineVar(
+                    "tabs-tab-background-color",
+                    h.useVar("tabs-tab-hover-background-color")
+                );
+                @include h.defineVar(
+                    "tabs-tab-bottom-color",
+                    h.useVar("tabs-tab-hover-border-color")
+                );
+            }
         }
 
         &--disabled {
-            pointer-events: none;
-            cursor: not-allowed;
-            opacity: var(
-                --#{$prefix}tabs-disabled-opacity,
-                $tabs-disabled-opacity
-            );
+            @include h.disabled(h.useVar("tabs-disabled-opacity"));
         }
-    }
-
-    &--default .o-tabs__tab {
-        border-bottom-color: var(
-            --#{$prefix}tabs-border-bottom-color,
-            $tabs-border-bottom-color
-        );
-        border-bottom-style: var(
-            --#{$prefix}tabs-border-bottom-style,
-            $tabs-border-bottom-style
-        );
-        border-bottom-width: var(
-            --#{$prefix}tabs-border-bottom-width,
-            $tabs-border-bottom-width
-        );
 
         &--active {
-            border-bottom-color: var(
-                --#{$prefix}tabs-tab-active-border-bottom-color,
-                $tabs-tab-active-border-bottom-color
+            @include h.defineVar(
+                "tabs-tab-color",
+                h.useVar("tabs-tab-active-color")
             );
-            color: var(
-                --#{$prefix}tabs-tab-active-color,
-                $tabs-tab-active-color
+            @include h.defineVar(
+                "tabs-tab-background-color",
+                h.useVar("tabs-tab-active-background-color")
             );
+            @include h.defineVar(
+                "tabs-tab-border-color",
+                h.useVar("tabs-tab-active-border-color")
+            );
+            @include h.defineVar(
+                "tabs-tab-border-radius",
+                h.useVar("tabs-tab-active-border-radius")
+            ); // check this
         }
 
-        &:hover:not(.o-tabs__tab--active) {
-            background-color: var(
-                --#{$prefix}tabs-tab-hover-background-color,
-                $tabs-boxed-tab-hover-background-color
-            );
-            border-bottom-color: var(
-                --#{$prefix}tabs-tab-hover-border-bottom-color,
-                $tabs-boxed-tab-hover-border-bottom-color
-            );
-        }
-    }
-
-    &--boxed .o-tabs__tab {
-        border-radius: var(
-            --#{$prefix}tabs-border-bottom-color,
-            #{$tabs-boxed-tab-radius} #{$tabs-boxed-tab-radius} 0 0
-        );
-        border-bottom-color: var(
-            --#{$prefix}tabs-border-bottom-color,
-            $tabs-border-bottom-color
-        );
-        border-bottom-style: var(
-            --#{$prefix}tabs-border-bottom-style,
-            $tabs-border-bottom-style
-        );
-        border-bottom-width: var(
-            --#{$prefix}tabs-border-bottom-width,
-            $tabs-border-bottom-width
-        );
-
-        &--active {
-            color: var(
-                --#{$prefix}tabs-tab-active-color,
-                $tabs-tab-active-color
-            );
-            background-color: var(
-                --#{$prefix}tabs-boxed-tab-active-background-color,
-                $tabs-boxed-tab-active-background-color
-            );
-            border-color: var(
-                --#{$prefix}tabs-boxed-tab-active-border-color,
-                $tabs-boxed-tab-active-border-color
-            );
-            border-bottom-color: var(
-                --#{$prefix}tabs-boxed-tab-active-border-bottom-color,
-                $tabs-boxed-tab-active-border-bottom-color
-            );
-        }
-
-        &:hover:not(.o-tabs__tab--active) {
-            background-color: var(
-                --#{$prefix}tabs-boxed-tab-hover-background-color,
-                $tabs-boxed-tab-hover-background-color
-            );
+        &-icon {
+            margin: h.useVar("tabs-tab-icon-margin");
         }
     }
 
-    &--toggle .o-tabs__tab {
-        border-color: var(
-            --#{$prefix}tabs-toggle-tab-border-color,
-            $tabs-toggle-tab-border-color
-        );
-        border-style: var(
-            --#{$prefix}tabs-toggle-tab-border-style,
-            $tabs-toggle-tab-border-style
-        );
-        border-width: var(
-            --#{$prefix}tabs-toggle-tab-border-width,
-            $tabs-toggle-tab-border-width
-        );
-
-        &--active {
-            background-color: var(
-                --#{$prefix}tabs-toggle-tab-active-background-color,
-                $tabs-toggle-tab-active-background-color
-            );
-            border-color: var(
-                --#{$prefix}tabs-toggle-tab-active-border-color,
-                $tabs-toggle-tab-active-border-color
-            );
-            color: var(
-                --#{$prefix}tabs-toggle-tab-active-color,
-                $tabs-toggle-tab-active-color
-            );
-        }
-
-        &:hover:not(.o-tabs_tab--active) {
-            color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
-            background-color: var(
-                --#{$prefix}tabs-toggle-tab-hover-background-color,
-                $tabs-toggle-tab-hover-background-color
-            );
-            border-color: var(
-                --#{$prefix}tabs-toggle-tab-hover-border-color,
-                $tabs-toggle-tab-hover-border-color
-            );
-        }
-    }
-
-    &--pills .o-tabs__tab {
-        border-radius: var(
-            --#{$prefix}tabs-boxed-tab-radius,
-            $tabs-boxed-tab-radius
-        );
-        border-color: transparent;
-
-        &--active {
-            background-color: var(
-                --#{$prefix}tabs-toggle-tab-active-background-color,
-                $tabs-toggle-tab-active-background-color
-            );
-            color: var(
-                --#{$prefix}tabs-toggle-tab-active-color,
-                $tabs-toggle-tab-active-color
-            );
-        }
-
-        &:hover:not(.o-tabs_tab--active) {
-            color: var(--#{$prefix}tabs-tab-color, $tabs-tab-color);
-            background-color: var(
-                --#{$prefix}tabs-toggle-tab-hover-background-color,
-                $tabs-toggle-tab-hover-background-color
-            );
-        }
-    }
-
-    &--expanded {
-        width: 100%;
+    // specific default style styling
+    &--default {
+        // override border radius
+        @include h.defineVar("tabs-tab-border-radius", unset);
+        @include h.defineVar("tabs-tab-active-border-radius", unset);
 
         .o-tabs__tab {
-            flex-grow: 1;
-            flex-shrink: 0;
-        }
-    }
+            border-color: transparent;
+            border-bottom-color: h.useVar("tabs-tab-border-color");
 
-    &--vertical {
-        display: flex;
-        flex-direction: row;
-
-        .o-tabs__list {
-            flex-direction: column;
-            align-items: stretch;
-            flex-grow: 0;
-            border-bottom: none;
-        }
-
-        &.o-tabs--boxed .o-tabs__tab {
-            border-bottom-color: transparent;
-            border-right-color: var(
-                --#{$prefix}tabs-border-bottom-color,
-                $tabs-border-bottom-color
-            );
-            border-radius: var(
-                --#{$prefix}tabs-border-bottom-color,
-                #{$tabs-boxed-tab-radius} 0 0 #{$tabs-boxed-tab-radius}
-            );
-
-            &.o-tabs__tab--active {
-                border-right-color: transparent;
-                border-bottom-color: var(
-                    --#{$prefix}tabs-border-bottom-color,
-                    $tabs-border-bottom-color
+            // focus effect
+            &:hover,
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                @include h.defineVar(
+                    "tabs-tab-background-color",
+                    h.useVar("tabs-tab-hover-background-color")
                 );
             }
         }
     }
 
-    &--right {
-        flex-direction: row-reverse;
+    // specific boxed style styling
+    &--tabs,
+    &--boxed {
+        // override border radius
+        $border-radius: h.useVar("border-radius") h.useVar("border-radius") 0 0;
 
-        &.o-tabs--boxed .o-tabs__tab {
-            border-bottom-color: transparent;
-            border-right-color: transparent;
-            border-left-color: var(
-                --#{$prefix}tabs-border-bottom-color,
-                $tabs-border-bottom-color
-            );
-            border-radius: var(
-                --#{$prefix}tabs-border-bottom-color,
-                0 #{$tabs-boxed-tab-radius} #{$tabs-boxed-tab-radius} 0
-            );
+        @include h.defineVar("tabs-tab-border-radius", $border-radius);
+        @include h.defineVar("tabs-tab-hover-border-radius", $border-radius);
+        @include h.defineVar("tabs-tab-active-border-radius", $border-radius);
 
-            &.o-tabs__tab--active {
-                border-left-color: transparent;
-                border-right-color: var(
-                    --#{$prefix}tabs-border-bottom-color,
-                    $tabs-border-bottom-color
-                );
-                border-bottom-color: var(
-                    --#{$prefix}tabs-border-bottom-color,
-                    $tabs-border-bottom-color
+        // override border color
+        @include h.defineVar(
+            "tabs-tab-active-border-color",
+            $tabs-tab-border-color
+        );
+
+        .o-tabs__tab {
+            border-color: transparent;
+            border-bottom-color: h.useVar("tabs-tab-border-color");
+
+            &--active {
+                border-color: h.useVar("tabs-tab-border-color");
+                border-bottom-color: transparent;
+            }
+
+            // focus effect
+            &:hover,
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                @include h.defineVar(
+                    "tabs-tab-background-color",
+                    h.useVar("tabs-tab-hover-background-color")
                 );
             }
+        }
+    }
+
+    // specific toggle style styling
+    &--toggle {
+        // override border radius
+        @include h.defineVar("tabs-tab-border-radius", unset);
+        @include h.defineVar(
+            "tabs-tab-hover-border-radius",
+            h.useVar("border-radius")
+        );
+        @include h.defineVar("tabs-tab-active-border-radius", unset);
+
+        // redefine active colors
+        @include h.defineVar(
+            "tabs-tab-active-color",
+            $tabs-tab-active-background-color
+        );
+        @include h.defineVar(
+            "tabs-tab-active-background-color",
+            $tabs-tab-active-color
+        );
+        @include h.defineVar(
+            "tabs-tab-active-border-color",
+            $tabs-tab-active-color
+        );
+    }
+
+    // specific pills style styling
+    &--pills {
+        // override border radius
+        $border-radius: h.useVar("border-radius");
+
+        @include h.defineVar("tabs-tab-border-radius", $border-radius);
+        @include h.defineVar("tabs-tab-hover-border-radius", $border-radius);
+        @include h.defineVar("tabs-tab-active-border-radius", $border-radius);
+
+        // redefine active colors
+        @include h.defineVar(
+            "tabs-tab-active-color",
+            $tabs-tab-active-background-color
+        );
+        @include h.defineVar(
+            "tabs-tab-active-background-color",
+            $tabs-tab-active-color
+        );
+        @include h.defineVar(
+            "tabs-tab-active-border-color",
+            $tabs-tab-active-color
+        );
+
+        .o-tabs__tab {
+            border-color: transparent;
         }
     }
 
@@ -338,14 +330,93 @@ $tabs-toggle-tab-active-color: var(--#{$prefix}primary-invert) !default;
         }
 
         &:not(:has(.o-tabs__panel:empty)) {
-            padding: var(
-                --#{$prefix}tabs-content-padding,
-                $tabs-content-padding
-            );
+            padding: h.useVar("tabs-content-padding");
         }
     }
 
     &:not(:last-child) {
-        margin-bottom: var(--#{$prefix}tabs-margin-bottom, $tabs-margin-bottom);
+        margin-bottom: h.useVar("tabs-content-padding");
+    }
+
+    &--expanded {
+        width: 100%;
+
+        .o-tabs__tab {
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+    }
+
+    &--vertical {
+        display: flex;
+
+        .o-tabs__list {
+            flex-direction: column;
+            align-items: stretch;
+            flex-grow: 0;
+            border-bottom: none;
+        }
+
+        &.o-tabs--left {
+            flex-direction: row;
+
+            &.o-tabs--boxed {
+                // override border radius
+                $border-radius: h.useVar("border-radius") 0 0
+                    h.useVar("border-radius");
+
+                @include h.defineVar("tabs-tab-border-radius", $border-radius);
+                @include h.defineVar(
+                    "tabs-tab-hover-border-radius",
+                    $border-radius
+                );
+                @include h.defineVar(
+                    "tabs-tab-active-border-radius",
+                    $border-radius
+                );
+
+                .o-tabs__tab {
+                    border-bottom-color: transparent;
+                    border-right-color: h.useVar("tabs-tab-border-color");
+
+                    &.o-tabs__tab--active {
+                        border-right-color: transparent;
+                        border-bottom-color: h.useVar("tabs-tab-border-color");
+                    }
+                }
+            }
+        }
+
+        &.o-tabs--right {
+            flex-direction: row-reverse;
+
+            &.o-tabs--boxed {
+                // override border radius
+                $border-radius: 0 h.useVar("border-radius")
+                    h.useVar("border-radius") 0;
+
+                @include h.defineVar("tabs-tab-border-radius", $border-radius);
+                @include h.defineVar(
+                    "tabs-tab-hover-border-radius",
+                    $border-radius
+                );
+                @include h.defineVar(
+                    "tabs-tab-active-border-radius",
+                    $border-radius
+                );
+
+                .o-tabs__tab {
+                    border-bottom-color: transparent;
+                    border-right-color: transparent;
+                    border-left-color: h.useVar("tabs-tab-border-color");
+
+                    &.o-tabs__tab--active {
+                        border-left-color: transparent;
+                        border-right-color: h.useVar("tabs-tab-border-color");
+                        border-bottom-color: h.useVar("tabs-tab-border-color");
+                    }
+                }
+            }
+        }
     }
 }

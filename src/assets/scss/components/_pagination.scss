@@ -1,137 +1,209 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$pagination-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
-$pagination-ellipsis-color: var(--#{$prefix}grey-light) !default;
-$pagination-button-border-color: var(--#{$prefix}grey-light) !default;
-$pagination-button-border-radius: var(--#{$prefix}base-border-radius) !default;
-$pagination-button-border: 1px solid transparent !default;
-$pagination-button-color: var(--#{$prefix}black) !default;
-$pagination-button-background-color: transparent !default;
-$pagination-button-background-color-hover: var(
-    --#{$prefix}grey-lighter
-) !default;
-$pagination-button-current-background-color: var(--#{$prefix}primary) !default;
-$pagination-button-current-border-color: var(--#{$prefix}primary) !default;
-$pagination-button-current-color: #fff !default;
+$pagination-spacer: calc(0.5 * h.useVar("control-spacer")) !default;
+$pagination-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+$pagination-ellipsis-color: h.useVar("grey-light") !default;
+
+$pagination-button-color: h.useVar("font-color") !default;
+$pagination-button-font-size: h.useVar("font-size") !default;
+$pagination-button-font-weight: h.useVar("font-weight") !default;
+$pagination-button-line-height: h.useVar("line-height") !default;
+
 $pagination-button-height: 2.25em !default;
-$pagination-button-hover-border-color: var(--#{$prefix}grey-light) !default;
-$pagination-button-line-height: var(--#{$prefix}base-line-height) !default;
-$pagination-button-margin: 0.25rem !default;
-$pagination-button-min-width: 2.25em !default;
-$pagination-button-padding: 0.5em 0.5em !default;
-$pagination-margin: -0.25rem !default;
-$pagination-rounded-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
+$pagination-button-min-width: $pagination-button-height !default;
+$pagination-button-padding: h.useVar("control-spacer") !default;
+
+$pagination-button-box-shadow: none !default;
+$pagination-button-border-width: h.useVar("control-border-width") !default;
+$pagination-button-border-color: h.useVar("control-border-color") !default;
+$pagination-button-border-style: solid !default;
+$pagination-button-border-radius: h.useVar("border-radius") !default;
+$pagination-button-border-radius-rounded: h.useVar(
+    "border-radius-rounded"
 ) !default;
+$pagination-button-background-color: h.useVar(
+    "control-brackground-color"
+) !default;
+
+$pagination-button-hover-color: $pagination-button-color;
+$pagination-button-hover-background-color: $pagination-button-background-color;
+$pagination-button-hover-border-color: $pagination-button-border-color;
+
+$pagination-button-current-color: h.useVar("white") !default;
+$pagination-button-current-background-color: h.useVar("primary") !default;
+$pagination-button-current-border-color: h.useVar("primary") !default;
 /* @docs */
 
 .o-pagination {
+    @include h.defineVar("pagination-spacer", $pagination-spacer);
+    @include h.defineVar(
+        "pagination-disabled-opacity",
+        $pagination-disabled-opacity
+    );
+    @include h.defineVar(
+        "pagination-ellipsis-color",
+        $pagination-ellipsis-color
+    );
+
+    @include h.defineVar("pagination-button-color", $pagination-button-color);
+    @include h.defineVar(
+        "pagination-button-font-size",
+        $pagination-button-font-size
+    );
+    @include h.defineVar(
+        "pagination-button-font-weight",
+        $pagination-button-font-weight
+    );
+    @include h.defineVar(
+        "pagination-button-line-height",
+        $pagination-button-line-height
+    );
+
+    @include h.defineVar("pagination-button-height", $pagination-button-height);
+    @include h.defineVar(
+        "pagination-button-min-width",
+        $pagination-button-min-width
+    );
+    @include h.defineVar(
+        "pagination-button-padding",
+        $pagination-button-padding
+    );
+
+    @include h.defineVar(
+        "pagination-button-box-shadow",
+        $pagination-button-box-shadow
+    );
+    @include h.defineVar(
+        "pagination-button-border-width",
+        $pagination-button-border-width
+    );
+    @include h.defineVar(
+        "pagination-button-border-color",
+        $pagination-button-border-color
+    );
+    @include h.defineVar(
+        "pagination-button-border-style",
+        $pagination-button-border-style
+    );
+    @include h.defineVar(
+        "pagination-button-border-radius",
+        $pagination-button-border-radius
+    );
+    @include h.defineVar(
+        "pagination-button-border-radius-rounded",
+        $pagination-button-border-radius-rounded
+    );
+    @include h.defineVar(
+        "pagination-button-background-color",
+        $pagination-button-background-color
+    );
+
+    @include h.defineVar(
+        "pagination-button-hover-color",
+        $pagination-button-hover-color
+    );
+    @include h.defineVar(
+        "pagination-button-hover-background-color",
+        $pagination-button-hover-background-color
+    );
+    @include h.defineVar(
+        "pagination-button-hover-border-color",
+        $pagination-button-hover-border-color
+    );
+
+    @include h.defineVar(
+        "pagination-button-current-color",
+        $pagination-button-current-color
+    );
+    @include h.defineVar(
+        "pagination-button-current-background-color",
+        $pagination-button-current-background-color
+    );
+    @include h.defineVar(
+        "pagination-button-current-border-color",
+        $pagination-button-current-border-color
+    );
+
     align-items: center;
     display: flex;
     text-align: center;
     justify-content: space-between;
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    margin: var(--#{$prefix}pagination-margin, $pagination-margin);
 
-    @each $name, $value in $sizes {
+    // size variants
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}pagination-font-size-#{$name}, $value);
+            @include h.defineVar(
+                "pagination-button-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 
+    // TODO: normal o-button will be used here later
     &__button {
-        @include unselectable;
-        -moz-appearance: none;
-        -webkit-appearance: none;
+        // define focus shadow effect
+        @include h.focusable();
 
-        align-items: center;
-        box-shadow: none;
-        display: inline-flex;
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
+        text-decoration: none;
+
         position: relative;
+        display: inline-flex;
+        align-items: center;
         vertical-align: top;
         justify-content: center;
         text-align: center;
-        text-decoration: none;
-        cursor: pointer;
 
-        line-height: var(
-            --#{$prefix}pagination-link-line-height,
-            $pagination-button-line-height
-        );
-        background-color: var(
-            --#{$prefix}pagination-button-background-color,
-            $pagination-button-background-color
-        );
-        border: var(
-            --#{$prefix}pagination-link-border,
-            $pagination-button-border
-        );
-        border-radius: var(
-            --#{$prefix}pagination-link-border-radius,
-            $pagination-button-border-radius
-        );
-        border-color: var(
-            --#{$prefix}pagination-link-border-color,
-            $pagination-button-border-color
-        );
-        color: var(--#{$prefix}pagination-link-color, $pagination-button-color);
-        min-width: var(
-            --#{$prefix}pagination-link-min-width,
-            $pagination-button-min-width
-        );
-        height: var(
-            --#{$prefix}pagination-link-height,
-            $pagination-button-height
-        );
-        padding: var(
-            --#{$prefix}pagination-link-padding,
-            $pagination-button-padding
-        );
-        margin: var(
-            --#{$prefix}pagination-link-margin,
-            $pagination-button-margin
-        );
+        color: h.useVar("pagination-button-color");
+        font-size: h.useVar("pagination-button-font-size");
+        font-weight: h.useVar("pagination-button-font-weight");
+        line-height: h.useVar("pagination-button-line-height");
+
+        box-shadow: h.useVar("pagination-button-box-shadow");
+        background-color: h.useVar("pagination-button-background-color");
+
+        border-color: h.useVar("pagination-button-border-color");
+        border-style: h.useVar("pagination-button-border-style");
+        border-width: h.useVar("pagination-button-border-width");
+        border-radius: h.useVar("pagination-button-border-radius");
+
+        min-width: h.useVar("pagination-button-min-width");
+        height: h.useVar("pagination-button-height");
+        padding: h.useVar("pagination-button-padding");
+        margin: h.useVar("pagination-spacer");
 
         &:hover {
-            text-decoration: none;
-            border-color: var(
-                --#{$prefix}pagination-link-hover-border-color,
-                $pagination-button-hover-border-color
-            );
-            background-color: var(
-                --#{$prefix}pagination-button-background-color-hover,
-                $pagination-button-background-color-hover
+            color: h.useVar("pagination-button-hover-color");
+            border-color: h.useVar("pagination-button-hover-border-color");
+            background-color: h.useVar(
+                "pagination-button-background-color-hover"
             );
         }
 
         &--rounded {
-            border-radius: var(
-                --#{$prefix}pagination-rounded-border-radius,
-                $pagination-rounded-border-radius
+            @include h.defineVar(
+                "pagination-button-border-radius",
+                h.useVar("pagination-button-border-radius-rounded")
             );
         }
 
         &--disabled {
-            pointer-events: none;
-            opacity: var(
-                --#{$prefix}pagination-disabled-opacity,
-                $pagination-disabled-opacity
-            );
+            @include h.disabled(h.useVar("menu-disabled-opacity"));
         }
 
         &--current {
             pointer-events: none;
-            background-color: var(
-                --#{$prefix}pagination-link-current-background-color,
-                $pagination-button-current-background-color
+            background-color: h.useVar(
+                "pagination-button-current-background-color"
             );
-            border-color: var(
-                --#{$prefix}pagination-link-current-border-color,
-                $pagination-button-current-border-color
-            );
-            color: var(
-                --#{$prefix}pagination-link-current-color,
-                $pagination-button-current-color
-            );
+            border-color: h.useVar("pagination-button-current-border-color");
+            color: h.useVar("pagination-button-current-color");
         }
     }
 
@@ -139,14 +211,8 @@ $pagination-rounded-border-radius: var(
         justify-content: center;
         text-align: center;
         pointer-events: none;
-        margin: var(
-            --#{$prefix}pagination-link-margin,
-            $pagination-button-margin
-        );
-        color: var(
-            --#{$prefix}pagination-ellipsis-color,
-            $pagination-ellipsis-color
-        );
+        margin: h.useVar("pagination-spacer");
+        color: h.useVar("pagination-ellipsis-color");
     }
 
     &__button-next {
@@ -237,6 +303,7 @@ $pagination-rounded-border-radius: var(
 
         .o-pagination__list {
             order: 0;
+            justify-content: end;
         }
     }
 }

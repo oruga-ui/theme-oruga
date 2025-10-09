@@ -4,44 +4,97 @@
 @use "sass:list";
 @use "sass:meta";
 
-$host-selector: if($enable-host, ":root, :host", ":root");
+@use "./variables" as vars;
+@use "./helpers" as h;
+
+$host-selector: if(vars.$enable-host, ":root, :host", ":root");
 
 #{$host-selector} {
     // define color variables
-    @each $name, $color in $colors {
-        @if meta.type-of($color) == list {
-            --#{$prefix}#{$name}: #{list.nth($color, 1)};
-            --#{$prefix}#{$name}-invert: #{list.nth($color, 2)};
-        } @else {
-            --#{$prefix}#{$name}: $color;
-        }
+    @each $name, $pair in vars.$colors {
+        @include h.defineVar($name, list.nth($pair, 1));
+        @include h.defineVar("#{$name}-invert", list.nth($pair, 2));
+        @include h.defineVar(
+            "#{$name}-focus",
+            h.createFocus(list.nth($pair, 1))
+        );
+        @include h.defineVar(
+            "#{$name}-lighter",
+            h.createLighter(list.nth($pair, 1))
+        );
+        @include h.defineVar(
+            "#{$name}-darker",
+            h.createDarker(list.nth($pair, 1))
+        );
     }
 
+    // define focus box-shadow color variable
+    @include h.defineVar("focus", h.createFocus(vars.$grey));
+
     // define additional colors
-    --#{$prefix}white: #{$white};
-    --#{$prefix}black: #{$black};
-    --#{$prefix}grey: #{$grey};
-    --#{$prefix}grey-light: #{$grey-light};
-    --#{$prefix}grey-lighter: #{$grey-lighter};
-    --#{$prefix}grey-dark: #{$grey-dark};
-    --#{$prefix}focus: #{createFocus($primary)};
+    @include h.defineVar("white", vars.$white);
+    @include h.defineVar("black", vars.$black);
+    @include h.defineVar("grey", vars.$grey);
+    @include h.defineVar("grey-light", vars.$grey-light);
+    @include h.defineVar("grey-lighter", vars.$grey-lighter);
+    @include h.defineVar("grey-lightest", vars.$grey-lightest);
+    @include h.defineVar("grey-dark", vars.$grey-dark);
+    @include h.defineVar("grey-darker", vars.$grey-darker);
+    @include h.defineVar("grey-darkest", vars.$grey-darkest);
 
     // define size variables
-    @each $name, $size in $sizes {
-        --#{$prefix}size-#{$name}: #{$size};
+    @each $name, $size in vars.$sizes {
+        @include h.defineVar("size-#{$name}", $size);
     }
 
     // define base variables
-    --#{$prefix}base-font-family: #{$base-font-family};
-    --#{$prefix}base-font-size: #{$base-font-size};
-    --#{$prefix}base-font-weight: #{$base-font-weight};
-    --#{$prefix}base-line-height: #{$base-line-height};
+    @include h.defineVar("font-family", vars.$font-family);
+    @include h.defineVar("font-size", vars.$font-size);
+    @include h.defineVar("font-color", vars.$font-color);
+    @include h.defineVar("font-weight", vars.$font-weight);
+    @include h.defineVar("line-height", vars.$line-height);
 
-    --#{$prefix}base-border-radius: #{$base-border-radius};
-    --#{$prefix}base-border-radius-rounded: #{$base-border-radius-rounded};
-    --#{$prefix}base-line-height: #{$base-line-height};
-    --#{$prefix}base-disabled-opacity: #{$base-disabled-opacity};
+    @include h.defineVar("border-radius", vars.$border-radius);
+    @include h.defineVar("border-radius-rounded", vars.$border-radius-rounded);
 
-    --#{$prefix}transition-duration: #{$animation-speed};
-    --#{$prefix}transition-timing: #{$animation-timing};
+    // define control variables
+    @include h.defineVar("control-spacer", vars.$control-spacer);
+    @include h.defineVar("control-height", vars.$control-height);
+    @include h.defineVar(
+        "control-padding-vertical",
+        vars.$control-padding-vertical
+    );
+    @include h.defineVar(
+        "control-padding-horizontal",
+        vars.$control-padding-horizontal
+    );
+    @include h.defineVar("control-shadow-color", vars.$control-shadow-color);
+    @include h.defineVar("control-box-shadow", vars.$control-box-shadow);
+    @include h.defineVar(
+        "control-box-shadow-inset",
+        vars.$control-box-shadow-inset
+    );
+    @include h.defineVar(
+        "control-brackground-color",
+        vars.$control-brackground-color
+    );
+    @include h.defineVar("control-border-color", vars.$control-border-color);
+    @include h.defineVar("control-border-width", vars.$control-border-width);
+    @include h.defineVar(
+        "control-disabled-opacity",
+        vars.$control-disabled-opacity
+    );
+
+    @include h.defineVar(
+        "overlay-background-color",
+        vars.$overlay-background-color
+    );
+    @include h.defineVar("overlay-box-shadow", vars.$overlay-box-shadow);
+
+    // define animation variables
+    @include h.defineVar("animation-speed-slow", vars.$animation-speed-slow);
+    @include h.defineVar("animation-speed", vars.$animation-speed);
+    @include h.defineVar("animation-speed-fast", vars.$animation-speed-fast);
+    @include h.defineVar("transition-duration", vars.$animation-speed-fast);
+    @include h.defineVar("transition-timing", vars.$animation-timing);
 }

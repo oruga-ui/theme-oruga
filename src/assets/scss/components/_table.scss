@@ -1,97 +1,265 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$table-background-color: #fff !default;
-$table-background: $control-brackground-color !default;
-$table-boder: 1px solid transparent !default;
-$table-border-radius: var(--#{$prefix}base-border-radius) !default;
+$table-color: h.useVar("font-color") !default;
+$table-border-width: h.useVar("control-border-width") !default;
+$table-border-style: solid !default;
+$table-border-color: transparent !default;
+$table-border-radius: h.useVar("border-radius") !default;
+$table-background-color: h.useVar("control-brackground-color") !default;
+
+$table-focus-border-color: h.useVar("primary") !default;
+$table-focus-box-shadow: vars.$control-focus-box-shadow h.useVar("focus") !default;
+
+$table-sticky-zindex: 1 !default;
+$table-sticky-header-height: 300px !default;
+
+$table-tr-hover-background-color: h.useVar("grey-lightest") !default;
+$table-tr-narrow-padding: calc(0.5 * h.useVar("control-spacer"))
+    h.useVar("control-spacer") !default;
+$table-tr-striped-background-color: h.useVar("grey-lightest") !default;
+
+$table-tr-selected-background-color: h.useVar("primary") !default;
+$table-tr-selected-color: h.useVar("primary-invert") !default;
+
+$table-th-color: h.useVar("font-color") !default;
+$table-th-font-size: h.useVar("font-size") !default;
+$table-th-font-weight: 600 !default;
+$table-th-line-height: h.useVar("line-height") !default;
+$table-th-border-width: calc(2 * h.useVar("control-border-width")) !default;
+$table-th-border-style: solid !default;
+$table-th-border-color: h.useVar("control-border-color") !default;
+$table-th-checkbox-width: 40px !default;
+$table-th-padding: h.useVar("control-spacer")
+    calc(1.5 * h.useVar("control-spacer")) !default;
+
+$table-th-current-sort-border-color: h.useVar("grey") !default;
+$table-th-current-sort-font-weight: 700 !default;
+$table-th-current-sort-hover-border-color: h.useVar("grey") !default;
+
+$table-td-border-width: h.useVar("control-border-width") !default;
+$table-td-border-style: solid !default;
+$table-td-border-color: h.useVar("control-border-color") !default;
+$table-td-padding: h.useVar("control-spacer")
+    calc(1.5 * h.useVar("control-spacer")) !default;
+
+$table-tr-detail-background-color: h.useVar("grey-lightest") !default;
+$table-tr-detail-box-shadow: h.useVar("control-box-shadow") !default;
+$table-tr-detail-padding: calc(2 * h.useVar("control-spacer")) !default;
+$table-td-detail-chevron-color: h.useVar("primary") !default;
+$table-td-detail-chevron-width: 40px !default;
+
+$table-tr-empty-padding: h.useVar("control-spacer")
+    calc(1.5 * h.useVar("control-spacer")) !default;
+
+$table-pagination-padding: h.useVar("control-spacer") 0 !default;
+
 $table-card-box-shadow:
-    0 2px 3px rgba(var(--#{$prefix}black), 0.1),
-    0 0 0 1px rgba(var(--#{$prefix}black), 0.1) !default;
+    0 2px 3px h.useVar("control-shadow-color"),
+    0 0 0 1px h.useVar("control-shadow-color") !default;
 $table-card-cell-font-weight: 600 !default;
 $table-card-cell-padding: 0 0.5em 0 0 !default;
 $table-card-cell-text-align: left !default;
 $table-card-detail-margin: -1rem 0 0 0;
 $table-card-margin: 0 0 1rem 0;
-$table-color: black !default;
-$table-current-sort-border-color: var(--#{$prefix}grey) !default;
-$table-current-sort-font-weight: 700 !default;
-$table-current-sort-hover-border-color: var(--#{$prefix}grey) !default;
-$table-detail-background: #fafafa !default;
-$table-detail-box-shadow: inset 0 1px 3px var(--#{$prefix}grey) !default;
-$table-detail-chevron-color: var(--#{$prefix}primary) !default;
-$table-detail-chevron-width: 40px !default;
-$table-detail-padding: 1rem !default;
-$table-focus-border-color: var(--#{$prefix}primary) !default;
-$table-focus-box-shadow: 0 0 0 0.125em rgba(var(--#{$prefix}primary), 0.25) !default;
-$table-hoverable-background-color: #fafafa !default;
-$table-narrow-padding: 0.25em 0.5em !default;
-$table-row-active-background-color: var(--#{$prefix}primary) !default;
-$table-row-active-color: var(--#{$prefix}primary-invert) !default;
-$table-sticky-header-height: 300px !default;
-$table-sticky-zindex: 1 !default;
-$table-striped-background-color: #fafafa !default;
-$table-td-border: 1px solid var(--#{$prefix}grey-lighter) !default;
-$table-td-padding: 0.5em 0.75em !default;
-$table-th-border: 2px solid var(--#{$prefix}grey-lighter) !default;
-$table-th-checkbox-width: 40px !default;
-$table-th-color: #363636 !default;
-$table-th-detail-width: 14px !default;
-$table-th-font-weight: 600 !default;
-$table-th-padding: 0.5em 0.75em !default;
-$table-pagination-padding: 0.5em 0 !default;
 /* @docs */
 
 .o-table {
+    &__root {
+        @include h.defineVar("table-color", $table-color);
+
+        @include h.defineVar("table-border-color", $table-border-color);
+        @include h.defineVar("table-border-style", $table-border-style);
+        @include h.defineVar("table-border-width", $table-border-width);
+        @include h.defineVar("table-border-radius", $table-border-radius);
+        @include h.defineVar("table-background-color", $table-background-color);
+
+        @include h.defineVar("table-sticky-zindex", $table-sticky-zindex);
+        @include h.defineVar(
+            "table-sticky-header-height",
+            $table-sticky-header-height
+        );
+        @include h.defineVar(
+            "table-focus-border-color",
+            $table-focus-border-color
+        );
+        @include h.defineVar("table-focus-box-shadow", $table-focus-box-shadow);
+
+        @include h.defineVar(
+            "table-tr-hover-background-color",
+            $table-tr-hover-background-color
+        );
+        @include h.defineVar(
+            "table-tr-narrow-padding",
+            $table-tr-narrow-padding
+        );
+        @include h.defineVar(
+            "table-tr-striped-background-color",
+            $table-tr-striped-background-color
+        );
+
+        @include h.defineVar(
+            "table-tr-selected-background-color",
+            $table-tr-selected-background-color
+        );
+        @include h.defineVar(
+            "table-tr-selected-color",
+            $table-tr-selected-color
+        );
+
+        @include h.defineVar("table-th-color", $table-th-color);
+        @include h.defineVar("table-th-font-size", $table-th-font-size);
+        @include h.defineVar("table-th-font-weight", $table-th-font-weight);
+        @include h.defineVar("table-th-line-height", $table-th-line-height);
+        @include h.defineVar("table-th-border-width", $table-th-border-width);
+        @include h.defineVar("table-th-border-style", $table-th-border-style);
+        @include h.defineVar("table-th-border-color", $table-th-border-color);
+        @include h.defineVar(
+            "table-th-checkbox-width",
+            $table-th-checkbox-width
+        );
+        @include h.defineVar("table-th-padding", $table-th-padding);
+
+        @include h.defineVar(
+            "table-th-current-sort-border-color",
+            $table-th-current-sort-border-color
+        );
+        @include h.defineVar(
+            "table-th-current-sort-font-weight",
+            $table-th-current-sort-font-weight
+        );
+        @include h.defineVar(
+            "table-th-current-sort-hover-border-color",
+            $table-th-current-sort-hover-border-color
+        );
+
+        @include h.defineVar("table-td-border-width", $table-td-border-width);
+        @include h.defineVar("table-td-border-style", $table-td-border-style);
+        @include h.defineVar("table-td-border-color", $table-td-border-color);
+        @include h.defineVar("table-td-padding", $table-td-padding);
+
+        @include h.defineVar(
+            "table-tr-detail-background-color",
+            $table-tr-detail-background-color
+        );
+        @include h.defineVar(
+            "table-tr-detail-box-shadow",
+            $table-tr-detail-box-shadow
+        );
+        @include h.defineVar(
+            "table-tr-detail-padding",
+            $table-tr-detail-padding
+        );
+        @include h.defineVar(
+            "table-td-detail-chevron-color",
+            $table-td-detail-chevron-color
+        );
+        @include h.defineVar(
+            "table-td-detail-chevron-width",
+            $table-td-detail-chevron-width
+        );
+
+        @include h.defineVar("table-tr-empty-padding", $table-tr-empty-padding);
+
+        @include h.defineVar(
+            "table-pagination-padding",
+            $table-pagination-padding
+        );
+
+        &--mobile {
+            @include h.defineVar(
+                "table-card-box-shadow",
+                $table-card-box-shadow
+            );
+            @include h.defineVar(
+                "table-card-cell-font-weight",
+                $table-card-cell-font-weight
+            );
+            @include h.defineVar(
+                "table-card-cell-padding",
+                $table-card-cell-padding
+            );
+            @include h.defineVar(
+                "table-card-cell-text-align",
+                $table-card-cell-text-align
+            );
+            @include h.defineVar(
+                "table-card-detail-margin",
+                $table-card-detail-margin
+            );
+            @include h.defineVar("table-card-margin", $table-card-margin);
+        }
+
+        position: relative;
+    }
+
     display: table;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    border: var(--#{$prefix}table-boder, $table-boder);
-    border-radius: var(--#{$prefix}table-border-radius, $table-border-radius);
-    background-color: var(
-        --#{$prefix}table-background-color,
-        $table-background-color
-    );
-    color: var(--#{$prefix}table-color, $table-color);
 
-    &__root {
-        position: relative;
+    color: h.useVar("table-color");
+
+    border-width: h.useVar("table-border-width");
+    border-style: h.useVar("table-border-style");
+    border-color: h.useVar("table-border-color");
+    border-radius: h.useVar("table-border-radius");
+    background-color: h.useVar("table-background-color");
+
+    &:focus {
+        border-color: h.useVar("table-focus-border-color");
+        box-shadow: h.useVar("table-focus-box-shadow");
+    }
+
+    &--bordered {
+        td,
+        th {
+            border-width: h.useVar("table-td-border-width");
+            border-style: h.useVar("table-td-border-style");
+            border-color: h.useVar("table-td-border-color");
+        }
+    }
+
+    &--striped {
+        tr:nth-child(2n) {
+            background-color: h.useVar("table-tr-striped-background-color");
+        }
+    }
+
+    &--narrowed {
+        td,
+        th {
+            padding: h.useVar("table-tr-narrow-padding");
+        }
+    }
+
+    &--hoverable {
+        tr:not(.o-table__tr--selected):hover {
+            background-color: h.useVar("table-tr-hover-background-color");
+        }
+    }
+
+    &__mobile-sort {
+        display: none;
     }
 
     &__wrapper {
-        transition: opacity $animation-speed-fast $animation-timing;
+        transition: opacity h.useVar("animation-speed")
+            h.useVar("animation-timing");
         position: relative;
 
         &--sticky-header {
-            height: var(
-                --#{$prefix}table-sticky-header-height,
-                $table-sticky-header-height
-            );
+            height: h.useVar("table-sticky-header-height");
             overflow-y: auto;
 
-            .o-table__th {
+            .o-table__th:not(.o-table__th--sticky) {
                 position: -webkit-sticky;
                 position: sticky;
                 top: 0;
-                background: var(
-                    --#{$prefix}table-background-color,
-                    $table-background-color
-                );
-                z-index: calc(
-                    var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex) +
-                        1
-                );
-
-                &--sticky {
-                    z-index: calc(
-                        var(
-                                --#{$prefix}table-sticky-zindex,
-                                $table-sticky-zindex
-                            ) +
-                            2
-                    );
-                }
+                background: h.useVar("table-background-color");
+                z-index: calc(h.useVar("table-sticky-zindex") + 1);
             }
         }
 
@@ -139,10 +307,7 @@ $table-pagination-padding: 0.5em 0 !default;
             }
 
             tr {
-                box-shadow: var(
-                    --#{$prefix}table-card-box-shadow,
-                    $table-card-box-shadow
-                );
+                box-shadow: h.useVar("table-card-box-shadow");
                 max-width: 100%;
                 position: relative;
                 display: block;
@@ -157,27 +322,15 @@ $table-pagination-padding: 0.5em 0 !default;
                 }
 
                 &:not(:last-child) {
-                    margin: var(
-                        --#{$prefix}table-card-margin,
-                        $table-card-margin
-                    );
+                    margin: h.useVar("table-card-margin");
                 }
 
                 &:not(.o-table__tr--selected) {
-                    background: inherit;
-                    background: $table-background-color;
-
-                    &:hover {
-                        background-color: inherit;
-                        background-color: $table-background-color;
-                    }
+                    background: h.useVar("table-background-color");
                 }
 
                 &.o-table__tr-detail {
-                    margin: var(
-                        --#{$prefix}table-card-detail-margin,
-                        $table-card-detail-margin
-                    );
+                    margin: h.useVar("table-card-detail-margin");
                 }
             }
 
@@ -189,46 +342,69 @@ $table-pagination-padding: 0.5em 0 !default;
                     width: auto;
                     justify-content: space-between;
                     text-align: right;
-                    border-bottom: var(
-                        --#{$prefix}table-background,
-                        ($table-background 1px solid)
-                    );
+                    border-bottom-color: h.useVar("table-background");
 
                     &:before {
                         content: attr(data-label);
-                        font-weight: var(
-                            --#{$prefix}table-card-cell-font-weight,
-                            $table-card-cell-font-weight
-                        );
-                        padding-right: var(
-                            --#{$prefix}table-card-cell-padding,
-                            $table-card-cell-padding
-                        );
-                        text-align: var(
-                            --#{$prefix}table-card-cell-text-align,
-                            $table-card-cell-text-align
-                        );
+                        font-weight: h.useVar("table-card-cell-font-weight");
+                        padding-right: h.useVar("table-card-cell-padding");
+                        text-align: h.useVar("table-card-cell-text-align");
                     }
                 }
             }
         }
     }
 
-    &__mobile-sort {
-        display: none;
+    &__tr {
+        &-empty > td {
+            text-align: center;
+            padding: h.useVar("table-tr-empty-padding");
+        }
+
+        &-detail {
+            box-shadow: h.useVar("table-tr-detail-box-shadow");
+            background-color: h.useVar("table-tr-detail-background");
+
+            & > td {
+                padding: h.useVar("table-tr-detail-padding");
+            }
+        }
+
+        &--selected {
+            background-color: h.useVar("table-tr-selected-background-color");
+            color: h.useVar("table-tr-selected-color");
+
+            // color variants
+            @each $name, $pair in vars.$colors {
+                &-#{$name} {
+                    @include h.defineVar(
+                        "table-tr-selected-background-color",
+                        h.useVar($name)
+                    );
+                    @include h.defineVar(
+                        "table-tr-selected-color",
+                        h.useVar("#{$name}-invert")
+                    );
+                }
+            }
+        }
     }
 
     &__th {
         vertical-align: top;
         text-align: left;
         position: relative;
-        font-weight: var(
-            --#{$prefix}table-th-font-weight,
-            $table-th-font-weight
-        );
-        color: var(--#{$prefix}table-th-color, $table-th-color);
-        border-bottom: var(--#{$prefix}table-th-border, $table-th-border);
-        padding: var(--#{$prefix}table-th-padding, $table-th-padding);
+
+        color: h.useVar("table-th-color");
+        font-size: h.useVar("table-th-font-size");
+        font-weight: h.useVar("table-th-font-weight");
+        line-height: h.useVar("table-th-line-height");
+
+        border-bottom-width: h.useVar("table-th-border-width");
+        border-bottom-style: h.useVar("table-th-border-style");
+        border-bottom-color: h.useVar("table-th-border-color");
+
+        padding: h.useVar("table-th-padding");
 
         &--centered {
             text-align: center;
@@ -244,30 +420,22 @@ $table-pagination-padding: 0.5em 0 !default;
         }
 
         &-checkbox {
-            width: var(
-                --#{$prefix}table-th-checkbox-width,
-                $table-th-checkbox-width
-            );
+            width: h.useVar("table-th-checkbox-width");
         }
 
-        &-current-sort {
-            border-color: var(
-                --#{$prefix}table-current-sort-border-color,
-                $table-current-sort-border-color
-            );
-            font-weight: var(
-                --#{$prefix}table-current-sort-font-weight,
-                $table-current-sort-font-weight
-            );
+        &-current-sort,
+        &--current-sort {
+            border-color: h.useVar("table-th-current-sort-border-color");
+            font-weight: h.useVar("table-th-current-sort-font-weight");
         }
 
         &--sortable {
-            cursor: pointer;
+            // add clickable cursor
+            @include h.clickable;
 
             &:hover {
-                border-color: var(
-                    --#{$prefix}table-current-sort-hover-border-color,
-                    $table-current-sort-hover-border-color
+                border-color: h.useVar(
+                    "table-th-current-sort-hover-border-color"
                 );
             }
         }
@@ -276,40 +444,29 @@ $table-pagination-padding: 0.5em 0 !default;
             position: -webkit-sticky;
             position: sticky;
             left: 0;
-            z-index: var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex);
-            background: var(
-                --#{$prefix}table-background-color,
-                $table-background-color
-            );
-        }
-
-        &--unselectable {
-            @include unselectable;
+            z-index: calc(h.useVar("table-sticky-zindex") + 1);
+            background-color: h.useVar("table-background-color");
         }
 
         &-detailed {
-            width: var(
-                --#{$prefix}table-th-detail-width,
-                $table-th-detail-width
-            );
+            width: h.useVar("table-th-detail-width");
         }
     }
 
     &__td {
         vertical-align: top;
         text-align: left;
-        border-bottom: var(--#{$prefix}table-td-border, $table-td-border);
-        padding: var(--#{$prefix}table-td-padding, $table-td-padding);
+        border-bottom-width: h.useVar("table-td-border-width");
+        border-bottom-style: h.useVar("table-td-border-style");
+        border-bottom-color: h.useVar("table-td-border-color");
+        padding: h.useVar("table-td-padding");
 
         &--sticky {
             position: -webkit-sticky;
             position: sticky;
             left: 0;
-            z-index: var(--#{$prefix}table-sticky-zindex, $table-sticky-zindex);
-            background: var(
-                --#{$prefix}table-background-color,
-                $table-background-color
-            );
+            z-index: h.useVar("table-sticky-zindex");
+            background-color: h.useVar("table-background-color");
         }
 
         &--right {
@@ -322,106 +479,8 @@ $table-pagination-padding: 0.5em 0 !default;
 
         &-chevron {
             vertical-align: middle;
-            width: var(
-                --#{$prefix}table-detail-chevron-width,
-                $table-detail-chevron-width
-            );
-            color: var(
-                --#{$prefix}table-detail-chevron-color,
-                $table-detail-chevron-color
-            );
-        }
-    }
-
-    &__tr {
-        &-empty > td {
-            text-align: center;
-            padding: 2em;
-        }
-
-        &-detail {
-            box-shadow: var(
-                --#{$prefix}table-detail-box-shadow,
-                $table-detail-box-shadow
-            );
-            background: var(
-                --#{$prefix}table-detail-background,
-                $table-detail-background
-            );
-
-            & > td {
-                padding: var(
-                    --#{$prefix}table-detail-padding,
-                    $table-detail-padding
-                );
-            }
-        }
-    }
-
-    &:focus {
-        border-color: var(
-            --#{$prefix}table-focus-border-color,
-            $table-focus-border-color
-        );
-        box-shadow: var(
-            --#{$prefix}table-focus-box-shadow,
-            $table-focus-box-shadow
-        );
-    }
-
-    &--bordered {
-        tr:last-child {
-            td,
-            th {
-                border: var(--#{$prefix}table-td-border, $table-td-border);
-            }
-        }
-
-        td,
-        th {
-            border: var(--#{$prefix}table-td-border, $table-td-border);
-        }
-    }
-
-    &--striped {
-        tbody tr:not(.o-table__tr--selected):nth-child(2n) {
-            background-color: var(
-                --#{$prefix}table-striped-background-color,
-                $table-striped-background-color
-            );
-        }
-    }
-
-    &--narrowed {
-        td,
-        th {
-            padding: var(
-                --#{$prefix}table-narrow-padding,
-                $table-narrow-padding
-            );
-        }
-    }
-
-    &--hoverable {
-        tbody tr:not(.o-table__tr--selected):hover {
-            background-color: var(
-                --#{$prefix}table-hoverable-background-color,
-                $table-hoverable-background-color
-            );
-        }
-    }
-
-    &__tr--selected {
-        background-color: $table-row-active-background-color;
-        color: $table-row-active-color;
-
-        @each $name, $pair in $colors {
-            $color: list.nth($pair, 1);
-            $color-invert: list.nth($pair, 2);
-            &-#{$name} {
-                background-color: $color;
-                color: $color-invert;
-            }
+            width: h.useVar("table-td-detail-chevron-width");
+            color: h.useVar("table-td-detail-chevron-color");
         }
     }
 
@@ -429,10 +488,7 @@ $table-pagination-padding: 0.5em 0 !default;
         align-items: center;
         justify-content: space-between;
         display: flex;
-        padding: var(
-            --#{$prefix}table-pagination-padding,
-            $table-pagination-padding
-        );
+        padding: h.useVar("table-pagination-padding");
 
         // left - right
         > div {
