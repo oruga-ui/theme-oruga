@@ -30,7 +30,7 @@ import components from "@/components";
 </template>
 
 <style lang="scss">
-@import "./assets/scss/utils/variables";
+@use "./assets/scss/utils/variables";
 
 #app {
     display: flex;
