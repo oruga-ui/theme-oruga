@@ -1,5 +1,5 @@
 /******************
-*   Oruga Theme
+*   Theme Styles
 *******************/
 
 // import globals, helpers and functions
@@ -8,7 +8,7 @@
 @forward "utils/root";
 @forward "utils/base";
 
-// import Oruga components
+// import theme components
 @forward "components/autocomplete";
 @forward "components/breadcrumb";
 @forward "components/button";
@@ -40,6 +40,3 @@
 @forward "components/timepicker";
 @forward "components/tooltip";
 @forward "components/upload";
-
-// TODO: Maybe rename vars color to font-color
-// TODO: rename comment size variants | color variants to define ...
