@@ -1,59 +1,109 @@
 @use "sass:list";
 
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$breadcrumb-list-line-height: 1.25em !default;
-$breadcrumb-item-spacer: 0.25em !default;
-$breadcrumb-item-font-size: $base-font-size !default;
-$breadcrumb-item-padding: 0.3em !default;
-$breadcrumb-list-border-radius: var(--#{$prefix}base-border-radius) !default;
-$breadcrumb-item-color: var(--#{$prefix}grey-dark) !default;
-$breadcrumb-item-background-color: transparent !default;
-$breadcrumb-item-active-color: var(--#{$prefix}primary) !default;
-$breadcrumb-item-active-background-color: transparent !default;
-$breadcrumb-item-disabled-color: var(--#{$prefix}grey-light) !default;
-$breadcrumb-item-hover-color: var(--#{$prefix}white) !default;
-$breadcrumb-item-hover-background-color: var(--#{$prefix}secondary) !default;
+$breadcrumb-line-height: 1.25em !default;
 $breadcrumb-seperator-color: inherit;
+$breadcrumb-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$breadcrumb-item-spacer: calc(0.5 * h.useVar("control-spacer")) !default;
+$breadcrumb-item-padding: 0.3em !default;
+
+$breadcrumb-item-color: h.useVar("font-color") !default;
+$breadcrumb-item-font-size: h.useVar("font-size") !default;
+$breadcrumb-item-font-weight: h.useVar("font-weight") !default;
+$breadcrumb-item-line-height: h.useVar("line-height") !default;
+
+$breadcrumb-item-border-radius: h.useVar("border-radius") !default;
+$breadcrumb-item-background-color: transparent !default;
+
+$breadcrumb-item-active-color: h.useVar("primary") !default;
+$breadcrumb-item-active-background-color: transparent !default;
+
+$breadcrumb-item-hover-color: h.useVar("white") !default;
+$breadcrumb-item-hover-background-color: h.useVar("secondary") !default;
 /* @docs */
 
 .o-breadcrumb {
+    @include h.defineVar("breadcrumb-line-height", $breadcrumb-line-height);
+    @include h.defineVar(
+        "breadcrumb-disabled-opacity",
+        $breadcrumb-disabled-opacity
+    );
+    @include h.defineVar(
+        "breadcrumb-seperator-color",
+        $breadcrumb-seperator-color
+    );
+    @include h.defineVar("breadcrumb-item-spacer", $breadcrumb-item-spacer);
+    @include h.defineVar("breadcrumb-item-padding", $breadcrumb-item-padding);
+    @include h.defineVar(
+        "breadcrumb-item-font-size",
+        $breadcrumb-item-font-size
+    );
+    @include h.defineVar(
+        "breadcrumb-item-font-weight",
+        $breadcrumb-item-font-weight
+    );
+    @include h.defineVar(
+        "breadcrumb-item-line-height",
+        $breadcrumb-item-line-height
+    );
+    @include h.defineVar("breadcrumb-item-color", $breadcrumb-item-color);
+    @include h.defineVar(
+        "breadcrumb-item-border-radius",
+        $breadcrumb-item-border-radius
+    );
+    @include h.defineVar(
+        "breadcrumb-item-background-color",
+        $breadcrumb-item-background-color
+    );
+    @include h.defineVar(
+        "breadcrumb-item-active-color",
+        $breadcrumb-item-active-color
+    );
+    @include h.defineVar(
+        "breadcrumb-item-active-background-color",
+        $breadcrumb-item-active-background-color
+    );
+    @include h.defineVar(
+        "breadcrumb-item-hover-color",
+        $breadcrumb-item-hover-color
+    );
+    @include h.defineVar(
+        "breadcrumb-item-hover-background-color",
+        $breadcrumb-item-hover-background-color
+    );
+
     &__list {
         list-style: none;
         display: flex;
         padding: unset;
-        line-height: var(
-            --#{$prefix}breadcrumb-list-line-height,
-            $breadcrumb-list-line-height
-        );
+        line-height: h.useVar("breadcrumb-line-height");
     }
 
     &__item {
-        -moz-appearance: none;
-        -webkit-appearance: none;
+        // define focus shadow effect
+        @include h.focusable(".o-breadcrumb__item__link");
+
+        // remove default appearance
+        @include h.removeAppearance;
+
         display: block;
         list-style: none;
         border: transparent;
-        background-color: var(
-            --#{$prefix}breadcrumb-item-background-color,
-            $breadcrumb-item-background-color
-        );
-        color: var(--#{$prefix}breadcrumb-item-color, $breadcrumb-item-color);
-        font-size: var(
-            --#{$prefix}breadcrumb-item-size,
-            $breadcrumb-item-font-size
-        );
-        border-radius: var(
-            --#{$prefix}breadcrumb-list-border-radius,
-            $breadcrumb-list-border-radius
-        );
+        color: h.useVar("breadcrumb-item-color");
+        font-size: h.useVar("breadcrumb-item-font-size");
+        font-weight: h.useVar("breadcrumb-item-font-weight");
+        line-height: h.useVar("breadcrumb-item-line-height");
+        border-radius: h.useVar("breadcrumb-item-border-radius");
+        background-color: h.useVar("breadcrumb-item-background-color");
 
         // define seprator
         &:not(:first-child)::before {
             float: left;
-            color: var(
-                --#{$prefix}breadcrumb-seperator-color,
-                $breadcrumb-seperator-color
-            );
+            color: h.useVar("breadcrumb-seperator-color");
             content: var(--seperator, "/");
         }
 
@@ -62,100 +112,79 @@ $breadcrumb-seperator-color: inherit;
             content: unset;
         }
 
+        .o-breadcrumb__item__link {
+            color: h.useVar("breadcrumb-item-color");
+            border-radius: h.useVar("breadcrumb-item-border-radius");
+        }
+
         &:focus-within:not(&--disabled),
         &:focus:not(&--disabled),
         &:hover:not(&--disabled) {
             .o-breadcrumb__item__link {
-                color: var(
-                    --#{$prefix}breadcrumb-item-hover-color,
-                    $breadcrumb-item-hover-color
-                );
-                background-color: var(
-                    --#{$prefix}breadcrumb-item-hover-background-color,
-                    $breadcrumb-item-hover-background-color
-                );
-                border-radius: var(
-                    --#{$prefix}breadcrumb-list-border-radius,
-                    $breadcrumb-list-border-radius
+                color: h.useVar("breadcrumb-item-hover-color");
+                background-color: h.useVar(
+                    "breadcrumb-item-hover-background-color"
                 );
             }
         }
 
         &--active .o-breadcrumb__item__link {
-            color: var(
-                --#{$prefix}breadcrumb-item-active-color,
-                $breadcrumb-item-active-color
-            );
-            background-color: var(
-                --#{$prefix}breadcrumb-item-active-background-color,
-                $breadcrumb-item-active-background-color
+            color: h.useVar("breadcrumb-item-active-color");
+            background-color: h.useVar(
+                "breadcrumb-item-active-background-color"
             );
         }
 
         &--disabled .o-breadcrumb__item__link {
-            cursor: unset;
-            pointer-events: none;
-            color: var(
-                --#{$prefix}breadcrumb-item-disabled-color,
-                $breadcrumb-item-disabled-color
-            );
+            @include h.disabled(h.useVar("breadcrumb-disabled-opacity"));
         }
 
         &__icon {
             &--left {
-                padding-right: var(
-                    --#{$prefix}breadcrumb-item-spacer,
-                    $breadcrumb-item-spacer
-                );
+                padding-right: h.useVar("breadcrumb-item-spacer");
             }
 
             &--right {
-                padding-left: var(
-                    --#{$prefix}breadcrumb-item-spacer,
-                    $breadcrumb-item-spacer
-                );
+                padding-left: h.useVar("breadcrumb-item-spacer");
             }
         }
 
         &__link {
-            margin: var(
-                --#{$prefix}breadcrumb-item-spacer,
-                $breadcrumb-item-spacer
-            );
-            padding: var(
-                --#{$prefix}breadcrumb-item-padding,
-                $breadcrumb-item-padding
-            );
+            margin: h.useVar("breadcrumb-item-spacer");
+            padding: h.useVar("breadcrumb-item-padding");
         }
     }
 
-    /* size variants*/
-    @each $name, $value in $sizes {
-        &--#{$name} .o-breadcrumb__item {
-            font-size: var(--#{$prefix}button-font-size-#{$name}, $value);
-        }
-    }
-
-    /* color variants*/
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-
+    // size variants
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            .o-breadcrumb__item .o-breadcrumb__item__link {
-                color: var(--#{$prefix}variant-#{$name}, $color);
-
-                &:hover {
-                    /* background-color: darken($color, 2.5%)*/
-                    /* IE 11 needs polyfill*/
-                    filter: brightness(97.5%);
-                }
-            }
+            @include h.defineVar(
+                "breadcrumb-item-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 
-    /** alignment **/
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar(
+                "breadcrumb-item-background-color",
+                transparent
+            );
+            @include h.defineVar("breadcrumb-item-color", h.useVar($name));
+            @include h.defineVar(
+                "breadcrumb-item-hover-color",
+                h.useVar("#{$name}-invert")
+            );
+            @include h.defineVar(
+                "breadcrumb-item-hover-background-color",
+                h.useVar($name)
+            );
+        }
+    }
+
+    // alignments
     &--left {
         ol,
         ul {
@@ -174,16 +203,6 @@ $breadcrumb-seperator-color: inherit;
         ol,
         ul {
             justify-content: flex-end;
-        }
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-breadcrumb__item {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
         }
     }
 }

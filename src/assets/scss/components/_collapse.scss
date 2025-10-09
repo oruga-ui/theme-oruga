@@ -3,8 +3,8 @@
 
 .o-collapse {
     &__trigger {
-        cursor: pointer;
         display: inline-block;
+        cursor: pointer;
 
         &--expanded {
             width: 100%;

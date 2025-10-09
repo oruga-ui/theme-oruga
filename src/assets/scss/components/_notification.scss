@@ -1,43 +1,88 @@
 @use "sass:list";
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$notification-background-color: var(--#{$prefix}primary) !default;
-$notification-border-radius: 4px !default;
+$notification-spacer: calc(2 * h.useVar("control-spacer")) !default;
 $notification-padding: 1.75em 1.75em !default;
-$notification-margin-bottom: 1.5rem !default;
-$notification-animantion: append-animate 0.3s linear !default;
-$notification-color: var(--#{$prefix}white) !default;
-$notification-close-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$notification-close-right: 0.5rem !default;
-$notification-close-top: 0.5rem !default;
-$notification-close-size: 20px !default;
-$notification-close-color: var(--#{$prefix}white) !default;
-$notification-close-background-color: hsla(0, 0%, 4%, 0.2) !default;
-$notification-icon-margin-right: 1rem !default;
+$notification-animation: append-animate h.useVar("animation-speed") linear !default;
+
+$notification-color: h.useVar("primary-invert") !default;
+$notification-background-color: h.useVar("primary") !default;
+$notification-border-radius: h.useVar("border-radius") !default;
+
+$notification-close-top: 0.5em !default;
+$notification-close-right: 0.5em !default;
+$notification-close-color: h.useVar("white") !default;
+$notification-close-size: 1.5rem !default;
+$notification-close-border-radius: h.useVar("border-radius-rounded") !default;
+$notification-close-background-color: h.useVar("control-shadow-color") !default;
+
 $notification-notices-padding: 2em !default;
-$notification-notices-zindex: 1000 !default;
+$notification-notices-max-width: 600px !default;
+$notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
 /* @docs */
 
 .o-notification {
-    position: relative;
-    transform-origin: 50% 0;
-    // Modifiers
-    background-color: var(
-        --#{$prefix}notification-background-color,
+    @include h.defineVar("notification-spacer", $notification-spacer);
+    @include h.defineVar("notification-padding", $notification-padding);
+    @include h.defineVar("notification-animation", $notification-animation);
+    @include h.defineVar("notification-color", $notification-color);
+    @include h.defineVar(
+        "notification-background-color",
         $notification-background-color
     );
-    color: var(--#{$prefix}notification-color, $notification-color);
-    border-radius: var(
-        --#{$prefix}notification-border-radius,
+    @include h.defineVar(
+        "notification-border-radius",
         $notification-border-radius
     );
-    padding: var(--#{$prefix}notification-padding, $notification-padding);
-    margin-bottom: var(
-        --#{$prefix}notification-margin-bottom,
-        $notification-margin-bottom
+
+    @include h.defineVar("notification-close-top", $notification-close-top);
+    @include h.defineVar("notification-close-right", $notification-close-right);
+    @include h.defineVar("notification-close-color", $notification-close-color);
+    @include h.defineVar("notification-close-size", $notification-close-size);
+    @include h.defineVar(
+        "notification-close-border-radius",
+        $notification-close-border-radius
     );
+    @include h.defineVar(
+        "notification-close-background-color",
+        $notification-close-background-color
+    );
+
+    position: relative;
+    transform-origin: 50% 0;
+
+    padding: h.useVar("notification-padding");
+    margin-bottom: h.useVar("notification-spacer");
+
+    color: h.useVar("notification-color");
+
+    background-color: h.useVar("notification-background-color");
+    border-radius: h.useVar("notification-border-radius");
+
+    animation: h.useVar("notification-animation");
+    -webkit-animation: h.useVar("notification-animation");
+
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar(
+                "notification-color",
+                h.useVar("#{$name}-invert")
+            );
+            @include h.defineVar(
+                "notification-background-color",
+                h.useVar($name)
+            );
+
+            &:hover {
+                // darken color on hover
+                filter: brightness(95%);
+            }
+        }
+    }
 
     &__content {
         flex-basis: auto;
@@ -60,93 +105,64 @@ $notification-notices-zindex: 1000 !default;
         flex-basis: auto;
         flex-grow: 0;
         flex-shrink: 0;
-        margin-right: var(
-            --#{$prefix}notification-icon-margin-right,
-            $notification-icon-margin-right
-        );
+        margin-right: h.useVar("notification-spacer");
     }
 
     &__close {
+        // add clickable cursor
+        @include h.clickable;
+
         position: absolute;
-        border: none;
-        cursor: pointer;
-        pointer-events: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-grow: 0;
-        flex-shrink: 0;
+        top: h.useVar("notification-close-top");
+        right: h.useVar("notification-close-right");
+
+        display: inline-flex;
         vertical-align: top;
-        background-color: var(
-            --#{$prefix}notification-close-background-color,
-            $notification-close-background-color
-        );
-        border-radius: var(
-            --#{$prefix}notification-close-border-radius,
-            $notification-close-border-radius
-        );
-        right: var(
-            --#{$prefix}notification-close-right,
-            $notification-close-right
-        );
-        top: var(--#{$prefix}notification-close-top, $notification-close-top);
-        height: var(
-            --#{$prefix}notification-close-size,
-            $notification-close-size
-        );
-        width: var(
-            --#{$prefix}notification-close-size,
-            $notification-close-size
-        );
-        color: var(
-            --#{$prefix}notification-close-color,
-            $notification-close-color
-        );
-    }
 
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-        $color-invert: list.nth($pair, 2);
-        &--#{$name} {
-            border-color: transparent;
-            background-color: var(--#{$prefix}variant-#{$name}, $color);
-            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
+        height: h.useVar("notification-close-size");
+        width: h.useVar("notification-close-size");
 
-            &:hover {
-                // background-color: darken($color, 2.5%)
-                // IE 11 needs polyfill
-                filter: brightness(97.5%);
-            }
-        }
+        color: h.useVar("notification-close-color");
+
+        border: none;
+        border-radius: h.useVar("notification-close-border-radius");
+        background-color: h.useVar("notification-close-background-color");
     }
 }
 
 .o-notices {
+    @include h.defineVar(
+        "notification-notices-zindex",
+        $notification-notices-zindex
+    );
+    @include h.defineVar(
+        "notification-notices-padding",
+        $notification-notices-padding
+    );
+    @include h.defineVar(
+        "notification-notices-max-width",
+        $notification-notices-max-width
+    );
+
     position: fixed;
     display: flex;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+
     overflow: hidden;
+    // disable clickable
     pointer-events: none;
-    padding: var(
-        --#{$prefix}notification-notices-padding,
-        $notification-notices-padding
-    );
-    z-index: var(
-        --#{$prefix}notification-notices-zindex,
-        $notification-notices-zindex
-    );
+
+    padding: h.useVar("notification-notices-padding");
+    z-index: h.useVar("notification-notices-zindex");
 
     .o-notification {
         pointer-events: stroke;
-        max-width: 600px;
-        animation: var(
-            --#{$prefix}notification-animantion,
-            $notification-animantion
-        );
+        max-width: h.useVar("notification-notices-max-width");
 
+        // position variants
         &--top,
         &--bottom {
             align-self: center;
@@ -176,12 +192,8 @@ $notification-notices-zindex: 1000 !default;
             margin-bottom: 0;
 
             &:not(:first-child) {
-                margin-bottom: $notification-margin-bottom;
+                margin-bottom: h.useVar("notification-spacer");
             }
         }
-    }
-
-    &__custom-container {
-        position: absolute;
     }
 }

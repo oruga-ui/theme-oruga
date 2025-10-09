@@ -1,29 +1,63 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$tag-color: var(--#{$prefix}grey-dark) !default;
-$tag-background-color: $control-brackground-color !default;
-$tag-border-radius: var(--#{$prefix}base-border-radius) !default;
-$tag-rounded-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
 $tag-padding: 0 0.75em !default;
-$tag-icon-margin: 0.5em !default;
+$tag-color: h.useVar("font-color") !default;
+$tag-font-size: h.useVar("font-size") !default;
+$tag-font-weight: h.useVar("font-weight") !default;
+$tag-line-height: h.useVar("line-height") !default;
+$tag-height: h.useVar("control-height") !default;
+$tag-icon-spacer: h.useVar("control-spacer") !default;
+
+$tag-box-shadow: unset !default;
+$tag-background-color: h.useVar("grey-lightest") !default;
+$tag-border-color: transparent !default;
+$tag-border-style: solid !default;
+$tag-border-width: h.useVar("control-border-width") !default;
+$tag-border-radius: h.useVar("border-radius") !default;
+$tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
 /* @docs */
 
 .o-tag {
+    @include h.defineVar("tag-padding", $tag-padding);
+    @include h.defineVar("tag-color", $tag-color);
+    @include h.defineVar("tag-font-size", $tag-font-size);
+    @include h.defineVar("tag-font-weight", $tag-font-weight);
+    @include h.defineVar("tag-line-height", $tag-line-height);
+    @include h.defineVar("tag-height", $tag-height);
+    @include h.defineVar("tag-icon-spacer", $tag-icon-spacer);
+
+    @include h.defineVar("tag-box-shadow", $tag-box-shadow);
+    @include h.defineVar("tag-background-color", $tag-background-color);
+    @include h.defineVar("tag-border-color", $tag-border-color);
+    @include h.defineVar("tag-border-style", $tag-border-style);
+    @include h.defineVar("tag-border-width", $tag-border-width);
+    @include h.defineVar("tag-border-radius", $tag-border-radius);
+    @include h.defineVar(
+        "tag-border-radius-rounded",
+        $tag-border-radius-rounded
+    );
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: 1.5;
     white-space: nowrap;
-    color: var(--#{$prefix}tag-color, $tag-color);
-    background-color: var(
-        --#{$prefix}tag-background-color,
-        $tag-background-color
-    );
-    border-radius: var(--#{$prefix}tag-border-radius, $tag-border-radius);
-    padding: var(--#{$prefix}tag-padding, $tag-padding);
+
+    padding: h.useVar("tag-padding");
+
+    color: h.useVar("tag-color");
+    font-size: calc(0.75 * h.useVar("tag-font-size"));
+    font-weight: h.useVar("tag-font-weight");
+    line-height: h.useVar("tag-line-height");
+
+    box-shadow: h.useVar("tag-box-shadow");
+    background-color: h.useVar("tag-background-color");
+    border-color: h.useVar("tag-border-color");
+    border-style: h.useVar("tag-border-style");
+    border-width: h.useVar("tag-border-width");
+    border-radius: h.useVar("tag-border-radius");
 
     &:empty {
         width: 1em;
@@ -31,10 +65,17 @@ $tag-icon-margin: 0.5em !default;
         padding-right: 0;
     }
 
+    &:focus,
+    &:hover {
+        /* background-color: darken($color-invert, 5%)*/
+        /* IE 11 needs polyfill*/
+        filter: brightness(98%);
+    }
+
     &--rounded {
-        border-radius: var(
-            --#{$prefix}tag-rounded-border-radius,
-            $tag-rounded-border-radius
+        @include h.defineVar(
+            "tag-border-radius",
+            h.useVar("tag-border-radius-rounded")
         );
     }
 
@@ -42,43 +83,30 @@ $tag-icon-margin: 0.5em !default;
         position: absolute;
         top: 0;
         left: 100%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
     }
 
     &__icon {
-        margin-right: var(--#{$prefix}tag-icon-margin, $tag-icon-margin);
+        margin-right: h.useVar("tag-icon-spacer");
     }
 
     &__close {
-        margin-left: var(--#{$prefix}tag-icon-margin, $tag-icon-margin);
+        margin-left: h.useVar("tag-icon-spacer");
     }
 
     // size variants
-    @each $name, $value in $sizes {
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}tag-font-size-#{$name}, $value);
+            @include h.defineVar("tag-font-size", h.useVar("size-#{$name}"));
         }
     }
 
     // color variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-        $color-invert: list.nth($pair, 2);
-
+    @each $name, $pair in vars.$colors {
         &--#{$name} {
-            background-color: var(--#{$prefix}variant-#{$name}, $color);
-            border-color: var(
-                --#{$prefix}variant-invert-#{$name},
-                $color-invert
-            );
-            color: var(--#{$prefix}variant-invert-#{$name}, $color-invert);
-
-            &:focus,
-            &:hover {
-                /* background-color: darken($color-invert, 5%)*/
-                /* IE 11 needs polyfill*/
-                filter: brightness(95%);
-            }
+            @include h.defineVar("tag-background-color", h.useVar($name));
+            @include h.defineVar("tag-border-color", h.useVar($name));
+            @include h.defineVar("tag-color", h.useVar("#{$name}-invert"));
         }
     }
 }

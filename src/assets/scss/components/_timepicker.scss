@@ -1,98 +1,97 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$timepicker-font-size: var(--#{$prefix}base-font-size) !default;
-$timepicker-box-line-height: var(--#{$prefix}base-line-height) !default;
-$timepicker-box-padding: 0.375rem 1rem !default;
+$timepicker-font-size: h.useVar("font-size") !default;
+$timepicker-color: h.useVar("font-color") !default;
+$timepicker-line-height: h.useVar("line-height") !default;
+$timepicker-font-weight: 600 !default;
+$timepicker-box-padding: 0 calc(2 * h.useVar("control-spacer")) !default;
+
 $timepicker-footer-padding: 0 0.5rem !default;
-$timepicker-footer-margin: 0.875rem 0 0 0 !default;
-$timepicker-select-line-height: var(--#{$prefix}base-line-height) !default;
-$timepicker-select-padding: $control-padding-vertical
-    $control-padding-horizontal !default;
-$timepicker-select-color: #363636 !default;
-$timepicker-select-font-weight: 600 !default;
-$timepicker-select-placeholder-opacity: var(
-    --#{$prefix}base-disabled-opacity
-) !default;
-$timepicker-separator-font-weight: 600 !default;
+
+$timepicker-select-padding: h.useVar("control-padding-vertical")
+    h.useVar("control-padding-horizontal") !default;
+$timepicker-select-placeholder-opacity: h.useVar("disabled-opacity") !default;
 /* @docs */
 
 .o-timepicker {
-    font-size: var(--#{$prefix}timepicker-font-size, $timepicker-font-size);
+    @include h.defineVar("timepicker-color", $timepicker-color);
+    @include h.defineVar("timepicker-font-size", $timepicker-font-size);
+    @include h.defineVar("timepicker-font-weight", $timepicker-font-weight);
+    @include h.defineVar("timepicker-line-height", $timepicker-line-height);
+    @include h.defineVar("timepicker-box-padding", $timepicker-box-padding);
 
-    @each $name, $value in $sizes {
+    @include h.defineVar(
+        "timepicker-footer-padding",
+        $timepicker-footer-padding
+    );
+
+    @include h.defineVar(
+        "timepicker-select-padding",
+        $timepicker-select-padding
+    );
+    @include h.defineVar(
+        "timepicker-select-placeholder-opacity",
+        $timepicker-select-placeholder-opacity
+    );
+
+    font-size: h.useVar("timepicker-font-size");
+    font-weight: h.useVar("timepicker-font-weight");
+    line-height: h.useVar("timepicker-line-height");
+    color: h.useVar("timepicker-color");
+
+    // size variants
+    @each $name, $value in vars.$sizes {
         &--#{$name} {
-            font-size: var(--#{$prefix}timepicker-font-size-#{$name}, $value);
+            @include h.defineVar(
+                "timepicker-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 
     &__dropdown {
         width: 100%;
+
+        .o-dropdown__menu {
+            min-width: 12rem;
+        }
     }
 
     &__box {
         display: flex;
         justify-content: center;
         align-items: center;
-        line-height: var(
-            --#{$prefix}timepicker-box-line-height,
-            $timepicker-box-line-height
-        );
-        padding: var(
-            --#{$prefix}timepicker-box-padding,
-            $timepicker-box-padding
-        );
+        padding: h.useVar("timepicker-box-padding");
     }
 
     &__select {
-        -moz-appearance: none;
-        -webkit-appearance: none;
+        // remove default appearance
+        @include h.removeAppearance;
+        // add clickable cursor
+        @include h.clickable;
+
         display: inline-block;
         position: relative;
         vertical-align: top;
-        cursor: pointer;
         justify-content: flex-start;
         align-items: center;
         border: 0;
+
         font-size: inherit;
-        font-weight: var(
-            --#{$prefix}timepicker-select-font-weight,
-            $timepicker-select-font-weight
-        );
-        line-height: var(
-            --#{$prefix}timepicker-select-line-height,
-            $timepicker-select-line-height
-        );
-        color: var(
-            --#{$prefix}timepicker-select-color,
-            $timepicker-select-color
-        );
-        padding: var(
-            --#{$prefix}timepicker-select-padding,
-            $timepicker-select-padding
-        );
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+
+        padding: h.useVar("timepicker-select-padding");
     }
 
     &__select-placeholder {
-        opacity: var(
-            --#{$prefix}timepicker-select-placeholder-opacity,
-            $timepicker-select-placeholder-opacity
-        );
-    }
-
-    &__separator {
-        font-weight: var(
-            --#{$prefix}timepicker-separator-font-weight,
-            $timepicker-separator-font-weight
-        );
+        opacity: h.useVar("timepicker-select-placeholder-opacity");
     }
 
     &__footer {
-        padding: var(
-            --#{$prefix}timepicker-header-padding,
-            $timepicker-footer-padding
-        );
-        margin: var(
-            --#{$prefix}timepicker-header-margin,
-            $timepicker-footer-margin
-        );
+        padding: h.useVar("timepicker-header-padding");
     }
 }

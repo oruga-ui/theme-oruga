@@ -1,104 +1,130 @@
 @use "sass:list";
 @use "sass:color";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$switch-spacer: 0.5em !default;
+$switch-spacer: h.useVar("control-spacer") !default;
 $switch-width: 2.75em !default;
 $switch-height: 1.5em !default;
-$switch-background: var(--#{$prefix}grey-light) !default;
-$switch-toggle-background: $control-brackground-color !default;
-$switch-border: $control-border-width solid var(--#{$prefix}grey-lighter) !default;
-$switch-border-radius: var(--#{$prefix}base-border-radius) !default;
-$switch-border-radius-rounded: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$switch-checked-background: var(--#{$prefix}primary) !default;
-$switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
+
+$switch-color: h.useVar("font-color") !default;
+$switch-font-size: h.useVar("font-size") !default;
+$switch-font-weight: h.useVar("font-weight") !default;
+$switch-line-height: h.useVar("line-height") !default;
+
+$switch-box-shadow: h.useVar("control-box-shadow-inset") !default;
+$switch-border-color: h.useVar("grey-lighter") !default;
+$switch-border-style: solid !default;
+$switch-border-width: h.useVar("control-border-width") !default;
+$switch-border-radius: h.useVar("border-radius") !default;
+$switch-border-radius-rounded: h.useVar("border-radius-rounded") !default;
+$switch-background-color: h.useVar("grey-light") !default;
+$switch-toggle-background-color: vars.$control-brackground-color !default;
+
+$switch-checked-background-color: h.useVar("primary") !default;
+$switch-checked-border-color: h.useVar("primary") !default;
+$switch-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 /* @docs */
 
 @function switchSVG($color) {
-    $svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$color}'/></svg>";
+    $start: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'>";
+    $content: "<circle r='3' fill='#{$color}'/>";
+    $end: "</svg>";
 
-    @return svg-encode($svg);
+    @return h.svg-encode("#{$start}#{$content}#{$end}");
 }
 
 .o-switch {
-    @include unselectable;
+    @include h.defineVar("switch-spacer", $switch-spacer);
+    @include h.defineVar("switch-width", $switch-width);
+    @include h.defineVar("switch-height", $switch-height);
+    @include h.defineVar("switch-color", $switch-color);
+    @include h.defineVar("switch-font-size", $switch-font-size);
+    @include h.defineVar("switch-font-weight", $switch-font-weight);
+    @include h.defineVar("switch-line-height", $switch-line-height);
+    @include h.defineVar("switch-background-color", $switch-background-color);
+    @include h.defineVar(
+        "switch-background-image",
+        url(switchSVG($switch-toggle-background-color))
+    );
+    @include h.defineVar(
+        "switch-checked-background-color",
+        $switch-checked-background-color
+    );
+    @include h.defineVar(
+        "switch-checked-border-color",
+        $switch-checked-border-color
+    );
+    @include h.defineVar("switch-box-shadow", $switch-box-shadow);
+    @include h.defineVar("switch-border-color", $switch-border-color);
+    @include h.defineVar("switch-border-style", $switch-border-style);
+    @include h.defineVar("switch-border-width", $switch-border-width);
+    @include h.defineVar("switch-border-radius", $switch-border-radius);
+    @include h.defineVar(
+        "switch-border-radius-rounded",
+        $switch-border-radius-rounded
+    );
 
-    cursor: pointer;
-    display: block;
+    // define focus shadow effect
+    @include h.focusable(".o-switch__input");
+
+    // add clickable cursor
+    @include h.clickable;
+
+    display: inline-flex;
     align-items: center;
     position: relative;
 
+    color: h.useVar("switch-color");
+    font-size: h.useVar("switch-font-size");
+    font-weight: h.useVar("switch-font-weight");
+    line-height: h.useVar("switch-line-height");
+
     &__input {
-        flex-shrink: 0;
-        width: var(--#{$prefix}switch-width, $switch-width);
-        height: var(--#{$prefix}switch-height, $switch-height);
-        margin-top: 0.25em;
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+
+        font-size: inherit;
+        outline: none;
         vertical-align: top;
-        cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: var(
-            --#{$prefix}switch-background,
-            $switch-background
-        );
-        background-image: url(switchSVG($switch-toggle-background));
+        width: h.useVar("switch-width");
+        height: h.useVar("switch-height");
+
+        transition: background-position h.useVar("transition-duration")
+            h.useVar("transition-timing");
+
+        box-shadow: h.useVar("switch-box-shadow");
+
+        background-color: h.useVar("switch-background-color");
+        background-image: h.useVar("switch-background-image");
         background-position: left center;
         background-repeat: no-repeat;
         background-size: contain;
-        border: var(--#{$prefix}switch-border, $switch-border);
-        border-radius: var(
-            --#{$prefix}switch-border-radius,
-            $switch-border-radius
-        );
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        transition: background-position var(--#{$prefix}transition-duration)
-            var(--#{$prefix}transition-timing);
+
+        border-radius: h.useVar("switch-border-radius");
+        border-width: h.useVar("switch-border-width");
+        border-color: h.useVar("switch-border-color");
+        border-style: h.useVar("switch-border-style");
 
         &:checked {
             background-position: right center;
-            background-color: var(
-                --#{$prefix}switch-checked-background,
-                $switch-checked-background
-            );
-        }
-    }
-
-    // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} {
-            font-size: var(--#{$prefix}font-size-#{name}, $value);
-        }
-    }
-
-    // color variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-        &--#{$name} {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            input:checked {
-                border-color: var(--#{$prefix}#{$name});
-                background-color: var(--#{$prefix}variant-#{$name}, $color);
-            }
-        }
-
-        // possive variant
-        &--#{$name}-passive {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            input {
-                background-color: var(--#{$prefix}#{$name});
-                border-color: var(--#{$prefix}#{$name});
-            }
+            background-color: h.useVar("switch-checked-background-color");
+            border-color: h.useVar("switch-checked-border-color");
         }
     }
 
     &__label {
-        margin-left: var(--#{$prefix}switch-spacer, $switch-spacer);
+        padding: 0 0 0 h.useVar("switch-spacer");
+    }
+
+    &--disabled {
+        @include h.disabled(h.useVar("switch-disabled-opacity"));
     }
 
     &--left {
@@ -106,32 +132,42 @@ $switch-disabled-opacity: var(--#{$prefix}base-disabled-opacity) !default;
         flex-direction: row-reverse;
 
         .o-switch__label {
-            margin-left: 0;
-            margin-right: var(--#{$prefix}switch-spacer, $switch-spacer);
+            padding: 0 h.useVar("switch-spacer") 0 0;
         }
     }
 
-    &--rounded .o-switch__input {
-        border-radius: var(
-            --#{$prefix}switch-border-radius-rounded,
-            $switch-border-radius-rounded
+    &--rounded {
+        @include h.defineVar(
+            "switch-border-radius",
+            h.useVar("switch-border-radius-rounded")
         );
     }
 
-    &--disabled {
-        opacity: var(
-            --#{$prefix}switch-disabled-opacity,
-            $switch-disabled-opacity
-        );
+    // size variants
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar("switch-font-size", h.useVar("size-#{$name}"));
+        }
     }
 
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-switch__input {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
+    // color variants
+    @each $name, $pair in vars.$colors {
+        // checked variant
+        &--#{$name} {
+            @include h.defineVar(
+                "switch-checked-border-color",
+                h.useVar($name)
+            );
+            @include h.defineVar(
+                "switch-checked-background-color",
+                h.useVar($name)
+            );
+        }
+
+        // possive variant
+        &--#{$name}-passive {
+            @include h.defineVar("switch-border-color", h.useVar($name));
+            @include h.defineVar("switch-background-color", h.useVar($name));
         }
     }
 }

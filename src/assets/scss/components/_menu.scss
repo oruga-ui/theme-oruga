@@ -1,134 +1,138 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$menu-item-color: var(--#{$prefix}grey-dark) !default;
-$menu-item-background-color: transparent !default;
-$menu-item-hover-color: var(--#{$prefix}white) !default;
-$menu-item-hover-background-color: var(--#{$prefix}secondary) !default;
-$menu-item-active-color: var(--#{$prefix}primary-invert) !default;
-$menu-item-active-background-color: var(--#{$prefix}primary) !default;
-$menu-item-disabled-color: var(--#{$prefix}grey-light) !default;
-$menu-list-border-left: 1px solid var(--#{$prefix}primary) !default;
-$menu-list-border-radius: var(--#{$prefix}base-border-radius) !default;
-$menu-list-line-height: 1.25em !default;
+$menu-spacer: 0.5rem !default;
+$menu-border: 1px solid h.useVar("primary") !default;
+$menu-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$menu-label-color: h.useVar("font-color") !default;
+$menu-label-font-size: calc(h.useVar("font-size") * 0.75) !default;
+$menu-label-font-weight: h.useVar("font-weight") !default;
+$menu-label-line-heigth: h.useVar("line-heigth") !default;
+
 $menu-item-padding: 0.5em 0.75em !default;
-$menu-nested-list-margin: 0.75em 1.25em !default;
-$menu-nested-list-padding-left: 0.75em !default;
-$menu-label-color: $grey !default;
-$menu-label-font-size: 0.75em !default;
-$menu-label-spacing: 1em !default;
-$menu-icon-spacer: 0.5rem !default;
+$menu-item-color: h.useVar("font-color") !default;
+$menu-item-font-size: h.useVar("font-size") !default;
+$menu-item-font-weight: h.useVar("font-weight") !default;
+$menu-item-line-heigth: h.useVar("line-heigth") !default;
+
+$menu-item-border: unset !default;
+$menu-item-border-radius: h.useVar("border-radius") !default;
+$menu-item-background-color: transparent !default;
+
+$menu-item-hover-color: h.useVar("white") !default;
+$menu-item-hover-background-color: h.useVar("secondary") !default;
+$menu-item-active-color: h.useVar("primary-invert") !default;
+$menu-item-active-background-color: h.useVar("primary") !default;
 /* @docs */
 
 .o-menu {
-    // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} {
-            font-size: var(--#{$prefix}menu-font-size-#{$name}, $value);
+    @include h.defineVar("menu-spacer", $menu-spacer);
+    @include h.defineVar("menu-label-color", $menu-label-color);
+    @include h.defineVar("menu-label-font-size", $menu-label-font-size);
+    @include h.defineVar("menu-label-font-weight", $menu-label-font-weight);
+    @include h.defineVar("menu-label-line-heigth", $menu-label-line-heigth);
+    @include h.defineVar("menu-border", $menu-border);
+    @include h.defineVar("menu-item-padding", $menu-item-padding);
+    @include h.defineVar("menu-item-color", $menu-item-color);
+    @include h.defineVar("menu-item-font-weight", $menu-item-font-weight);
+    @include h.defineVar("menu-item-line-heigth", $menu-item-line-heigth);
+    @include h.defineVar("menu-item-border", $menu-item-border);
+    @include h.defineVar("menu-item-border-radius", $menu-item-border-radius);
+    @include h.defineVar(
+        "menu-item-background-color",
+        $menu-item-background-color
+    );
+    @include h.defineVar("menu-item-hover-color", $menu-item-hover-color);
+    @include h.defineVar(
+        "menu-item-hover-background-color",
+        $menu-item-hover-background-color
+    );
+    @include h.defineVar("menu-item-active-color", $menu-item-active-color);
+    @include h.defineVar(
+        "menu-item-active-background-color",
+        $menu-item-active-background-color
+    );
+    @include h.defineVar("menu-disabled-opacity", $menu-disabled-opacity);
+
+    &__label {
+        text-transform: uppercase;
+        color: h.useVar("menu-label-color");
+        font-size: h.useVar("menu-label-font-size");
+        font-weight: h.useVar("menu-label-font-weight");
+        line-height: h.useVar("menu-label-line-height");
+
+        &:not(:first-child) {
+            padding-top: h.useVar("menu-spacer");
+        }
+
+        &:not(:last-child) {
+            padding-bottom: h.useVar("menu-spacer");
         }
     }
 
     &__list,
     &__item {
         list-style: none;
-    }
-
-    &__list {
         padding: unset;
-        line-height: var(
-            --#{$prefix}menu-list-line-height,
-            $menu-list-line-height
-        );
-        padding-left: var(
-            --#{$prefix}menu-nested-list-padding-left,
-            $menu-nested-list-padding-left
-        );
+        margin: unset;
     }
 
-    &__item__submenu {
-        border-left: var(
-            --#{$prefix}menu-list-border-left,
-            $menu-list-border-left
-        );
-        padding-left: var(
-            --#{$prefix}menu-nested-list-padding-left,
-            $menu-nested-list-padding-left
-        );
-        margin: var(
-            --#{$prefix}menu-nested-list-margin,
-            $menu-nested-list-margin
-        );
+    &__item {
+        &__submenu {
+            border-left: h.useVar("menu-border");
+            padding-left: h.useVar("menu-spacer");
+            margin: calc(1.5 * h.useVar("menu-spacer"))
+                calc(2.5 * h.useVar("menu-spacer"));
+        }
+
+        &__button {
+            // add clickable cursor
+            @include h.clickable;
+
+            // disable default appearance
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+
+            display: block;
+            padding: h.useVar("menu-item-padding");
+
+            color: h.useVar("menu-item-color");
+            font-size: h.useVar("menu-item-font-size");
+            font-weight: h.useVar("menu-item-font-weight");
+            line-height: h.useVar("menu-item-line-height");
+
+            background-color: h.useVar("menu-item-background-color");
+            border: h.useVar("menu-item-border");
+            border-radius: h.useVar("menu-item-border-radius");
+
+            &--focused,
+            &:hover:not(&--active):not(&--disabled) {
+                color: h.useVar("menu-item-hover-color");
+                background-color: h.useVar("menu-item-hover-background-color");
+            }
+
+            &--active {
+                color: h.useVar("menu-item-active-color");
+                background-color: h.useVar("menu-item-active-background-color");
+            }
+
+            &--icon .o-icon {
+                margin-right: h.useVar("menu-spacer");
+            }
+
+            &--disabled {
+                @include h.disabled(h.useVar("menu-disabled-opacity"));
+            }
+        }
     }
 
-    &__label {
-        text-transform: uppercase;
-        color: var(--#{$prefix}menu-label-color, $menu-label-color);
-        font-size: var(--#{$prefix}menu-label-font-size, $menu-label-font-size);
-
-        &:not(:first-child) {
-            margin-top: var(
-                --#{$prefix}menu-label-spacing,
-                $menu-label-spacing
-            );
-        }
-
-        &:not(:last-child) {
-            margin-bottom: var(
-                --#{$prefix}menu-label-spacing,
-                $menu-label-spacing
-            );
-        }
-    }
-
-    &__item__button {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        display: block;
-        list-style: none;
-        cursor: pointer;
-        border: transparent;
-        background-color: var(
-            --#{$prefix}menu-item-background-color,
-            $menu-item-background-color
-        );
-        color: var(--#{$prefix}menu-item-color, $menu-item-color);
-        padding: var(--#{$prefix}menu-item-padding, $menu-item-padding);
-        font-size: var(--#{$prefix}menu-item-size, $base-font-size);
-        border-radius: var(
-            --#{$prefix}menu-list-border-radius,
-            $menu-list-border-radius
-        );
-
-        &:hover:not(&--active):not(&--disabled) {
-            color: var(
-                --#{$prefix}menu-item-hover-color,
-                $menu-item-hover-color
-            );
-            background-color: var(
-                --#{$prefix}menu-item-hover-background-color,
-                $menu-item-hover-background-color
-            );
-        }
-
-        &--icon .o-icon {
-            margin-right: var(--#{$prefix}menu-icon-spacer, $menu-icon-spacer);
-        }
-
-        &--active {
-            color: var(
-                --#{$prefix}menu-item-active-color,
-                $menu-item-active-color
-            );
-            background-color: var(
-                --#{$prefix}menu-item-active-background-color,
-                $menu-item-active-background-color
-            );
-        }
-
-        &--disabled {
-            cursor: inherit;
-            color: var(
-                --#{$prefix}menu-item-disabled-color,
-                $menu-item-disabled-color
-            );
+    // size variants
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar("menu-font-size", h.useVar("size-#{$name}"));
         }
     }
 }

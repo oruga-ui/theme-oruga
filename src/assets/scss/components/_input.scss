@@ -1,69 +1,120 @@
 @use "sass:list";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
 
 /* @docs */
-$input-background-color: #ffffff !default;
-$input-border-color: var(--#{$prefix}grey-lighter) !default;
+$input-color: h.useVar("font-color") !default;
+$input-font-size: h.useVar("font-size") !default;
+$input-font-weight: h.useVar("font-weight") !default;
+$input-line-height: h.useVar("line-height") !default;
+$input-height: h.useVar("control-height") !default;
+
+$input-padding: h.useVar("control-padding-vertical")
+    h.useVar("control-padding-horizontal") !default;
+$input-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+
+$input-box-shadow: h.useVar("control-box-shadow-inset") !default;
+$input-border-width: h.useVar("control-border-width") !default;
 $input-border-style: solid !default;
-$input-border-width: 1px !default;
-$input-border-radius: var(--#{$prefix}base-border-radius) !default;
-$input-rounded-border-radius: var(
-    --#{$prefix}base-border-radius-rounded
-) !default;
-$input-box-shadow: $control-box-shadow !default;
-$input-color: #363636 !default;
-$input-icon-zindex: 4 !default;
-$input-height: $control-height !default;
-$input-line-height: var(--#{$prefix}base-line-height) !default;
-$input-margin: 0 !default;
-$input-padding: $control-padding-vertical $control-padding-horizontal !default;
-$input-counter-font-size: 0.75rem !default;
-$input-counter-margin: 0.25rem 0.5rem !default;
-$input-textarea-max-height: 600px !default;
+$input-border-color: h.useVar("control-border-color") !default;
+$input-border-radius: h.useVar("border-radius") !default;
+$input-border-radius-rounded: h.useVar("border-radius-rounded") !default;
+$input-background-color: h.useVar("control-brackground-color") !default;
+
 $input-textarea-min-height: 120px !default;
-$input-textarea-padding: 0.625em !default;
+$input-textarea-max-height: 600px !default;
+$input-textarea-padding: h.useVar("control-spacer") !default;
+
+$input-counter-font-size: 0.75rem !default;
+$input-counter-padding: 0.25rem 0.5rem !default;
 /* @docs */
 
 .o-input {
+    @include h.defineVar("input-height", $input-height);
+    @include h.defineVar("input-padding", $input-padding);
+    @include h.defineVar("input-disabled-opacity", $input-disabled-opacity);
+
+    @include h.defineVar("input-color", $input-color);
+    @include h.defineVar("input-font-size", $input-font-size);
+    @include h.defineVar("input-font-weight", $input-font-weight);
+    @include h.defineVar("input-line-height", $input-line-height);
+
+    @include h.defineVar("input-box-shadow", $input-box-shadow);
+    @include h.defineVar("input-background-color", $input-background-color);
+    @include h.defineVar("input-border-width", $input-border-width);
+    @include h.defineVar("input-border-style", $input-border-style);
+    @include h.defineVar("input-border-color", $input-border-color);
+    @include h.defineVar("input-border-radius", $input-border-radius);
+    @include h.defineVar(
+        "input-border-radius-rounded",
+        $input-border-radius-rounded
+    );
+
+    @include h.defineVar(
+        "input-textarea-min-height",
+        $input-textarea-min-height
+    );
+    @include h.defineVar(
+        "input-textarea-max-height",
+        $input-textarea-max-height
+    );
+    @include h.defineVar("input-textarea-padding", $input-textarea-padding);
+
+    @include h.defineVar("input-counter-font-size", $input-counter-font-size);
+    @include h.defineVar("input-counter-padding", $input-counter-padding);
+
+    // define focus shadow effect
+    @include h.focusable(".o-input__input");
+
+    // add clickable cursor
+    @include h.clickable;
+
     display: inline-block;
     position: relative;
 
+    // size variants
+    @each $name, $value in vars.$sizes {
+        &--#{$name} {
+            @include h.defineVar("input-font-size", h.useVar("size-#{$name}"));
+        }
+    }
+
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar("input-border-color", h.useVar($name));
+        }
+    }
+
     &__input {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        display: inline-flex;
+        // remove default appearance
+        @include h.removeAppearance;
+
+        display: inline-block;
         position: relative;
-        vertical-align: top;
 
-        color: var(--#{$prefix}input-color, $input-color);
-        font-size: var(--#{$prefix}base-font-size, $base-font-size);
-        box-shadow: var(--#{$prefix}input-box-shadow, $input-box-shadow);
-        background-color: var(
-            --#{$prefix}input-background-color,
-            $input-background-color
-        );
-        border-color: var(--#{$prefix}input-border-color, $input-border-color);
-        border-style: var(--#{$prefix}input-border-style, $input-border-style);
-        border-width: var(--#{$prefix}input-border-width, $input-border-width);
-        border-radius: var(
-            --#{$prefix}input-border-radius,
-            $input-border-radius
-        );
+        height: h.useVar("input-height");
+        padding: h.useVar("input-padding");
 
-        height: var(--#{$prefix}input-height, $input-height);
-        line-height: var(--#{$prefix}input-line-height, $input-line-height);
-        padding: var(--#{$prefix}input-padding, $input-padding);
-        margin: var(--#{$prefix}input-margin, $input-margin);
+        color: h.useVar("input-color");
+        font-size: h.useVar("input-font-size");
+        font-weight: h.useVar("input-font-weight");
+        line-height: h.useVar("input-line-height");
+
+        box-shadow: h.useVar("input-box-shadow");
+        background-color: h.useVar("input-background-color");
+
+        border-color: h.useVar("input-border-color");
+        border-style: h.useVar("input-border-style");
+        border-width: h.useVar("input-border-width");
+        border-radius: h.useVar("input-border-radius");
 
         &--iconspace-left {
-            padding-left: var(--#{$prefix}input-height, $input-height);
+            padding-left: h.useVar("input-height");
         }
 
         &--iconspace-right {
-            padding-right: var(--#{$prefix}input-height, $input-height);
-        }
-
-        &[disabled] {
-            cursor: inherit;
+            padding-right: h.useVar("input-height");
         }
     }
 
@@ -73,46 +124,23 @@ $input-textarea-padding: 0.625em !default;
         min-width: 100%;
         height: auto;
         resize: vertical;
-        padding: var(
-            --#{$prefix}input-textarea-padding,
-            $input-textarea-padding
-        );
+        padding: h.useVar("input-textarea-padding");
 
         &:not([rows]) {
-            max-height: var(
-                --#{$prefix}input-textarea-max-height,
-                $input-textarea-max-height
-            );
-            min-height: var(
-                --#{$prefix}input-textarea-min-height,
-                $input-textarea-min-height
-            );
+            max-height: h.useVar("input-textarea-max-height");
+            min-height: h.useVar("input-textarea-min-height");
         }
     }
 
-    // size variants
-    @each $name, $value in $sizes {
-        &--#{$name} .o-input__input {
-            font-size: var(--#{$prefix}input-font-size-#{$name}, $value);
-        }
-    }
-
-    // colar variants
-    @each $name, $pair in $colors {
-        $color: list.nth($pair, 1);
-
-        &--#{$name} .o-input__input {
-            --#{$prefix}focus: #{createFocus($color)};
-
-            border-color: var(--#{$prefix}variant-#{$name}, $color);
-        }
-    }
-
-    &--rounded .o-input__input {
-        border-radius: var(
-            --#{$prefix}input-rounded-border-radius,
-            $input-rounded-border-radius
+    &--rounded {
+        @include h.defineVar(
+            "input-border-radius",
+            h.useVar("input-border-radius-rounded")
         );
+    }
+
+    &--disabled {
+        @include h.disabled(h.useVar("input-disabled-opacity"));
     }
 
     &--expanded {
@@ -128,11 +156,9 @@ $input-textarea-padding: 0.625em !default;
     &__counter {
         display: block;
         float: right;
-        font-size: var(
-            --#{$prefix}input-counter-font-size,
-            $input-counter-font-size
-        );
-        margin: var(--#{$prefix}input-counter-margin, $input-counter-margin);
+        font-size: h.useVar("input-counter-font-size");
+        padding: h.useVar("input-counter-padding");
+        height: h.useVar("input-height");
     }
 
     &__icon-left,
@@ -140,8 +166,7 @@ $input-textarea-padding: 0.625em !default;
         position: absolute;
         top: 0;
         height: 100%;
-        width: var(--#{$prefix}input-height, $input-height);
-        z-index: var(--#{$prefix}input-icon-zindex, $input-icon-zindex);
+        width: h.useVar("input-height");
     }
 
     &__icon-right {
@@ -150,15 +175,5 @@ $input-textarea-padding: 0.625em !default;
 
     &__icon-left {
         left: 0;
-    }
-
-    // focus effect
-    &:focus,
-    &:focus-visible,
-    &:focus-within {
-        .o-input__input {
-            box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus);
-            outline: none;
-        }
     }
 }

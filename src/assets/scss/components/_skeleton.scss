@@ -1,34 +1,42 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
+$skeleton-spacer: 0.5em !default;
+$skeleton-duration: 1.5s !default;
+$skeleton-font-size: h.useVar("font-size") !default;
+$skeleton-background-color: vars.$grey-lighter !default;
 $skeleton-background: linear-gradient(
     90deg,
-    $grey-lighter 25%,
-    rgba($grey-lighter, 0.5) 50%,
-    $grey-lighter 75%
+    $skeleton-background-color 25%,
+    rgba($skeleton-background-color, 0.5) 50%,
+    $skeleton-background-color 75%
 ) !default;
-$skeleton-border-radius: var(--#{$prefix}base-border-radius) !default;
-$skeleton-duration: 1.5s !default;
-$skeleton-margin: 0.5rem 0 0 0 !default;
+$skeleton-border-radius: h.useVar("border-radius") !default;
+$skeleton-border-radius-rounded: h.useVar("border-radius-rounded") !default;
 /* @docs */
 
-@keyframes skeleton-loading {
-    0% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0 50%;
-    }
-}
-
-@mixin steps-size($size, $name: null) {
-    @if $name {
-        line-height: var(--#{$prefix}skeleton-font-size-#{$name}, $size);
-    } @else {
-        line-height: var(--#{$prefix}skeleton-font-size, $size);
-    }
-}
-
 .o-skeleton {
+    @include h.defineVar("skeleton-duration", $skeleton-duration);
+    @include h.defineVar("skeleton-spacer", $skeleton-spacer);
+    @include h.defineVar("skeleton-font-size", $skeleton-font-size);
+    @include h.defineVar("skeleton-background", $skeleton-background);
+    @include h.defineVar("skeleton-border-radius", $skeleton-border-radius);
+    @include h.defineVar(
+        "skeleton-border-radius-rounded",
+        $skeleton-border-radius-rounded
+    );
+
+    @keyframes skeleton-loading {
+        0% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0 50%;
+        }
+    }
+
     display: inline-flex;
     flex-direction: column;
     vertical-align: middle;
@@ -36,21 +44,14 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
 
     &__item {
         width: 100%;
-        background: var(--#{$prefix}skeleton-background, $skeleton-background);
-        margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
-
-        @include steps-size($base-font-size);
-
-        @each $name, $value in $sizes {
-            &--#{$name} {
-                @include steps-size($value, $name);
-            }
-        }
+        background: h.useVar("skeleton-background");
+        line-height: h.useVar("skeleton-font-size");
+        border-radius: h.useVar("skeleton-border-radius");
 
         &--rounded {
-            border-radius: var(
-                --#{$prefix}skeleton-border-radius,
-                $skeleton-border-radius
+            @include h.defineVar(
+                "skeleton-border-radius",
+                h.useVar("skeleton-border-radius-rounded")
             );
         }
 
@@ -58,14 +59,25 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
             background-size: 400% 100%;
             animation-name: skeleton-loading;
             animation-iteration-count: infinite;
-            animation-duration: var(
-                --#{$prefix}skeleton-duration,
-                $skeleton-duration
-            );
+            animation-duration: h.useVar("skeleton-duration");
         }
 
         &::after {
             content: "\00a0";
+        }
+
+        // size variants
+        @each $name, $value in vars.$sizes {
+            &--#{$name} {
+                @include h.defineVar(
+                    "skeleton-font-size",
+                    h.useVar("size-#{$name}")
+                );
+            }
+        }
+
+        & + .o-skeleton__item {
+            margin-top: h.useVar("skeleton-spacer");
         }
     }
 
@@ -75,6 +87,5 @@ $skeleton-margin: 0.5rem 0 0 0 !default;
 
     &--right {
         align-items: flex-end;
-        margin: var(--#{$prefix}skeleton-margin, $skeleton-margin);
     }
 }

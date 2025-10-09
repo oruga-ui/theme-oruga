@@ -1,3 +1,5 @@
+@use "./helpers" as h;
+
 *,
 :after,
 :before {
@@ -12,10 +14,10 @@ body {
     margin: 0;
     padding: 0;
 
-    font-family: var(--#{$prefix}base-font-family, $base-font-family);
-    font-size: var(--#{$prefix}base-font-size, $base-font-size);
-    font-weight: var(--#{$prefix}base-font-weight, $base-font-weight);
-    line-height: var(--#{$prefix}base-line-height, $base-line-height);
+    font-family: h.useVar("font-family");
+    font-size: h.useVar("font-size");
+    font-weight: h.useVar("font-weight");
+    line-height: h.useVar("line-height");
 }
 
 img,

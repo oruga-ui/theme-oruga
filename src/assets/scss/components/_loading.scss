@@ -1,11 +1,21 @@
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
 /* @docs */
-$loading-overlay-legacy: #7f7f7f !default;
-$loading-overlay: rgba(255, 255, 255, 0.5) !default;
-$loading-zindex: 29 !default;
-$loading-fullpage-zindex: 999 !default;
+$loading-zindex: map.get(vars.$zindex, "sticky") !default;
+$loading-fullpage-zindex: map.get(vars.$zindex, "fixed") !default;
+$loading-overlay-background-color: rgba(255, 255, 255, 0.5) !default;
 /* @docs */
 
 .o-loading {
+    @include h.defineVar("loading-zindex", $loading-zindex);
+    @include h.defineVar("loading-fullpage-zindex", $loading-fullpage-zindex);
+    @include h.defineVar(
+        "loading-overlay-background-color",
+        $loading-overlay-background-color
+    );
+
     position: absolute;
     bottom: 0;
     left: 0;
@@ -15,14 +25,11 @@ $loading-fullpage-zindex: 999 !default;
     display: flex;
     justify-content: center;
     overflow: hidden;
-    z-index: var(--#{$prefix}loading-zindex, $loading-zindex);
+    z-index: h.useVar("loading-zindex");
 
     &--fullpage {
         position: fixed;
-        z-index: var(
-            --#{$prefix}loading-fullpage-zindex,
-            $loading-fullpage-zindex
-        );
+        z-index: h.useVar("loading-fullpage-zindex");
     }
 
     &__overlay {
@@ -31,10 +38,6 @@ $loading-fullpage-zindex: 999 !default;
         left: 0;
         right: 0;
         top: 0;
-        background: var(
-            --#{$prefix}loading-overlay-legacy,
-            $loading-overlay-legacy
-        );
-        background: var(--#{$prefix}loading-overlay, $loading-overlay);
+        background: h.useVar("loading-overlay-background-color");
     }
 }
