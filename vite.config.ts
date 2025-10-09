@@ -39,17 +39,9 @@ export default defineConfig(({ mode }) => {
                     entry: resolve(__dirname, "src/build.ts"),
                     name: "OrugaDefaultTheme",
                     fileName: "theme",
+                    cssFileName: "theme",
                     formats: ["es"],
                 },
-                rollupOptions: {
-                    output: {
-                        assetFileNames: "oruga.[ext]",
-                    },
-                },
-            },
-            css: {
-                // rename default `style.css` to `oruga.css`
-                postcss: { to: "oruga.css" },
             },
             plugins: [
                 // copy assets into dist
