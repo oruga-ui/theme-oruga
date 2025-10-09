@@ -11,6 +11,12 @@
     "*.css",
     "*.scss"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/theme.js"
+    },
+    "./style.css": "./dist/theme.css"
+  },
   "files": [
     "dist"
   ],
