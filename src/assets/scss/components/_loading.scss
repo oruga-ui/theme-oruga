@@ -3,12 +3,20 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
+$loading-spacer: h.useVar("control-spacer") !default;
+$loading-color: h.useVar("font-color") !default;
+$loading-font-size: h.useVar("font-size") !default;
+$loading-font-weight: h.useVar("font-weight") !default;
 $loading-zindex: map.get(vars.$zindex, "sticky") !default;
 $loading-fullpage-zindex: map.get(vars.$zindex, "fixed") !default;
 $loading-overlay-background-color: rgba(255, 255, 255, 0.5) !default;
 /* @docs */
 
 .o-loading {
+    @include h.defineVar("loading-spacer", $loading-spacer);
+    @include h.defineVar("loading-color", $loading-color);
+    @include h.defineVar("loading-size", $loading-font-size);
+    @include h.defineVar("loading-weight", $loading-font-weight);
     @include h.defineVar("loading-zindex", $loading-zindex);
     @include h.defineVar("loading-fullpage-zindex", $loading-fullpage-zindex);
     @include h.defineVar(
@@ -21,8 +29,9 @@ $loading-overlay-background-color: rgba(255, 255, 255, 0.5) !default;
     left: 0;
     right: 0;
     top: 0;
-    align-items: center;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     overflow: hidden;
     z-index: h.useVar("loading-zindex");
@@ -39,5 +48,13 @@ $loading-overlay-background-color: rgba(255, 255, 255, 0.5) !default;
         right: 0;
         top: 0;
         background: h.useVar("loading-overlay-background-color");
+    }
+
+    &__label {
+        z-index: 1;
+        color: h.useVar("loading-color");
+        font-size: h.useVar("loading-size");
+        font-weight: h.useVar("loading-weight");
+        padding: 0 h.useVar("loading-spacer");
     }
 }

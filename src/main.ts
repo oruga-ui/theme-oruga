@@ -10,7 +10,7 @@ import Examples from "@oruga-ui/examples";
 import "@oruga-ui/examples/dist/examples.css";
 
 // add theme styles
-import "./assets/scss/oruga-build.scss";
+import "./assets/scss/theme-build.scss";
 
 createApp(App)
     .use(router)

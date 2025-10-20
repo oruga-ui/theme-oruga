@@ -3,7 +3,7 @@
 ************************/
 
 // import theme variables
-@import "utils/variables";
+@forward "utils/variables";
 
 // import theme styles
-@import "./theme";
+@forward "./theme";

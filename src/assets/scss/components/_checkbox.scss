@@ -137,7 +137,7 @@ $checkbox-disabled-opacity: h.useVar("control-disabled-opacity") !default;
     }
 
     &__label {
-        padding: 0 0 0 h.useVar("checkbox-spacer");
+        padding: 0 h.useVar("checkbox-spacer");
     }
 
     &--disabled {
