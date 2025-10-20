@@ -97,11 +97,10 @@ $upload-draggable-hover-background-color: h.useVar(
         &:hover,
         &--hovered {
             border-color: h.useVar("upload-draggable-hover-border-color");
-            background-color:  h.useVar(
+            background-color: h.useVar(
                 "upload-draggable-hover-background-color"
             );
         }
-
     }
 
     input[type="file"] {

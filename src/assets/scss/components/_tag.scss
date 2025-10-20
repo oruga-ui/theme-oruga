@@ -112,12 +112,11 @@ $tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
         background-color: transparent;
 
         &:focus,
-        &:hover  {
+        &:hover {
             // darken color on hover
             filter: brightness(90%);
         }
     }
-
 
     // size variants
     @each $name, $value in vars.$sizes {
@@ -132,7 +131,10 @@ $tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
             @include h.defineVar("tag-background-color", h.useVar($name));
             @include h.defineVar("tag-border-color", h.useVar($name));
             @include h.defineVar("tag-color", h.useVar("#{$name}-invert"));
-            @include h.defineVar("tag-close-color", h.useVar("#{$name}-invert"));
+            @include h.defineVar(
+                "tag-close-color",
+                h.useVar("#{$name}-invert")
+            );
         }
     }
 }
