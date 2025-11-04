@@ -115,7 +115,7 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
         &--#{$name} {
             @include h.defineVar("button-color", h.useVar("#{$name}-invert"));
             @include h.defineVar("button-background-color", h.useVar($name));
-            @include h.defineVar("button-border-color", transparent);
+            @include h.defineVar("button-border-color", h.useVar("#{$name}-darker"));
             @include h.defineVar(
                 "button-hover-color",
                 h.useVar("#{$name}-invert")

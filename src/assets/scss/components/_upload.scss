@@ -63,6 +63,10 @@ $upload-draggable-hover-background-color: h.useVar(
     @each $name, $pair in vars.$colors {
         &--#{$name} {
             @include h.defineVar(
+                "upload-draggable-border-color",
+                h.useVar($name)
+            );
+            @include h.defineVar(
                 "upload-draggable-hover-background-color",
                 h.useVar("#{$name}-lighter")
             );
