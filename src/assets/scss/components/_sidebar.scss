@@ -21,13 +21,6 @@ $sidebar-content-border-radius: h.useVar("border-radius") !default;
 $sidebar-content-border-width: h.useVar("control-border-width") !default;
 $sidebar-content-border-style: solid !default;
 $sidebar-content-border-color: h.useVar("control-border-color") !default;
-
-$sidebar-close-top: 20px !default;
-$sidebar-close-right: 20px !default;
-$sidebar-close-color: h.useVar("white") !default;
-$sidebar-close-size: 2rem !default;
-$sidebar-close-border-radius: h.useVar("border-radius-rounded") !default;
-$sidebar-close-background-color: h.useVar("control-shadow-color") !default;
 /* @docs */
 
 .o-sidebar {
@@ -62,19 +55,6 @@ $sidebar-close-background-color: h.useVar("control-shadow-color") !default;
     @include h.defineVar(
         "sidebar-content-border-color",
         $sidebar-content-border-color
-    );
-
-    @include h.defineVar("sidebar-close-top", $sidebar-close-top);
-    @include h.defineVar("sidebar-close-right", $sidebar-close-right);
-    @include h.defineVar("sidebar-close-color", $sidebar-close-color);
-    @include h.defineVar("sidebar-close-size", $sidebar-close-size);
-    @include h.defineVar(
-        "sidebar-close-border-radius",
-        $sidebar-close-border-radius
-    );
-    @include h.defineVar(
-        "sidebar-close-background-color",
-        $sidebar-close-background-color
     );
 
     display: flex;
@@ -172,26 +152,5 @@ $sidebar-close-background-color: h.useVar("control-shadow-color") !default;
             width: 100%;
             height: 100%;
         }
-    }
-
-    &__close {
-        // add clickable cursor
-        @include h.clickable;
-
-        position: fixed;
-        top: h.useVar("sidebar-close-top");
-        right: h.useVar("sidebar-close-right");
-
-        display: inline-flex;
-        vertical-align: top;
-
-        height: h.useVar("sidebar-close-size");
-        width: h.useVar("sidebar-close-size");
-
-        color: h.useVar("sidebar-close-color");
-
-        border: none;
-        border-radius: h.useVar("sidebar-close-border-radius");
-        background-color: h.useVar("sidebar-close-background-color");
     }
 }

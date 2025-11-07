@@ -196,11 +196,53 @@ $tabs-content-padding: calc(2 * h.useVar("control-spacer")) !default;
             @include h.defineVar(
                 "tabs-tab-border-radius",
                 h.useVar("tabs-tab-active-border-radius")
-            ); // check this
+            );
         }
 
         &-icon {
             margin: h.useVar("tabs-tab-icon-margin");
+        }
+
+        // color variants
+        @each $name, $pair in vars.$colors {
+            &--#{$name} {
+                @include h.defineVar(
+                    "tabs-tab-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "tabs-tab-background-color",
+                    h.useVar($name)
+                );
+                @include h.defineVar(
+                    "tabs-tab-active-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "tabs-tab-active-background-color",
+                    h.useVar($name)
+                );
+                @include h.defineVar(
+                    "tabs-tab-active-border-color",
+                    h.useVar($name)
+                );
+                @include h.defineVar("tabs-tab-hover-color", h.useVar($name));
+                @include h.defineVar(
+                    "tabs-tab-hover-background-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "tabs-tab-hover-border-color",
+                    h.useVar("#{$name}-invert")
+                );
+
+                &:hover,
+                &:focus,
+                &:focus-visible,
+                &:focus-within {
+                    color: h.useVar("tabs-tab-hover-color");
+                }
+            }
         }
     }
 

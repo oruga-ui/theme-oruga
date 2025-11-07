@@ -10,9 +10,9 @@ $upload-draggable-background-color: h.useVar(
     "control-background-color"
 ) !default;
 $upload-draggable-border-color: h.useVar("control-border-color") !default;
-$upload-draggable-border-style: solid !default;
+$upload-draggable-border-style: dashed !default;
 $upload-draggable-border-radius: h.useVar("border-radius") !default;
-$upload-draggable-border-width: calc(h.useVar("control-border-width")) !default;
+$upload-draggable-border-width: h.useVar("control-border-width") !default;
 $upload-draggable-hover-border-color: h.useVar("secondary") !default;
 $upload-draggable-hover-background-color: h.useVar(
     "control-background-color"
@@ -59,6 +59,24 @@ $upload-draggable-hover-background-color: h.useVar(
     position: relative;
     display: inline-flex;
 
+    // color variants
+    @each $name, $pair in vars.$colors {
+        &--#{$name} {
+            @include h.defineVar(
+                "upload-draggable-border-color",
+                h.useVar($name)
+            );
+            @include h.defineVar(
+                "upload-draggable-hover-background-color",
+                h.useVar("#{$name}-lighter")
+            );
+            @include h.defineVar(
+                "upload-draggable-hover-border-color",
+                h.useVar($name)
+            );
+        }
+    }
+
     // add clickable cursor
     @include h.clickable;
 
@@ -86,20 +104,6 @@ $upload-draggable-hover-background-color: h.useVar(
             background-color: h.useVar(
                 "upload-draggable-hover-background-color"
             );
-        }
-
-        // color variants
-        @each $name, $pair in vars.$colors {
-            &-#{$name} {
-                @include h.defineVar(
-                    "upload-draggable-hover-background-color",
-                    h.useVar("#{$name}-lighter")
-                );
-                @include h.defineVar(
-                    "upload-draggable-hover-border-color",
-                    h.useVar($name)
-                );
-            }
         }
     }
 

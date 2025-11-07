@@ -46,12 +46,12 @@ import App from "./App.vue";
 import Oruga from "@oruga-ui/oruga-next";
 
 // import Oruga theme styling
-import "@oruga-ui/theme-oruga/dist/oruga.css";
+import "@oruga-ui/theme-oruga/dist/theme.css";
 
 createApp(App).use(Oruga).mount("#app");
 ```
 
-The Oruga Default theme uses the default classes set by Oruga and doesn't come with any JS configuration at all. The `oruga.css` contains the full Oruga style (the default style used for documentation).
+The Oruga Default theme uses the default classes set by Oruga and doesn't come with any JS configuration at all. The `theme.css` contains the full Oruga style (the default style used for documentation).
 
 ### Customization (SASS/SCSS)
 
@@ -62,7 +62,7 @@ In order to customize any SASS variables, you have to set them before the SCSS I
 // ...
 
 // Include the full Oruga theme here
-@import "/node_modules/@oruga-ui/theme-oruga/dist/scss/oruga";
+@use "/node_modules/@oruga-ui/theme-oruga/dist/scss/theme";
 
 // Then add additional custom code here
 // ...
@@ -77,7 +77,7 @@ import { createApp } from "vue";
 
 import Oruga from "@oruga-ui/oruga-next";
 
-import "@oruga-ui/theme-oruga/dist/oruga.css";
+import "@oruga-ui/theme-oruga/dist/theme.css";
 
 const customConfig = {
     checkbox: {

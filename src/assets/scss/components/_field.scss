@@ -132,6 +132,10 @@ $field-message-line-height: h.useVar("line-height") !default;
         flex-basis: 0;
         flex-grow: 5;
         flex-shrink: 1;
+
+        & > .o-field:not(:last-child) {
+            margin-inline-end: h.useVar("field-spacer");
+        }
     }
 
     &--horizontal {
@@ -143,6 +147,8 @@ $field-message-line-height: h.useVar("line-height") !default;
         flex-grow: 1;
         flex-shrink: 0;
         text-align: right;
+
+        padding-right: h.useVar("field-spacer");
     }
 
     &--mobile {

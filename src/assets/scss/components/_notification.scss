@@ -51,6 +51,8 @@ $notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
         $notification-close-background-color
     );
 
+    display: inline-flex;
+    flex-direction: row-reverse;
     position: relative;
     transform-origin: 50% 0;
 
@@ -94,8 +96,8 @@ $notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
     }
 
     &__wrapper {
-        align-items: center;
         display: flex;
+        align-items: center;
         text-align: inherit;
         padding-top: 0;
         border: 0;
@@ -117,10 +119,12 @@ $notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
         right: h.useVar("notification-close-right");
 
         display: inline-flex;
-        vertical-align: top;
+        align-items: center;
+        justify-content: center;
 
         height: h.useVar("notification-close-size");
         width: h.useVar("notification-close-size");
+        padding: 0;
 
         color: h.useVar("notification-close-color");
 

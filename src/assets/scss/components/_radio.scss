@@ -113,7 +113,7 @@ $radio-checked-box-shadow-opacity: 0.8 !default;
     }
 
     &__label {
-        padding: 0 0 0 h.useVar("radio-spacer");
+        padding: 0 h.useVar("radio-spacer");
     }
 
     &--disabled {

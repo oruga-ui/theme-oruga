@@ -11,6 +11,8 @@ $tag-line-height: h.useVar("line-height") !default;
 $tag-height: h.useVar("control-height") !default;
 $tag-icon-spacer: h.useVar("control-spacer") !default;
 
+$tag-close-color: h.useVar("font-color") !default;
+
 $tag-box-shadow: unset !default;
 $tag-background-color: h.useVar("grey-lightest") !default;
 $tag-border-color: transparent !default;
@@ -28,6 +30,8 @@ $tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
     @include h.defineVar("tag-line-height", $tag-line-height);
     @include h.defineVar("tag-height", $tag-height);
     @include h.defineVar("tag-icon-spacer", $tag-icon-spacer);
+
+    @include h.defineVar("tag-close-color", $tag-close-color);
 
     @include h.defineVar("tag-box-shadow", $tag-box-shadow);
     @include h.defineVar("tag-background-color", $tag-background-color);
@@ -92,6 +96,26 @@ $tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
 
     &__close {
         margin-left: h.useVar("tag-icon-spacer");
+
+        // add clickable cursor
+        @include h.clickable;
+
+        padding: 0;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        color: h.useVar("tag-close-color");
+
+        border: none;
+        background-color: transparent;
+
+        &:focus,
+        &:hover {
+            // darken color on hover
+            filter: brightness(90%);
+        }
     }
 
     // size variants
@@ -107,6 +131,10 @@ $tag-border-radius-rounded: h.useVar("border-radius-rounded") !default;
             @include h.defineVar("tag-background-color", h.useVar($name));
             @include h.defineVar("tag-border-color", h.useVar($name));
             @include h.defineVar("tag-color", h.useVar("#{$name}-invert"));
+            @include h.defineVar(
+                "tag-close-color",
+                h.useVar("#{$name}-invert")
+            );
         }
     }
 }

@@ -93,28 +93,6 @@ $steps-content-padding: calc(2 * h.useVar("control-spacer")) !default;
         }
     }
 
-    // color variants
-    @each $name, $pair in vars.$colors {
-        &--#{$name} {
-            @include h.defineVar(
-                "steps-step-active-border-color",
-                h.useVar($name)
-            );
-            @include h.defineVar(
-                "steps-step-active-background-color",
-                h.useVar("#{$name}-invert")
-            );
-            @include h.defineVar(
-                "steps-step-previous-border-color",
-                h.useVar("#{$name}-invert")
-            );
-            @include h.defineVar(
-                "steps-step-previous-background-color",
-                h.useVar($name)
-            );
-        }
-    }
-
     &__list {
         display: flex;
         flex-wrap: wrap;
@@ -192,6 +170,28 @@ $steps-content-padding: calc(2 * h.useVar("control-spacer")) !default;
         &--active {
             .o-steps__divider {
                 background-position: left bottom;
+            }
+        }
+
+        // color variants
+        @each $name, $pair in vars.$colors {
+            &--#{$name} {
+                @include h.defineVar(
+                    "steps-step-active-border-color",
+                    h.useVar($name)
+                );
+                @include h.defineVar(
+                    "steps-step-active-background-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "steps-step-previous-border-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "steps-step-previous-background-color",
+                    h.useVar($name)
+                );
             }
         }
     }

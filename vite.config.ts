@@ -32,6 +32,14 @@ export default defineConfig(({ mode }) => {
         };
     } else {
         return {
+            plugins: [
+                // copy assets into dist
+                copy({
+                    targets: [{ src: "src/assets/scss", dest: "." }],
+                }),
+                // adds a banner to every generated dist file
+                banner(generate(pkg.version)),
+            ],
             build: {
                 emptyOutDir: true,
                 copyPublicDir: false,
@@ -43,14 +51,6 @@ export default defineConfig(({ mode }) => {
                     formats: ["es"],
                 },
             },
-            plugins: [
-                // copy assets into dist
-                copy({
-                    targets: [{ src: "src/assets/scss", dest: "." }],
-                }),
-                // adds a banner to every generated dist file
-                banner(generate(pkg.version)),
-            ],
         };
     }
 });

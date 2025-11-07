@@ -115,7 +115,10 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
         &--#{$name} {
             @include h.defineVar("button-color", h.useVar("#{$name}-invert"));
             @include h.defineVar("button-background-color", h.useVar($name));
-            @include h.defineVar("button-border-color", transparent);
+            @include h.defineVar(
+                "button-border-color",
+                h.useVar("#{$name}-darker")
+            );
             @include h.defineVar(
                 "button-hover-color",
                 h.useVar("#{$name}-invert")
@@ -128,6 +131,51 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
                 "button-hover-border-color",
                 h.useVar("#{$name}")
             );
+
+            &.o-button--outlined {
+                @include h.defineVar("button-color", h.useVar("#{$name}"));
+                @include h.defineVar(
+                    "button-background-color",
+                    h.useVar("button-outlined-background-color")
+                );
+                @include h.defineVar(
+                    "button-border-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-background-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-border-color",
+                    h.useVar("#{$name}")
+                );
+                @include h.defineVar(
+                    "button-hover-color",
+                    h.useVar("#{$name}-invert")
+                );
+            }
+
+            &.o-button--inverted {
+                @include h.defineVar(
+                    "button-background-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "button-border-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar("button-color", h.useVar($name));
+                @include h.defineVar(
+                    "button-hover-background-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar(
+                    "button-hover-border-color",
+                    h.useVar("#{$name}-invert")
+                );
+                @include h.defineVar("button-hover-color", h.useVar($name));
+            }
         }
     }
 
@@ -182,32 +230,6 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
             "button-hover-background-color",
             $button-background-color
         );
-
-        @each $name, $pair in vars.$colors {
-            &-#{$name} {
-                @include h.defineVar("button-color", h.useVar("#{$name}"));
-                @include h.defineVar(
-                    "button-background-color",
-                    h.useVar("button-outlined-background-color")
-                );
-                @include h.defineVar(
-                    "button-border-color",
-                    h.useVar("#{$name}")
-                );
-                @include h.defineVar(
-                    "button-hover-background-color",
-                    h.useVar("#{$name}")
-                );
-                @include h.defineVar(
-                    "button-hover-border-color",
-                    h.useVar("#{$name}")
-                );
-                @include h.defineVar(
-                    "button-hover-color",
-                    h.useVar("#{$name}-invert")
-                );
-            }
-        }
     }
 
     &--inverted {
@@ -225,29 +247,6 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
             "button-hover-color",
             h.useVar("button-border-color")
         );
-
-        @each $name, $pair in vars.$colors {
-            &-#{$name} {
-                @include h.defineVar(
-                    "button-background-color",
-                    h.useVar("#{$name}-invert")
-                );
-                @include h.defineVar(
-                    "button-border-color",
-                    h.useVar("#{$name}-invert")
-                );
-                @include h.defineVar("button-color", h.useVar($name));
-                @include h.defineVar(
-                    "button-hover-background-color",
-                    h.useVar("#{$name}-invert")
-                );
-                @include h.defineVar(
-                    "button-hover-border-color",
-                    h.useVar("#{$name}-invert")
-                );
-                @include h.defineVar("button-hover-color", h.useVar($name));
-            }
-        }
     }
 
     &--loading {

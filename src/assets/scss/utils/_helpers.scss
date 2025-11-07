@@ -115,12 +115,12 @@
 
 /// create a lighter color variant based on a given color
 @function createLighter($color) {
-    @return color.scale($color, $lightness: 15%);
+    @return color.scale($color, $lightness: 95%);
 }
 
 /// create a darker color variant based on a given color
 @function createDarker($color) {
-    @return color.scale($color, $lightness: -15%);
+    @return color.scale($color, $lightness: -10%);
 }
 
 /// define disabled state

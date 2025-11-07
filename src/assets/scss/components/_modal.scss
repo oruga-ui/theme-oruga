@@ -129,10 +129,12 @@ $modal-close-background-color: h.useVar("control-shadow-color") !default;
         right: h.useVar("modal-close-right");
 
         display: inline-flex;
-        vertical-align: top;
+        align-items: center;
+        justify-content: center;
 
         height: h.useVar("modal-close-size");
         width: h.useVar("modal-close-size");
+        padding: 0;
 
         color: h.useVar("modal-close-color");
 
