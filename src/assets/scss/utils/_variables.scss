@@ -115,7 +115,7 @@ $control-border-color: $grey-lighter !default;
 $control-border-width: 1px !default;
 $control-height: 2.25em !default;
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
-$control-padding-horizontal: calc(.8em - #{$control-border-width}) !default;
+$control-padding-horizontal: calc(0.8em - #{$control-border-width}) !default;
 $control-disabled-opacity: 0.5 !default;
 $control-shadow-color: hsla(0, 0%, 4%, 0.1) !default;
 $control-box-shadow: 0 1px 2px 0 $control-shadow-color !default;
