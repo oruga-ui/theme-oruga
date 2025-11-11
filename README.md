@@ -97,7 +97,7 @@ Thank you to everyone involved for improving this project, day by day 💚
   <img src="https://contrib.rocks/image?repo=oruga-ui/theme-oruga" />
 </a>
 
-[Complete list](CONTRIBUTORS.md).
+[Complete list](.github/CONTRIBUTORS.md).
 
 ## License
 
