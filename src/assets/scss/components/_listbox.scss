@@ -1,0 +1,175 @@
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
+/* @docs */
+$listbox-disabled-opacity: h.useVar("control-disabled-opacity") !default;
+$listbox-box-shadow:
+    0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.02) !default;
+$listbox-background-color: h.useVar("control-brackground-color") !default;
+$listbox-border-color: h.useVar("control-border-color") !default;
+$listbox-border-style: solid !default;
+$listbox-border-width: h.useVar("control-border-width") !default;
+$listbox-border-radius: h.useVar("border-radius") !default;
+
+$listbox-item-padding: h.useVar("control-spacer") calc(h.useVar("control-spacer") * 2) !default;
+$listbox-item-color: h.useVar("font-color") !default;
+$listbox-item-font-size: h.useVar("font-size") !default;
+$listbox-item-font-weight: h.useVar("font-weight") !default;
+$listbox-item-line-height: h.useVar("line-height") !default;
+
+$listbox-item-background-color: transparent !default;
+$listbox-item-active-color: h.useVar("primary-invert") !default;
+$listbox-item-active-background-color: h.useVar("primary") !default;
+$listbox-item-hover-background-color: h.useVar("grey-lighter") !default;
+$listbox-item-hover-color: h.useVar("font-color") !default;
+/* @docs */
+
+.o-listbox {
+    @include h.defineVar("listbox-disabled-opacity", $listbox-disabled-opacity);
+    @include h.defineVar("listbox-box-shadow", $listbox-box-shadow);
+
+    @include h.defineVar("listbox-background-color", $listbox-background-color);
+    @include h.defineVar("listbox-border-style", $listbox-border-style);
+    @include h.defineVar("listbox-border-color", $listbox-border-color);
+    @include h.defineVar("listbox-border-width", $listbox-border-width);
+    @include h.defineVar("listbox-border-radius", $listbox-border-radius);
+
+    @include h.defineVar("listbox-item-color", $listbox-item-color);
+    @include h.defineVar("listbox-item-font-size", $listbox-item-font-size);
+    @include h.defineVar("listbox-item-font-weight", $listbox-item-font-weight);
+    @include h.defineVar("listbox-item-line-height", $listbox-item-line-height);
+    @include h.defineVar("listbox-item-padding", $listbox-item-padding);
+    @include h.defineVar(
+        "listbox-item-background-color",
+        $listbox-item-background-color
+    );
+    @include h.defineVar(
+        "listbox-item-active-color",
+        $listbox-item-active-color
+    );
+    @include h.defineVar(
+        "listbox-item-active-background-color",
+        $listbox-item-active-background-color
+    );
+    @include h.defineVar("listbox-item-hover-color", $listbox-item-hover-color);
+    @include h.defineVar(
+        "listbox-item-hover-background-color",
+        $listbox-item-hover-background-color
+    );
+
+    // define focus shadow effect
+    @include h.focusable();
+
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    box-shadow: h.useVar("listbox-box-shadow");
+    background-color: h.useVar("listbox-background-color");
+    border-color: h.useVar("listbox-border-color");
+    border-style: h.useVar("listbox-border-style");
+    border-width: h.useVar("listbox-border-width");
+    border-radius: h.useVar("listbox-border-radius");
+
+    &--disabled {
+        @include h.disabled(h.useVar("listbox-disabled-opacity"));
+    }
+
+    &__header,
+    &__filter {
+        padding: h.useVar("listbox-item-padding");
+
+        border-bottom-color: h.useVar("listbox-border-color");
+        border-bottom-style: h.useVar("listbox-border-style");
+        border-bottom-width: h.useVar("listbox-border-width");
+    }
+
+    &__footer,
+    &__empty {
+        padding: h.useVar("listbox-item-padding");
+    }
+    
+    &__list {
+        outline: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        &:only-child {
+            border-radius: h.useVar("listbox-border-radius");
+        }
+
+        &:first-child {
+            border-top-left-radius: h.useVar("listbox-border-radius");
+            border-top-right-radius:h.useVar("listbox-border-radius");
+        }
+
+        &:last-child {
+            border-bottom-left-radius: h.useVar("listbox-border-radius");
+            border-bottom-right-radius: h.useVar("listbox-border-radius");
+        }
+
+        &:not(:last-child){
+            .o-listbox__item:last-child{
+                border-bottom-color: h.useVar("listbox-border-color");
+                border-bottom-style: h.useVar("listbox-border-style");
+                border-bottom-width: h.useVar("listbox-border-width");
+            }
+        }
+    }
+
+    &__item {
+        display: block;
+        position: relative;
+
+        padding: h.useVar("listbox-item-padding");
+
+        color: h.useVar("listbox-item-color");
+        font-size: h.useVar("listbox-item-font-size");
+        font-weight: h.useVar("listbox-item-font-weight");
+        line-height: h.useVar("listbox-item-line-height");
+
+        background-color: h.useVar("listbox-item-background-color");
+
+        &:not(:last-child) {
+            border-bottom-color: h.useVar("listbox-border-color");
+            border-bottom-style: h.useVar("listbox-border-style");
+            border-bottom-width: h.useVar("listbox-border-width");
+        }
+
+        &--selected,
+        &--active {
+            @include h.defineVar(
+                "listbox-item-color",
+                h.useVar("listbox-item-active-color")
+            );
+            @include h.defineVar(
+                "listbox-item-background-color",
+                h.useVar("listbox-item-active-background-color")
+            );
+        }
+
+        &--clickable {
+            @include h.clickable;
+        }
+
+        &--clickable:not(&--active) {
+            &:hover,
+            &.o-listbox__item--focused {
+                @include h.defineVar(
+                    "listbox-item-color",
+                    h.useVar("listbox-item-hover-color")
+                );
+                @include h.defineVar(
+                    "listbox-item-background-color",
+                    h.useVar("listbox-item-hover-background-color")
+                );
+            }
+        }
+
+        &--disabled {
+            @include h.disabled(h.useVar("listbox-disabled-opacity"));
+        }
+    }
+}
