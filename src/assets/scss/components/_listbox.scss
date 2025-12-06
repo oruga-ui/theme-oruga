@@ -12,7 +12,8 @@ $listbox-border-style: solid !default;
 $listbox-border-width: h.useVar("control-border-width") !default;
 $listbox-border-radius: h.useVar("border-radius") !default;
 
-$listbox-item-padding: h.useVar("control-spacer") calc(h.useVar("control-spacer") * 2) !default;
+$listbox-item-padding: h.useVar("control-spacer")
+    calc(h.useVar("control-spacer") * 2) !default;
 $listbox-item-color: h.useVar("font-color") !default;
 $listbox-item-font-size: h.useVar("font-size") !default;
 $listbox-item-font-weight: h.useVar("font-weight") !default;
@@ -89,7 +90,7 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
     &__empty {
         padding: h.useVar("listbox-item-padding");
     }
-    
+
     &__list {
         outline: none;
         list-style: none;
@@ -102,7 +103,7 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
 
         &:first-child {
             border-top-left-radius: h.useVar("listbox-border-radius");
-            border-top-right-radius:h.useVar("listbox-border-radius");
+            border-top-right-radius: h.useVar("listbox-border-radius");
         }
 
         &:last-child {
@@ -110,8 +111,8 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
             border-bottom-right-radius: h.useVar("listbox-border-radius");
         }
 
-        &:not(:last-child){
-            .o-listbox__item:last-child{
+        &:not(:last-child) {
+            .o-listbox__item:last-child {
                 border-bottom-color: h.useVar("listbox-border-color");
                 border-bottom-style: h.useVar("listbox-border-style");
                 border-bottom-width: h.useVar("listbox-border-width");
