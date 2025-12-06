@@ -38,7 +38,6 @@ $dropdown-overlay-background-color: h.useVar(
     "overlay-background-color"
 ) !default;
 $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
-
 /* @docs */
 
 .o-dropdown {
