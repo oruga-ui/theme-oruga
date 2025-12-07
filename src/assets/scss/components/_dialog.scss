@@ -1,0 +1,243 @@
+@use "sass:map";
+@use "../utils/helpers" as h;
+@use "../utils/variables" as vars;
+
+/* @docs */
+$dialog-spacer: calc(2 * h.useVar("control-spacer")) !default;
+$dialog-zindex: map.get(vars.$zindex, "fixed") !default;
+$dialog-box-shadow: h.useVar("overlay-box-shadow") !default;
+$dialog-background-color: h.useVar("control-brackground-color") !default;
+$dialog-border-width: h.useVar("control-border-width") !default;
+$dialog-border-style: solid !default;
+$dialog-border-color: h.useVar("control-border-color") !default;
+$dialog-border-radius: h.useVar("border-radius") !default;
+
+$dialog-backdrop-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
+
+$dialog-header-padding: $dialog-spacer !default;
+$dialog-header-background-color: inherit !default;
+
+$dialog-body-padding: $dialog-spacer !default;
+$dialog-body-background-color: inherit !default;
+
+$dialog-footer-padding: $dialog-spacer !default;
+$dialog-footer-background-color: inherit !default;
+
+$dialog-title-color: h.useVar("font-color") !default;
+$dialog-title-font-size: 2em !default;
+$dialog-title-font-weight: bold !default;
+
+$dialog-subtitle-color: h.useVar("font-color") !default;
+$dialog-subtitle-font-size: 1.5em !default;
+$dialog-subtitle-font-weight: normal !default;
+
+$dialog-content-color: h.useVar("font-color") !default;
+$dialog-content-font-size: h.useVar("font-size") !default;
+$dialog-content-font-weight: h.useVar("font-weight") !default;
+
+$dialog-close-top: $dialog-spacer !default;
+$dialog-close-right: $dialog-spacer !default;
+$dialog-close-color: h.useVar("black") !default;
+$dialog-close-size: 2rem !default;
+$dialog-close-border-radius: h.useVar("border-radius-rounded") !default;
+$dialog-close-background-color: inherit !default;
+/* @docs */
+
+.o-dialog {
+    @include h.defineVar("dialog-zindex", $dialog-zindex);
+    @include h.defineVar(
+        "dialog-backdrop-background-color",
+        $dialog-backdrop-background-color
+    );
+
+    @include h.defineVar("dialog-box-shadow", $dialog-box-shadow);
+    @include h.defineVar("dialog-background-color", $dialog-background-color);
+    @include h.defineVar("dialog-border-width", $dialog-border-width);
+    @include h.defineVar("dialog-border-style", $dialog-border-style);
+    @include h.defineVar("dialog-border-color", $dialog-border-color);
+    @include h.defineVar("dialog-border-radius", $dialog-border-radius);
+
+    @include h.defineVar("dialog-header-padding", $dialog-header-padding);
+    @include h.defineVar(
+        "dialog-header-background-color",
+        $dialog-header-background-color
+    );
+
+    @include h.defineVar("dialog-body-padding", $dialog-body-padding);
+    @include h.defineVar(
+        "dialog-body-background-color",
+        $dialog-body-background-color
+    );
+
+    @include h.defineVar("dialog-footer-padding", $dialog-footer-padding);
+    @include h.defineVar(
+        "dialog-footer-background-color",
+        $dialog-footer-background-color
+    );
+
+    @include h.defineVar("dialog-title-color", $dialog-title-color);
+    @include h.defineVar("dialog-title-font-size", $dialog-title-font-size);
+    @include h.defineVar("dialog-title-font-weight", $dialog-title-font-weight);
+
+    @include h.defineVar("dialog-subtitle-color", $dialog-subtitle-color);
+    @include h.defineVar(
+        "dialog-subtitle-font-size",
+        $dialog-subtitle-font-size
+    );
+    @include h.defineVar(
+        "dialog-subtitle-font-weight",
+        $dialog-subtitle-font-weight
+    );
+
+    @include h.defineVar("dialog-content-color", $dialog-content-color);
+    @include h.defineVar("dialog-content-font-size", $dialog-content-font-size);
+    @include h.defineVar(
+        "dialog-content-font-weight",
+        $dialog-content-font-weight
+    );
+
+    @include h.defineVar("dialog-close-top", $dialog-close-top);
+    @include h.defineVar("dialog-close-right", $dialog-close-right);
+    @include h.defineVar("dialog-close-color", $dialog-close-color);
+    @include h.defineVar("dialog-close-size", $dialog-close-size);
+    @include h.defineVar(
+        "dialog-close-border-radius",
+        $dialog-close-border-radius
+    );
+    @include h.defineVar(
+        "dialog-close-background-color",
+        $dialog-close-background-color
+    );
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+
+    // mode non dialog dialogs adjustements
+    &:not(dialog:modal) {
+        margin-top: 10vh;
+    }
+
+    box-shadow: h.useVar("dialog-box-shadow");
+    background-color: h.useVar("dialog-background-color");
+
+    border-color: h.useVar("dialog-border-color");
+    border-style: h.useVar("dialog-border-style");
+    border-width: h.useVar("dialog-border-width");
+    border-radius: h.useVar("dialog-border-radius");
+
+    z-index: h.useVar("dialog-zindex");
+
+    &::backdrop {
+        background-color: h.useVar("dialog-backdrop-background-color");
+    }
+
+    &--fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__wrapper {
+        position: relative;
+
+        &--left {
+            text-align: start;
+        }
+
+        &--center {
+            text-align: center;
+        }
+
+        &--right {
+            text-align: flex-end;
+        }
+    }
+
+    &__header {
+        padding: h.useVar("dialog-header-padding");
+        background-color: h.useVar("dialog-header-background-color");
+        border-bottom-color: h.useVar("dialog-border-color");
+        border-bottom-style: h.useVar("dialog-border-style");
+        border-bottom-width: h.useVar("dialog-border-width");
+
+        &-title {
+            margin: 0;
+
+            color: h.useVar("dialog-title-color");
+            font-size: h.useVar("dialog-title-font-size");
+            font-weight: h.useVar("dialog-title-font-weight");
+        }
+
+        &-subtitle {
+            margin: 0;
+            color: h.useVar("dialog-subtitle-color");
+            font-size: h.useVar("dialog-subtitle-font-size");
+            font-weight: h.useVar("dialog-subtitle-font-weight");
+        }
+    }
+
+    &__close {
+        // define focus shadow effect
+        @include h.focusable;
+
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
+
+        position: absolute;
+        top: h.useVar("dialog-close-top");
+        right: h.useVar("dialog-close-right");
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        height: h.useVar("dialog-close-size");
+        width: h.useVar("dialog-close-size");
+
+        color: h.useVar("dialog-close-color");
+
+        border: none;
+        border-radius: h.useVar("dialog-close-border-radius");
+        background-color: h.useVar("dialog-close-background-color");
+    }
+
+    &__body {
+        padding: h.useVar("dialog-body-padding");
+        background-color: h.useVar("dialog-body-background-color");
+
+        &-content {
+            color: h.useVar("dialog-content-color");
+            font-size: h.useVar("dialog-content-font-size");
+            font-weight: h.useVar("dialog-content-font-weight");
+        }
+    }
+
+    &__footer {
+        padding: h.useVar("dialog-footer-padding");
+        background-color: h.useVar("dialog-footer-background-color");
+        border-top-color: h.useVar("dialog-border-color");
+        border-top-style: h.useVar("dialog-border-style");
+        border-top-width: h.useVar("dialog-border-width");
+
+        display: flex;
+        gap: 0.5rem;
+
+        &--left {
+            justify-content: flex-start;
+        }
+
+        &--center {
+            justify-content: center;
+        }
+
+        &--right {
+            justify-content: flex-end;
+        }
+    }
+}

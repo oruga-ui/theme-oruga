@@ -70,7 +70,7 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
     );
 
     // define focus shadow effect
-    @include h.focusable();
+    @include h.focusable;
 
     // add clickable cursor
     @include h.clickable;

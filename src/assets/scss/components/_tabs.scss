@@ -127,7 +127,7 @@ $tabs-content-padding: calc(2 * h.useVar("control-spacer")) !default;
         @include h.clickable;
 
         // define focus shadow effect
-        @include h.focusable();
+        @include h.focusable;
 
         // remove default appearance
         @include h.removeAppearance;
