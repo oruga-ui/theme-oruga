@@ -20,6 +20,6 @@ jobs:
 
       - name: Install dependencies 📦
         run: npm ci
-        
+
       - name: Run lint check 🧐
         run: npm run test:lint
