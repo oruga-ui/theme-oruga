@@ -144,7 +144,7 @@ $pagination-button-current-border-color: h.useVar("primary") !default;
     // TODO: normal o-button will be used here later
     &__button {
         // define focus shadow effect
-        @include h.focusable();
+        @include h.focusable;
 
         // add clickable cursor
         @include h.clickable;
