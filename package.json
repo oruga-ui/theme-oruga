@@ -49,7 +49,7 @@
     "@eslint/compat": "^1.4.0",
     "@oruga-ui/examples": "^0.12.3",
     "@oruga-ui/oruga-next": "^0.12.3",
-    "@tsconfig/node22": "^22.0.2",
+    "@tsconfig/node24": "^24.0.3",
     "@types/node": "^24.7.0",
     "@vitejs/plugin-vue": "6.0.1",
     "@vue/eslint-config-prettier": "^10.2.0",
