@@ -75,6 +75,10 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
         vars.$control-box-shadow-inset
     );
     @include h.defineVar(
+        "control-focus-box-shadow",
+        vars.$control-focus-box-shadow
+    );
+    @include h.defineVar(
         "control-brackground-color",
         vars.$control-brackground-color
     );
