@@ -178,6 +178,7 @@ $pagination-button-current-border-color: h.useVar("primary") !default;
         padding: h.useVar("pagination-button-padding");
         margin: h.useVar("pagination-spacer");
 
+        &:focus,
         &:hover {
             color: h.useVar("pagination-button-hover-color");
             border-color: h.useVar("pagination-button-hover-border-color");
@@ -194,7 +195,7 @@ $pagination-button-current-border-color: h.useVar("primary") !default;
         }
 
         &--disabled {
-            @include h.disabled(h.useVar("menu-disabled-opacity"));
+            @include h.disabled(h.useVar("control-disabled-opacity"));
         }
 
         &--current {
