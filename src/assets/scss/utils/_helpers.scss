@@ -160,7 +160,7 @@
         &:focus-visible,
         &:focus-within {
             #{$selector} {
-                box-shadow: vars.$control-focus-box-shadow useVar("focus");
+                box-shadow: useVar("control-focus-box-shadow") useVar("focus");
                 outline: none;
             }
         }
