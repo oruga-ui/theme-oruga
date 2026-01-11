@@ -363,7 +363,7 @@ $table-card-margin: 0 0 1rem 0;
 
         &-detail {
             box-shadow: h.useVar("table-tr-detail-box-shadow");
-            background-color: h.useVar("table-tr-detail-background");
+            background-color: h.useVar("table-tr-detail-background-color");
 
             & > td {
                 padding: h.useVar("table-tr-detail-padding");
