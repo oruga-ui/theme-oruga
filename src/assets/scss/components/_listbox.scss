@@ -3,9 +3,6 @@
 
 /* @docs */
 $listbox-disabled-opacity: h.useVar("control-disabled-opacity") !default;
-$listbox-box-shadow:
-    0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.02) !default;
 $listbox-background-color: h.useVar("control-brackground-color") !default;
 $listbox-border-color: h.useVar("control-border-color") !default;
 $listbox-border-style: solid !default;
@@ -28,7 +25,6 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
 
 .o-listbox {
     @include h.defineVar("listbox-disabled-opacity", $listbox-disabled-opacity);
-    @include h.defineVar("listbox-box-shadow", $listbox-box-shadow);
 
     @include h.defineVar("listbox-background-color", $listbox-background-color);
     @include h.defineVar("listbox-border-style", $listbox-border-style);
@@ -66,7 +62,6 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
     position: relative;
     overflow: hidden;
 
-    box-shadow: h.useVar("listbox-box-shadow");
     background-color: h.useVar("listbox-background-color");
     border-color: h.useVar("listbox-border-color");
     border-style: h.useVar("listbox-border-style");
@@ -92,10 +87,13 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
     }
 
     &__list {
-        outline: none;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        &,
+        > ul {
+            outline: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
         &:only-child {
             border-radius: h.useVar("listbox-border-radius");
@@ -151,11 +149,11 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
             );
         }
 
-        &--clickable {
+        &--selectable {
             @include h.clickable;
         }
 
-        &--clickable:not(&--active) {
+        &--selectable:not(&--active) {
             &:hover,
             &.o-listbox__item--focused {
                 @include h.defineVar(
