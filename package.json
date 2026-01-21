@@ -15,8 +15,8 @@
     ".": "./dist/theme.js",
     "./style.css": "./dist/theme.css",
     "./style.scss": "./dist/scss/theme.scss",
-    "./scss/*.scss": "./dist/scss/*.scss",
-    "./dist/scss/*.scss": "./dist/scss/*.scss"
+    "./scss/*": "./dist/scss/*.scss",
+    "./dist/scss/*": "./dist/scss/*.scss"
   },
   "files": [
     "dist"
