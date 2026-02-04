@@ -265,7 +265,7 @@ $slider-tick-radius: h.useVar("border-radius") !default;
         color: h.useVar("slider-tick-color");
         font-size: h.useVar("slider-tick-font-size");
         font-weight: h.useVar("slider-tick-font-weight");
-        line-height: h.useVar("$slider-tick-line-height");
+        line-height: h.useVar("slider-tick-line-height");
     }
 
     &--disabled {
