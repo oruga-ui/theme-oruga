@@ -79,8 +79,8 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
         vars.$control-focus-box-shadow
     );
     @include h.defineVar(
-        "control-brackground-color",
-        vars.$control-brackground-color
+        "control-background-color",
+        vars.$control-background-color
     );
     @include h.defineVar("control-border-color", vars.$control-border-color);
     @include h.defineVar("control-border-width", vars.$control-border-width);

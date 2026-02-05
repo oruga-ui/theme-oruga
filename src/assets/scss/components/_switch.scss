@@ -20,7 +20,7 @@ $switch-border-width: h.useVar("control-border-width") !default;
 $switch-border-radius: h.useVar("border-radius") !default;
 $switch-border-radius-rounded: h.useVar("border-radius-rounded") !default;
 $switch-background-color: h.useVar("grey-light") !default;
-$switch-toggle-background-color: vars.$control-brackground-color !default;
+$switch-toggle-background-color: vars.$control-background-color !default;
 
 $switch-checked-background-color: h.useVar("primary") !default;
 $switch-checked-border-color: h.useVar("primary") !default;
