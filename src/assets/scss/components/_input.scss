@@ -167,6 +167,7 @@ $input-counter-padding: 0.25rem 0.5rem !default;
         top: 0;
         height: 100%;
         width: h.useVar("input-height");
+        z-index: 1;
     }
 
     &__icon-right {
