@@ -13,7 +13,7 @@ $modal-content-max-height: calc(100vh - 160px) !default;
 $modal-content-max-width: calc(100vw - 160px) !default;
 $modal-content-box-shadow: h.useVar("overlay-box-shadow") !default;
 $modal-content-border-radius: h.useVar("border-radius") !default;
-$modal-content-background-color: h.useVar("control-brackground-color") !default;
+$modal-content-background-color: h.useVar("control-background-color") !default;
 
 $modal-close-top: 20px !default;
 $modal-close-right: 20px !default;

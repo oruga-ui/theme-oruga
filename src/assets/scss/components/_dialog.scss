@@ -6,7 +6,7 @@
 $dialog-spacer: calc(2 * h.useVar("control-spacer")) !default;
 $dialog-zindex: map.get(vars.$zindex, "fixed") !default;
 $dialog-box-shadow: h.useVar("overlay-box-shadow") !default;
-$dialog-background-color: h.useVar("control-brackground-color") !default;
+$dialog-background-color: h.useVar("control-background-color") !default;
 $dialog-border-width: h.useVar("control-border-width") !default;
 $dialog-border-style: solid !default;
 $dialog-border-color: h.useVar("control-border-color") !default;

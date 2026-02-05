@@ -12,7 +12,7 @@ $steps-step-font-weight: 500 !default;
 $steps-step-line-height: h.useVar("line-height") !default;
 
 $steps-step-border-color: h.useVar(
-    "control-brackground-color"
+    "control-background-color"
 ) !default; // color scheme is inverted for steps
 $steps-step-background-color: h.useVar(
     "control-border-color"

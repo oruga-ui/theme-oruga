@@ -20,7 +20,7 @@ $button-border-width: h.useVar("control-border-width") !default;
 $button-border-style: solid !default;
 $button-border-color: h.useVar("control-border-color") !default;
 $button-border-radius: h.useVar("border-radius") !default;
-$button-background-color: h.useVar("control-brackground-color") !default;
+$button-background-color: h.useVar("control-background-color") !default;
 
 $button-hover-color: $button-color;
 $button-hover-background-color: $button-background-color;
