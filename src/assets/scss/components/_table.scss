@@ -449,7 +449,7 @@ $table-card-margin: 0 0 1rem 0;
         }
 
         &-detailed {
-            width: h.useVar("table-th-detail-width");
+            width: h.useVar("table-td-detail-chevron-width");
         }
     }
 
