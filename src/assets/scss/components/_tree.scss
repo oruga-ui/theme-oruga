@@ -58,10 +58,9 @@ $tree-item-active-background-color: h.useVar("primary") !default;
     &__subtree {
         border-left: h.useVar("tree-border");
         padding-left: calc(2 * h.useVar("tree-spacer"));
-        margin-left:  calc(5 * h.useVar("tree-spacer"));
-        margin-top:  h.useVar("tree-spacer");
+        margin-left: calc(5 * h.useVar("tree-spacer"));
+        margin-top: h.useVar("tree-spacer");
         margin-bottom: h.useVar("tree-spacer");
-           
     }
 
     &__item {
@@ -92,22 +91,32 @@ $tree-item-active-background-color: h.useVar("primary") !default;
             background-color: h.useVar("tree-item-background-color");
             border: h.useVar("tree-item-border");
             border-radius: h.useVar("tree-item-border-radius");
-
         }
 
         &:focus-visible,
         &--focused {
             & > .o-tree__item-label {
-             @include h.defineVar("tree-item-color", h.useVar("tree-item-hover-color"));
-             @include h.defineVar("tree-item-background-color", h.useVar("tree-item-hover-background-color"));
+                @include h.defineVar(
+                    "tree-item-color",
+                    h.useVar("tree-item-hover-color")
+                );
+                @include h.defineVar(
+                    "tree-item-background-color",
+                    h.useVar("tree-item-hover-background-color")
+                );
             }
         }
 
-        &--selected > .o-tree__item-label  {
-         @include h.defineVar("tree-item-color", h.useVar("tree-item-active-color"));
-              @include h.defineVar("tree-item-background-color", h.useVar("tree-item-active-background-color"));
+        &--selected > .o-tree__item-label {
+            @include h.defineVar(
+                "tree-item-color",
+                h.useVar("tree-item-active-color")
+            );
+            @include h.defineVar(
+                "tree-item-background-color",
+                h.useVar("tree-item-active-background-color")
+            );
         }
-
 
         &--disabled {
             @include h.disabled(h.useVar("tree-disabled-opacity"));
@@ -117,7 +126,10 @@ $tree-item-active-background-color: h.useVar("primary") !default;
     // size variants
     @each $name, $value in vars.$sizes {
         &--#{$name} {
-            @include h.defineVar("tree-item-font-size", h.useVar("size-#{$name}"));
+            @include h.defineVar(
+                "tree-item-font-size",
+                h.useVar("size-#{$name}")
+            );
         }
     }
 }
