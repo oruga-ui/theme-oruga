@@ -68,7 +68,8 @@ $tree-item-active-background-color: h.useVar("primary") !default;
             margin-top: h.useVar("tree-spacer");
         }
 
-        &-icon {
+        &-icon,
+        &-toggle-icon {
             margin-right: h.useVar("tree-spacer");
         }
 
