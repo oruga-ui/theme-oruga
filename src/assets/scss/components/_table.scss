@@ -8,7 +8,7 @@ $table-border-width: h.useVar("control-border-width") !default;
 $table-border-style: solid !default;
 $table-border-color: transparent !default;
 $table-border-radius: h.useVar("border-radius") !default;
-$table-background-color: h.useVar("control-brackground-color") !default;
+$table-background-color: h.useVar("control-background-color") !default;
 
 $table-focus-border-color: h.useVar("primary") !default;
 $table-focus-box-shadow: vars.$control-focus-box-shadow h.useVar("focus") !default;
@@ -254,12 +254,15 @@ $table-card-margin: 0 0 1rem 0;
             height: h.useVar("table-sticky-header-height");
             overflow-y: auto;
 
-            .o-table__th:not(.o-table__th--sticky) {
+            .o-table__th {
                 position: -webkit-sticky;
                 position: sticky;
                 top: 0;
                 background: h.useVar("table-background-color");
-                z-index: calc(h.useVar("table-sticky-zindex") + 1);
+
+                &:not(.o-table__th--sticky) {
+                    z-index: calc(h.useVar("table-sticky-zindex") + 1);
+                }
             }
         }
 
@@ -444,7 +447,7 @@ $table-card-margin: 0 0 1rem 0;
             position: -webkit-sticky;
             position: sticky;
             left: 0;
-            z-index: calc(h.useVar("table-sticky-zindex") + 1);
+            z-index: calc(h.useVar("table-sticky-zindex") + 2);
             background-color: h.useVar("table-background-color");
         }
 
