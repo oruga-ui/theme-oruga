@@ -19,7 +19,7 @@ $slider-track-border-color: h.useVar("grey") !default;
 $slider-track-border-radius: h.useVar("border-radius") !default;
 $slider-track-background-color: h.useVar("grey-lighter") !default;
 
-$slider-fill-box-shadow: h.useVar("control-focus-box-shadow") !default;
+$slider-fill-box-shadow: h.useVar("control-box-shadow") !default;
 $slider-fill-background-color: h.useVar("primary") !default;
 
 $slider-thumb-size: h.useVar("slider-font-size");
