@@ -160,6 +160,7 @@ $select-arrow-size: 1em !default;
         top: 0;
         height: 100%;
         width: h.useVar("select-height");
+        z-index: 1;
     }
 
     &__icon-right {
