@@ -153,7 +153,7 @@ $listbox-item-hover-color: h.useVar("font-color") !default;
             @include h.clickable;
         }
 
-        &--selectable:not(&--active) {
+        &--selectable:not(&--selected) {
             &:hover,
             &.o-listbox__item--focused {
                 @include h.defineVar(
