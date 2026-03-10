@@ -3,7 +3,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
-import Oruga from "@oruga-ui/oruga-next";
+import { createOruga, OrugaComponentPlugins } from "@oruga-ui/oruga-next";
 import Examples from "@oruga-ui/examples";
 
 // add examples styles
@@ -12,10 +12,8 @@ import "@oruga-ui/examples/index.css";
 // add theme styles
 import "./assets/scss/theme-build.scss";
 
-createApp(App)
-    .use(router)
-    .use(Oruga, {
-        globalComponents: true,
+const oruga = createOruga(
+    {
         iconPack: "fas",
         iconComponent: "vue-fontawesome",
         customIconPacks: {
@@ -28,6 +26,9 @@ createApp(App)
                 },
             },
         },
-    })
-    .use(Examples)
-    .mount("#app");
+    },
+    // add all components globally
+    OrugaComponentPlugins,
+);
+
+createApp(App).use(router).use(oruga).use(Examples).mount("#app");
