@@ -35,9 +35,9 @@ $table-th-checkbox-width: 40px !default;
 $table-th-padding: h.useVar("control-spacer")
     calc(1.5 * h.useVar("control-spacer")) !default;
 
-$table-th-current-sort-border-color: h.useVar("grey") !default;
-$table-th-current-sort-font-weight: 700 !default;
-$table-th-current-sort-hover-border-color: h.useVar("grey") !default;
+$table-th-sorted-border-color: h.useVar("grey") !default;
+$table-th-sorted-font-weight: 700 !default;
+$table-th-sorted-hover-border-color: h.useVar("grey") !default;
 
 $table-td-border-width: h.useVar("control-border-width") !default;
 $table-td-border-style: solid !default;
@@ -123,16 +123,16 @@ $table-card-margin: 0 0 1rem 0;
         @include h.defineVar("table-th-padding", $table-th-padding);
 
         @include h.defineVar(
-            "table-th-current-sort-border-color",
-            $table-th-current-sort-border-color
+            "table-th-sorted-border-color",
+            $table-th-sorted-border-color
         );
         @include h.defineVar(
-            "table-th-current-sort-font-weight",
-            $table-th-current-sort-font-weight
+            "table-th-sorted-font-weight",
+            $table-th-sorted-font-weight
         );
         @include h.defineVar(
-            "table-th-current-sort-hover-border-color",
-            $table-th-current-sort-hover-border-color
+            "table-th-sorted-hover-border-color",
+            $table-th-sorted-hover-border-color
         );
 
         @include h.defineVar("table-td-border-width", $table-td-border-width);
@@ -426,10 +426,10 @@ $table-card-margin: 0 0 1rem 0;
             width: h.useVar("table-th-checkbox-width");
         }
 
-        &-current-sort,
-        &--current-sort {
-            border-color: h.useVar("table-th-current-sort-border-color");
-            font-weight: h.useVar("table-th-current-sort-font-weight");
+        &-sorted,
+        &--sorted {
+            border-color: h.useVar("table-th-sorted-border-color");
+            font-weight: h.useVar("table-th-sorted-font-weight");
         }
 
         &--sortable {
@@ -437,9 +437,7 @@ $table-card-margin: 0 0 1rem 0;
             @include h.clickable;
 
             &:hover {
-                border-color: h.useVar(
-                    "table-th-current-sort-hover-border-color"
-                );
+                border-color: h.useVar("table-th-sorted-hover-border-color");
             }
         }
 
