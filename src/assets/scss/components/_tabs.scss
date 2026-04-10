@@ -170,7 +170,7 @@ $tabs-content-padding: calc(2 * h.useVar("control-spacer")) !default;
                     h.useVar("tabs-tab-hover-background-color")
                 );
                 @include h.defineVar(
-                    "tabs-tab-bottom-color",
+                    "tabs-tab-border-color",
                     h.useVar("tabs-tab-hover-border-color")
                 );
             }

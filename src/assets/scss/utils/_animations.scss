@@ -128,7 +128,7 @@
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity h.useVar("animation-speed-fast")
-        h.useVar("animation-timing");
+        h.useVar("transition-timing");
 }
 
 .fade-enter,
@@ -141,11 +141,11 @@
 .zoom-in-enter-active,
 .zoom-in-leave-active {
     transition: opacity h.useVar("animation-speed-fast")
-        h.useVar("animation-timing");
+        h.useVar("transition-timing");
 
     .animation-content {
         transition: transform h.useVar("animation-speed-fast")
-            h.useVar("animation-timing");
+            h.useVar("transition-timing");
     }
 }
 
@@ -163,11 +163,11 @@
 .zoom-out-enter-active,
 .zoom-out-leave-active {
     transition: opacity h.useVar("animation-speed-fast")
-        h.useVar("animation-timing");
+        h.useVar("transition-timing");
 
     .animation-content {
         transition: transform h.useVar("animation-speed-fast")
-            h.useVar("animation-timing");
+            h.useVar("transition-timing");
     }
 }
 
@@ -231,11 +231,11 @@
 }
 
 .slide-enter-active {
-    transition: h.useVar("animation-speed-fast") h.useVar("animation-timing");
+    transition: h.useVar("animation-speed-fast") h.useVar("transition-timing");
 }
 
 .slide-leave-active {
-    transition: h.useVar("animation-speed-fast") h.useVar("animation-timing");
+    transition: h.useVar("animation-speed-fast") h.useVar("transition-timing");
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
