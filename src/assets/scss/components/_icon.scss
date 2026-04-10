@@ -22,8 +22,8 @@ $icon-spin-animation-duration: 2s !default;
     color: h.useVar("icon-color");
     font-size: h.useVar("icon-font-size");
     transition:
-        transform h.useVar("animation-speed-fast") h.useVar("animation-timing"),
-        opacity h.useVar("animation-speed") h.useVar("animation-timing");
+        transform h.useVar("animation-speed-fast") h.useVar("transition-timing"),
+        opacity h.useVar("animation-speed") h.useVar("transition-timing");
 
     // size variants
     @each $name, $value in vars.$sizes {

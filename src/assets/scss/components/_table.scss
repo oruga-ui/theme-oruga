@@ -247,7 +247,7 @@ $table-card-margin: 0 0 1rem 0;
 
     &__wrapper {
         transition: opacity h.useVar("animation-speed")
-            h.useVar("animation-timing");
+            h.useVar("transition-timing");
         position: relative;
 
         &--sticky-header {
