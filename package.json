@@ -1,6 +1,6 @@
 {
   "name": "@oruga-ui/theme-oruga",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Default theme for Oruga",
   "license": "MIT",
   "type": "module",
@@ -50,8 +50,8 @@
   "devDependencies": {
     "@eslint/compat": "^2.0.2",
     "@eslint/js": "^10.0.1",
-    "@oruga-ui/examples": "^0.13.1",
-    "@oruga-ui/oruga-next": "^0.13.1",
+    "@oruga-ui/examples": "^0.13.3",
+    "@oruga-ui/oruga-next": "^0.13.3",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.11.0",
     "@vitejs/plugin-vue": "6.0.4",
