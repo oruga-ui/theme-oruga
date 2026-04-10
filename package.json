@@ -19,7 +19,9 @@
     "./dist/scss/*": "./dist/scss/*.scss"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "repository": {
     "type": "git",
