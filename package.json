@@ -38,6 +38,7 @@
     "lint:eslint": "eslint . --fix",
     "lint:prettier": "prettier --write .",
     "lint:stylelint": "stylelint **/*.{css,scss} --fix --ignore-path .gitignore",
+    "test:ts": "vue-tsc --build --noEmit",
     "test:lint": "run-s test:eslint test:prettier test:stylelint",
     "test:eslint": "eslint .",
     "test:prettier": "prettier --check .",
