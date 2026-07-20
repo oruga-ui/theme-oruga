@@ -81,12 +81,12 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
 
     position: relative;
     display: inline-flex;
-    text-align: center;
-    white-space: nowrap;
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    padding: unset;
+    text-align: center;
+    white-space: nowrap;
+    padding: h.useVar("button-padding");
 
     height: h.useVar("button-height");
 
@@ -187,15 +187,6 @@ $button-outlined-border-color: h.useVar("grey-light") !default;
 
         // darken color on hover
         filter: brightness(95%);
-    }
-
-    &__wrapper {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        padding: h.useVar("button-padding");
     }
 
     &__label {

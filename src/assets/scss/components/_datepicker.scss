@@ -4,11 +4,26 @@
 
 /* @docs */
 $datepicker-font-size: h.useVar("font-size") !default;
-$datepicker-box-padding: 0 calc(2 * h.useVar("control-spacer")) !default;
 
 $datepicker-border-width: h.useVar("control-border-width") !default;
 $datepicker-border-style: solid !default;
 $datepicker-border-color: h.useVar("control-border-color") !default;
+
+$datepicker-content-padding: h.useVar("control-spacer")
+    calc(2 * h.useVar("control-spacer")) !default;
+$datepicker-content-box-shadow:
+    0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.02) !default;
+$datepicker-content-background-color: h.useVar(
+    "control-background-color"
+) !default;
+$datepicker-content-border-color: h.useVar("control-border-color") !default;
+$datepicker-content-border-style: solid !default;
+$datepicker-content-border-width: h.useVar("control-border-width") !default;
+$datepicker-content-border-radius: h.useVar("border-radius") !default;
+$datepicker-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
 
 $datepicker-header-padding: h.useVar("control-spacer") 0 !default;
 $datepicker-header-spacer: h.useVar("control-spacer") !default;
@@ -50,10 +65,42 @@ $datepicker-event-bars-height: 0.25em !default;
 
 .o-datepicker {
     @include h.defineVar("datepicker-font-size", $datepicker-font-size);
-    @include h.defineVar("datepicker-box-padding", $datepicker-box-padding);
     @include h.defineVar("datepicker-border-width", $datepicker-border-width);
     @include h.defineVar("datepicker-border-style", $datepicker-border-style);
     @include h.defineVar("datepicker-border-color", $datepicker-border-color);
+
+    @include h.defineVar(
+        "datepicker-overlay-background-color",
+        $datepicker-overlay-background-color
+    );
+    @include h.defineVar(
+        "datepicker-content-box-shadow",
+        $datepicker-content-box-shadow
+    );
+    @include h.defineVar(
+        "datepicker-content-padding",
+        $datepicker-content-padding
+    );
+    @include h.defineVar(
+        "datepicker-content-background-color",
+        $datepicker-content-background-color
+    );
+    @include h.defineVar(
+        "datepicker-content-border-style",
+        $datepicker-content-border-style
+    );
+    @include h.defineVar(
+        "datepicker-content-border-color",
+        $datepicker-content-border-color
+    );
+    @include h.defineVar(
+        "datepicker-content-border-width",
+        $datepicker-content-border-width
+    );
+    @include h.defineVar(
+        "datepicker-content-border-radius",
+        $datepicker-content-border-radius
+    );
 
     @include h.defineVar(
         "datepicker-header-padding",
@@ -160,16 +207,21 @@ $datepicker-event-bars-height: 0.25em !default;
 
     font-size: h.useVar("datepicker-font-size");
 
-    &__dropdown {
-        width: 100%;
+    &__content {
+        width: fit-content;
+        min-width: 12rem;
+        padding: h.useVar("datepicker-content-padding");
 
-        .o-dropdown__menu {
-            min-width: 12rem;
+        box-shadow: h.useVar("datepicker-content-box-shadow");
+        background-color: h.useVar("datepicker-content-background-color");
+        border-color: h.useVar("datepicker-content-border-color");
+        border-style: h.useVar("datepicker-content-border-style");
+        border-width: h.useVar("datepicker-content-border-width");
+        border-radius: h.useVar("datepicker-content-border-radius");
+
+        &--backdrop::backdrop {
+            background-color: h.useVar("datepicker-overlay-background-color");
         }
-    }
-
-    &__box {
-        padding: h.useVar("datepicker-box-padding");
     }
 
     &__header {
@@ -422,10 +474,6 @@ $datepicker-event-bars-height: 0.25em !default;
             order: 2;
             flex-grow: 1;
             flex-shrink: 1;
-        }
-
-        .o-dropdown__menu {
-            padding: 0;
         }
     }
 }

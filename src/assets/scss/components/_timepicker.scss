@@ -6,7 +6,22 @@ $timepicker-font-size: h.useVar("font-size") !default;
 $timepicker-color: h.useVar("font-color") !default;
 $timepicker-line-height: h.useVar("line-height") !default;
 $timepicker-font-weight: 600 !default;
-$timepicker-box-padding: 0 calc(2 * h.useVar("control-spacer")) !default;
+
+$timepicker-content-padding: h.useVar("control-spacer")
+    calc(2 * h.useVar("control-spacer")) !default;
+$timepicker-content-box-shadow:
+    0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.02) !default;
+$timepicker-content-background-color: h.useVar(
+    "control-background-color"
+) !default;
+$timepicker-content-border-color: h.useVar("control-border-color") !default;
+$timepicker-content-border-style: solid !default;
+$timepicker-content-border-width: h.useVar("control-border-width") !default;
+$timepicker-content-border-radius: h.useVar("border-radius") !default;
+$timepicker-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
 
 $timepicker-footer-padding: 0 0.5rem !default;
 
@@ -20,7 +35,39 @@ $timepicker-select-placeholder-opacity: h.useVar("disabled-opacity") !default;
     @include h.defineVar("timepicker-font-size", $timepicker-font-size);
     @include h.defineVar("timepicker-font-weight", $timepicker-font-weight);
     @include h.defineVar("timepicker-line-height", $timepicker-line-height);
-    @include h.defineVar("timepicker-box-padding", $timepicker-box-padding);
+
+    @include h.defineVar(
+        "timepicker-overlay-background-color",
+        $timepicker-overlay-background-color
+    );
+    @include h.defineVar(
+        "timepicker-content-box-shadow",
+        $timepicker-content-box-shadow
+    );
+    @include h.defineVar(
+        "timepicker-content-padding",
+        $timepicker-content-padding
+    );
+    @include h.defineVar(
+        "timepicker-content-background-color",
+        $timepicker-content-background-color
+    );
+    @include h.defineVar(
+        "timepicker-content-border-style",
+        $timepicker-content-border-style
+    );
+    @include h.defineVar(
+        "timepicker-content-border-color",
+        $timepicker-content-border-color
+    );
+    @include h.defineVar(
+        "timepicker-content-border-width",
+        $timepicker-content-border-width
+    );
+    @include h.defineVar(
+        "timepicker-content-border-radius",
+        $timepicker-content-border-radius
+    );
 
     @include h.defineVar(
         "timepicker-footer-padding",
@@ -53,17 +100,40 @@ $timepicker-select-placeholder-opacity: h.useVar("disabled-opacity") !default;
 
     &__dropdown {
         width: 100%;
+    }
 
-        .o-dropdown__menu {
-            min-width: 12rem;
+    &__content {
+        width: fit-content;
+        min-width: 12rem;
+        padding: h.useVar("timepicker-content-padding");
+
+        box-shadow: h.useVar("timepicker-content-box-shadow");
+        background-color: h.useVar("timepicker-content-background-color");
+        border-color: h.useVar("timepicker-content-border-color");
+        border-style: h.useVar("timepicker-content-border-style");
+        border-width: h.useVar("timepicker-content-border-width");
+        border-radius: h.useVar("timepicker-content-border-radius");
+
+        &--backdrop::backdrop {
+            background-color: h.useVar("timepicker-overlay-background-color");
+        }
+
+        &:popover-open {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
-    &__box {
+    &--expanded {
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    &--inline {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: h.useVar("timepicker-box-padding");
     }
 
     &__select {

@@ -1,0 +1,136 @@
+@use "../utils/helpers" as h;
+
+/* @docs */
+$popover-content-font-size: 0.85rem !default;
+$popover-content-color: h.useVar("white") !default;
+$popover-content-font-weight: h.useVar("font-weight") !default;
+$popover-content-line-height: h.useVar("line-height") !default;
+
+$popover-content-margin: 0.25em !default;
+$popover-content-padding: 0.35em 0.75em !default;
+$popover-content-box-shadow: h.useVar("overlay-box-shadow") !default;
+$popover-content-background-color: h.useVar("grey-darkest") !default;
+$popover-content-border-radius: h.useVar("border-radius") !default;
+
+$popover-close-top: 0em !default;
+$popover-close-right: 0.5em !default;
+$popover-close-color: h.useVar("white") !default;
+$popover-close-size: 2em !default;
+$popover-close-border-radius: h.useVar("border-radius-rounded") !default;
+$popover-close-background-color: inherit !default;
+
+$popover-overlay-background-color: h.useVar(
+    "overlay-background-color"
+) !default;
+/* @docs */
+
+.o-popover {
+    @include h.defineVar("popover-content-color", $popover-content-color);
+    @include h.defineVar(
+        "popover-content-font-size",
+        $popover-content-font-size
+    );
+    @include h.defineVar(
+        "popover-content-font-weight",
+        $popover-content-font-weight
+    );
+    @include h.defineVar(
+        "popover-content-line-height",
+        $popover-content-line-height
+    );
+
+    @include h.defineVar("popover-content-margin", $popover-content-margin);
+    @include h.defineVar("popover-content-padding", $popover-content-padding);
+    @include h.defineVar(
+        "popover-content-box-shadow",
+        $popover-content-box-shadow
+    );
+    @include h.defineVar(
+        "popover-content-background-color",
+        $popover-content-background-color
+    );
+    @include h.defineVar(
+        "popover-content-border-radius",
+        $popover-content-border-radius
+    );
+
+    @include h.defineVar("popover-close-top", $popover-close-top);
+    @include h.defineVar("popover-close-right", $popover-close-right);
+    @include h.defineVar("popover-close-color", $popover-close-color);
+    @include h.defineVar("popover-close-size", $popover-close-size);
+    @include h.defineVar(
+        "popover-close-border-radius",
+        $popover-close-border-radius
+    );
+    @include h.defineVar(
+        "popover-close-background-color",
+        $popover-close-background-color
+    );
+
+    @include h.defineVar(
+        "popover-overlay-background-color",
+        $popover-overlay-background-color
+    );
+
+    position: relative;
+    display: inline-flex;
+
+    &__trigger {
+        width: 100%;
+    }
+
+    &__content {
+        margin: h.useVar("popover-content-margin");
+        padding: h.useVar("popover-content-padding");
+
+        color: h.useVar("popover-content-color");
+        font-size: h.useVar("popover-content-font-size");
+        font-weight: h.useVar("popover-content-font-weight");
+        line-height: h.useVar("popover-content-line-height");
+
+        box-shadow: h.useVar("popover-content-box-shadow");
+        background-color: h.useVar("popover-content-background-color");
+        border-width: 0px;
+        border-radius: h.useVar("popover-content-border-radius");
+
+        &--modal {
+            margin: auto;
+        }
+
+        &--backdrop::backdrop {
+            background-color: h.useVar("popover-overlay-background-color");
+        }
+
+        &:has(.o-popover__close) {
+            padding-right: calc(1.25 * h.useVar("popover-close-size"));
+        }
+    }
+
+    &__close {
+        // define focus shadow effect
+        @include h.focusable;
+
+        // add clickable cursor
+        @include h.clickable;
+
+        // remove default appearance
+        @include h.removeAppearance;
+
+        position: absolute;
+        top: h.useVar("popover-close-top");
+        right: h.useVar("popover-close-right");
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        height: h.useVar("popover-close-size");
+        width: h.useVar("popover-close-size");
+
+        color: h.useVar("popover-close-color");
+
+        border: none;
+        border-radius: h.useVar("popover-close-border-radius");
+        background-color: h.useVar("popover-close-background-color");
+    }
+}
