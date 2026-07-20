@@ -1,9 +1,13 @@
-name: Lint Check
+name: Type Check
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
 
 jobs:
   check:
@@ -21,5 +25,5 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
 
-      - name: Run lint check 🧐
-        run: npm run test:lint
+      - name: Run typescript check 🧐
+        run: npm run test:ts
