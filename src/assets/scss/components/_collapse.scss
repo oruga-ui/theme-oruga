@@ -10,16 +10,17 @@
         }
     }
 
+    &--top {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     &:is(details) {
         interpolate-size: allow-keywords;
 
         /* Chromium / Firefox */
         summary {
-            /* Either remove the list style ... */
             list-style: none;
-
-            /* ... or change the `display` property to something else */
-            display: flex;
         }
 
         /* Webkit */
