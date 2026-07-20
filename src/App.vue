@@ -25,7 +25,7 @@ import { RouterLink, RouterView } from "vue-router";
         </aside>
 
         <main class="main">
-            <router-view />
+            <RouterView />
         </main>
     </div>
 </template>
