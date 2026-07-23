@@ -2,19 +2,20 @@
 
 /* @docs */
 $popover-content-font-size: 0.85rem !default;
-$popover-content-color: h.useVar("white") !default;
+$popover-content-color: h.useVar("black") !default;
 $popover-content-font-weight: h.useVar("font-weight") !default;
 $popover-content-line-height: h.useVar("line-height") !default;
 
 $popover-content-margin: 0.25em !default;
 $popover-content-padding: 0.35em 0.75em !default;
 $popover-content-box-shadow: h.useVar("overlay-box-shadow") !default;
-$popover-content-background-color: h.useVar("grey-darkest") !default;
+$popover-content-background-color: h.useVar("grey-lightest") !default;
+$popover-content-border-color: h.useVar("grey-lighter") !default;
 $popover-content-border-radius: h.useVar("border-radius") !default;
 
 $popover-close-top: 0em !default;
 $popover-close-right: 0.5em !default;
-$popover-close-color: h.useVar("white") !default;
+$popover-close-color: h.useVar("black") !default;
 $popover-close-size: 2em !default;
 $popover-close-border-radius: h.useVar("border-radius-rounded") !default;
 $popover-close-background-color: inherit !default;
@@ -48,6 +49,10 @@ $popover-overlay-background-color: h.useVar(
     @include h.defineVar(
         "popover-content-background-color",
         $popover-content-background-color
+    );
+    @include h.defineVar(
+        "popover-content-border-color",
+        $popover-content-border-color
     );
     @include h.defineVar(
         "popover-content-border-radius",
@@ -90,7 +95,8 @@ $popover-overlay-background-color: h.useVar(
 
         box-shadow: h.useVar("popover-content-box-shadow");
         background-color: h.useVar("popover-content-background-color");
-        border-width: 0px;
+        border-color: h.useVar("popover-content-border-color");
+        border-width: 1px;
         border-radius: h.useVar("popover-content-border-radius");
 
         &--modal {

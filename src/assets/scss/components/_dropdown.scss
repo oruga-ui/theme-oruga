@@ -3,8 +3,6 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
-$dropdown-disabled-opacity: h.useVar("control-disabled-opacity") !default;
-
 $dropdown-menu-spacer: 0px !default;
 $dropdown-menu-padding: h.useVar("control-spacer") 0 !default;
 $dropdown-menu-box-shadow:
@@ -35,6 +33,7 @@ $dropdown-modal-min-width: min(80vw, 400px) !default;
 $dropdown-overlay-background-color: h.useVar(
     "overlay-background-color"
 ) !default;
+$dropdown-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 /* @docs */
 
 .o-dropdown {

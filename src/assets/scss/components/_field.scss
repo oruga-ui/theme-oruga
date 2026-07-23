@@ -123,7 +123,7 @@ $field-message-line-height: h.useVar("line-height") !default;
         gap: h.useVar("field-spacer");
     }
 
-    &--block {
+    &--nowrap {
         flex-wrap: nowrap;
     }
 

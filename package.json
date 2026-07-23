@@ -46,12 +46,12 @@
     "update": "ncu -u"
   },
   "peerDependencies": {
-    "@oruga-ui/oruga-next": "^0.14.0-pre.4"
+    "@oruga-ui/oruga-next": "^0.14.0-pre.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@oruga-ui/examples": "^0.14.0-pre.4",
-    "@oruga-ui/oruga-next": "^0.14.0-pre.4",
+    "@oruga-ui/examples": "^0.14.0-pre.5",
+    "@oruga-ui/oruga-next": "^0.14.0-pre.5",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.11.0",
     "@vitejs/plugin-vue": "6.0.8",
