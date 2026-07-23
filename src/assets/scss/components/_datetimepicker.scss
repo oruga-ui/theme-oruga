@@ -10,10 +10,16 @@
         justify-content: center;
         align-items: center;
 
-        .o-dropdown {
+        .o-timepicker {
             // override time dropdown variables
-            @include h.defineVar("dropdown-menu-box-shadow", #{0, 0, 0, 0});
-            @include h.defineVar("dropdown-menu-border-width", #{0});
+            @include h.defineVar(
+                "timepicker-content-box-shadow",
+                #{0,
+                0,
+                0,
+                0}
+            );
+            @include h.defineVar("timepicker-content-border-width", #{0});
         }
     }
 }

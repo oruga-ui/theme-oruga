@@ -1,6 +1,10 @@
 @use "../utils/helpers" as h;
 
 .o-autocomplete {
+    &:has(.o-dropdown--expanded) {
+        width: 100%;
+    }
+
     &__item {
         white-space: nowrap;
         overflow: hidden;

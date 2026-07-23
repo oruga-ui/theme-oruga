@@ -117,14 +117,14 @@ $field-message-line-height: h.useVar("line-height") !default;
         }
     }
 
-    &--multiline,
     &--grouped {
         display: flex;
+        flex-wrap: wrap;
         gap: h.useVar("field-spacer");
     }
 
-    &--multiline {
-        flex-wrap: wrap;
+    &--nowrap {
+        flex-wrap: nowrap;
     }
 
     &__horizontal-body {

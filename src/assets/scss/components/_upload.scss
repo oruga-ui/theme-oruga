@@ -88,7 +88,7 @@ $upload-draggable-hover-background-color: h.useVar(
         width: 100%;
     }
 
-    &__draggable {
+    &__dragzone {
         width: 100%;
         padding: h.useVar("upload-draggable-padding");
 

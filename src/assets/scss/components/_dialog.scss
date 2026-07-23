@@ -150,7 +150,7 @@ $dialog-close-background-color: inherit !default;
         }
     }
 
-    &__wrapper {
+    &__content {
         position: relative;
 
         &--left {
@@ -221,11 +221,9 @@ $dialog-close-background-color: inherit !default;
         padding: h.useVar("dialog-body-padding");
         background-color: h.useVar("dialog-body-background-color");
 
-        &-content {
-            color: h.useVar("dialog-content-color");
-            font-size: h.useVar("dialog-content-font-size");
-            font-weight: h.useVar("dialog-content-font-weight");
-        }
+        color: h.useVar("dialog-content-color");
+        font-size: h.useVar("dialog-content-font-size");
+        font-weight: h.useVar("dialog-content-font-weight");
     }
 
     &__footer {

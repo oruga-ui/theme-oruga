@@ -52,7 +52,6 @@ $notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
     );
 
     display: inline-flex;
-    flex-direction: row-reverse;
     position: relative;
     transform-origin: 50% 0;
 
@@ -93,14 +92,6 @@ $notification-notices-zindex: map.get(vars.$zindex, "tooltip") !default;
         text-align: inherit;
         overflow-y: hidden;
         overflow-x: auto;
-    }
-
-    &__wrapper {
-        display: flex;
-        align-items: center;
-        text-align: inherit;
-        padding-top: 0;
-        border: 0;
     }
 
     &__icon {

@@ -3,9 +3,6 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
-$dropdown-disabled-opacity: h.useVar("control-disabled-opacity") !default;
-
-$dropdown-menu-zindex: map.get(vars.$zindex, "dropdown") !default;
 $dropdown-menu-spacer: 0px !default;
 $dropdown-menu-padding: h.useVar("control-spacer") 0 !default;
 $dropdown-menu-box-shadow:
@@ -29,7 +26,6 @@ $dropdown-item-active-background-color: h.useVar("primary") !default;
 $dropdown-item-hover-background-color: h.useVar("grey-lighter") !default;
 $dropdown-item-hover-color: h.useVar("font-color") !default;
 
-$dropdown-modal-zindex: map.get(vars.$zindex, "modal") !default;
 $dropdown-modal-max-height: min(50vh, calc(100vh - 160px)) !default;
 $dropdown-modal-max-width: min(50vw, calc(100vw - 160px)) !default;
 $dropdown-modal-min-width: min(80vw, 400px) !default;
@@ -37,7 +33,7 @@ $dropdown-modal-min-width: min(80vw, 400px) !default;
 $dropdown-overlay-background-color: h.useVar(
     "overlay-background-color"
 ) !default;
-$dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
+$dropdown-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 /* @docs */
 
 .o-dropdown {
@@ -49,7 +45,6 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
         "dropdown-overlay-background-color",
         $dropdown-overlay-background-color
     );
-    @include h.defineVar("dropdown-overlay-zindex", $dropdown-overlay-zindex);
 
     @include h.defineVar("dropdown-item-color", $dropdown-item-color);
     @include h.defineVar("dropdown-item-font-size", $dropdown-item-font-size);
@@ -83,7 +78,6 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
         $dropdown-item-hover-background-color
     );
 
-    @include h.defineVar("dropdown-menu-zindex", $dropdown-menu-zindex);
     @include h.defineVar("dropdown-menu-spacer", $dropdown-menu-spacer);
     @include h.defineVar("dropdown-menu-box-shadow", $dropdown-menu-box-shadow);
     @include h.defineVar("dropdown-menu-padding", $dropdown-menu-padding);
@@ -118,12 +112,6 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
     }
 
     &__menu {
-        position: absolute;
-        display: block;
-        width: max-content;
-        min-width: 100%;
-
-        z-index: h.useVar("dropdown-menu-zindex");
         padding: h.useVar("dropdown-menu-padding");
 
         box-shadow: h.useVar("dropdown-menu-box-shadow");
@@ -132,67 +120,6 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
         border-style: h.useVar("dropdown-menu-border-style");
         border-width: h.useVar("dropdown-menu-border-width");
         border-radius: h.useVar("dropdown-menu-border-radius");
-
-        // position variants
-        &--bottom {
-            left: 50%;
-            right: auto;
-            top: calc(100% + h.useVar("dropdown-menu-spacer"));
-            bottom: auto;
-            transform: translateX(-50%);
-        }
-
-        &--top {
-            left: 50%;
-            right: auto;
-            top: auto;
-            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
-            transform: translateX(-50%);
-        }
-
-        &--left {
-            right: calc(100% + h.useVar("dropdown-menu-spacer"));
-            left: auto;
-            top: 50%;
-            bottom: auto;
-            transform: translateY(-50%);
-        }
-
-        &--right {
-            right: auto;
-            left: calc(100% + h.useVar("dropdown-menu-spacer"));
-            top: 50%;
-            bottom: auto;
-            transform: translateY(-50%);
-        }
-
-        &--top-right {
-            right: 0;
-            left: auto;
-            top: auto;
-            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
-        }
-
-        &--top-left {
-            right: auto;
-            left: 0;
-            top: auto;
-            bottom: calc(100% + h.useVar("dropdown-menu-spacer"));
-        }
-
-        &--bottom-right {
-            right: 0;
-            left: auto;
-            top: calc(100% + h.useVar("dropdown-menu-spacer"));
-            bottom: auto;
-        }
-
-        &--bottom-left {
-            right: auto;
-            left: 0;
-            top: calc(100% + h.useVar("dropdown-menu-spacer"));
-            bottom: auto;
-        }
     }
 
     &__item {
@@ -242,21 +169,15 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
         }
     }
 
-    &--inline {
-        display: inline;
-
-        .o-dropdown__menu {
-            position: static;
-            display: inline-block;
-            padding: 0;
-        }
-    }
-
     &--expanded {
         width: 100%;
 
-        .o-dropdown__menu {
+        .o-dropdown__trigger {
             width: 100%;
+        }
+
+        .o-dropdown__menu {
+            width: anchor-size(width);
         }
     }
 
@@ -264,49 +185,28 @@ $dropdown-overlay-zindex: map.get(vars.$zindex, "overlay") !default;
         @include h.disabled(h.useVar("dropdown-disabled-opacity"));
     }
 
-    &--teleport {
-        width: unset;
-    }
-
-    &--modal {
-        @include h.defineVar("dropdown-modal-zindex", $dropdown-modal-zindex);
-        @include h.defineVar(
-            "dropdown-modal-max-height",
-            $dropdown-modal-max-height
-        );
-        @include h.defineVar(
-            "dropdown-modal-min-width",
-            $dropdown-modal-min-width
-        );
-        @include h.defineVar(
-            "dropdown-modal-max-width",
-            $dropdown-modal-max-width
-        );
-
-        > .o-dropdown__overlay {
-            pointer-events: auto;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            background-color: h.useVar("dropdown-overlay-background-color");
-            z-index: h.useVar("dropdown-overlay-zindex");
-        }
-
-        > .o-dropdown__menu {
-            pointer-events: auto;
-            position: fixed;
-            top: 25%;
-            left: 50%;
-            bottom: unset;
-            right: unset;
-            transform: translate3d(-50%, -25%, 0);
+    &__content {
+        &--modal {
+            @include h.defineVar(
+                "dropdown-modal-max-height",
+                $dropdown-modal-max-height
+            );
+            @include h.defineVar(
+                "dropdown-modal-min-width",
+                $dropdown-modal-min-width
+            );
+            @include h.defineVar(
+                "dropdown-modal-max-width",
+                $dropdown-modal-max-width
+            );
 
             min-width: h.useVar("dropdown-modal-min-width");
             max-width: h.useVar("dropdown-modal-max-width");
             max-height: h.useVar("dropdown-modal-max-height");
-            z-index: h.useVar("dropdown-modal-zindex");
+        }
+
+        &--backdrop::backdrop {
+            background-color: h.useVar("dropdown-overlay-background-color");
         }
     }
 }
