@@ -125,6 +125,7 @@ $breadcrumb-item-hover-background-color: h.useVar("secondary") !default;
                 background-color: h.useVar(
                     "breadcrumb-item-hover-background-color"
                 );
+                cursor: pointer;
             }
         }
 

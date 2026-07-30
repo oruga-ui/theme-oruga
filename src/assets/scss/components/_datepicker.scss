@@ -42,7 +42,7 @@ $datepicker-table-cell-border-radius: h.useVar("border-radius") !default;
 $datepicker-table-cell-selectable-color: h.useVar("font-color") !default;
 $datepicker-table-cell-unselectable-color: h.useVar("grey-light") !default;
 $datepicker-table-cell-nearby-color: h.useVar("grey-light") !default;
-$datepicker-table-cell-today-border: solid 1px rgba(h.useVar("primary"), 0.5) !default;
+$datepicker-table-cell-today-border: 1px solid h.useVar("primary") !default;
 
 $datepicker-table-cell-selected-color: h.useVar("primary-invert") !default;
 $datepicker-table-cell-selected-background-color: h.useVar("primary") !default;
@@ -450,6 +450,10 @@ $datepicker-event-bars-height: 0.25em !default;
         justify-content: center;
         width: 33.33%;
         height: 2.5rem;
+
+        &--today {
+            border: h.useVar("datepicker-table-cell-today-border");
+        }
     }
 
     &--expanded {
