@@ -80,10 +80,6 @@ $popover-overlay-background-color: h.useVar(
     position: relative;
     display: inline-flex;
 
-    &__trigger {
-        width: 100%;
-    }
-
     &__content {
         margin: h.useVar("popover-content-margin");
         padding: h.useVar("popover-content-padding");
