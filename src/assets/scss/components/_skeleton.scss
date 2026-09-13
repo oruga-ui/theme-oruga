@@ -5,7 +5,7 @@
 $skeleton-spacer: 0.5em !default;
 $skeleton-duration: 1.5s !default;
 $skeleton-font-size: h.useVar("font-size") !default;
-$skeleton-background-color: h.useVar("background-color-muted") !default;
+$skeleton-background-color: vars.$grey !default;
 $skeleton-background: linear-gradient(
     90deg,
     $skeleton-background-color 25%,
