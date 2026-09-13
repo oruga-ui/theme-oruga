@@ -11,16 +11,13 @@ $dropdown-menu-padding: h.useVar("control-spacer") 0 !default;
 $dropdown-menu-box-shadow:
     0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.02) !default;
-// $dropdown-menu-background-color: h.useVar("control-background-color") !default; // @TODO to be deleted
 $dropdown-menu-background-color: h.useVar("background-color") !default; 
-// $dropdown-menu-border-color: h.useVar("control-border-color") !default; // @TODO to be deleted
 $dropdown-menu-border-color: h.useVar("border-color-subtle") !default; 
 $dropdown-menu-border-style: solid !default;
 $dropdown-menu-border-width: h.useVar("control-border-width") !default;
 $dropdown-menu-border-radius: h.useVar("border-radius") !default;
 
 $dropdown-item-padding: 0.25rem 1rem !default;
-// $dropdown-item-color: h.useVar("font-color") !default; // @TODO to be deleted
 $dropdown-item-color: h.useVar("color-emphasis") !default; 
 $dropdown-item-font-size: h.useVar("font-size") !default;
 $dropdown-item-font-weight: h.useVar("font-weight") !default;
@@ -29,9 +26,7 @@ $dropdown-item-line-height: h.useVar("line-height") !default;
 $dropdown-item-background-color: transparent !default;
 $dropdown-item-active-color: h.useVar("primary-invert") !default;
 $dropdown-item-active-background-color: h.useVar("primary") !default;
-// $dropdown-item-hover-background-color: h.useVar("grey-lighter") !default; // @TODO to be deleted
 $dropdown-item-hover-background-color: h.useVar("hover-background-color-subtle") !default;
-// $dropdown-item-hover-color: h.useVar("font-color") !default; // @TODO to be deleted
 $dropdown-item-hover-color: h.useVar("color-emphasis") !default;
 
 $dropdown-modal-zindex: map.get(vars.$zindex, "modal") !default;

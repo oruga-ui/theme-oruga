@@ -7,7 +7,6 @@ $tree-border: 1px solid h.useVar("secondary") !default;
 $tree-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
 $tree-item-padding: 0.5em 0.75em !default;
-// $tree-item-color: h.useVar("font-color") !default; // @TODO to be deleted
 $tree-item-color: h.useVar("color-emphasis") !default; 
 $tree-item-font-size: h.useVar("font-size") !default;
 $tree-item-font-weight: h.useVar("font-weight") !default;
@@ -17,9 +16,7 @@ $tree-item-border: unset !default;
 $tree-item-border-radius: h.useVar("border-radius") !default;
 $tree-item-background-color: transparent !default;
 
-// $tree-item-hover-color: h.useVar("black") !default; // @TODO to be deleted
 $tree-item-hover-color: h.useVar("hover-color-emphasis") !default;
-// $tree-item-hover-background-color: h.useVar("grey-lightest") !default; // @TODO to be deleted
 $tree-item-hover-background-color: h.useVar("hover-background-color-subtle") !default;
 $tree-item-active-color: h.useVar("primary-invert") !default;
 $tree-item-active-background-color: h.useVar("primary") !default;

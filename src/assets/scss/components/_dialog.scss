@@ -27,17 +27,14 @@ $dialog-body-background-color: inherit !default;
 $dialog-footer-padding: $dialog-spacer !default;
 $dialog-footer-background-color: inherit !default;
 
-// $dialog-title-color: h.useVar("font-color") !default; // @TODO to be deleted
 $dialog-title-color: h.useVar("color-emphasis") !default; 
 $dialog-title-font-size: 2em !default;
 $dialog-title-font-weight: bold !default;
 
-// $dialog-subtitle-color: h.useVar("font-color") !default; // @TODO to be deleted
 $dialog-subtitle-color: h.useVar("color-emphasis") !default; 
 $dialog-subtitle-font-size: 1.5em !default;
 $dialog-subtitle-font-weight: normal !default;
 
-// $dialog-content-color: h.useVar("font-color") !default; // @TODO to be deleted
 $dialog-content-color: h.useVar("color-emphasis") !default; 
 $dialog-content-font-size: h.useVar("font-size") !default;
 $dialog-content-font-weight: h.useVar("font-weight") !default;

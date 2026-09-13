@@ -9,22 +9,19 @@ $tabs-tab-padding: h.useVar("control-spacer")
     calc(2 * h.useVar("control-spacer")) !default;
 $tabs-tab-icon-margin: 0 h.useVar("control-spacer") 0 0 !default;
 
-$tabs-tab-color: h.useVar("font-color") !default;
+$tabs-tab-color: h.useVar("color-emphasis") !default;
 $tabs-tab-font-size: h.useVar("font-size") !default;
 $tabs-tab-font-weight: h.useVar("font-weight") !default;
 $tabs-tab-line-height: h.useVar("line-height") !default;
 
 $tabs-tab-border-width: h.useVar("control-border-width") !default;
 $tabs-tab-border-style: solid !default;
-// $tabs-tab-border-color: h.useVar("control-border-color") !default; // @TODO to be deleted
 $tabs-tab-border-color: h.useVar("border-color-subtle") !default;
 $tabs-tab-border-radius: h.useVar("border-radius") !default;
 $tabs-tab-background-color: transparent !default;
 
 $tabs-tab-hover-color: $tabs-tab-color !default;
-// $tabs-tab-hover-background-color: hsl(0, 0%, 96%) !default; // @TODO to be deleted
 $tabs-tab-hover-background-color: h.useVar("hover-background-color-subtle") !default;
-// $tabs-tab-hover-border-color: hsl(0, 0%, 86%) !default; // @TODO to be deleted
 $tabs-tab-hover-border-color: h.useVar("hover-border-color-subtle") !default; 
 $tabs-tab-hover-border-radius: $tabs-tab-border-radius !default;
 

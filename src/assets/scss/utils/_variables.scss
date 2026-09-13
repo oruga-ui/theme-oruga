@@ -137,7 +137,6 @@ $font-family: // Cross-platform generic font family (default user interface font
     Arial,
     // Sans serif fallback
     sans-serif !default;
-// $font-color: $color-emphasis !default; // @todo to be deleted, use $color-emphasis instead
 $font-size: 1rem !default;
 $font-weight: 400 !default;
 $line-height: 1.5 !default;
@@ -145,13 +144,10 @@ $line-height: 1.5 !default;
 // Base Style
 $border-radius: 4px !default;
 $border-radius-rounded: 9999px !default;
-// @TODO add border style variable and box shadow variable
 
 $control-spacer: 0.5em !default;
-// $control-background-color: $background-color !default; // @todo to be deleted, use $background-color instead
-// $control-border-color: $border-color-subtle !default; // @todo to be deleted, use $border-color-subtle instead
 $control-border-width: 1px !default;
-// $control-border-style: solid !default;
+$control-border-style: solid !default;
 $control-height: 2.25em !default;
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
 $control-padding-horizontal: calc(0.8em - #{$control-border-width}) !default;

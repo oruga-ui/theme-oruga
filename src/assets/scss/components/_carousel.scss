@@ -9,7 +9,6 @@ $carousel-arrow-size: 1.5rem !default;
 $carousel-arrow-color: h.useVar("primary") !default;
 $carousel-arrow-border-width: h.useVar("control-border-width") !default;
 $carousel-arrow-border-style: solid !default;
-// $carousel-arrow-border-color: h.useVar("white") !default; // @TODO to be deleted
 $carousel-arrow-border-color: h.useVar("border-color-inverse") !default;
 $carousel-arrow-border-radius: h.useVar("border-radius-rounded") !default;
 $carousel-arrow-background-color: $carousel-arrow-border-color !default;
@@ -21,7 +20,6 @@ $carousel-autoplay-left: $carousel-arrow-icon-spacer !default;
 $carousel-autoplay-right: unset !default;
 $carousel-autoplay-bottom: unset !default;
 
-// $carousel-indicators-background: rgba(h.useVar("white"), 0.5) !default; // @TODO to be deleted
 $carousel-indicators-background: rgba(h.useVar("background-color"), 0.5) !default;
 $carousel-indicators-padding: 0.5rem !default;
 
@@ -31,7 +29,6 @@ $carousel-indicator-lines-height: 5px !default;
 $carousel-indicator-lines-width: 25px !default;
 $carousel-indicator-color: h.useVar("primary") !default;
 $carousel-indicator-border: 1px solid $carousel-indicator-color !default;
-// $carousel-indicator-background: h.useVar("white") !default; // @TODO to be deleted
 $carousel-indicator-background: h.useVar("background-color") !default;
 $carousel-indicator-transition: h.useVar("transition-duration")
     h.useVar("transition-timing") !default;

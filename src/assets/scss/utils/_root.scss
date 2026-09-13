@@ -87,7 +87,6 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
     // define base variables
     @include h.defineVar("font-family", vars.$font-family);
     @include h.defineVar("font-size", vars.$font-size);
-    // @include h.defineVar("font-color", vars.$font-color);
     @include h.defineVar("font-weight", vars.$font-weight);
     @include h.defineVar("line-height", vars.$line-height);
 
@@ -115,11 +114,6 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
         "control-focus-box-shadow",
         vars.$control-focus-box-shadow
     );
-    // @include h.defineVar(
-    //     "control-background-color",
-    //     vars.$control-background-color
-    // );
-    // @include h.defineVar("control-border-color", vars.$control-border-color);
     @include h.defineVar("control-border-width", vars.$control-border-width);
     @include h.defineVar(
         "control-disabled-opacity",
@@ -140,7 +134,7 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
     @include h.defineVar("transition-timing", vars.$animation-timing);
 }
 
-// @TODO Add dark colours theme
+// Dark theme
 [data-theme=dark],
 .theme-dark {
     // define dark color variables

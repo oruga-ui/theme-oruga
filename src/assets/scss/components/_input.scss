@@ -3,7 +3,6 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
-// $input-color: h.useVar("font-color") !default; // @TODO to be deleted
 $input-color: h.useVar("color-emphasis") !default;
 $input-font-size: h.useVar("font-size") !default;
 $input-font-weight: h.useVar("font-weight") !default;
@@ -17,11 +16,9 @@ $input-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 $input-box-shadow: h.useVar("control-box-shadow-inset") !default;
 $input-border-width: h.useVar("control-border-width") !default;
 $input-border-style: solid !default;
-// $input-border-color: h.useVar("control-border-color") !default; // @TODO to be deleted
 $input-border-color: h.useVar("border-color-subtle") !default; 
 $input-border-radius: h.useVar("border-radius") !default;
 $input-border-radius-rounded: h.useVar("border-radius-rounded") !default;
-// $input-background-color: h.useVar("control-background-color") !default; // @TODO to be deleted
 $input-background-color: h.useVar("background-color") !default;
 
 $input-textarea-min-height: 120px !default;

@@ -15,10 +15,8 @@ $slider-track-height: calc(
 $slider-track-box-shadow: h.useVar("control-box-shadow") !default;
 $slider-track-border-width: 0px !default;
 $slider-track-border-style: solid !default;
-// $slider-track-border-color: h.useVar("grey") !default; // @TODO to be deleted
 $slider-track-border-color: h.useVar("border-color") !default;
 $slider-track-border-radius: h.useVar("border-radius") !default;
-// $slider-track-background-color: h.useVar("grey-lighter") !default; // @TODO to be deleted
 $slider-track-background-color: h.useVar("background-color-muted") !default;
 
 $slider-fill-box-shadow: h.useVar("control-box-shadow") !default;
@@ -32,11 +30,9 @@ $slider-thumb-line-height: h.useVar("line-height") !default;
 $slider-thumb-box-shadow: none !default;
 $slider-thumb-border-width: h.useVar("control-border-width") !default;
 $slider-thumb-border-style: solid !default;
-// $slider-thumb-border-color: h.useVar("grey-light") !default; // @TODO to be deleted
 $slider-thumb-border-color: h.useVar("border-color-muted") !default;
 $slider-thumb-border-radius: h.useVar("border-radius") !default;
 $slider-thumb-border-radius-rounded: h.useVar("border-radius-rounded") !default;
-// $slider-thumb-background-color: h.useVar("control-background-color") !default; // @TODO to be deleted
 $slider-thumb-background-color: h.useVar("background-color") !default; 
 $slider-thumb-transform: scale(1.25) !default;
 
@@ -45,7 +41,6 @@ $slider-tick-size: calc(
     h.useVar("slider-track-height") * $slider-tick-to-track-ratio
 );
 
-// $slider-tick-color: h.useVar("font-color") !default; // @TODO to be deleted
 $slider-tick-color: h.useVar("color-emphasis") !default;
 $slider-tick-font-size: 0.75em !default;
 $slider-tick-font-weight: h.useVar("font-weight") !default;

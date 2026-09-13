@@ -10,7 +10,6 @@ $button-padding: h.useVar("control-padding-vertical")
 $button-loading-animation-duration: h.useVar("animation-speed-slow") !default;
 $button-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
-// $button-color: h.useVar("font-color") !default; // @TODO to be deleted
 $button-color: h.useVar("color-emphasis") !default; 
 $button-font-size: h.useVar("font-size") !default;
 $button-font-weight: h.useVar("font-weight") !default;
@@ -19,18 +18,15 @@ $button-line-height: h.useVar("line-height") !default;
 $button-box-shadow: none !default;
 $button-border-width: h.useVar("control-border-width") !default;
 $button-border-style: solid !default;
-$button-border-color: h.useVar("control-border-color") !default;
+$button-border-color: h.useVar("border-color-subtle") !default;
 $button-border-radius: h.useVar("border-radius") !default;
-// $button-background-color: h.useVar("control-background-color") !default; // @TODO to be deleted
 $button-background-color: h.useVar("background-color") !default; 
 
 $button-hover-color: $button-color;
 $button-hover-background-color: $button-background-color;
-// $button-hover-border-color: h.useVar("grey-light"); // @TODO to be deleted
 $button-hover-border-color: h.useVar("hover-border-color-subtle"); 
 
 $button-outlined-background-color: transparent !default;
-// $button-outlined-border-color: h.useVar("grey-light") !default; // @TODO to be deleted
 $button-outlined-border-color: h.useVar("border-color-muted") !default;
 /* @docs */
 

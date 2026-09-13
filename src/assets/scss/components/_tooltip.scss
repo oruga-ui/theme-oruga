@@ -7,7 +7,6 @@
 $tooltip-zindex: map.get(vars.$zindex, "tooltip") !default;
 
 $tooltip-content-font-size: 0.85rem !default;
-// $tooltip-content-color: h.useVar("white") !default; // @TODO to be deleted
 $tooltip-content-color: h.useVar("color-inverse") !default;
 $tooltip-content-font-weight: h.useVar("font-weight") !default;
 $tooltip-content-line-height: h.useVar("line-height") !default;
@@ -16,7 +15,6 @@ $tooltip-content-padding: 0.35em 0.75em !default;
 $tooltip-content-multiline-width: 300px !default;
 
 $tooltip-content-box-shadow: h.useVar("overlay-box-shadow") !default;
-// $tooltip-content-background-color: h.useVar("grey-darkest") !default; // @TODO use semantic variable
 $tooltip-content-background-color: h.useVar("background-color-inverse") !default;
 $tooltip-content-border-radius: h.useVar("border-radius") !default;
 

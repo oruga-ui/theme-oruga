@@ -8,7 +8,6 @@ $radio-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 $radio-width: 1em !default;
 $radio-height: 1em !default;
 
-// $radio-color: h.useVar("font-color") !default; // @TODO to be deleted
 $radio-color: h.useVar("color-emphasis") !default;
 $radio-font-size: h.useVar("font-size") !default;
 $radio-font-weight: h.useVar("font-weight") !default;
@@ -19,7 +18,6 @@ $radio-border-color: h.useVar("primary") !default;
 $radio-border-style: solid !default;
 $radio-border-radius: h.useVar("border-radius-rounded") !default;
 $radio-border-width: calc(2 * h.useVar("control-border-width")) !default;
-// $radio-background-color: h.useVar("white") !default; // @TODO to be deleted
 $radio-background-color: h.useVar("background-color") !default;
 $radio-active-background-color: h.useVar("primary") !default;
 
