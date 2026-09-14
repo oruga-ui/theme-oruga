@@ -34,7 +34,13 @@ export default defineConfig(({ mode }) => {
             plugins: [
                 // copy assets into dist
                 copy({
-                    targets: [{ src: "src/assets/scss", dest: "." }],
+                    targets: [
+                        {
+                            src: "src/assets/scss",
+                            dest: ".",
+                            rename: { stripBase: 2 },
+                        },
+                    ],
                 }),
                 // adds a banner to every generated dist file
                 banner(generate(pkg.version)),

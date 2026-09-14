@@ -2,6 +2,7 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
+$listbox-spacer: 0.5rem !default;
 $listbox-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 $listbox-background-color: h.useVar("background-color") !default;
 $listbox-border-color: h.useVar("border-color-subtle") !default;
@@ -26,6 +27,7 @@ $listbox-item-hover-color: h.useVar("color-emphasis") !default;
 /* @docs */
 
 .o-listbox {
+    @include h.defineVar("listbox-spacer", $listbox-spacer);
     @include h.defineVar("listbox-disabled-opacity", $listbox-disabled-opacity);
 
     @include h.defineVar("listbox-background-color", $listbox-background-color);
@@ -121,8 +123,8 @@ $listbox-item-hover-color: h.useVar("color-emphasis") !default;
     }
 
     &__item {
-        display: block;
-        position: relative;
+        display: flex;
+        gap: h.useVar("listbox-spacer");
 
         padding: h.useVar("listbox-item-padding");
 

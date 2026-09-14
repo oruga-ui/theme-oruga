@@ -70,7 +70,7 @@ In order to customize any SASS variables, you have to set them before the SCSS I
 
 ### Override default config
 
-In case you want to replace the default style of a component you can override or add new classes; more details about components customization on https://oruga-ui.com/documentation/#customization
+In case you want to replace the default style of a component you can override or add new classes; more details about components customization on https://oruga-ui.com/documentation/configuration
 
 ```js
 import { createApp } from "vue";
@@ -93,7 +93,7 @@ createApp(App).use(Oruga, customConfig).mount("#app");
 
 Thank you to everyone involved for improving this project, day by day 💚
 
-<a href="https://github.com/oruga-ui/theme-oruga">
+<a href="https://github.com/oruga-ui/themei-oruga">
   <img src="https://contrib.rocks/image?repo=oruga-ui/theme-oruga" />
 </a>
 
