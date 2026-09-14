@@ -21,8 +21,10 @@ $tabs-tab-border-radius: h.useVar("border-radius") !default;
 $tabs-tab-background-color: transparent !default;
 
 $tabs-tab-hover-color: $tabs-tab-color !default;
-$tabs-tab-hover-background-color: h.useVar("hover-background-color-subtle") !default;
-$tabs-tab-hover-border-color: h.useVar("hover-border-color-subtle") !default; 
+$tabs-tab-hover-background-color: h.useVar(
+    "hover-background-color-subtle"
+) !default;
+$tabs-tab-hover-border-color: h.useVar("hover-border-color-subtle") !default;
 $tabs-tab-hover-border-radius: $tabs-tab-border-radius !default;
 
 $tabs-tab-active-color: h.useVar("primary") !default;

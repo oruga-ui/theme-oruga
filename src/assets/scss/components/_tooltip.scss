@@ -15,7 +15,9 @@ $tooltip-content-padding: 0.35em 0.75em !default;
 $tooltip-content-multiline-width: 300px !default;
 
 $tooltip-content-box-shadow: h.useVar("overlay-box-shadow") !default;
-$tooltip-content-background-color: h.useVar("background-color-inverse") !default;
+$tooltip-content-background-color: h.useVar(
+    "background-color-inverse"
+) !default;
 $tooltip-content-border-radius: h.useVar("border-radius") !default;
 
 $tooltip-arrow-margin: 2px !default;

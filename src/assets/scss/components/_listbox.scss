@@ -19,7 +19,9 @@ $listbox-item-line-height: h.useVar("line-height") !default;
 $listbox-item-background-color: transparent !default;
 $listbox-item-active-color: h.useVar("primary-invert") !default;
 $listbox-item-active-background-color: h.useVar("primary") !default;
-$listbox-item-hover-background-color: h.useVar("hover-background-color-subtle") !default;
+$listbox-item-hover-background-color: h.useVar(
+    "hover-background-color-subtle"
+) !default;
 $listbox-item-hover-color: h.useVar("color-emphasis") !default;
 /* @docs */
 

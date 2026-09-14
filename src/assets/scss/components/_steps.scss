@@ -6,14 +6,14 @@
 $steps-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 $steps-vertical-padding: calc(2 * h.useVar("control-spacer")) 0 !default;
 
-$steps-step-color: h.useVar("color-emphasis") !default;  
+$steps-step-color: h.useVar("color-emphasis") !default;
 $steps-step-font-size: h.useVar("font-size") !default;
 $steps-step-font-weight: 500 !default;
 $steps-step-line-height: h.useVar("line-height") !default;
 
 $steps-step-border-color: h.useVar(
     "background-color"
-) !default; // color scheme is inverted for steps 
+) !default; // color scheme is inverted for steps
 $steps-step-background-color: h.useVar(
     "border-color-subtle"
 ) !default; // color scheme is inverted for steps

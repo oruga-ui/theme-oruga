@@ -3,7 +3,7 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
-$table-color: h.useVar("color-emphasis") !default;  
+$table-color: h.useVar("color-emphasis") !default;
 $table-border-width: h.useVar("control-border-width") !default;
 $table-border-style: solid !default;
 $table-border-color: transparent !default;
@@ -16,32 +16,36 @@ $table-focus-box-shadow: vars.$control-focus-box-shadow h.useVar("focus") !defau
 $table-sticky-zindex: 1 !default;
 $table-sticky-header-height: 300px !default;
 
-$table-tr-hover-background-color: h.useVar("hover-background-color-subtle") !default;
+$table-tr-hover-background-color: h.useVar(
+    "hover-background-color-subtle"
+) !default;
 $table-tr-narrow-padding: calc(0.5 * h.useVar("control-spacer"))
     h.useVar("control-spacer") !default;
-$table-tr-striped-background-color: h.useVar("background-color-subtle") !default;
+$table-tr-striped-background-color: h.useVar(
+    "background-color-subtle"
+) !default;
 
 $table-tr-selected-background-color: h.useVar("primary") !default;
 $table-tr-selected-color: h.useVar("primary-invert") !default;
 
-$table-th-color: h.useVar("color-emphasis") !default;  
+$table-th-color: h.useVar("color-emphasis") !default;
 $table-th-font-size: h.useVar("font-size") !default;
 $table-th-font-weight: 600 !default;
 $table-th-line-height: h.useVar("line-height") !default;
 $table-th-border-width: calc(2 * h.useVar("control-border-width")) !default;
 $table-th-border-style: solid !default;
-$table-th-border-color: h.useVar("border-color-subtle") !default; 
+$table-th-border-color: h.useVar("border-color-subtle") !default;
 $table-th-checkbox-width: 40px !default;
 $table-th-padding: h.useVar("control-spacer")
     calc(1.5 * h.useVar("control-spacer")) !default;
 
-$table-th-sorted-border-color: h.useVar("border-color") !default; 
+$table-th-sorted-border-color: h.useVar("border-color") !default;
 $table-th-sorted-font-weight: 700 !default;
 $table-th-sorted-hover-border-color: h.useVar("hover-border-color") !default;
 
 $table-td-border-width: h.useVar("control-border-width") !default;
 $table-td-border-style: solid !default;
-$table-td-border-color: h.useVar("border-color-subtle") !default; 
+$table-td-border-color: h.useVar("border-color-subtle") !default;
 $table-td-padding: h.useVar("control-spacer")
     calc(1.5 * h.useVar("control-spacer")) !default;
 

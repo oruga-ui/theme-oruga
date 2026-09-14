@@ -8,7 +8,7 @@ $datepicker-box-padding: 0 calc(2 * h.useVar("control-spacer")) !default;
 
 $datepicker-border-width: h.useVar("control-border-width") !default;
 $datepicker-border-style: solid !default;
-$datepicker-border-color: h.useVar("border-color-subtle") !default; 
+$datepicker-border-color: h.useVar("border-color-subtle") !default;
 
 $datepicker-header-padding: h.useVar("control-spacer") 0 !default;
 $datepicker-header-spacer: h.useVar("control-spacer") !default;
@@ -24,7 +24,7 @@ $datepicker-table-header-font-weight: 600 !default;
 $datepicker-table-cell-padding: 0.5rem 0.75rem !default;
 $datepicker-table-cell-border-radius: h.useVar("border-radius") !default;
 
-$datepicker-table-cell-selectable-color: h.useVar("color-emphasis") !default; 
+$datepicker-table-cell-selectable-color: h.useVar("color-emphasis") !default;
 $datepicker-table-cell-unselectable-color: h.useVar("grey-light") !default;
 $datepicker-table-cell-nearby-color: h.useVar("grey-light") !default;
 $datepicker-table-cell-today-border: solid 1px rgba(h.useVar("primary"), 0.5) !default;
@@ -35,14 +35,18 @@ $datepicker-table-cell-selected-within-background-color: rgb(
     from $datepicker-table-cell-selected-background-color r g b / 50%
 ) !default;
 $datepicker-table-cell-hovered-color: h.useVar("hover-color-inverse") !default;
-$datepicker-table-cell-hovered-background-color: h.useVar("hover-background-color-emphasis") !default;
+$datepicker-table-cell-hovered-background-color: h.useVar(
+    "hover-background-color-emphasis"
+) !default;
 $datepicker-table-cell-hovered-within-background-color: rgb(
     from $datepicker-table-cell-hovered-background-color r g b / 50%
 ) !default;
 
 $datepicker-table-cell-events-padding: 0.3rem 0.75rem 0.75rem !default;
 
-$datepicker-event-background-color: h.useVar("background-color-emphasis") !default;
+$datepicker-event-background-color: h.useVar(
+    "background-color-emphasis"
+) !default;
 $datepicker-event-dots-size: 0.35em !default;
 $datepicker-event-dots-margin: 0 0.1em !default;
 $datepicker-event-bars-height: 0.25em !default;
