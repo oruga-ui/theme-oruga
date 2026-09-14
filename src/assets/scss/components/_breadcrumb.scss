@@ -125,6 +125,7 @@ $breadcrumb-item-hover-background-color: h.useVar("hover-background-color-emphas
                 background-color: h.useVar(
                     "breadcrumb-item-hover-background-color"
                 );
+                cursor: pointer;
             }
         }
 

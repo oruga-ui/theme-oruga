@@ -47,13 +47,13 @@ $taginput-item-spacer: h.useVar("control-spacer") !default;
         @extend .o-input__input;
     }
 
-    &__autocomplete {
+    .o-autocomplete {
         flex-grow: 1;
         flex-shrink: 1;
         width: auto;
     }
 
-    &__input {
+    input {
         border: none;
         box-shadow: none;
     }
@@ -81,7 +81,9 @@ $taginput-item-spacer: h.useVar("control-spacer") !default;
 
     &--expanded {
         width: 100%;
-        flex-grow: 1;
-        flex-shrink: 1;
+
+        .o-taginput__container {
+            width: 100%;
+        }
     }
 }

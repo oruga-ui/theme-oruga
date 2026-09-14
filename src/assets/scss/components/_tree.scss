@@ -2,12 +2,13 @@
 @use "../utils/variables" as vars;
 
 /* @docs */
-$tree-spacer: 0.25rem !default;
+$tree-spacer: 0.5rem !default;
 $tree-border: 1px solid h.useVar("secondary") !default;
 $tree-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
-$tree-item-padding: 0.5em 0.75em !default;
-$tree-item-color: h.useVar("color-emphasis") !default; 
+$tree-item-padding-x: 0.75em !default;
+$tree-item-padding-y: 0.5em !default;
+$tree-item-color: h.useVar("font-color") !default;
 $tree-item-font-size: h.useVar("font-size") !default;
 $tree-item-font-weight: h.useVar("font-weight") !default;
 $tree-item-line-height: h.useVar("line-height") !default;
@@ -25,7 +26,8 @@ $tree-item-active-background-color: h.useVar("primary") !default;
 .o-tree {
     @include h.defineVar("tree-spacer", $tree-spacer);
     @include h.defineVar("tree-border", $tree-border);
-    @include h.defineVar("tree-item-padding", $tree-item-padding);
+    @include h.defineVar("tree-item-padding-x", $tree-item-padding-x);
+    @include h.defineVar("tree-item-padding-y", $tree-item-padding-y);
     @include h.defineVar("tree-item-color", $tree-item-color);
     @include h.defineVar("tree-item-font-size", $tree-item-font-size);
     @include h.defineVar("tree-item-font-weight", $tree-item-font-weight);
@@ -57,22 +59,15 @@ $tree-item-active-background-color: h.useVar("primary") !default;
 
     &__subtree {
         border-left: h.useVar("tree-border");
-        padding-left: calc(2 * h.useVar("tree-spacer"));
-        margin-left: calc(5 * h.useVar("tree-spacer"));
-        margin-top: h.useVar("tree-spacer");
-        margin-bottom: h.useVar("tree-spacer");
+        padding-left: h.useVar("tree-spacer");
+        margin-left: calc(
+            h.useVar("tree-item-padding-x") + 12px
+        ); // plus half icon size
+        margin-top: calc(h.useVar("tree-spacer") / 2);
+        margin-bottom: calc(h.useVar("tree-spacer") / 2);
     }
 
     &__item {
-        & + & {
-            margin-top: h.useVar("tree-spacer");
-        }
-
-        &-icon,
-        &-toggle-icon {
-            margin-right: h.useVar("tree-spacer");
-        }
-
         &-label {
             // add clickable cursor
             @include h.clickable;
@@ -82,8 +77,11 @@ $tree-item-active-background-color: h.useVar("primary") !default;
             -moz-appearance: none;
             -webkit-appearance: none;
 
-            display: block;
-            padding: h.useVar("tree-item-padding");
+            display: inline-flex;
+            gap: h.useVar("tree-spacer");
+
+            padding: h.useVar("tree-item-padding-y")
+                h.useVar("tree-item-padding-x");
 
             color: h.useVar("tree-item-color");
             font-size: h.useVar("tree-item-font-size");
@@ -92,6 +90,10 @@ $tree-item-active-background-color: h.useVar("primary") !default;
             background-color: h.useVar("tree-item-background-color");
             border: h.useVar("tree-item-border");
             border-radius: h.useVar("tree-item-border-radius");
+        }
+
+        & + & {
+            margin-top: calc(h.useVar("tree-spacer") / 2);
         }
 
         &:focus-visible,
