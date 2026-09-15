@@ -8,7 +8,7 @@ $tree-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
 $tree-item-padding-x: 0.75em !default;
 $tree-item-padding-y: 0.5em !default;
-$tree-item-color: h.useVar("font-color") !default;
+$tree-item-color: h.useVar("color-emphasis") !default;
 $tree-item-font-size: h.useVar("font-size") !default;
 $tree-item-font-weight: h.useVar("font-weight") !default;
 $tree-item-line-height: h.useVar("line-height") !default;
