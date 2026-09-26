@@ -173,9 +173,8 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
     @include h.defineVar("transition-timing", vars.$animation-timing);
 }
 
-// Dark theme
-[data-theme="dark"],
-.theme-dark {
+// Define dark theme
+@mixin darkTheme {
     // define dark color variables
     @each $name, $pair in vars-dark.$colors-dark {
         @include h.defineVar($name, list.nth($pair, 1));
@@ -296,6 +295,16 @@ $host-selector: if(vars.$enable-host, ":root, :host", ":root");
         "hover-border-color-emphasis",
         vars-dark.$hover-border-color-emphasis-dark
     );
+}
 
-    background-color: vars-dark.$background-color-dark;
+// Apply dark theme
+@media (prefers-color-scheme: dark) {
+    #{$host-selector} {
+        @include darkTheme;
+    }
+}
+
+[data-theme="dark"],
+.theme-dark {
+    @include darkTheme;
 }
