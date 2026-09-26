@@ -7,7 +7,7 @@ $carousel-arrow-icon-spacer: 1.5rem !default;
 $carousel-arrow-top: 50% !default;
 $carousel-arrow-size: 1.5rem !default;
 $carousel-arrow-color: h.useVar("primary") !default;
-$carousel-arrow-border-width: h.useVar("control-border-width") !default;
+$carousel-arrow-border-width: 1px !default;
 $carousel-arrow-border-style: solid !default;
 $carousel-arrow-border-color: h.useVar("border-color-inverse") !default;
 $carousel-arrow-border-radius: h.useVar("border-radius-rounded") !default;

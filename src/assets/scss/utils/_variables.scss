@@ -71,6 +71,20 @@ $colors: (
     ),
 ) !default;
 
+
+/********************************************************************************
+*   Semantic color variables provide several levels of the same color meaning 
+*   so that components can communicate hierarchy, emphasis, contrast, 
+*   and context without relying on hard-coded color values.
+*
+*   The variants serve different purposes:
+*       - Default: normal prominence
+*       - Inverse: inverse prominence of default
+*       - Subtle: very reduced prominence
+*       - Muted: reduced prominence
+*       - Emphasis: most visually prominent
+*********************************************************************************/
+
 // Define theme variables
 $background-color: $white !default;
 $background-color-inverse: $grey-darkest !default;

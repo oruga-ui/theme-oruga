@@ -31,7 +31,6 @@ $pagination-button-hover-color: $pagination-button-color;
 $pagination-button-hover-background-color: $pagination-button-background-color;
 $pagination-button-hover-border-color: $pagination-button-border-color;
 
-// $pagination-button-current-color: h.useVar("white") !default; // @TODO to be deleted
 $pagination-button-current-color: h.useVar("color-inverse") !default;
 $pagination-button-current-background-color: h.useVar("primary") !default;
 $pagination-button-current-border-color: h.useVar("primary") !default;
