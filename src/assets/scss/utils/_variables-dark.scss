@@ -1,0 +1,80 @@
+@use "./variables" as vars;
+
+// Colors
+$primary-dark: #30a46c !default;
+$primary-invert-dark: vars.$black !default;
+$secondary-dark: #6c757d !default;
+$secondary-invert-dark: vars.$black !default;
+$success-dark: #1dae50 !default;
+$success-invert-dark: vars.$black !default;
+$info-dark: #1f88ce !default;
+$info-invert-dark: vars.$black !default;
+$warning-dark: #f8ce28 !default;
+$warning-invert-dark: vars.$black !default;
+$danger-dark: #d71e1e !default;
+$danger-invert-dark: vars.$black !default;
+
+// Colors map
+$colors-dark: (
+    "primary": (
+        $primary-dark,
+        $primary-invert-dark,
+    ),
+    "secondary": (
+        $secondary-dark,
+        $secondary-invert-dark,
+    ),
+    "success": (
+        $success-dark,
+        $success-invert-dark,
+    ),
+    "info": (
+        $info-dark,
+        $info-invert-dark,
+    ),
+    "warning": (
+        $warning-dark,
+        $warning-invert-dark,
+    ),
+    "danger": (
+        $danger-dark,
+        $danger-invert-dark,
+    ),
+) !default;
+
+// Define dark theme variables
+$background-color-dark: vars.$black;
+$background-color-inverse-dark: vars.$white;
+$background-color-subtle-dark: vars.$grey-darkest;
+$background-color-muted-dark: vars.$grey-darker;
+$background-color-emphasis-dark: vars.$grey-dark;
+
+$color-dark: vars.$white;
+$color-inverse-dark: vars.$black;
+$color-subtle-dark: vars.$grey-light;
+$color-muted-dark: vars.$grey;
+$color-emphasis-dark: vars.$grey-lighter;
+
+$border-color-dark: vars.$grey;
+$border-color-inverse-dark: vars.$white;
+$border-color-subtle-dark: vars.$grey-darkest;
+$border-color-muted-dark: vars.$grey-darker;
+$border-color-emphasis-dark: vars.$grey-light;
+
+$hover-background-color-dark: vars.$grey-darker;
+$hover-background-color-inverse-dark: vars.$grey-light;
+$hover-background-color-subtle-dark: vars.$grey-darkest;
+$hover-background-color-muted-dark: vars.$grey-dark;
+$hover-background-color-emphasis-dark: vars.$grey;
+
+$hover-color-dark: vars.$white;
+$hover-color-inverse-dark: vars.$black;
+$hover-color-subtle-dark: vars.$grey-light;
+$hover-color-muted-dark: vars.$grey;
+$hover-color-emphasis-dark: vars.$grey-lighter;
+
+$hover-border-color-dark: vars.$grey;
+$hover-border-color-inverse-dark: vars.$white;
+$hover-border-color-subtle-dark: vars.$grey-dark;
+$hover-border-color-muted-dark: vars.$grey-darker;
+$hover-border-color-emphasis-dark: vars.$grey-light;

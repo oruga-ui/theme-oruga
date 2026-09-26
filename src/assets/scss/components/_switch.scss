@@ -8,19 +8,19 @@ $switch-spacer: h.useVar("control-spacer") !default;
 $switch-width: 2.75em !default;
 $switch-height: 1.5em !default;
 
-$switch-color: h.useVar("font-color") !default;
+$switch-color: h.useVar("color-emphasis") !default;
 $switch-font-size: h.useVar("font-size") !default;
 $switch-font-weight: h.useVar("font-weight") !default;
 $switch-line-height: h.useVar("line-height") !default;
 
 $switch-box-shadow: h.useVar("control-box-shadow-inset") !default;
-$switch-border-color: h.useVar("grey-lighter") !default;
+$switch-border-color: h.useVar("border-color-subtle") !default;
 $switch-border-style: solid !default;
 $switch-border-width: h.useVar("control-border-width") !default;
 $switch-border-radius: h.useVar("border-radius") !default;
 $switch-border-radius-rounded: h.useVar("border-radius-rounded") !default;
-$switch-background-color: h.useVar("grey-light") !default;
-$switch-toggle-background-color: vars.$control-background-color !default;
+$switch-background-color: h.useVar("background-color-muted") !default;
+$switch-toggle-background-color: vars.$white !default;
 
 $switch-checked-background-color: h.useVar("primary") !default;
 $switch-checked-border-color: h.useVar("primary") !default;

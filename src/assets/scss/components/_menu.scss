@@ -6,13 +6,13 @@ $menu-spacer: 0.5rem !default;
 $menu-border: 1px solid h.useVar("primary") !default;
 $menu-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
-$menu-label-color: h.useVar("font-color") !default;
+$menu-label-color: h.useVar("color-emphasis") !default;
 $menu-label-font-size: calc(h.useVar("font-size") * 0.75) !default;
 $menu-label-font-weight: h.useVar("font-weight") !default;
 $menu-label-line-heigth: h.useVar("line-heigth") !default;
 
 $menu-item-padding: 0.5em 0.75em !default;
-$menu-item-color: h.useVar("font-color") !default;
+$menu-item-color: h.useVar("color-emphasis") !default;
 $menu-item-font-size: h.useVar("font-size") !default;
 $menu-item-font-weight: h.useVar("font-weight") !default;
 $menu-item-line-heigth: h.useVar("line-heigth") !default;
@@ -21,7 +21,7 @@ $menu-item-border: unset !default;
 $menu-item-border-radius: h.useVar("border-radius") !default;
 $menu-item-background-color: transparent !default;
 
-$menu-item-hover-color: h.useVar("white") !default;
+$menu-item-hover-color: h.useVar("hover-color-inverse") !default;
 $menu-item-hover-background-color: h.useVar("secondary") !default;
 $menu-item-active-color: h.useVar("primary-invert") !default;
 $menu-item-active-background-color: h.useVar("primary") !default;

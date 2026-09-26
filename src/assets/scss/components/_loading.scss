@@ -4,7 +4,7 @@
 
 /* @docs */
 $loading-spacer: h.useVar("control-spacer") !default;
-$loading-color: h.useVar("font-color") !default;
+$loading-color: h.useVar("color-emphasis") !default;
 $loading-font-size: h.useVar("font-size") !default;
 $loading-font-weight: h.useVar("font-weight") !default;
 $loading-zindex: map.get(vars.$zindex, "sticky") !default;
