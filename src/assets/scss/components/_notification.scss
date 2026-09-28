@@ -14,7 +14,7 @@ $notification-border-radius: h.useVar("border-radius") !default;
 
 $notification-close-top: 0.5em !default;
 $notification-close-right: 0.5em !default;
-$notification-close-color: h.useVar("white") !default;
+$notification-close-color: h.useVar("color-inverse") !default;
 $notification-close-size: 1.5rem !default;
 $notification-close-border-radius: h.useVar("border-radius-rounded") !default;
 $notification-close-background-color: h.useVar("control-shadow-color") !default;

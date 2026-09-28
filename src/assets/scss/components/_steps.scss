@@ -6,21 +6,21 @@
 $steps-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 $steps-vertical-padding: calc(2 * h.useVar("control-spacer")) 0 !default;
 
-$steps-step-color: h.useVar("font-color") !default;
+$steps-step-color: h.useVar("color-emphasis") !default;
 $steps-step-font-size: h.useVar("font-size") !default;
 $steps-step-font-weight: 500 !default;
 $steps-step-line-height: h.useVar("line-height") !default;
 
 $steps-step-border-color: h.useVar(
-    "control-background-color"
+    "background-color"
 ) !default; // color scheme is inverted for steps
 $steps-step-background-color: h.useVar(
-    "control-border-color"
+    "border-color-subtle"
 ) !default; // color scheme is inverted for steps
 $steps-step-active-border-color: h.useVar("primary") !default;
 $steps-step-active-background-color: h.useVar("primary-invert") !default;
-$steps-step-previous-border-color: $steps-step-active-background-color !default; // previus is the inverted active color scheme
-$steps-step-previous-background-color: $steps-step-active-border-color !default; // previus is the inverted active color scheme
+$steps-step-previous-border-color: $steps-step-active-background-color !default; // previous is the inverted active color scheme
+$steps-step-previous-background-color: $steps-step-active-border-color !default; // previous is the inverted active color scheme
 
 $steps-step-border-radius: h.useVar("border-radius") !default;
 $steps-step-border-radius-rounded: h.useVar("border-radius-rounded") !default;
@@ -28,7 +28,7 @@ $steps-step-border-radius-rounded: h.useVar("border-radius-rounded") !default;
 $steps-step-divider-height: 0.2em !default;
 
 $steps-step-label-padding: 0.2em !default;
-$steps-step-label-background-color: h.useVar("white") !default;
+$steps-step-label-background-color: h.useVar("background-color") !default;
 
 $steps-content-padding: calc(2 * h.useVar("control-spacer")) !default;
 /* @docs */
