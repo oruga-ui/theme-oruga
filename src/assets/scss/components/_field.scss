@@ -6,7 +6,7 @@
 $field-spacer: h.useVar("control-spacer") !default;
 $field-margin-bottom: calc(1.5 * $field-spacer) !default;
 
-$field-label-color: h.useVar("font-color") !default;
+$field-label-color: h.useVar("color-emphasis") !default;
 $field-label-font-size: h.useVar("font-size") !default;
 $field-label-font-weight: 600 !default;
 $field-label-line-height: h.useVar("line-height") !default;

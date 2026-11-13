@@ -8,17 +8,19 @@ $tree-disabled-opacity: h.useVar("control-disabled-opacity") !default;
 
 $tree-item-padding-x: 0.75em !default;
 $tree-item-padding-y: 0.5em !default;
-$tree-item-color: h.useVar("font-color") !default;
+$tree-item-color: h.useVar("color-emphasis") !default;
 $tree-item-font-size: h.useVar("font-size") !default;
 $tree-item-font-weight: h.useVar("font-weight") !default;
-$tree-item-line-heigth: h.useVar("line-height") !default;
+$tree-item-line-height: h.useVar("line-height") !default;
 
 $tree-item-border: unset !default;
 $tree-item-border-radius: h.useVar("border-radius") !default;
 $tree-item-background-color: transparent !default;
 
-$tree-item-hover-color: h.useVar("black") !default;
-$tree-item-hover-background-color: h.useVar("grey-lightest") !default;
+$tree-item-hover-color: h.useVar("hover-color-emphasis") !default;
+$tree-item-hover-background-color: h.useVar(
+    "hover-background-color-subtle"
+) !default;
 $tree-item-active-color: h.useVar("primary-invert") !default;
 $tree-item-active-background-color: h.useVar("primary") !default;
 /* @docs */
@@ -31,7 +33,7 @@ $tree-item-active-background-color: h.useVar("primary") !default;
     @include h.defineVar("tree-item-color", $tree-item-color);
     @include h.defineVar("tree-item-font-size", $tree-item-font-size);
     @include h.defineVar("tree-item-font-weight", $tree-item-font-weight);
-    @include h.defineVar("tree-item-line-heigth", $tree-item-line-heigth);
+    @include h.defineVar("tree-item-line-height", $tree-item-line-height);
     @include h.defineVar("tree-item-border", $tree-item-border);
     @include h.defineVar("tree-item-border-radius", $tree-item-border-radius);
     @include h.defineVar(

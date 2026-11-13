@@ -4,17 +4,17 @@
 
 /* @docs */
 $tag-padding: 0 0.75em !default;
-$tag-color: h.useVar("font-color") !default;
+$tag-color: h.useVar("color-emphasis") !default;
 $tag-font-size: h.useVar("font-size") !default;
 $tag-font-weight: h.useVar("font-weight") !default;
 $tag-line-height: h.useVar("line-height") !default;
 $tag-height: h.useVar("control-height") !default;
 $tag-icon-spacer: h.useVar("control-spacer") !default;
 
-$tag-close-color: h.useVar("font-color") !default;
+$tag-close-color: h.useVar("color-emphasis") !default;
 
 $tag-box-shadow: unset !default;
-$tag-background-color: h.useVar("grey-lightest") !default;
+$tag-background-color: h.useVar("background-color-subtle") !default;
 $tag-border-color: transparent !default;
 $tag-border-style: solid !default;
 $tag-border-width: h.useVar("control-border-width") !default;

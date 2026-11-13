@@ -71,6 +71,56 @@ $colors: (
     ),
 ) !default;
 
+/********************************************************************************
+*   Semantic color variables provide several levels of the same color meaning 
+*   so that components can communicate hierarchy, emphasis, contrast, 
+*   and context without relying on hard-coded color values or color variables.
+*
+*   The variants serve different purposes:
+*       - Default: normal prominence
+*       - Inverse: inverse prominence of default
+*       - Subtle: very reduced prominence
+*       - Muted: reduced prominence
+*       - Emphasis: most visually prominent
+*********************************************************************************/
+
+// Define theme variables
+$background-color: $white !default;
+$background-color-inverse: $grey-darkest !default;
+$background-color-subtle: $grey-lightest !default;
+$background-color-muted: $grey-lighter !default;
+$background-color-emphasis: $grey-light !default;
+
+$color: $black !default;
+$color-inverse: $white !default;
+$color-subtle: $grey !default;
+$color-muted: $grey-dark !default;
+$color-emphasis: $grey-darkest !default;
+
+$border-color: $grey !default;
+$border-color-inverse: $white !default;
+$border-color-subtle: $grey-lighter !default;
+$border-color-muted: $grey-light !default;
+$border-color-emphasis: $grey-dark !default;
+
+$hover-background-color: $grey !default;
+$hover-background-color-inverse: $grey-dark !default;
+$hover-background-color-subtle: $grey-lightest !default;
+$hover-background-color-muted: $grey-light !default;
+$hover-background-color-emphasis: $grey-dark !default;
+
+$hover-color: $grey !default;
+$hover-color-inverse: $white !default;
+$hover-color-subtle: $grey-light !default;
+$hover-color-muted: $grey-dark !default;
+$hover-color-emphasis: $black !default;
+
+$hover-border-color: $grey !default;
+$hover-border-color-inverse: $white !default;
+$hover-border-color-subtle: $grey-light !default;
+$hover-border-color-muted: $grey-lightest !default;
+$hover-border-color-emphasis: $grey-dark !default;
+
 // z-index map
 $zindex: (
     "dropdown": 10,
@@ -100,7 +150,6 @@ $font-family: // Cross-platform generic font family (default user interface font
     Arial,
     // Sans serif fallback
     sans-serif !default;
-$font-color: #363636 !default;
 $font-size: 1rem !default;
 $font-weight: 400 !default;
 $line-height: 1.5 !default;
@@ -110,9 +159,8 @@ $border-radius: 4px !default;
 $border-radius-rounded: 9999px !default;
 
 $control-spacer: 0.5em !default;
-$control-background-color: $white !default;
-$control-border-color: $grey-lighter !default;
 $control-border-width: 1px !default;
+$control-border-style: solid !default;
 $control-height: 2.25em !default;
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
 $control-padding-horizontal: calc(0.8em - #{$control-border-width}) !default;
